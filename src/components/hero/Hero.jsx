@@ -28,6 +28,12 @@ const Hero = () => {
                 </a>
             </div>
         </div>
+
+        <div className="hero__right">
+            <img src={Img1} alt="" className="img-1" />
+            <img src={Img2} alt="" className="img-2" />
+            <img src={Img3} alt="" className="img-3" />
+        </div>
     </Wrapper>
   </section>
 }

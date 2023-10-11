@@ -1,15 +1,14 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
-import {FaBars} from "react-icons/fa";
+
+//import {FaBars} from "react-icons/fa";
 import {useState} from "react";
 const Navbar= () => {
   const[showNav, setShowNav] =useState(false);
 
     return (
-    
     <nav>
-        dsssssssss
         <Wrapper className="navbar_container">
      <a href = "#" className="navbar_logo"
      onClick={() => setShowNav(false)}>
