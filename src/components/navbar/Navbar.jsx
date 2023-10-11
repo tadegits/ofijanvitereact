@@ -21,13 +21,13 @@ const Navbar= () => {
             <a href ="#">Home</a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 6th</a>
+            <a href ="#">Grade 6<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 8th</a>
+            <a href ="#">Grade 8<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 12</a>
+            <a href ="#">Grade 12<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
             <a href ="#">Exit Exam</a>
