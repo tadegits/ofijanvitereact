@@ -15,6 +15,7 @@ const Navbar= () => {
      <a href = "#" className="navbar__logo"
      onClick={() => setShowNav(false)}>
         <img src={Logo} alt=""/>
+        
      </a>
      <ul className={'navbar__links ${showNav ? "show-nav" :"" }'}>
         <li onClick={() => setShowNav(flase)}>
