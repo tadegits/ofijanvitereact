@@ -72,6 +72,7 @@ h6{
     background-color: #6f00eb;
     border-radius: 30px;
     padding: 10px 30px;
+    text-decoration: none;
     transition: background-color 0.3s ease-in-out;
 
     &:hover{
@@ -84,8 +85,9 @@ h6{
     background-color: rgba(0,0,0,0);
     border: 1px solid #110d34;
     border-radius: 30px;
-    padding: 10px, 30px;
+    padding: 10px 30px;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
 
     &:hover {
         background-color: #110d34;

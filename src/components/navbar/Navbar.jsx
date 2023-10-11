@@ -1,8 +1,7 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
-
-//import {FaBars} from "react-icons/fa";
+import {FaBars} from "react-icons/fa";
 import {useState} from "react";
 const Navbar= () => {
   const[showNav, setShowNav] =useState
@@ -10,7 +9,6 @@ const Navbar= () => {
 
      return (
     <nav className="navbar">
-        dsssssssss
         <Wrapper className="navbar__container">
      <a href = "#" className="navbar__logo"
      onClick={() => setShowNav(false)}>
@@ -22,13 +20,13 @@ const Navbar= () => {
             <a href ="#">Home</a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 6th</a>
+            <a href ="#">Grade 6<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 8th</a>
+            <a href ="#">Grade 8<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 12</a>
+            <a href ="#">Grade 12<sup>th</sup></a>
         </li>
         <li onClick={() => setShowNav(flase)}>
             <a href ="#">Exit Exam</a>
