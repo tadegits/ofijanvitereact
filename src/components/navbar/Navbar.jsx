@@ -17,7 +17,7 @@ const Navbar= () => {
         <img src={Logo} alt=""/>
         
      </a>
-     <ul className={'navbar__links ${showNav ? "show-nav" :"" }'}>
+     <ul className={`navbar__links ${showNav ? "show-nav" :"" }`}>
         <li onClick={() => setShowNav(flase)}>
             <a href ="#">Home</a>
         </li>
@@ -43,7 +43,7 @@ navbar__btn">
     Sign Up
 </a>
 
-<div className={'navbar__menubar ${showNav ? "bg-color": ""}'} 
+<div className={`navbar__menubar ${showNav ? "bg-color": ""}`} 
 onClick={()=>setShowNav(!showNav)}
 >
     <FaBars />
