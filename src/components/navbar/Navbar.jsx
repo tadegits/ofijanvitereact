@@ -9,7 +9,7 @@ const Navbar= () => {
     return (
     
     <nav>
-        dsssssssss
+        
         <Wrapper className="navbar_container">
      <a href = "#" className="navbar_logo"
      onClick={() => setShowNav(false)}>
