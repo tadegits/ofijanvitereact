@@ -33,7 +33,7 @@ const Navbar= () => {
             <a href ="#">Exit Exam</a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">about</a>
+            <a href ="#">About</a>
         </li>
 </ul>
 
