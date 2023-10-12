@@ -1,27 +1,73 @@
+@import "../../styles/mixin.scss";
 .counter-up{
-    background: #6f00eb;
-    
+    background: #ffffff;
+    min-width: 50vh;
+    display: flex;
+    align-items: center;
     padding: 0 50px;
 }
 .counter-up .content{
+    position: relative;
+    z-index: 2;
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     height: 100%;
     align-items: center;
     padding: 10px;
+    
 }
 .content .box{
-    width: calc(25% - 30px);
-    border: 1px dashed #fff;
+    width: calc(20% - 30px);
+    border: 1px dashed #3e065f;
     border-radius: 5px;
     padding: 20px;
     margin: 5px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    color: #fff;
+    color: #110d34;
     flex-direction: column;
+    @include respond(phone){
+        width: calc(25% - 30px);
+    }
+    @include respond(tab-port){
+        width: calc(25% - 30px);
+    }
+    @include respond(tab-land)
+    {
+        width: calc(45% - 30px); 
+    }
+
 }
-.context .box .icon{
-    
+
+.content .box .counter{
+    font-size: 50px;
+    color: #110d34;
+    font-weight: 500;
+    font-family: sans-serif;
+    margin-top: 10%;
 }
+.content .box .text{
+    color: #110d34;
+    font-weight: 400;
+   
+
+}
+@media (max-width: 1036px){
+    .counter-up{
+        padding: 50px 50px 0 50px;
+    }
+    .content .box{
+        margin-bottom: 50px;
+    width: 50%;
+}
+}
+@media (max-width: 580px){
+    .content .box{
+      
+    width: 100%
+}
+
+}
+

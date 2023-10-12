@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars , FaQuestion, FaChalkboardTeacher, FaPeopleArrows, FaSchool} from 'react-icons/fa';
 import CountUp from 'react-countup';
 import ScrollTrigger from 'react-scroll-trigger';
 import "./CounterUpPage.scss";
@@ -13,15 +13,15 @@ export default function CounterUpPage() {
       <div className='content'>
         <div className='box'>
           <div className='icon'>
-            <FaBars/>
+           <FaQuestion/>
           </div>
-          <div className='counter'>{ counterOn && <CountUp start={999900} end={1000000} duration={5} delay={0}/>}
+          <div className='counter'>{ counterOn && <CountUp start={999900} end={1000000} duration={2} delay={0}/>}
       +  </div>
           <div className='text'>Exam Questions</div>
         </div>
         <div className='box'>
           <div className='icon'>
-            <FaBars/>
+            <FaChalkboardTeacher/>
           </div>
           <div className='counter'>{ counterOn && <CountUp start={0} end={100} duration={2} delay={0}/>}
       +  </div>
@@ -29,17 +29,17 @@ export default function CounterUpPage() {
         </div>
         <div className='box'>
           <div className='icon'>
-            <FaBars/>
+            <FaPeopleArrows/>
           </div>
-          <div className='counter'>{ counterOn && <CountUp start={100} end={1000} duration={7} delay={0}/>}
+          <div className='counter'>{ counterOn && <CountUp start={100} end={1000} duration={2} delay={0}/>}
       +  </div>
           <div className='text'>Students</div>
         </div>
         <div className='box'>
           <div className='icon'>
-            <FaBars/>
+            <FaSchool/>
           </div>
-          <div className='counter'>{ counterOn && <CountUp start={999900} end={1000000} duration={9} delay={0}/>}
+          <div className='counter'>{ counterOn && <CountUp start={0} end={10} duration={2} delay={0}/>}
       +  </div>
           <div className='text'>Partners</div>
         </div>

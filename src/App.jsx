@@ -1,6 +1,6 @@
 import Navbar from "./components/navbar/Navbar"
 import Hero from "./components/hero/Hero"
-import Counter from "./components/counter/CounterUpPage"
+import CounterUpPage from "./components/counter/CounterUpPage"
 import CompanySection from "./components/companySection/CompanySection"
 import FeaturesSection from "./components/featuresSection/FeaturesSection"
 
@@ -10,8 +10,10 @@ function App() {
     <>
       <Navbar/>
       <Hero/>
-      <Counter/>
-      <CompanySection/>
+      <CompanySection/> 
+      
+      <CounterUpPage/>
+
       <FeaturesSection/>
     </>
   )
