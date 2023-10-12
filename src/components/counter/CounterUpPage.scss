@@ -1,0 +1,27 @@
+.counter-up{
+    background: #6f00eb;
+    
+    padding: 0 50px;
+}
+.counter-up .content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 10px;
+}
+.content .box{
+    width: calc(25% - 30px);
+    border: 1px dashed #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #fff;
+    flex-direction: column;
+}
+.context .box .icon{
+    
+}
