@@ -3,6 +3,7 @@ import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
 import {FaBars} from "react-icons/fa";
 import {useState} from "react";
+
 const Navbar= () => {
   const[showNav, setShowNav] =useState
   (false);
@@ -32,7 +33,7 @@ const Navbar= () => {
             <a href ="#">Exit Exam</a>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">about</a>
+            <a href ="#">About</a>
         </li>
 </ul>
 

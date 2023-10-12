@@ -21,7 +21,7 @@ const Hero = () => {
                 <a href="#" className="button-primary">
                     Get Started - it's free
                 </a>
-                <a href="" className="button-outline">
+                <a href="#" className="button-outline">
                     How it's works
                 </a>
             </div>
