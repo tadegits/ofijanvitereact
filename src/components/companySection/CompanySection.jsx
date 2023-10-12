@@ -2,13 +2,13 @@ import './CompanySection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import Company1 from '../../assets/inventory 2.png'
 import Company2 from '../../assets/inventory 3.png'
-import Company3 from '../../assets/education1.png'
+import Company3 from '../../assets/brain2.png'
 import Company4 from '../../assets/sun2.png'
-import Company5 from '../../assets/education2.png'
+import Company5 from '../../assets/brain.png'
 import Phone from '../../assets/sun3.png'
 import Appstore from '../../assets/moon2.png'
 import Playstore from '../../assets/inventory 1.png'
-import Bg from '../../assets/moon.png'
+import Bg from '../../assets/logo.png'
 
 const CompanySection = () => {
   return <section className="company">
