@@ -21,9 +21,9 @@
         }
     
 }
-}
+
 img {
-    transform: translateX(3rem);
+    transform: translateX(5rem);
     @include respond(tab-land)
     {
         @include respond(tab-land)
@@ -35,9 +35,10 @@ img {
             display: none;
         }
     }
+}
 h3, p{
 text-align:right;
-color: #fff;
+color: #ffffff;
 @include respond (phone)
 {
     text-align: center;
