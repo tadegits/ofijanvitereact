@@ -3,7 +3,7 @@ import Hero from "./components/hero/Hero"
 import CounterUpPage from "./components/counter/CounterUpPage"
 import CompanySection from "./components/companySection/CompanySection"
 import FeaturesSection from "./components/featuresSection/FeaturesSection"
-import SignUpSection from "./components/SignUpSection/SignUpSection"
+// import SignUpSection from "./components/SignUpSection/SignUpSection"
 
 function App() {
 
@@ -12,11 +12,9 @@ function App() {
       <Navbar/>
       <Hero/>
       <CompanySection/> 
-      
       <CounterUpPage/>
-
       <FeaturesSection/>
-      <SignUpSection/>
+      {/* <SignUpSection/> */}
     </>
   )
 }
