@@ -27,7 +27,7 @@ function App() {
           <Route path="/Grade6" element={<Grade6/>} />
           <Route path="/ExitExam" element={<ExitExam/>} />
       </Routes>
-     
+     <Footer/>
     </>
   )
 }

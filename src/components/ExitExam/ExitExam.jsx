@@ -1,4 +1,4 @@
-import '../featuresSection/FeaturesSection.scss'
+import './ExitExam.scss'
 import Wrapper from '../wrapper/Wrapper'
 import Img1 from '../../assets/resource1.png'
 import Img2 from '../../assets/resource2.png'
@@ -8,22 +8,32 @@ import Img5 from '../../assets/resource5.png'
 import Img6 from '../../assets/resource6.png'
 
 const ExitExam = () => {
-  return <section className="features">
+  return <section className="exams">
     <Wrapper>
-      <div className="features__text">
+      <div className="exams__text">
         <h3>Exit Exam</h3>
         <p>
-          Lose john poor same it case do year we Full how way even sigh Extremely nor furniture fat questions now provision incommode.
-        </p>
+          Select your field of study!
+          <form>
+        <input 
+        type="text"
+        placeholder="Enter your Email"
+        className="Email"/>
+        <input type="submit"
+        value="submit"
+        className="button-primary"/>
+    </form>
+          </p>
+
       </div>
       <div className="features__container">
         <div className="features__feature dark-feature">
           <img src={Img1} width={200} alt="" />
           <h4 className="dark-feature-title">
-            Free Enrollment
+            Computer science
           </h4>
           <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
+            PhD holders and professional lecturesrs prepared computer science model exit exam questions will make you prepapre yourself for the actual exam. 
           </p>
         </div>
 
