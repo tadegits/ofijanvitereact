@@ -13,7 +13,7 @@ const Grade8 = () => {
   const course_name = useRef(0);
   return <section className="features">
     <Wrapper>
-      <div courses_container>
+      <div className='courses_container'>
       <Link to="#" className="button-courses"> English</Link>
       <a href="#" className="button-courses">Mathematics</a>
       <a href="#" className="button-courses">Afaan Oromo</a>
