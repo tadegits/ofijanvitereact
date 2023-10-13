@@ -108,4 +108,20 @@ h6{
         }
     }
 
-
+    .button-courses{
+        color: #110d34;
+        text-align: center;
+        background-color: rgba(0,0,0,0);
+        border: 1px solid #110d34;
+        border-radius: 30px;
+        padding: 5px 15px;
+        margin: 0.22rem;
+        margin-top: 2rem;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+    
+        &:hover {
+            background-color: #110d34;
+            color: #fff;
+        }
+    }
