@@ -1,4 +1,4 @@
-import './FeaturesSection.scss'
+import '../featuresSection/FeaturesSection.scss'
 import Wrapper from '../wrapper/Wrapper'
 import Img1 from '../../assets/resource1.png'
 import Img2 from '../../assets/resource2.png'
@@ -7,11 +7,11 @@ import Img4 from '../../assets/resource4.png'
 import Img5 from '../../assets/resource5.png'
 import Img6 from '../../assets/resource6.png'
 
-const FeaturesSection = () => {
+const Grade8 = () => {
   return <section className="features">
     <Wrapper>
       <div className="features__text">
-        <h3>Explore our amazing features</h3>
+        <h3>6</h3>
         <p>
           Lose john poor same it case do year we Full how way even sigh Extremely nor furniture fat questions now provision incommode.
         </p>
@@ -82,4 +82,4 @@ const FeaturesSection = () => {
   </section>
 }
 
-export default FeaturesSection
+export default Grade8

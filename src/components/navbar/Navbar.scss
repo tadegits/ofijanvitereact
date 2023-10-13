@@ -1,8 +1,7 @@
 @import "../../styles/mixin.scss";
 .navbar{
     padding-block: 20px;
-    position: relative;
-
+    
     @include respond(phone){
     padding-block: 15px;
 }

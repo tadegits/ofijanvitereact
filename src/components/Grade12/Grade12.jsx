@@ -1,18 +1,26 @@
-import "./Grade12.scss";
-import Wrapper from "../wrapper/Wrapper";
-import React from 'react'
-
-export default function paysmentSection() {
-  return (
-    <section className="grade12"> {/* //payment */}
-     <Wrapper className="grade12_container">  {/* //payment_container */}
-        <div className="mathematics">{/* //payment_left */}
-<h3>Grade 12 Mathematics Enterance Exam</h3>
-<p>All questions are answered well with highly professional instructors. You can contact the instructors any time if you are 
-  you have any question regarding certain topic. Remeber to test yourself before looking at the answers that way you could be more profitable.
-</p>
-        </div>
-      </Wrapper>
-    </section>
-  )
+import '../featuresSection/FeaturesSection.scss'
+import Wrapper from '../wrapper/Wrapper'
+import Img1 from '../../assets/resource1.png'
+import Img2 from '../../assets/resource2.png'
+import Img3 from '../../assets/resource3.png'
+import Img4 from '../../assets/resource4.png'
+import Img5 from '../../assets/resource5.png'
+import Img6 from '../../assets/resource6.png'
+import Insraw from '../insraw/insraw'
+const Grade12 = () => {
+  return <section className="features">
+    <Wrapper>
+      <div className="features__text">
+        <h3>12</h3>
+        <p>
+          Lose john poor same it case do year we Full how way even sigh Extremely nor furniture fat questions now provision incommode.
+        </p>
+      </div>
+      <div className="features__container">
+        <Insraw/>
+      </div>
+    </Wrapper>
+  </section>
 }
+
+export default Grade12

@@ -19,10 +19,10 @@ const Hero = () => {
 
             <div className="hero__btn-container">
                 <a href="#" className="button-primary">
-                    Get Started - it's free
+                    SignIn
                 </a>
                 <a href="#" className="button-outline">
-                    How it's works
+                    Tell me more
                 </a>
             </div>
         </div>

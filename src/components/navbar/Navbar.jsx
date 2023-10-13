@@ -3,7 +3,7 @@ import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
 import {FaBars} from "react-icons/fa";
 import {useState} from "react";
-
+import { Link } from "react-router-dom";
 const Navbar= () => {
   const[showNav, setShowNav] =useState
   (false);
@@ -11,26 +11,27 @@ const Navbar= () => {
      return (
     <nav className="navbar">
         <Wrapper className="navbar__container">
-     <a href = "#" className="navbar__logo"
+     <Link to= "/" className="navbar__logo"
      onClick={() => setShowNav(false)}>
         <img src={Logo} alt=""/>
         
-     </a>
+     </Link>
      <ul className={`navbar__links ${showNav ? "show-nav" :"" }`}>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Home</a>
+           <Link to="/">Home</Link>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 6<sup>th</sup></a>
+            <Link to="/Grade6">Grade 6<sup>th</sup></Link>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 8<sup>th</sup></a>
+            <Link to="/Grade8">Grade 8<sup>th</sup></Link>
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Grade 12<sup>th</sup></a>
+        <Link to="/Grade12">Grade 12<sup>th</sup></Link>
+           
         </li>
         <li onClick={() => setShowNav(flase)}>
-            <a href ="#">Exit Exam</a>
+        <Link to="/ExitExam">Exit Exam</Link>
         </li>
         <li onClick={() => setShowNav(flase)}>
             <a href ="#">About</a>

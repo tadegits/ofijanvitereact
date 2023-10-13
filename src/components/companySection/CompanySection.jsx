@@ -13,7 +13,7 @@ import Bg from '../../assets/logo.png'
 const CompanySection = () => {
   return <section className="company">
     <Wrapper>
-      <h4>Trusted by over 30,000 companies</h4>
+      <h4>1000,000+ Exit Exam questions and answer!</h4>
       <div className="company__companies">
         <img src={Company1} width={200} alt=""/>
         <img src={Company2} width={200} alt=""/>
@@ -32,12 +32,9 @@ const CompanySection = () => {
           </div>
         </div>
         <div className="company__right">
-          <h3>Ofijan work process</h3>
+          <h3>How to get the exams!</h3>
           <p>
-            We so entreaties cultivated 
-            astonished is. Offered chiefly
-            farther of my no colonel shyness. Such
-            on help ye some door if in.
+           Simple steps
           </p>
           <div className="company__points-container">
             <div className="company__point">
@@ -45,7 +42,7 @@ const CompanySection = () => {
                 <div>1</div>
               </div>
               <div className="company__point-text">
-                Download & Register App
+                Select the course you wanted.
               </div>
             </div>
             <div className="company__point">
@@ -53,7 +50,7 @@ const CompanySection = () => {
                 <div>2</div>
               </div>
               <div className="company__point-text">
-                Personal information & form submit
+                Select Your prefered Payment method
               </div>
             </div>
             <div className="company__point">
@@ -61,7 +58,7 @@ const CompanySection = () => {
                 <div>3</div>
               </div>
               <div className="company__point-text">
-                Approved & get a digital card
+                Start test right away.
               </div>
             </div>
           </div>
