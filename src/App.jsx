@@ -29,7 +29,7 @@ function App() {
           <Route path="/ExitExam" element={<ExitExam/>} />
           <Route path="/Login" element={<LoginSection/>} />
       </Routes>
-     
+     <Footer/>
     </>
   )
 }
