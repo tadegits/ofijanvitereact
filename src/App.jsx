@@ -14,6 +14,7 @@ import Footer from "./components/footer/footer"
 import Plans from "./components/PlanSection/PlanSection";
 import Insraw from "./components/insraw/insraw"
 import { Route, Routes } from "react-router-dom";
+import LoginSection from "./components/loginSection/LoginSection";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Grade8" element={<Grade8/>} />
           <Route path="/Grade6" element={<Grade6/>} />
           <Route path="/ExitExam" element={<ExitExam/>} />
+          <Route path="/Login" element={<LoginSection/>} />
       </Routes>
      
     </>

@@ -1,0 +1,113 @@
+@import '../../styles/mixin.scss';
+
+.login {
+
+    border-radius: 0.5rem;
+    background-color: #594fb6;
+
+    &__header{
+        align-items: center;
+        width: fit-content;
+        background-color: aquamarine;
+
+        h4 {
+            font-size: 23px;
+        }
+
+        h4, p {
+            white-space: nowrap;
+        }
+
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        gap: 1rem;
+    }
+
+    &__image_holder{
+        margin: 10px;
+
+        .logtitle {
+            display: flex;
+            align-content: center;
+
+            img {
+                width: 10%;
+                height: 10%;
+                margin: 2rem 1rem 1rem;
+            }
+
+            h1 {
+                font-size: 39px;
+                font-weight: 700;
+                align-items: center;
+            }
+        }
+
+    }
+
+    &__form_container {
+        margin: 10px -20px 10px 0;
+        border-radius: 0.5rem;
+        padding-left: 2.5rem;
+        background-color: #ffffff;
+
+        @include respond(tab-land){
+            margin: 10px 0px 10px 0;
+        }
+
+        @include respond(tab-port){
+            margin: 10px 0px 10px 0;
+        }
+
+        @include respond(phone){
+            margin: 10px 0px 10px 0;
+        }
+
+    }
+
+    &__signup {
+        margin: 10px;
+        border-radius: 1rem;
+    }
+
+    &__form{
+        margin: 50px 10px 10px;
+        padding: 1rem;
+        border-radius: 1rem;
+        display: block;
+    }
+
+    .username{
+        width: 52.5%;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        margin-bottom: 10px;
+    }
+
+    .password{
+        width: 52.5%;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        margin-bottom: 10px;
+    }
+
+    .summit-login {
+        align-content: center;
+        margin-inline: auto;
+        background-color: aquamarine;
+
+        .logbtn{
+            width:52.5%;
+            padding: 1rem;
+            margin-bottom: 10px;
+            border-radius: 0.2rem;
+        }
+    }
+
+    .button-primary {
+        cursor: pointer;
+    }
+}
