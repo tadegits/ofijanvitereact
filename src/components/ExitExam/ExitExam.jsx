@@ -1,81 +1,76 @@
 import './ExitExam.scss';
 import Wrapper from '../wrapper/Wrapper'
-import { FaBars, FaQuestion, FaChalkboardTeacher, FaPeopleArrows, FaSchool} from 'react-icons/fa';
-import { Link } from "react-router-dom";
-import Counter from '../counter/CounterUpPage'
-import { useRef } from 'react'
+import SelectedDepartment from '../SelectedDepartment/SelectedDepartment';
+import ItemCard from '../ItemCard/ItemCard';
+import { useRef, useState, useEffect } from 'react'
 const ExitExam = () => {
- 
-  return <section className="exams">
+  const url = "https://ofijan.com/api/colleges";
+  const [data, setData] = useState([])
+  const [isShown, setIsShown] = useState(false);
+  const ref = useRef(null);
+  const handleClick = event => {
+    // 👇️ toggle shown state
+    setIsShown(current => !current);
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+
+    // 👇️ or simply set it to true
+    // setIsShown(true);
+  };
+  const fetchInfo = () => { 
+    return fetch(url) 
+            .then((res) => res.json()) 
+            .then((d) => setData(d)) 
+    }
+    
+    useEffect(() => {
+      fetchInfo();
+    }, [])
+
+  return <section className="examsholder">
     <Wrapper>
-      <h3>Select Your field of Study!</h3>
-    <div className='counter-up'> 
-      <div className='content'>
-        <div className='box'>
-          <div className='icon'>
-           <FaQuestion/>
-          </div>
-         
-          <div className='text'>Engineering</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaChalkboardTeacher/>
-          </div>
-         
-          <div className='text'>Computing and Informatics</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaPeopleArrows/>
-          </div>
-         
-          <div className='text'>Agriculture</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Natural and Computational</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Social Science and Humanities</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Partners</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Partners</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Partners</div>
-        </div>
-        <div className='box'>
-          <div className='icon'>
-            <FaSchool/>
-          </div>
-         
-          <div className='text'>Partners</div>
-        </div>
-      </div>
+      
+    <div className='exitexam'>
+
+    
+        <div className='departments'>
+        <p> Select Your field of Study!</p>
+        {data.map((dataObj, index) => {
+          return (
+             <div className='text'> 
+              <ul><li><a href="#" onClick={handleClick}>{dataObj.title}</a></li></ul> 
+             </div>
+          );
+        })}
+         </div>
+
+         <div className='exams_list'>
+         <div class="product-card">
+  <div class="product-title">Exam Questions by Instructor Million Sime</div>
+  <div class="product-description">Brief description of the exam questions.</div>
+  <div class="product-price">$50</div>
+  <div class="product-questions">Number of Questions: 100</div>
+  <div class="product-answer">Answer: Brief description of the answer.</div>
+</div>
+<div class="product-card">
+  <div class="product-title">Exam Questions by Instructor Million Sime</div>
+  <div class="product-description">Brief description of the exam questions.</div>
+  <div class="product-price">$50</div>
+  <div class="product-questions">Number of Questions: 100</div>
+  <div class="product-answer">Answer: Brief description of the answer.</div>
+</div>
+<div class="product-card">
+  <div class="product-title">Exam Questions by Instructor Million Sime</div>
+  <div class="product-description">Brief description of the exam questions.</div>
+  <div class="product-price">$50</div>
+  <div class="product-questions">Number of Questions: 100</div>
+  <div class="product-answer">Answer: Brief description of the answer.</div>
+</div>
+         </div>
     </div>
+    <div ref={ref} className='selected'>
+      {isShown && <SelectedDepartment/>}
+    </div>
+    
     </Wrapper>
   </section>
 }

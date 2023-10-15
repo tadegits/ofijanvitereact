@@ -1,125 +1,166 @@
 @import "../../styles/mixin.scss";
-.counter-up{
-    background: #ffffff;
-    min-width: 50vh;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-  
-}
-.counter-up .content{
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-wrap: wrap;
+
+
+.exitexam
+{
+    display: grid;
     width: 100%;
-    height: 100%;
-    align-items: center;
-    padding: 0px;
-    
-    
+    height: max-content;
+    background-color: #fffdfd;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    @include respond(phone){
+        width: calc(25% - 30px);
+        display: block;
+        
+    }
+    @include respond(tab-port){
+        width: calc(25% - 30px);
+        display: block;
+    }
+    @include respond(tab-land)
+    {
+        width: calc(45% - 30px); 
+        display: block;
+    }
 }
-.content .box{
-    
-    width: calc(30% - 30px);
-    border: 1px solid #060702;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 5px;
-    display: flex;
+.exams_list{
+    width: 60%;
+    background-color: #ffffff00;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
     border-radius: 0%;
     align-items: center;
     justify-content: space-evenly;
     color: #110d34;
     flex-direction: column;
-    &:hover{
-        background-color: #bf72ce;
-        
-    .text{
-        color: white;
-    }
-    }
-
     @include respond(phone){
         width: calc(25% - 30px);
+        display: block;
+        
     }
     @include respond(tab-port){
         width: calc(25% - 30px);
+        display: block;
     }
     @include respond(tab-land)
     {
         width: calc(45% - 30px); 
+        display: block;
     }
-
 }
-
-.content .box .counter{
-    font-size: 50px;
-    color: #110d34;
-    font-weight: 500;
-    font-family: sans-serif;
-    margin-top: 10%;
+.departments{
+    width: 300px;
+   background-color: #ffffff00;
+   overflow-y: scroll;
+   max-height: 500px;
+a{
+    text-decoration: none;
+    color: purple;
 }
-.content .box .text{
-    color: #110d34;
-    font-weight: 400;
+li{
+    list-style: square;
+    gap: 0.1rem;
+    margin-bottom: 2px;
+    &:hover{
+        background-color: purple;
+    a{
+    color: white;
+    }       
+}
    
-
-}
-@media (max-width: 1036px){
-    .counter-up{
-        padding: 50px 50px 0 50px;
-    }
-    .content .box{
-        margin-bottom: 50px;
-    width: 50%;
-}
-}
-@media (max-width: 580px){
-    .content .box{
-      
-    width: 100%
 }
 
 }
 
-
-form{
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    width: 70%;
-    display: flex;
-    float: left;
-    margin-top: 0rem;
-    padding: 0 0rem;
-    border-radius: 2rem;
-    background-color: #fff;
-    .email{
-        border-radius: 0.5rem;
-        font-size: 2rem;
-        width: 0%;
-        padding: 0 0rem;
-
-        @include respond(phone)
-        {
-            padding: 10 10rem;
-            padding-inline: 11rem;
-        }
-    }
-
-}
-input{
-    outline: none;
-    width: 60%;
-    height: 20px;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .content .box:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .content .box:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+  .selected{
+    height: 120rem;
+    background-color: rgb(255, 255, 255);
+  }
+  .product-card {
+    width: 100px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00c853;
+    margin-bottom: 10px;
+  }
+  
+  .product-questions {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .product-answer {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card .btn {
+    background-color: #00c853;
+    color: #fff;
+    padding: 8px 16px;
     border: none;
-    border-radius: 30px;
-    padding: 10px;
-
-}
-.searchbox{
-    background-color: #fcfbff;
-    margin-left: 50px;
-    width: 50%;
-    align-items: center;
-   
-}
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .product-card .btn:hover {
+    background-color: #009624;
+  }
+  

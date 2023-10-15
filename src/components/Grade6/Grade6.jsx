@@ -20,7 +20,7 @@ const Grade8 = () => {
       <a href="#" className="button-courses">Sience</a>
       <a href="#" className="button-courses"> English</a>
       <a href="#" className="button-courses">Mathematics</a>
-        <h5 ref={course_name}> Here are sample English exam wuastions from our database. click See more to get all</h5> 
+        <h5 ref={course_name}> Here are sample English exam questions from our database. click See more to get all</h5> 
         
       </div>
       <div className="questions">
