@@ -37,6 +37,11 @@
         @include respond(phone){
             display: none;
         }
+
+        @include respond(tab-port){
+            display: none;
+        }
+
     }
 
     &__image_holder2{
@@ -99,14 +104,15 @@
     }
 
     &__form_container {
+        width: fit-content;
         margin: 10px -20px 10px 0;
         border-radius: 0.5rem;
         padding-left: 2.5rem;
         background-color: #ffffff;
 
-        @include respond(tab-land){
-            margin: 10px 0px 10px 0;
-        }
+        // @include respond(tab-land){
+        //     margin: 10px 0px 10px 0;
+        // }
 
         // @include respond(tab-port){
         //     margin: 10px 0px 10px 0;
@@ -142,7 +148,7 @@
         }
         .username{
             width: 92%;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 0.2rem;
             margin-bottom: 20px;
             margin-top: 20px;
@@ -152,11 +158,19 @@
             &:focus{
                 opacity: 1;
             }
+
+            @include respond(tab-port){
+                width: 92.5%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
         }
 
         .password{
             width: 92%;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 0.2rem;
             margin-bottom: 10px;
             font-weight: 700;
@@ -165,10 +179,19 @@
             &:focus{
                 opacity: 1;
             }
+
+            @include respond(tab-port){
+                width: 92.5%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
+            
         }
 
         .form-contents{
-            background-color: #ffffff;
+            // background-color: #242121;
             width: fit-content;
         }
 
@@ -185,6 +208,14 @@
                     color: #594fb6;
                 }
             }
+
+            @include respond(tab-port){
+                width: 100%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
             
         }
 
@@ -193,7 +224,10 @@
     
             .logbtn{
                 width:100%;
-                padding: 1rem;
+                // justify-content: center;
+                // align-items: center;
+                // margin-inline: auto;
+                padding: 0.8rem;
                 margin-bottom: 10px;
                 border-radius: 0.2rem;
                 background-color: #ffffff;
@@ -205,6 +239,18 @@
                     background-color: #594fb6;
                     color: #ffffff;
                 }
+
+                // @include respond(phone){
+                //     width: 100%;
+                // }
+
+                // @include respond(tab-port){
+                //     width: 100%;
+                // }
+
+                // @include respond(tab-land){
+                //     width: 100%;
+                // }
             }
 
         }
