@@ -1,0 +1,294 @@
+@import '../../styles/mixin.scss';
+
+.login {
+
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    background-color: #ffffff;
+
+    &__header{
+        align-items: center;
+        width: fit-content;
+        // background-color: aquamarine;
+        margin-top: -20px;
+
+        h4 {
+            font-size: 23px;
+        }
+
+        p {
+            margin-top: -20px;
+        }
+
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        gap: 1rem;
+    }
+
+    &__image_holder{
+        background-color: #b8b7be;
+        border-radius: 0.5rem;
+        margin: 0.5rem;
+        margin-left: 0;
+
+        @include respond(phone){
+            display: none;
+        }
+
+        @include respond(tab-port){
+            display: none;
+        }
+
+    }
+
+    &__image_holder2{
+        margin: 10px;
+
+        .logtitle {
+            display: flex;
+            align-content: center;
+            // background-color: aquamarine;
+
+            img {
+                width: 10%;
+                height: 10%;
+                margin: 2rem 0 1rem;
+
+                @include respond(phone){
+                    width: 11%;
+                    width: 11%;
+                }
+
+                @include respond(tab-land){
+                    width: 11%;
+                    width: 11%;
+                }
+
+                @include respond(tab-port){
+                    width: 11%;
+                    width: 11%;
+                }
+            }
+
+            h1 {
+                margin-left: 1rem;
+                margin-top: 2.1rem;
+                font-size: 33px;
+                font-weight: 700;
+
+                @include respond(phone){
+                    font-size: 200%;
+                    font-weight: 700;
+
+                }
+
+                @include respond(tab-land){
+                    font-size: 200%;
+                    font-weight: 700;
+                    margin-top: 1.8rem;
+
+                }
+
+                // @include respond(tab-port){
+                //     font-size: 24px;
+                //     font-weight: 700;
+                //     margin-top: 1.8rem;
+
+                // }
+            }
+        }
+
+    }
+
+    &__form_container {
+        width: fit-content;
+        margin: 10px -20px 10px 0;
+        border-radius: 0.5rem;
+        padding-left: 2.5rem;
+        background-color: #ffffff;
+
+        // @include respond(tab-land){
+        //     margin: 10px 0px 10px 0;
+        // }
+
+        // @include respond(tab-port){
+        //     margin: 10px 0px 10px 0;
+        // }
+
+        @include respond(phone){
+            margin: 10px 0px 10px 0;
+        }
+
+    }
+
+    &__signup {
+        margin: 10px;
+        border-radius: 1rem;
+        justify-content: center;
+        background-color: aliceblue;
+    }
+
+    &__form1{
+        padding-left: 0.8rem;
+        border-radius: 1rem;
+        margin-bottom: 10px;
+
+        p.form-email{
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        p.form-pass{
+            font-size: 18px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        .username{
+            width: 92%;
+            padding: 0.8rem;
+            border-radius: 0.2rem;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-weight: 700;
+            opacity: 0.6;
+
+            &:focus{
+                opacity: 1;
+            }
+
+            @include respond(tab-port){
+                width: 92.5%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
+        }
+
+        .password{
+            width: 92%;
+            padding: 0.8rem;
+            border-radius: 0.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            opacity: 0.6;
+
+            &:focus{
+                opacity: 1;
+            }
+
+            @include respond(tab-port){
+                width: 92.5%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
+            
+        }
+
+        .form-contents{
+            // background-color: #242121;
+            width: fit-content;
+        }
+
+        .summit-forget {
+            width: 100%;
+            // background-color: #3422d4;
+            p{
+                text-align: right;
+                font-weight: 500; 
+                font-size: 17px;
+                cursor: pointer;
+
+                &:hover{
+                    color: #594fb6;
+                }
+            }
+
+            @include respond(tab-port){
+                width: 100%;
+            }
+
+            @include respond(phone){
+                width: 89.5%;
+            }
+            
+        }
+
+        .summit-login {
+            width: 100%;
+    
+            .logbtn{
+                width:100%;
+                // justify-content: center;
+                // align-items: center;
+                // margin-inline: auto;
+                padding: 0.8rem;
+                margin-bottom: 10px;
+                border-radius: 0.2rem;
+                background-color: #ffffff;
+                font-weight: 700;
+                color: #594fb6;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #594fb6;
+                    color: #ffffff;
+                }
+
+                // @include respond(phone){
+                //     width: 100%;
+                // }
+
+                // @include respond(tab-port){
+                //     width: 100%;
+                // }
+
+                // @include respond(tab-land){
+                //     width: 100%;
+                // }
+            }
+
+        }
+    
+        .summit-signup{
+            display: flex;
+            width: 100%;
+            // background-color: rgb(15, 69, 117);
+            text-align: center;
+            justify-content: center;
+
+            h5{
+                // background-color: #e7e7e7;
+                margin: 0;
+
+            }
+
+            input{
+                width: fit-content;
+                height: fit-content;
+                margin-left: 10px;
+                background-color: white;
+                margin-top: 4px;
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+                padding: 0;
+                padding-bottom: 3px;
+                border-color: #3422d4;
+                font-weight: 700;
+                color: #594fb6;
+                cursor: pointer;
+            }
+
+        }
+    
+        .button-primary {
+            cursor: pointer;
+        }
+    }
+}

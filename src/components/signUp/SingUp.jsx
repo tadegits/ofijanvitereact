@@ -39,9 +39,35 @@ const LoginSection = () => {
                                 <input type="submit" value="Log In" className="logbtn"/>
                             </div>
                             <div className="summit-signup">
-                                <h5>Registor as new user</h5> <a href='#'><input type='submit' value="Sign Up" className='singup'/></a>
+                                <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup'/>
                             </div>
-                        </div>                     
+                        </div>
+
+                        <div className="form-contents1">
+                            <label>First Name</label>
+                            <input type="text" placeholder='First Name' className="fname"/>
+                            <label>Last Name</label>
+                            <input type="text" placeholder='Last Name' className="lname"/>
+                            <label>E_mail</label>
+                            <input type="text" placeholder='Email' className="email"/>
+                            <label>Phone Number</label>
+                            <input type="text" placeholder='Phone Number' className="phone"/>
+                            <label>Password</label>
+                            <input type="password" placeholder='Password' className="password"/>
+                            <label>Confirm Password</label>
+                            <input type="password" placeholder='Confirm-Password' className="confirmpass"/>
+                            <div className="summit-forget">
+                                <p>Forgot your password ?</p>
+                            </div>
+                            <div className="summit-login">
+                                <input type="submit" value="Log In" className="logbtn"/>
+                            </div>
+                            <div className="summit-signup">
+                                <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup'/>
+                            </div>
+                        </div>
+
+                    
                 </div>
             </div>
         </div>
