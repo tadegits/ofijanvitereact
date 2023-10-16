@@ -38,10 +38,10 @@ const Navbar= () => {
         </li>
 </ul>
 
-<a href="#" className="button-primary 
+<Link to='/Login' className="button-primary 
 navbar__btn">
-    Sign Up
-</a>
+    Sign in
+</Link>
 
 <div className={`navbar__menubar ${showNav ? "bg-color": ""}`} 
 onClick={()=>setShowNav(!showNav)}

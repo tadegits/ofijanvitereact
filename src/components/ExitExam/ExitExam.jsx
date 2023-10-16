@@ -1,83 +1,78 @@
-import '../featuresSection/FeaturesSection.scss'
+import './ExitExam.scss';
 import Wrapper from '../wrapper/Wrapper'
-import Img1 from '../../assets/resource1.png'
-import Img2 from '../../assets/resource2.png'
-import Img3 from '../../assets/resource3.png'
-import Img4 from '../../assets/resource4.png'
-import Img5 from '../../assets/resource5.png'
-import Img6 from '../../assets/resource6.png'
+import ItemCard from '../ItemCard/ItemCard';
+import { useRef, useState, useEffect } from 'react'
 
 const ExitExam = () => {
-  return <section className="features">
+  const url = "https://ofijan.com/api/departments";
+  const [data, setData] = useState([]);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
+  const [departments, setDepartments] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [isShown, setIsShown] = useState(false);
+  const ref = useRef(null);
+  const handleDepartmentClick = (departmentId) => {
+    setSelectedDepartmentId(departmentId);
+  };   
+    useEffect(() => {
+      fetch(url) 
+            .then((res) => res.json()) 
+            .then((d) => setData(d)) 
+      
+    }, [])
+
+    useEffect(() => {
+      if(selectedDepartmentId) {
+
+        fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`) 
+            .then((res) => res.json()) 
+            .then((d) => setCourses(d)) 
+      }
+    }, [selectedDepartmentId]);
+    
+  return <section className="examsholder">
     <Wrapper>
-      <div className="features__text">
-        <h3>Exit Exam</h3>
-        <p>
-          Lose john poor same it case do year we Full how way even sigh Extremely nor furniture fat questions now provision incommode.
-        </p>
+      
+    <div className='exitexam'>
+
+    
+        <div className='departments'>
+        <p> Select Your field of Study!</p>
+        {data.map((dataObj, index) => {
+          return (
+           
+             <div className='text'> 
+              <ul><li><div key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id)}>{dataObj.title}</div></li></ul> 
+             
+              
+             </div>
+          
+          
+          );
+        })}
+         </div>
+
+         <div className='exams_list'>
+      {courses.map((course, index) => {
+       return( 
+          <div key={course.id} class="product-card">
+  <div class="product-title">{course.exam_name}  Exam by Instructor Million Sime</div>
+  <div class="product-description">Brief description of the exam questions.</div>
+  <div class="product-price">$50</div>
+  <div class="product-questions">Number of Questions: 100</div>
+  <div class="buttons">
+    <button class="preview-button">Preview</button>
+    <button class="buy-button">Buy</button>
+  </div>
       </div>
-      <div className="features__container">
-        <div className="features__feature dark-feature">
-          <img src={Img1} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Free Enrollment
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img2} width={200} alt="" />
-          <h4 className="white-feature-title">
-            Fast and easy registration
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature dark-feature">
-          <img src={Img3} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Crypto Support
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img4} width={200} alt="" />
-          <h4 className="white-feature-title">
-            No Hidden Fees
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature dark-feature">
-          <img src={Img5} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Automatic card lock/unlock
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img6} width={200} alt="" />
-          <h4 className="white-feature-title">
-            24/7 Customer Support
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-      </div>
+        )
+      })}
+         </div>
+    </div>
+    <div ref={ref} className='selected'>
+      {isShown && <SelectedDepartment/>}
+    </div>
+    
     </Wrapper>
   </section>
 }
