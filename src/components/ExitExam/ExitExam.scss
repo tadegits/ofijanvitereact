@@ -74,11 +74,7 @@ li{
 
 }
 
-.product-card .price {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
 
 .product-card .buttons {
   display: flex;
@@ -113,10 +109,11 @@ li{
   .product-card {
     width: 100px;
     height: max-content;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    padding: 0px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #26eb1fcb;
+    background: #26eb1fcb;
+    border-radius: 100px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.658);
   }
   
   .product-title {
@@ -124,7 +121,16 @@ li{
     font-weight: bold;
     margin-bottom: 10px;
   }
-  
+  .product_head{
+display: grid;
+grid-template-columns: 1fr 4fr;
+img{
+  background-color: #6f00eb;
+  border-radius: 200px;
+  padding: 0px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.322);
+}  
+}
   .product-description {
     font-size: 14px;
     margin-bottom: 10px;
