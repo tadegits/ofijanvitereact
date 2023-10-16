@@ -17,23 +17,23 @@ const Navbar= () => {
         
      </Link>
      <ul className={`navbar__links ${showNav ? "show-nav" :"" }`}>
-        <li onClick={() => setShowNav(flase)}>
-           <a href="/">Home</a>
+        <li onClick={() => setShowNav(false)}>
+           <Link to="/">Home</Link>
         </li>
-        <li onClick={() => setShowNav(flase)}>
+        <li onClick={() => setShowNav(false)}>
             <Link to="/Grade6">Grade 6<sup>th</sup></Link>
         </li>
-        <li onClick={() => setShowNav(flase)}>
+        <li onClick={() => setShowNav(false)}>
             <Link to="/Grade8">Grade 8<sup>th</sup></Link>
         </li>
-        <li onClick={() => setShowNav(flase)}>
+        <li onClick={() => setShowNav(false)}>
         <Link to="/Grade12">Grade 12<sup>th</sup></Link>
            
         </li>
-        <li onClick={() => setShowNav(flase)}>
+        <li onClick={() => setShowNav(false)}>
         <Link to="/ExitExam">Exit Exam</Link>
         </li>
-        <li onClick={() => setShowNav(flase)}>
+        <li onClick={() => setShowNav(false)}>
             <a href ="#">About</a>
         </li>
 </ul>

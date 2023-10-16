@@ -4,12 +4,11 @@
 .exitexam
 {
     display: grid;
-    width: 100%;
     height: max-content;
-    background-color: #fffdfd;
+    background-color: #1ece07;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 3fr;
     @include respond(phone){
         width: calc(25% - 30px);
         display: block;
@@ -26,16 +25,17 @@
     }
 }
 .exams_list{
-    width: 60%;
-    background-color: #ffffff00;
+    
+    background-color: #b11414;
+    margin-left: 10px;
     display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
     border-radius: 0%;
     align-items: left;
-    justify-content: space-evenly;
+    justify-content: left;
     color: #110d34;
-    flex-direction: column;
+    flex-direction: row;
     @include respond(phone){
         width: calc(25% - 30px);
         display: block;
@@ -52,8 +52,7 @@
     }
 }
 .departments{
-    width: 300px;
-   background-color: #ffffff00;
+   background-color: #ff4bff;
    overflow-y: scroll;
    max-height: 500px;
 a{
