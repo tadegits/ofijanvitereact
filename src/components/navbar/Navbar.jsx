@@ -18,7 +18,7 @@ const Navbar= () => {
      </Link>
      <ul className={`navbar__links ${showNav ? "show-nav" :"" }`}>
         <li onClick={() => setShowNav(flase)}>
-           <Link to="/">Home</Link>
+           <a href="/">Home</a>
         </li>
         <li onClick={() => setShowNav(flase)}>
             <Link to="/Grade6">Grade 6<sup>th</sup></Link>
