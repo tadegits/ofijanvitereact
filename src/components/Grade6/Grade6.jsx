@@ -1,14 +1,13 @@
 import './Grade6.scss'
 import Wrapper from '../wrapper/Wrapper'
+import ExamSection from '../ExamPage/ExamSection'
 
 
-const Grade8 = () => {
-  return <section className="features">
-    <Wrapper>
-<div>
-      </div>
+const Grade6 = () => {
+  return (<Wrapper>
+      <ExamSection />
     </Wrapper>
-    </section>
+  )
 }
 
-export default Grade8
+export default Grade6
