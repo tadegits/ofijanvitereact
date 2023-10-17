@@ -1,5 +1,6 @@
 import React from 'react';
-import './LoginSection.scss';
+import './SingUp.scss';
+// import './LoginSection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
@@ -15,7 +16,7 @@ const LoginSection = () => {
                     <Lottie animationData={Img1} className='img-1'/>
                 </div>
             </div>
-            <div className="login__form_container">
+            <div className="login__form_container1">
                 <div className="login__image_holder2">
                     <div className="logtitle">
                         <img src={Img2} className='img-2'/>
@@ -27,43 +28,34 @@ const LoginSection = () => {
                     </div>
                     <hr></hr>
                 </div>
-                <div className="login__form1">
+                <div className="form2">
                     
-                        <div className="form-contents">
-                            <input type="text" placeholder='Email' className="username"/>
-                            <input type="password" placeholder='Password' className="password"/>
-                            <div className="summit-forget">
-                                <p>Forgot your password ?</p>
-                            </div>
-                            <div className="summit-login">
-                                <input type="submit" value="Log In" className="logbtn"/>
-                            </div>
-                            <div className="summit-signup">
-                                <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup'/>
-                            </div>
-                        </div>
-
                         <div className="form-contents1">
                             <label>First Name</label>
-                            <input type="text" placeholder='First Name' className="fname"/>
+                            <input type="text" placeholder='First Name' className="username"/>
                             <label>Last Name</label>
-                            <input type="text" placeholder='Last Name' className="lname"/>
+                            <input type="text" placeholder='Last Name' className="username"/>
                             <label>E_mail</label>
-                            <input type="text" placeholder='Email' className="email"/>
+                            <input type="text" placeholder='Email' className="username"/>
                             <label>Phone Number</label>
-                            <input type="text" placeholder='Phone Number' className="phone"/>
+                            <input type="number" placeholder='Phone Number' className="username"/>
+                            <label>Department</label>
+                            <input type="text" placeholder='Department' className="username"/>
                             <label>Password</label>
                             <input type="password" placeholder='Password' className="password"/>
                             <label>Confirm Password</label>
-                            <input type="password" placeholder='Confirm-Password' className="confirmpass"/>
-                            <div className="summit-forget">
-                                <p>Forgot your password ?</p>
-                            </div>
-                            <div className="summit-login">
-                                <input type="submit" value="Log In" className="logbtn"/>
-                            </div>
+                            <input type="password" placeholder='Confirm-Password' className="username"/>
+                                <div className="summit-forget">
+                                    <p>Forgot your password ?</p>
+                                </div>
                             <div className="summit-signup">
-                                <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup'/>
+                                {/* <button className='sigbtn'>Log In</button> */}
+                                <input type="submit" value="Log In" className="sigbtn"/>
+                            </div> 
+                            <div className="summit-signuplog">
+                                <h5>Registor as new user</h5> 
+                                {/* <button className='signup2'>Sign Up</button> */}
+                                <input type='submit' value="Sign Up" className='singup2'/>
                             </div>
                         </div>
 

@@ -92,203 +92,126 @@
 
                 }
 
-                // @include respond(tab-port){
-                //     font-size: 24px;
-                //     font-weight: 700;
-                //     margin-top: 1.8rem;
-
-                // }
             }
         }
 
     }
 
-    &__form_container {
-        width: fit-content;
-        margin: 10px -20px 10px 0;
-        border-radius: 0.5rem;
-        padding-left: 2.5rem;
-        background-color: #ffffff;
-
-        // @include respond(tab-land){
-        //     margin: 10px 0px 10px 0;
-        // }
-
-        // @include respond(tab-port){
-        //     margin: 10px 0px 10px 0;
-        // }
-
+    .form2{
+        background-color: rgb(255, 255, 255);
+        padding: 0.5rem;
+        width: auto;
+    
         @include respond(phone){
-            margin: 10px 0px 10px 0;
+            background-color: rgb(255, 255, 255);
+            margin-right: 20px;
         }
-
-    }
-
-    &__signup {
-        margin: 10px;
-        border-radius: 1rem;
-        justify-content: center;
-        background-color: aliceblue;
-    }
-
-    &__form1{
-        padding-left: 0.8rem;
-        border-radius: 1rem;
-        margin-bottom: 10px;
-
-        p.form-email{
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        p.form-pass{
-            font-size: 18px;
-            font-weight: 500;
-            margin-top: 5px;
-        }
-        .username{
-            width: 92%;
-            padding: 0.8rem;
-            border-radius: 0.2rem;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            font-weight: 700;
-            opacity: 0.6;
-
-            &:focus{
-                opacity: 1;
-            }
-
-            @include respond(tab-port){
-                width: 92.5%;
-            }
-
-            @include respond(phone){
-                width: 89.5%;
-            }
-        }
-
-        .password{
-            width: 92%;
-            padding: 0.8rem;
-            border-radius: 0.2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            opacity: 0.6;
-
-            &:focus{
-                opacity: 1;
-            }
-
-            @include respond(tab-port){
-                width: 92.5%;
-            }
-
-            @include respond(phone){
-                width: 89.5%;
-            }
-            
-        }
-
-        .form-contents{
-            // background-color: #242121;
-            width: fit-content;
-        }
-
-        .summit-forget {
-            width: 100%;
-            // background-color: #3422d4;
-            p{
-                text-align: right;
-                font-weight: 500; 
-                font-size: 17px;
-                cursor: pointer;
-
-                &:hover{
-                    color: #594fb6;
-                }
-            }
-
-            @include respond(tab-port){
-                width: 100%;
-            }
-
-            @include respond(phone){
-                width: 89.5%;
-            }
-            
-        }
-
-        .summit-login {
-            width: 100%;
+        
+        label{
+            background-color: #ffffff;
+            display: block;
+            width: 24rem;
     
-            .logbtn{
-                width:100%;
-                // justify-content: center;
-                // align-items: center;
-                // margin-inline: auto;
-                padding: 0.8rem;
-                margin-bottom: 10px;
-                border-radius: 0.2rem;
-                background-color: #ffffff;
-                font-weight: 700;
-                color: #594fb6;
-                cursor: pointer;
-
-                &:hover{
-                    background-color: #594fb6;
-                    color: #ffffff;
-                }
-
-                // @include respond(phone){
-                //     width: 100%;
-                // }
-
-                // @include respond(tab-port){
-                //     width: 100%;
-                // }
-
-                // @include respond(tab-land){
-                //     width: 100%;
-                // }
+            @include respond(phone){
+                width: 18rem;
             }
-
         }
     
-        .summit-signup{
-            display: flex;
-            width: 100%;
-            // background-color: rgb(15, 69, 117);
-            text-align: center;
-            justify-content: center;
-
-            h5{
-                // background-color: #e7e7e7;
-                margin: 0;
-
-            }
-
+        .form-contents1{
+            width: inherit;
+            background-color: rgb(255, 255, 255);
+        
             input{
-                width: fit-content;
-                height: fit-content;
-                margin-left: 10px;
-                background-color: white;
-                margin-top: 4px;
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                padding: 0;
-                padding-bottom: 3px;
-                border-color: #3422d4;
-                font-weight: 700;
-                color: #594fb6;
-                cursor: pointer;
-            }
-
-        }
+                width: 24rem;
+                padding: 1rem;
+                border-radius: 0.2rem;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                opacity: 0.6;
     
-        .button-primary {
-            cursor: pointer;
+                @include respond(tab-land){
+                    width: 22rem;
+                }
+    
+                @include respond(tab-port){
+                    width: 20rem;
+                }
+    
+                @include respond(phone){
+                    width: 18rem;
+                }
+    
+    
+                &:focus{
+                    border-color: red;
+                    opacity: 1;
+                }
+            }
+    
+            .summit-signup {
+                width: fit-content;
+                // background-color: aqua;
+    
+                .sigbtn{
+                    padding: 1rem;
+                    border-radius: 0.2rem;
+                    width: 26rem;
+                    background-color: #b9b7b7;
+                    font-weight: 700;
+                    color: #594fb6;
+                    opacity: 1;
+                    cursor: pointer;
+    
+                    &:hover{
+                        background-color: #594fb6;
+                        color: #ffffff;
+                    }
+    
+                    @include respond(tab-land){
+                        width: 24rem;
+                    }
+        
+                    @include respond(tab-port){
+                        width: 22.2rem;
+                    }
+        
+                    @include respond(phone){
+                        width: 20rem;
+                    }
+                }
+    
+            }
+    
+            .summit-signuplog {
+                background-color: #ffffff;
+                display: flex;
+                width:fit-content;
+                align-content: center;
+                margin-inline: auto;
+                margin-top: 0.5rem;
+                gap: 0.5rem;
+
+                .singup2 {
+                    width: fit-content;
+                    height: fit-content;
+                    border-top: 0;
+                    border-left: 0;
+                    border-right: 0;
+                    background-color: #ffffff;
+                    color: #594fb6;
+                    font-weight: 700;
+                    padding: 0;
+                    padding-bottom: 5px;
+                    border-color: #594fb6;
+                    opacity: 1;
+                }
+    
+                h5{
+                    background-color: #ffffff;
+                    margin: 0;
+                }
+            }
+    
         }
     }
 }
