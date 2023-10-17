@@ -98,120 +98,110 @@
     }
 
     .form2{
-        background-color: rgb(255, 255, 255);
+        // background-color: rgb(6, 16, 49);
         padding: 0.5rem;
         width: auto;
-    
-        @include respond(phone){
-            background-color: rgb(255, 255, 255);
-            margin-right: 20px;
-        }
-        
-        label{
-            background-color: #ffffff;
-            display: block;
-            width: 24rem;
-    
-            @include respond(phone){
-                width: 18rem;
-            }
-        }
-    
+        margin-bottom: 10px;
+
         .form-contents1{
-            width: inherit;
-            background-color: rgb(255, 255, 255);
-        
-            input{
-                width: 24rem;
-                padding: 1rem;
-                border-radius: 0.2rem;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                opacity: 0.6;
-    
-                @include respond(tab-land){
-                    width: 22rem;
-                }
-    
-                @include respond(tab-port){
-                    width: 20rem;
-                }
-    
-                @include respond(phone){
-                    width: 18rem;
-                }
-    
-    
-                &:focus{
-                    border-color: red;
-                    opacity: 1;
-                }
+            // background-color: #b8b7be;
+            width: 85%;
+
+            @include respond(tab-land){
+                width: 100%;
             }
-    
-            .summit-signup {
-                width: fit-content;
+
+            @include respond(tab-port){
+                width: 100%;
+            }
+
+            @include respond(phone){
+                width: 100%;
+            }
+
+            .names, .dept_pho {
                 // background-color: aqua;
-    
-                .sigbtn{
-                    padding: 1rem;
-                    border-radius: 0.2rem;
-                    width: 26rem;
-                    background-color: #b9b7b7;
-                    font-weight: 700;
-                    color: #594fb6;
-                    opacity: 1;
-                    cursor: pointer;
-    
-                    &:hover{
-                        background-color: #594fb6;
-                        color: #ffffff;
-                    }
-    
-                    @include respond(tab-land){
-                        width: 24rem;
-                    }
-        
-                    @include respond(tab-port){
-                        width: 22.2rem;
-                    }
-        
-                    @include respond(phone){
-                        width: 20rem;
-                    }
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+                gap: 1rem;
+
+                @include respond(phone){
+                    display: block;
                 }
-    
             }
-    
-            .summit-signuplog {
-                background-color: #ffffff;
+
+            label{
+                font-size: small;
+                font-weight: 600;
+            }
+
+            .fname, .lname, .email, .phone, .dept, .pass, .copass {
+                width: 100%;
+                padding: 1rem;
+                margin-top: 8px;
+                margin-bottom: 20px;
+                display: inline-block;
+                border: 3px solid #ccc;
+                border-radius: 0.2rem;
+                box-sizing: border-box;
+
+                &:focus{
+                    border: 3px solid #594fb6;
+                }
+            }
+
+            .sigbtn {
+                background-color: #594fb6;
+                width: 100%;
+                padding: 1rem;
+                margin: 8px 0;
+                display: inline-block;
+                // border: 3px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                color: #fff;
+                font-size: 0.9rem;
+                font-weight: 700;
+                opacity: 0.8;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            
+            .summit-signuplog{
+                // background-color: #594fb6;
                 display: flex;
-                width:fit-content;
-                align-content: center;
+                width: fit-content;
                 margin-inline: auto;
-                margin-top: 0.5rem;
+                align-content: center;
+                align-items: center;
+                margin-top: 10px;
                 gap: 0.5rem;
 
+                h5 {
+                    // background-color: #b8b7be;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    margin: 0;
+                }
+
                 .singup2 {
-                    width: fit-content;
-                    height: fit-content;
+                    background-color: #fff;
+                    font-size: 0.8rem;
+                    font-weight: 900;
                     border-top: 0;
                     border-left: 0;
                     border-right: 0;
-                    background-color: #ffffff;
-                    color: #594fb6;
-                    font-weight: 700;
                     padding: 0;
-                    padding-bottom: 5px;
+                    padding-bottom: 4.5px;
                     border-color: #594fb6;
-                    opacity: 1;
-                }
-    
-                h5{
-                    background-color: #ffffff;
-                    margin: 0;
+                    color: #594fb6;
+                    cursor: pointer;
                 }
             }
-    
         }
-    }
+        }
 }
