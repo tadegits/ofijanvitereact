@@ -1,13 +1,29 @@
-import React from 'react';
 import './SingUp.scss';
-// import './LoginSection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import validator from 'validator';
 
 const LoginSection = () => {
+
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    function checkEmail(event){
+        let newEmail = event.target.value;
+        setEmail(newEmail);
+
+        if(!validator.isEmail(newEmail)){
+            setMessage("Please, a valid email address ofijan@gmail.com")
+        }
+        else {
+            setMessage("")
+        }
+    }
+
   return (
   <section className="login">
     <Wrapper>
@@ -32,48 +48,49 @@ const LoginSection = () => {
                 <div className="form2">
                     
                         <div className="form-contents1">
-                            <div className="names">
-                                <div className="fnames">
-                                    <label>First Name</label>
-                                    <input type="text" placeholder='First Name' className="fname"/>
+                            <form action='singup'>
+                                <div className="names">
+                                    <div className="fnames">
+                                        <label>First Name</label>
+                                        <input type="text" placeholder='First Name' className="fname" required/>
+                                    </div>
+                                    <div className="lnames">
+                                        <label>Last Name</label>
+                                        <input type="text" placeholder='Last Name' className="lname" required/>
+                                    </div>
+                                    
                                 </div>
-                                <div className="lnames">
-                                    <label>Last Name</label>
-                                    <input type="text" placeholder='Last Name' className="lname"/>
+                                <div className="dept_pho">
+                                    <div className="emails">
+                                        <label>E_mail</label>
+                                        <input type="text" placeholder='Email' className="email" value={email} onChange={checkEmail} required/>
+                                        <div className="errormessage">{message}</div> 
+                                    </div>
+                                    <div className="phones">
+                                        <label>Phone Number</label>
+                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" required/>
+                                    </div>
                                 </div>
                                 
-                            </div>
-                            <div className="dept_pho">
-                                <div className="emails">
-                                    <label>E_mail</label>
-                                    <input type="text" placeholder='Email' className="email"/>
+                                <label>Department</label>
+                                <input type="text" placeholder='Department' className="dept" required/>
+                                <label>Password</label>
+                                <input type="password" placeholder='Password' className="pass" required/>
+                                <label>Confirm Password</label>
+                                <input type="password" placeholder='Confirm-Password' className="copass" required/>
+                                    {/* <div className="summit-forget">
+                                        <p>Forgot your password ?</p>
+                                    </div> */}
+                                <div className="summit-signup">
+                                    <button className='sigbtn'>Sing Up</button>
+                                    {/* <input type="submit" value="Log In" className="sigbtn"/> */}
+                                </div> 
+                                <div className="summit-signuplog">
+                                    <h5 className="mes">Already have an account? </h5> 
+                                    <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2'/></Link>
                                 </div>
-                                <div className="phones">
-                                    <label>Phone Number</label>
-                                    <input type="tel" placeholder='Phone Number' className="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
-                                </div>
-                            </div>
-                            
-                            <label>Department</label>
-                            <input type="text" placeholder='Department' className="dept"/>
-                            <label>Password</label>
-                            <input type="password" placeholder='Password' className="pass"/>
-                            <label>Confirm Password</label>
-                            <input type="password" placeholder='Confirm-Password' className="copass"/>
-                                {/* <div className="summit-forget">
-                                    <p>Forgot your password ?</p>
-                                </div> */}
-                            <div className="summit-signup">
-                                <button className='sigbtn'>Sing Up</button>
-                                {/* <input type="submit" value="Log In" className="sigbtn"/> */}
-                            </div> 
-                            <div className="summit-signuplog">
-                                <h5 className="mes">Already have an account? </h5> 
-                                <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2'/></Link>
-                            </div>
+                            </form>
                         </div>
-
-                    
                 </div>
             </div>
         </div>
