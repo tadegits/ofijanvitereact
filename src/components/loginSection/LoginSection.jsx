@@ -4,6 +4,7 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
+import {Link} from 'react-router-dom';
 
 const LoginSection = () => {
   return (
@@ -39,10 +40,9 @@ const LoginSection = () => {
                                 <input type="submit" value="Log In" className="logbtn"/>
                             </div>
                             <div className="summit-signup">
-                                <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup'/>
+                                <h5>Registor as new user</h5> <Link to={'/Sinup'}><input type='submit' value="Sign Up" className='singup'/></Link>
                             </div>
-                        </div>
-                    
+                        </div>                     
                 </div>
             </div>
         </div>
