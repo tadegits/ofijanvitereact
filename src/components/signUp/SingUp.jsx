@@ -11,16 +11,94 @@ const LoginSection = () => {
 
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [fname, setFname] = useState("");
+    const [fnmessage, setFnMessage] = useState("");
+    const [lname, setLname] = useState("");
+    const [lnmessage, setLnMessage] = useState("");
+    const [password, setPassword] = useState("");
+    const [pasmessage, setPasMessage] = useState("");
+    const [confpassword, setConfPassword] = useState("");
+    const [confmessage, setConfMessage] = useState("");
+    const [phone, setPhone] = useState("");
+    const [phonemessage, setPhoneMessage] = useState("");
 
     function checkEmail(event){
         let newEmail = event.target.value;
         setEmail(newEmail);
 
-        if(!validator.isEmail(newEmail)){
+        if(newEmail === ""){
+            setMessage("Email address is required")
+        }
+        else if(!validator.isEmail(newEmail)){
             setMessage("Please, a valid email address ofijan@gmail.com")
         }
         else {
             setMessage("")
+        }
+    }
+
+    function checkName(event){
+        // console.log(event.target.value);
+        let newFname = event.target.value;
+        setFname(newFname);
+
+        if(newFname === ""){
+            setFnMessage("First Name is required")
+        }
+        else {
+            setFnMessage("")
+        }
+    }
+
+    function checkLname(event){
+        // console.log(event.target.value);
+        let newLname = event.target.value;
+        setLname(newLname);
+
+        if(newLname === ""){
+            setLnMessage("Last Name is required")
+        }
+        else {
+            setLnMessage("")
+        }
+    }
+
+    function checkPassword(event){
+        // console.log(event.target.value);
+        let newPname = event.target.value;
+        setPassword(newPname);
+
+        if(newPname === ""){
+            setPasMessage("Password is required")
+        }
+        else {
+            setPasMessage("")
+        }
+    }
+
+    function checkConfPassword(event){
+        // console.log(event.target.value);
+        let newPname = event.target.value;
+        setConfPassword(newPname);
+
+        if(newPname !== password){
+            setConfMessage("Password not match")
+        }
+        else {
+            setConfMessage("")
+        }
+    }
+
+    function checkPhoneNumber(event){
+        // console.log(event.target.value);
+        let newPname = event.target.value;
+        setPhone(newPname);
+
+        if(newPname === ""){
+            setPhoneMessage("Phone number is required")
+        }
+        else {
+            setPhoneMessage("")
         }
     }
 
@@ -52,32 +130,43 @@ const LoginSection = () => {
                                 <div className="names">
                                     <div className="fnames">
                                         <label>First Name</label>
-                                        <input type="text" placeholder='First Name' className="fname" required/>
+                                        <input type="text" placeholder='First Name' className="fname" onBlur={checkName} required/>
+                                        <div className="errormessage">{fnmessage}</div> 
                                     </div>
                                     <div className="lnames">
                                         <label>Last Name</label>
-                                        <input type="text" placeholder='Last Name' className="lname" required/>
+                                        <input type="text" placeholder='Last Name' className="lname" onBlur={checkLname} required/>
+                                        <div className="errormessage">{lnmessage}</div> 
                                     </div>
                                     
                                 </div>
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>E_mail</label>
-                                        <input type="text" placeholder='Email' className="email" value={email} onChange={checkEmail} required/>
+                                        <input type="text" placeholder='Email' className="email" onBlur={checkEmail} required/>
                                         <div className="errormessage">{message}</div> 
                                     </div>
                                     <div className="phones">
                                         <label>Phone Number</label>
-                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" required/>
+                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required/>
+                                        <div className="errormessage">{phonemessage}</div>
                                     </div>
                                 </div>
-                                
-                                <label>Department</label>
-                                <input type="text" placeholder='Department' className="dept" required/>
+                                <div className="department">
+                                    <label>Department</label>
+                                    <select name='department' className='dept' required>
+                                        <option className='options'>Computer Science</option>
+                                        <option className='options'>Information Science</option>
+                                        <option>Information System</option>
+                                        <option>Plant Science</option>
+                                    </select>
+                                </div>
                                 <label>Password</label>
-                                <input type="password" placeholder='Password' className="pass" required/>
+                                <input type="password" placeholder='Password' className="pass" onBlur={checkPassword} required/>
+                                <div className="errormessage">{pasmessage}</div> 
                                 <label>Confirm Password</label>
-                                <input type="password" placeholder='Confirm-Password' className="copass" required/>
+                                <input type="password" placeholder='Confirm-Password' className="copass" onChange={checkConfPassword} required/>
+                                <div className="errormessage">{confmessage}</div> 
                                     {/* <div className="summit-forget">
                                         <p>Forgot your password ?</p>
                                     </div> */}
