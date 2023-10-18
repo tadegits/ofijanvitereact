@@ -13,10 +13,7 @@ function ExamSection() {
     <div className="features__container">
       <Detail />
       <QuestionPage />
-      
-<QuestionList />
-      
-
+      <QuestionList />
     </div>
     <div className="features__text">
          <p>

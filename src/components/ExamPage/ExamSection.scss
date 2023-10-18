@@ -4,7 +4,7 @@
     padding-block: 0rem;
     &__text {
         text-align: center;
-        width: 50%;
+        width: 100%;
         margin-inline: auto;
         margin-bottom: 3rem;
 
@@ -19,7 +19,7 @@
 
     &__container {
         display: grid;
-        grid-template-columns: 1fr 4fr 2fr;
+        grid-template-columns: 1fr 5fr 1fr;
         grid-template-rows: repeat(1, 1fr);
 
         @include respond(tab-port) {
