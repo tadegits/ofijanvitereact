@@ -21,28 +21,16 @@ const LoginSection = () => {
     const [confmessage, setConfMessage] = useState("");
     const [phone, setPhone] = useState("");
     const [phonemessage, setPhoneMessage] = useState("");
+    const [dept, setDept] = useState("");
 
-    function checkEmail(event){
-        let newEmail = event.target.value;
-        setEmail(newEmail);
+    let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
 
-        if(newEmail === ""){
-            setMessage("Email address is required")
-        }
-        else if(!validator.isEmail(newEmail)){
-            setMessage("Please, a valid email address ofijan@gmail.com")
-        }
-        else {
-            setMessage("")
-        }
-    }
-
-    function checkName(event){
-        // console.log(event.target.value);
-        let newFname = event.target.value;
+    function checkName(event) {
+        console.log(event.target.value);
+        newFname = event.target.value;
         setFname(newFname);
 
-        if(newFname === ""){
+        if (newFname === "") {
             setFnMessage("First Name is required")
         }
         else {
@@ -50,12 +38,12 @@ const LoginSection = () => {
         }
     }
 
-    function checkLname(event){
-        // console.log(event.target.value);
-        let newLname = event.target.value;
+    function checkLname(event) {
+        console.log(event.target.value);
+        newLname = event.target.value;
         setLname(newLname);
 
-        if(newLname === ""){
+        if (newLname === "") {
             setLnMessage("Last Name is required")
         }
         else {
@@ -63,38 +51,27 @@ const LoginSection = () => {
         }
     }
 
-    function checkPassword(event){
-        // console.log(event.target.value);
-        let newPname = event.target.value;
-        setPassword(newPname);
+    function checkEmail(event) {
+        newEmail = event.target.value;
+        setEmail(newEmail);
 
-        if(newPname === ""){
-            setPasMessage("Password is required")
+        if (newEmail === "") {
+            setMessage("Email address is required")
+        }
+        else if (!validator.isEmail(newEmail)) {
+            setMessage("Please, a valid email address ofijan@gmail.com")
         }
         else {
-            setPasMessage("")
+            setMessage("")
         }
     }
 
-    function checkConfPassword(event){
-        // console.log(event.target.value);
-        let newPname = event.target.value;
-        setConfPassword(newPname);
+    function checkPhoneNumber(event) {
+        console.log(event.target.value);
+        newPhname = event.target.value;
+        setPhone(newPhname);
 
-        if(newPname !== password){
-            setConfMessage("Password not match")
-        }
-        else {
-            setConfMessage("")
-        }
-    }
-
-    function checkPhoneNumber(event){
-        // console.log(event.target.value);
-        let newPname = event.target.value;
-        setPhone(newPname);
-
-        if(newPname === ""){
+        if (newPhname === "") {
             setPhoneMessage("Phone number is required")
         }
         else {
@@ -102,91 +79,140 @@ const LoginSection = () => {
         }
     }
 
-  return (
-  <section className="login">
-    <Wrapper>
-        <div className="login__container">
-            <div className="login__image_holder">
-                <div>
-                    <Lottie animationData={Img1} className='img-1'/>
-                </div>
-            </div>
-            <div className="login__form_container1">
-                <div className="login__image_holder2">
-                    <div className="logtitle">
-                        <img src={Img2} className='img-2'/>
-                        <h1>Ofijan</h1>
+    function checkDept(event) {
+        console.log(event.target.value);
+        newDept = event.target.value;
+        setDept(newDept);
+    }
+
+    function checkPassword(event) {
+        console.log(event.target.value);
+        newPname = event.target.value;
+        setPassword(newPname);
+
+        if (newPname === "") {
+            setPasMessage("Password is required")
+        }
+        else {
+            setPasMessage("")
+        }
+    }
+
+    function checkConfPassword(event) {
+        console.log(event.target.value);
+        newCPname = event.target.value;
+        setConfPassword(newCPname);
+
+        if (newCPname !== password) {
+            setConfMessage("Password not match")
+        }
+        else {
+            setConfMessage("")
+        }
+    }
+
+    async function signUp() {
+        // let info = { fname, lname, email, phone, dept, password, confpassword };
+        let crinfo = { fname, lname, email, phone, dept, password};
+        // console.warn(info);
+        console.warn(crinfo);
+
+        let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
+            method:"POST",
+            body:JSON.stringify(crinfo),
+            headers:{
+                "Content-Type":'application/json',
+                "Accept":'application/json'
+            }
+        })
+
+        result = await result.json()
+        console.warn("result:",result.message)
+    }
+
+    return (
+        <section className="login">
+            <Wrapper>
+                <div className="login__container">
+                    <div className="login__image_holder">
+                        <div>
+                            <Lottie animationData={Img1} className='img-1' />
+                        </div>
                     </div>
-                    <div className="login__header">
-                        <h4>Create your Ofijan Account</h4>
-                        <p>Continue your study to increase your achivement.</p>
-                    </div>
-                    <hr></hr>
-                </div>
-                <div className="form2">
-                    
-                        <div className="form-contents1">
-                            <form action='singup'>
+                    <div className="login__form_container1">
+                        <div className="login__image_holder2">
+                            <div className="logtitle">
+                                <img src={Img2} className='img-2' />
+                                <h1>Ofijan</h1>
+                            </div>
+                            <div className="login__header">
+                                <h4>Create your Ofijan Account</h4>
+                                <p>Continue your study to increase your achivement.</p>
+                            </div>
+                            <hr></hr>
+                        </div>
+                        <div className="form2">
+
+                            <div className="form-contents1">
                                 <div className="names">
                                     <div className="fnames">
                                         <label>First Name</label>
-                                        <input type="text" placeholder='First Name' className="fname" onBlur={checkName} required/>
-                                        <div className="errormessage">{fnmessage}</div> 
+                                        <input type="text" placeholder='First Name' className="fname" onBlur={checkName} required />
+                                        <div className="errormessage">{fnmessage}</div>
                                     </div>
                                     <div className="lnames">
                                         <label>Last Name</label>
-                                        <input type="text" placeholder='Last Name' className="lname" onBlur={checkLname} required/>
-                                        <div className="errormessage">{lnmessage}</div> 
+                                        <input type="text" placeholder='Last Name' className="lname" onBlur={checkLname} required />
+                                        <div className="errormessage">{lnmessage}</div>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>E_mail</label>
-                                        <input type="text" placeholder='Email' className="email" onBlur={checkEmail} required/>
-                                        <div className="errormessage">{message}</div> 
+                                        <input type="text" placeholder='Email' className="email" onBlur={checkEmail} required />
+                                        <div className="errormessage">{message}</div>
                                     </div>
                                     <div className="phones">
                                         <label>Phone Number</label>
-                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required/>
+                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
                                         <div className="errormessage">{phonemessage}</div>
                                     </div>
                                 </div>
                                 <div className="department">
                                     <label>Department</label>
-                                    <select name='department' className='dept' required>
-                                        <option className='options'>Computer Science</option>
-                                        <option className='options'>Information Science</option>
-                                        <option>Information System</option>
-                                        <option>Plant Science</option>
+                                    <select name='department' className='dept' value={dept} onChange={checkDept} required>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Information Science">Information Science</option>
+                                        <option value="Information System">Information System</option>
+                                        <option value="Plant Science">Plant Science</option>
                                     </select>
                                 </div>
                                 <label>Password</label>
-                                <input type="password" placeholder='Password' className="pass" onBlur={checkPassword} required/>
-                                <div className="errormessage">{pasmessage}</div> 
+                                <input type="password" placeholder='Password' className="pass" onBlur={checkPassword} required />
+                                <div className="errormessage">{pasmessage}</div>
                                 <label>Confirm Password</label>
-                                <input type="password" placeholder='Confirm-Password' className="copass" onChange={checkConfPassword} required/>
-                                <div className="errormessage">{confmessage}</div> 
-                                    {/* <div className="summit-forget">
+                                <input type="password" placeholder='Confirm-Password' className="copass" onChange={checkConfPassword} required />
+                                <div className="errormessage">{confmessage}</div>
+                                {/* <div className="summit-forget">
                                         <p>Forgot your password ?</p>
                                     </div> */}
                                 <div className="summit-signup">
-                                    <button className='sigbtn'>Sing Up</button>
+                                    <button className='sigbtn' onClick={signUp} >Sing Up</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
-                                </div> 
-                                <div className="summit-signuplog">
-                                    <h5 className="mes">Already have an account? </h5> 
-                                    <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2'/></Link>
                                 </div>
-                            </form>
+                                <div className="summit-signuplog">
+                                    <h5 className="mes">Already have an account? </h5>
+                                    <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2' /></Link>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-                
-    </Wrapper>
-  </section>
-  )
+
+            </Wrapper>
+        </section>
+    )
 }
 
 export default LoginSection
