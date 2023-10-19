@@ -18,6 +18,7 @@ import{BrowserRouter as Router,
   Link,
   Routes, } from 'react-router-dom';
 import LoginSection from "./components/loginSection/LoginSection";
+import SignUp from "./components/signUp/SingUp";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Grade6" element={<Grade6/>} />
           <Route path="/ExitExam" element={<ExitExam/>} />
           <Route path="/Login" element={<LoginSection/>} />
+          <Route path="/Sinup" element={<SignUp/>} />
       </Routes>
      <Footer/>
         </>
