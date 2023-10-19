@@ -1,18 +1,12 @@
 
 import NavBar from "./components/navbar/Navbar";
-import Hero from "./components/hero/Hero"
-import CounterUpPage from "./components/counter/CounterUpPage"
-import CompanySection from "./components/companySection/CompanySection"
-import FeaturesSection from "./components/featuresSection/FeaturesSection"
-import SignUpSection from "./components/SignUpSection/SignUpSection"
 import Grade12 from "./components/Grade12/Grade12";
 import Grade8 from "./components/Grade8/Grade8"
 import Grade6 from "./components/Grade6/Grade6";
 import ExitExam from "./components/ExitExam/ExitExam"
 import Home from "./components/Home/Home"
 import Footer from "./components/footer/footer"
-import Plans from "./components/PlanSection/PlanSection";
-import Insraw from "./components/insraw/insraw"
+
 import{BrowserRouter as Router,
   Route,
   Link,

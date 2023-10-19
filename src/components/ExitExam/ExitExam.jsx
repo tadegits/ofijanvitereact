@@ -1,11 +1,6 @@
 import './ExitExam.scss';
 import Wrapper from '../wrapper/Wrapper'
-<<<<<<< HEAD
 import Logo from "../../assets/logo.png";
-=======
-import ItemCard from '../ItemCard/ItemCard';
-
->>>>>>> 481ae521b1f8e6aecdb469d7a1b83b71b7da8a30
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Questions from '../Questions/Questions';
@@ -56,7 +51,6 @@ const ExitExam = () => {
 
 
         <div className='departments'>
-<<<<<<< HEAD
           <p> Select Your field of Study!</p>
           {data.map((dataObj, index) => {
             return (
@@ -102,31 +96,6 @@ navbar__btn">
       <div className='previewDiv' ref={scollToRef}>
         <Questions />
       </div>
-=======
-        <p> Select Your field of Study!</p>
-        {data.map((dataObj) => {
-          return (
-             <div className='text' key = {dataObj.key}> 
-              <ul>
-                <li>
-                <div key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id)}>
-                {dataObj.title}
-                </div>
-                </li>
-                </ul> 
-             </div>
-          );
-        })}
-         </div>
-
-         <div className='exams_list'>
-      {courses.map(course => {
-       return( 
-        <ItemCard key = {course.key} exam_name={course.exam_name} />
-        );})}
-         </div>
-    </div>    
->>>>>>> 481ae521b1f8e6aecdb469d7a1b83b71b7da8a30
     </Wrapper>
   </section>
 }
