@@ -4,8 +4,8 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
@@ -69,16 +69,18 @@ const LoginSection = () => {
                                         className="logbtn" />
                                 </div>
                                 <div className="summit-signup">
-                                    <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup' />
+                                <h5>Registor as new user</h5> <Link to={'/Sinup'}><input type='submit' value="Sign Up" className='singup'/></Link>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-=======
-import {Link} from 'react-router-dom';
+                </div>
+                </Wrapper>
+        </section>
+    )}
 
-const LoginSection = () => {
+/* const LoginSection = () => {
   return (
   <section className="login">
     <Wrapper>
@@ -115,12 +117,11 @@ const LoginSection = () => {
                                 <h5>Registor as new user</h5> <Link to={'/Sinup'}><input type='submit' value="Sign Up" className='singup'/></Link>
                             </div>
                         </div>                     
->>>>>>> 481ae521b1f8e6aecdb469d7a1b83b71b7da8a30
-                </div>
+                *
 
             </Wrapper>
         </section>
-    )
-}
+    ) }
+}*/
 
 export default LoginSection
