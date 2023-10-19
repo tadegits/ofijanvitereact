@@ -13,7 +13,10 @@ import Home from "./components/Home/Home"
 import Footer from "./components/footer/footer"
 import Plans from "./components/PlanSection/PlanSection";
 import Insraw from "./components/insraw/insraw"
-import { Route, Routes } from "react-router-dom";
+import{BrowserRouter as Router,
+  Route,
+  Link,
+  Routes, } from 'react-router-dom';
 import LoginSection from "./components/loginSection/LoginSection";
 
 function App() {
@@ -30,7 +33,7 @@ function App() {
           <Route path="/Login" element={<LoginSection/>} />
       </Routes>
      <Footer/>
-    </>
+        </>
   )
 }
 

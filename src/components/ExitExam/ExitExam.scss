@@ -9,20 +9,19 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     grid-template-columns: 1fr 3fr;
-    @include respond(phone){
-        width: calc(25% - 30px);
-        display: block;
-        
-    }
-    @include respond(tab-port){
-        width: calc(25% - 30px);
-        display: block;
+    @include respond(phone)
+    {
+      display: block;
     }
     @include respond(tab-land)
     {
-        width: calc(45% - 30px); 
-        display: block;
+      display: block
     }
+    @include respond(tab-port)
+    {
+      display: block
+    }
+   
 }
 .exams_list{
     
@@ -36,25 +35,26 @@
     justify-content: left;
     color: #110d34;
     flex-direction: row;
-    @include respond(phone){
-        width: calc(25% - 30px);
-        display: block;
-        
+    @include respond(phone)
+    {
+      display: block;
     }
-    @include respond(tab-port){
-        width: calc(25% - 30px);
-        display: block;
+    @include respond(tab-port)
+    {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
     @include respond(tab-land)
     {
-        width: calc(45% - 30px); 
-        display: block;
+      display: grid;
+      grid-template-columns:  1fr 1fr;
     }
 }
 .departments{
    background-color: #ffffff00;
    overflow-y: scroll;
    max-height: 500px;
+   margin-bottom: 20px;
 a{
     text-decoration: none;
     color: rgb(82, 12, 82);
@@ -76,45 +76,50 @@ li{
 
 
 
-.product-card .buttons {
+.product_card .buttons {
   display: flex;
   justify-content: space-between;
 }
+.product_card {
+  width: 300px;
 
-.product-card .buttons button {
-  padding: 10px 20px;
+  height: max-content;
+  border-radius: 10px;
+  background-image: url("card.jpg");
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.658);
+  @include respond(phone)
+  {
+    margin: 13px;
+    width: fit-content;
+  }
+}
+.product_card .buttons a button{
+  padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
+  text-decoration: none;
   font-weight: bold;
   cursor: pointer;
 }
 
-.product-card .buttons .preview-button {
+.product_card .buttons .preview-button {
   background-color: #64167c;
   color: #fff;
   border: none;
 }
 
-.product-card .buttons .buy-button {
+.product_card .buttons .buy-button {
   background-color: #28a745;
   color: #fff;
   border: none;
 }
 
-.product-card .buttons .buy-button:hover,
-.product-card .buttons .preview-button:hover {
+.product_card .buttons .buy-button:hover,
+.product_card .buttons .preview-button:hover {
   opacity: 0.8;
 }
 
-  .product-card {
-    width: 100px;
-    height: max-content;
-    background-color: #26eb1fcb;
-    background: #26eb1fcb;
-    border-radius: 100px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.658);
-  }
   
   .product-title {
     font-size: 20px;
@@ -125,10 +130,10 @@ li{
 display: grid;
 grid-template-columns: 1fr 4fr;
 img{
-  background-color: #6f00eb;
+  background-color: #ffffff00;
   border-radius: 200px;
   padding: 0px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.322);
+  
 }  
 }
   .product-description {
@@ -139,7 +144,7 @@ img{
   .product-price {
     font-size: 18px;
     font-weight: bold;
-    color: #00c853;
+    color: #000000;
     margin-bottom: 10px;
   }
   
@@ -153,7 +158,7 @@ img{
     margin-bottom: 10px;
   }
   
-  .product-card .btn {
+  .product_card .btn {
     background-color: #00c853;
     color: #fff;
     padding: 8px 16px;
@@ -162,7 +167,7 @@ img{
     cursor: pointer;
   }
   
-  .product-card .btn:hover {
+  .product_card .btn:hover {
     background-color: #009624;
   }
   

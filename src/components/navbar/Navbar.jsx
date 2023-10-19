@@ -5,8 +5,7 @@ import {FaBars} from "react-icons/fa";
 import {useState} from "react";
 import { Link } from "react-router-dom";
 const Navbar= () => {
-  const[showNav, setShowNav] =useState
-  (false);
+  const[showNav, setShowNav] =useState(false);
 
      return (
     <nav className="navbar">
