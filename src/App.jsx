@@ -1,36 +1,38 @@
 
-import NavBar from "./components/navbar/Navbar";
-import Grade12 from "./components/Grade12/Grade12";
-import Grade8 from "./components/Grade8/Grade8"
-import Grade6 from "./components/Grade6/Grade6";
-import ExitExam from "./components/ExitExam/ExitExam"
+
+import { useEffect, useState, } from "react";
+import { useNavigate } from "react-router-dom";
+import Default from "./Layout/Default";
+import Loged from "./Layout/Loged";
 import Home from "./components/Home/Home"
-import Footer from "./components/footer/footer"
-
-import{BrowserRouter as Router,
-  Route,
-  Link,
-  Routes, } from 'react-router-dom';
-import LoginSection from "./components/loginSection/LoginSection";
-import SignUp from "./components/signUp/SingUp";
-
+import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 function App() {
+  const [user, setUser] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.stringify(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
-  return (
-    <>
-      <NavBar/>
-      <Routes>  
-          <Route path="/" element={<Home/>} />
-          <Route path="/Grade12" element={<Grade12/>} />
-          <Route path="/Grade8" element={<Grade8/>} />
-          <Route path="/Grade6" element={<Grade6/>} />
-          <Route path="/ExitExam" element={<ExitExam/>} />
-          <Route path="/Login" element={<LoginSection/>} />
-          <Route path="/Sinup" element={<SignUp/>} />
-      </Routes>
-     <Footer/>
-        </>
-  )
+  if (user) {
+    return (
+      <>
+        <Loged/>
+      </>
+    )
+  }
+  else {
+    return (
+      <>
+        <Default/>
+        <Routes>
+        <Route path ="/" element={<Home/>}/>
+        </Routes>
+      </>
+    )
+  }
 }
-
 export default App

@@ -1,55 +1,78 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
-import {FaBars} from "react-icons/fa";
-import {useState} from "react";
+import { FaBars } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const Navbar= () => {
-  const[showNav, setShowNav] =useState(false);
+const Navbar = () => {
+    const [user, setUser] = useState("")
+    const [showNav, setShowNav] = useState(false);
+    const loggedInUser = localStorage.getItem("user");
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.stringify(loggedInUser);
+            setUser(foundUser);
+        }
+    }, []);
+    const handleLogout = () => {
+        localStorage.clear();
+          window.location.href = '/';
+  
+     };
+    return (
+        <nav className="navbar">
+            <Wrapper className="navbar__container">
+                <Link to="/" className="navbar__logo"
+                    onClick={() => setShowNav(false)}>
+                    <img src={Logo} alt="" />
 
-     return (
-    <nav className="navbar">
-        <Wrapper className="navbar__container">
-     <Link to= "/" className="navbar__logo"
-     onClick={() => setShowNav(false)}>
-        <img src={Logo} alt=""/>
-        
-     </Link>
-     <ul className={`navbar__links ${showNav ? "show-nav" :"" }`}>
-        <li onClick={() => setShowNav(false)}>
-           <Link to="/">Home</Link>
-        </li>
-        <li onClick={() => setShowNav(false)}>
-            <Link to="/Grade6">Grade 6<sup>th</sup></Link>
-        </li>
-        <li onClick={() => setShowNav(false)}>
-            <Link to="/Grade8">Grade 8<sup>th</sup></Link>
-        </li>
-        <li onClick={() => setShowNav(false)}>
-        <Link to="/Grade12">Grade 12<sup>th</sup></Link>
-           
-        </li>
-        <li onClick={() => setShowNav(false)}>
-        <Link to="/ExitExam">Exit Exam</Link>
-        </li>
-        <li onClick={() => setShowNav(false)}>
-            <a href ="#">About</a>
-        </li>
-</ul>
+                </Link>
+                <ul className={`navbar__links ${showNav ? "show-nav" : ""}`}>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/Grade6">Grade 6<sup>th</sup></Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/Grade8">Grade 8<sup>th</sup></Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/Grade12">Grade 12<sup>th</sup></Link>
 
-<Link to='/Login' className="button-primary 
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/ExitExam">Exit Exam</Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+              <>
+              {loggedInUser  ? (
+         <Link to='#' onClick={handleLogout} className="button-primary 
+         navbar__btn">
+                        Log out
+                     </Link>
+      ) : (
+        <Link to='/Login' className="button-primary 
 navbar__btn">
-    Sign in
-</Link>
+                    Sign in
+                </Link>
+      )}
+              </>  
+                
 
-<div className={`navbar__menubar ${showNav ? "bg-color": ""}`} 
-onClick={()=>setShowNav(!showNav)}
->
-    <FaBars />
-     </div>
-    </Wrapper>
-    </nav>
-  )
+
+                <div className={`navbar__menubar ${showNav ? "bg-color" : ""}`}
+                    onClick={() => setShowNav(!showNav)}
+                >
+                    <FaBars />
+                </div>
+            </Wrapper>
+        </nav>
+    )
 }
 
 export default Navbar

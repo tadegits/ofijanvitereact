@@ -1,19 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LoginSection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [user, setUser] = useState("");
+    const [isLoggedin, setIsLoggedin] = useState(false);
     const navigate = useNavigate();
-
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const user = { email, password };
+        // send the username and password to the server
+        const response = await axios.post(
+            "http://127.0.0.1:8000/api/login",
+            user
+        );
+        // set the state of the user
+        setUser(response.data)
+if(response.data)
+{
+    window.location.href = '/dashboard';
+}
+        setIsLoggedin(true);
+        // store the user in localStorage
+        localStorage.setItem('user', response.data)
+        console.log("iziga", response.data)
+    };
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.stringify(loggedInUser);
+            setUser(foundUser);
+        }
+    }, []);
+    //login without axios
     async function login() {
         console.warn(email, password);
-        let item = {email, password};
+        let item = { email, password };
         let result = await fetch("http://127.0.0.1:8000/api/front_login", {
             method: 'POST',
             headers: {
@@ -25,10 +53,13 @@ const LoginSection = () => {
         console.log(result);
         result = await result.json();
         localStorage.setItem("user-info", JSON.stringify(result))
-        navigate('/}');
-        
-    }
+        navigate('/dashboard');
 
+    }
+   
+    function refreshPage() {
+        window.location.reload(false);
+      }
     return (
         <section className="login">
             <Wrapper>
@@ -64,11 +95,11 @@ const LoginSection = () => {
                                 </div>
                                 <div className="summit-login">
                                     <input type="submit" value="Log In"
-                                        onClick={login}
+                                        onClick={handleSubmit}
                                         className="logbtn" />
                                 </div>
                                 <div className="summit-signup">
-                                    <h5>Registor as new user</h5> <input type='submit' value="Sign Up" className='singup' />
+                                    <h5>Register as new user</h5> <input type='submit' value="Sign Up" className='singup' />
                                 </div>
                             </div>
 
