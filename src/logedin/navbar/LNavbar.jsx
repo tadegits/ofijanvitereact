@@ -37,7 +37,7 @@ const LNavbar = () => {
 
                </li>
                <li onClick={() => setShowNav(false)}>
-                  <Link to="/ExitExam">Exit Exam</Link>
+                  <Link to="/Exit_Exam">Exit Exam</Link>
                </li>
                <li onClick={() => setShowNav(false)}>
                   <a href="#">About</a>

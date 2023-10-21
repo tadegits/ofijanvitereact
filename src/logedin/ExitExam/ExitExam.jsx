@@ -3,17 +3,20 @@ import Wrapper from '../../components/wrapper/Wrapper';
 import Logo from "../../assets/logo.png";
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import Pay from '../../Pay';
 import Questions from '../../components/Questions/Questions';
+
 
 const ExitExam = () => {
   const url = "https://ofijan.com/api/departments";
-  const handleLinkClick = (classname) => {
-    const element = document.querySelector(`.${classname}`);
-    element.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [firstName, setFirstName] = useState("Million");
+  const [lastName, setLastName] = useState("Sime");
+  const [email, setEmail] = useState("simemillion@gmail.com");
+  const [amount, setAmount] = useState(50);
+  const tx_ref = "weygudemelamede";
+  const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
   const [data, setData] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
-  const [departments, setDepartments] = useState([]);
   const [courses, setCourses] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const ref = useRef(null);
@@ -21,6 +24,20 @@ const ExitExam = () => {
   const handleDepartmentClick = (departmentId) => {
     setSelectedDepartmentId(departmentId);
   };
+  
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      const userEmail = foundUser.user.email;
+      setEmail(foundUser.user.email);
+      setFirstName(foundUser.user.name);
+      console.log(foundUser);
+      console.log(email);
+      //setUser(foundUser);
+    }
+  }, []);
+   
 
   useEffect(() => {
     fetch(url)
@@ -70,6 +87,7 @@ const ExitExam = () => {
           {courses.map((course, index) => {
             return (
               <div key={course.id} className="product_card">
+
                 <div className='product_head'>
                   <img src={Logo} alt='' width={30} height={20} />
                   <div className="product-title">{course.exam_name}</div>
@@ -79,11 +97,14 @@ const ExitExam = () => {
                 <div className="product-questions">This bocklet contains <b>100</b> questions</div>
                 <div className="product-price">Only for 50.00 ETB</div>
                 <div className="buttons">
-                  <button onClick={() => scollToRef.current.scrollIntoView()} className="preview-button" >Preview</button>
-                  <a href='/Login' className="buy-button
-navbar__btn">
-                    Buy
-                  </a>
+                  <button onClick={() => scollToRef.current.scrollIntoView()} className="button-primary" >Preview</button>
+                  <Pay
+                    fname={firstName}
+                    lname={lastName}
+                    email={email}
+                    amount={amount}
+                    public_key={public_key}
+                    tx_ref={tx_ref} />
                 </div>
               </div>
             )

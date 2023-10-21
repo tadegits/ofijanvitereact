@@ -28,7 +28,7 @@ if(response.data)
 }
         setIsLoggedin(true);
         // store the user in localStorage
-        localStorage.setItem('user', response.data)
+        localStorage.setItem('user', JSON.stringify(response.data))
         console.log("iziga", response.data)
     };
     useEffect(() => {
