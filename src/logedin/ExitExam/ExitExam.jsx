@@ -13,6 +13,8 @@ const ExitExam = () => {
   const [lastName, setLastName] = useState("Sime");
   const [email, setEmail] = useState("simemillion@gmail.com");
   const [amount, setAmount] = useState(50);
+  const [deptId, setDepartmentId]= useState("")
+  const[examTitle, setExamTitle] = useState("");
   const tx_ref = "weygudemelamede";
   const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
   const [data, setData] = useState([]);
@@ -32,8 +34,8 @@ const ExitExam = () => {
       const userEmail = foundUser.user.email;
       setEmail(foundUser.user.email);
       setFirstName(foundUser.user.name);
-      console.log(foundUser);
-      console.log(email);
+      setDepartmentId(parseInt(foundUser.user.dept_id))
+      console.log(deptId);
       //setUser(foundUser);
     }
   }, []);
@@ -54,7 +56,7 @@ const ExitExam = () => {
         .then((d) => setCourses(d))
     }
     else {
-      fetch(`https://ofijan.com/api/exams/1`)
+      fetch(`https://ofijan.com/api/exams/${deptId}`)
         .then((res) => res.json())
         .then((d) => setCourses(d))
     }
@@ -87,10 +89,12 @@ const ExitExam = () => {
           {courses.map((course, index) => {
             return (
               <div key={course.id} className="product_card">
-
+ 
                 <div className='product_head'>
                   <img src={Logo} alt='' width={30} height={20} />
-                  <div className="product-title">{course.exam_name}</div>
+                  <div className="product-title">{course.exam_name
+                 
+                  }</div>
                 </div>
 
                 <div className="product-description">Brief description of the exam questions.</div>
@@ -104,7 +108,8 @@ const ExitExam = () => {
                     email={email}
                     amount={amount}
                     public_key={public_key}
-                    tx_ref={tx_ref} />
+                    tx_ref={tx_ref}
+                    title={course.exam_name} />
                 </div>
               </div>
             )

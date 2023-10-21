@@ -1,14 +1,12 @@
 @import '../../styles/mixin.scss';
 
 .company {
-    background: #110d34;
+    background: #4309a07a;
     position: relative;
-    padding-block: 1rem;
+    padding-block: 0rem;
 
-    h4 {
-        color: #fff;
-        font-size: 28px;
-        font-weight: 500;
+    h2 {
+       
         text-align: center;
     }
 
@@ -22,7 +20,7 @@
         justify-content: center;
         margin-inline: auto;
         width: fit-content;
-        margin-block: 3.5rem 10rem;
+        margin-block: 1rem;
         gap: 4rem;
         flex-wrap: wrap;
         

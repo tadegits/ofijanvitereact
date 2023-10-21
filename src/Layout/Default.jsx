@@ -8,7 +8,13 @@ import Home from "../components/Home/Home"
 import Footer from "../components/footer/footer"
 import Dashboard from "../components/Dashboard/Dashboard"
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
-
+import Hero from "../components/hero/Hero"
+import CounterUpPage from "../components/counter/CounterUpPage"
+import CompanySection from "../components/companySection/CompanySection"
+import FeaturesSection from "../components/featuresSection/FeaturesSection"
+import SignUpSection from "../components/SignUpSection/SignUpSection"
+import Plans from "../components/PlanSection/PlanSection";
+import Insraw from "../components/insraw/insraw"
 import { useEffect, useState, } from "react";
 import LoginSection from "../components/loginSection/LoginSection";
 import SignUp from "../components/signUp/SingUp";
@@ -25,9 +31,9 @@ const Default = () => {
           <Route path="/ExitExam" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Sinup" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} /> 
         </Routes>
-        <Footer />
+       
     </>
   )
 }

@@ -28,9 +28,6 @@ function App() {
     return (
       <>
         <Default/>
-        <Routes>
-        <Route path ="/" element={<Home/>}/>
-        </Routes>
       </>
     )
   }

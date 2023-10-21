@@ -17,11 +17,11 @@
     padding: 10px;
     
 }
-.content .box{
-    width: calc(20% - 30px);
+.content .cbox{
+    width: calc(25% - 30px);
     border: 1px dashed #060702;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
     margin: 15px;
     display: flex;
     border-radius: 0%;
@@ -42,14 +42,14 @@
 
 }
 
-.content .box .counter{
-    font-size: 50px;
+.content .cbox .counter{
+    font-size: 30px;
     color: #110d34;
-    font-weight: 500;
+    font-weight: 50;
     font-family: sans-serif;
-    margin-top: 10%;
+    margin-top: 1%;
 }
-.content .box .text{
+.content .cbox .text{
     color: #110d34;
     font-weight: 400;
    
@@ -65,7 +65,7 @@
 }
 }
 @media (max-width: 580px){
-    .content .box{
+    .content .cbox{
       
     width: 100%
 }
