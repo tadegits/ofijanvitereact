@@ -6,6 +6,8 @@ import Img2 from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import validator from 'validator';
+import Swal from 'sweetalert2';
+// import {withSwal} from 'react-sweetalert2';
 
 const LoginSection = () => {
 
@@ -22,6 +24,7 @@ const LoginSection = () => {
     const [phone, setPhone] = useState("");
     const [phonemessage, setPhoneMessage] = useState("");
     const [dept, setDept] = useState("");
+    const [registered, setRegistered] = useState("");
 
     let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
 
@@ -113,23 +116,36 @@ const LoginSection = () => {
 
     async function signUp() {
         // let info = { fname, lname, email, phone, dept, password, confpassword };
-        let crinfo = { fname, lname, email, phone, dept, password};
+        let crinfo = { fname, lname, email, phone, dept, password };
         // console.warn(info);
-        console.warn(crinfo);
-
+        // console.warn(crinfo);
         let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
-            method:"POST",
-            body:JSON.stringify(crinfo),
-            headers:{
-                "Content-Type":'application/json',
-                "Accept":'application/json'
+            method: "POST",
+            body: JSON.stringify(crinfo),
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
             }
         })
 
         result = await result.json()
-        console.warn("result:",result.message)
+        if (result) {
+            let respresult = result.message;
+            let status = result.status;
+            console.log(respresult);
+            Swal.fire({
+                text:respresult,
+                icon:status
+            })
+            // console.warn(registered);
+            // console.log(result.message)
+            console.warn("result:", result.message)
+            
+        }
+        else {
+            setRegistered[checkuser];
+        }
     }
-
     return (
         <section className="login">
             <Wrapper>
@@ -194,9 +210,7 @@ const LoginSection = () => {
                                 <label>Confirm Password</label>
                                 <input type="password" placeholder='Confirm-Password' className="copass" onChange={checkConfPassword} required />
                                 <div className="errormessage">{confmessage}</div>
-                                {/* <div className="summit-forget">
-                                        <p>Forgot your password ?</p>
-                                    </div> */}
+                                <div className="errormessage">{registered}</div>
                                 <div className="summit-signup">
                                     <button className='sigbtn' onClick={signUp} >Sing Up</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}

@@ -69,7 +69,7 @@ const LoginSection = () => {
                                         className="logbtn" />
                                 </div>
                                 <div className="summit-signup">
-                                <h5>Registor as new user</h5> <Link to={'/Sinup'}><input type='submit' value="Sign Up" className='singup'/></Link>
+                                <h5>Register as new user</h5> <Link to={'/Sinup'}><input type='submit' value="Sign Up" className='singup'/></Link>
                                 </div>
                             </div>
 
