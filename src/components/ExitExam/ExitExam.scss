@@ -84,15 +84,21 @@ li{
   width: 300px;
 
   height: max-content;
-  border-radius: 10px;
-  background-image: url("card.jpg");
+  
+  // background-image: url("../../assets/moon.png");
+  border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.658);
   @include respond(phone)
   {
     margin: 13px;
     width: fit-content;
   }
+}
+.product_card:hover
+{
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+  background-color: #13dfe607;
 }
 .product_card .buttons a button{
   padding: 5px 10px;

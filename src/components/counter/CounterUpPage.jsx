@@ -11,7 +11,7 @@ export default function CounterUpPage() {
     
     <div className='counter-up'>
       <div className='content'>
-        <div className='box'>
+        <div className='cbox'>
           <div className='icon'>
            <FaQuestion/>
           </div>
@@ -19,7 +19,7 @@ export default function CounterUpPage() {
       +  </div>
           <div className='text'>Exam Questions</div>
         </div>
-        <div className='box'>
+        <div className='cbox'>
           <div className='icon'>
             <FaChalkboardTeacher/>
           </div>
@@ -27,7 +27,7 @@ export default function CounterUpPage() {
       +  </div>
           <div className='text'>Pofessional Istructors</div>
         </div>
-        <div className='box'>
+        <div className='cbox'>
           <div className='icon'>
             <FaPeopleArrows/>
           </div>
@@ -35,7 +35,7 @@ export default function CounterUpPage() {
       +  </div>
           <div className='text'>Students</div>
         </div>
-        <div className='box'>
+        <div className='cbox'>
           <div className='icon'>
             <FaSchool/>
           </div>

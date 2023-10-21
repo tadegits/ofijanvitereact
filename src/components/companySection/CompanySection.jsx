@@ -6,29 +6,32 @@ import Company3 from '../../assets/brain2.png'
 import Company4 from '../../assets/sun2.png'
 import Company5 from '../../assets/brain.png'
 import Phone from '../../assets/sun3.png'
-import Appstore from '../../assets/moon2.png'
+import Logo from '../../assets/moon.png'
+import Ofijan from '../../assets/logo.png'
+import moon2 from '../../assets/moon2.png'
 import Playstore from '../../assets/inventory 1.png'
-import Bg from '../../assets/logo.png'
+import Bg from '../../assets/question.gif'
 
 const CompanySection = () => {
   return <section className="company">
     <Wrapper>
-      <h4>1000,000+ Exit Exam questions and answer!</h4>
+      <hr></hr>
+      <h2>1000,000+ Exit Exam questions and answer!</h2>
       <div className="company__companies">
-        <img src={Company1} width={200} alt=""/>
-        <img src={Company2} width={200} alt=""/>
-        <img src={Company3} width={200} alt=""/>
-        <img src={Company4} width={200} alt=""/>
-        <img src={Company5} width={200} alt=""/>
+        <img src={Company1} width={50} alt=""/>
+        <img src={Company2} width={50} alt=""/>
+        <img src={Company3} width={50} alt=""/>
+        <img src={Company4} width={50} alt=""/>
+        <img src={Company5} width={50} alt=""/>
       </div>
       <div className="company__container">
         <div className="company__left">
-           <img src={Phone} alt="" className='img-1'/>
+           <img src={Logo} alt="" className='img-1'/>
           <div className="img-2">
-            <img src={Appstore} alt="" /> 
+            <img src={Logo} alt="" /> 
           </div>
           <div className="img-3">
-            <img src={Playstore} alt="" /> 
+            <img src={Logo} alt="" /> 
           </div>
         </div>
         <div className="company__right">

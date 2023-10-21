@@ -6,20 +6,33 @@ import Img3 from '../../assets/sun1.png';
 import Img4 from '../../assets/sun2.png';
 import anim from "../../assets/animation_lnk8tp8u.json"
 import Lottie from "lottie-react";
-
+import { useState, useEffect} from 'react';
 const Hero = () => {
+   
+        const [text, setText] = useState('The Ethiopian Exam Bank!');
+      
+        useEffect(() => {
+          const interval = setInterval(() => {
+            // Change the text after 20 seconds
+            setText('A Place to confirm Your Study');
+          }, 20000);
+      
+          return () => clearInterval(interval);
+        }, [text])
+    
   return <section className="hero">
     <Wrapper className='hero__container'>
         <div className="hero__left">
-            <h1>The Ethiopian Exam Bank!
+            <h1>
+                {text}
             </h1>
             <p>
             Revolutionize Your Exam Preparation with Our Cutting-Edge Exam Selling Website. Unleash your potential with our comprehensive collection of exam resources, meticulously crafted to meet your specific needs.
             </p>
 
             <div className="hero__btn-container">
-                <a href="#" className="button-primary">
-                    SignIn
+                <a href="/SinUp" className="button-primary">
+                    Join Us
                 </a>
                 <a href="#" className="button-outline">
                     Tell me more
