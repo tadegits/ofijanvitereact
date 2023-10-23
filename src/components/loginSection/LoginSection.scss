@@ -141,31 +141,14 @@
             font-weight: 500;
         }
 
-        p.form-pass{
-            font-size: 18px;
-            font-weight: 500;
-            margin-top: 5px;
-        }
-        .username{
-            width: 92%;
-            padding: 0.8rem;
-            border-radius: 0.2rem;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            font-weight: 700;
-            opacity: 0.6;
+            @include respond(tab-land){
+                width: 100%;
+            }
 
             &:focus{
                 opacity: 1;
             }
 
-            @include respond(tab-port){
-                width: 92.5%;
-            }
-
-            @include respond(phone){
-                width: 89.5%;
-            }
         }
 
         .password{
@@ -188,11 +171,6 @@
                 width: 89.5%;
             }
             
-        }
-
-        .form-contents{
-            background-color: #ffffff;
-            width: fit-content;
         }
 
         .summit-forget {
@@ -218,9 +196,6 @@
             }
             
         }
-
-        .summit-login {
-            width: 100%;
     
             .logbtn{
                 width:100%;
@@ -231,28 +206,12 @@
                 margin-bottom: 10px;
                 border-radius: 0.2rem;
                 background-color: #ffffff;
-                font-weight: 700;
                 color: #594fb6;
                 cursor: pointer;
 
-                &:hover{
-                    background-color: #594fb6;
-                    color: #ffffff;
-                }
-
-                // @include respond(phone){
-                //     width: 100%;
-                // }
-
-                // @include respond(tab-port){
-                //     width: 100%;
-                // }
-
-                // @include respond(tab-land){
-                //     width: 100%;
-                // }
+            &:hover {
+                opacity: 1;
             }
-
         }
     
         .summit-signup{
