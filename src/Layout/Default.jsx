@@ -30,7 +30,7 @@ const Default = () => {
           <Route path="/Grade6" element={<Grade6 />} />
           <Route path="/ExitExam" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
-          <Route path="/Sinup" element={<SignUp />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} /> 
         </Routes>
        
