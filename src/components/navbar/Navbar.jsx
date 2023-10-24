@@ -17,9 +17,9 @@ const Navbar = () => {
     }, []);
     const handleLogout = () => {
         localStorage.clear();
-          window.location.href = '/';
-  
-     };
+        window.location.href = '/';
+
+    };
     return (
         <nav className="navbar">
             <Wrapper className="navbar__container">
@@ -49,20 +49,12 @@ const Navbar = () => {
                         <a href="#">About</a>
                     </li>
                 </ul>
-              <>
-              {loggedInUser  ? (
-         <Link to='#' onClick={handleLogout} className="button-primary 
-         navbar__btn">
-                        Log out
-                     </Link>
-      ) : (
-        <Link to='/Login' className="button-primary 
-navbar__btn">
-                    Sign in
-                </Link>
-      )}
-              </>  
-                
+                <>
+                    <Link to='/Login' className="button-primary navbar__btn">
+                        Sign in
+                    </Link>
+                </>
+
 
 
                 <div className={`navbar__menubar ${showNav ? "bg-color" : ""}`}
