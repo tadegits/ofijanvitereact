@@ -3,14 +3,14 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import validator from 'validator';
 import Swal from 'sweetalert2';
 // import {withSwal} from 'react-sweetalert2';
 
 const LoginSection = () => {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [fname, setFname] = useState("");
@@ -24,12 +24,14 @@ const LoginSection = () => {
     const [phone, setPhone] = useState("");
     const [phonemessage, setPhoneMessage] = useState("");
     const [dept, setDept] = useState("");
+    const [deptMessage, setDeptMessage] = useState("");
     const [registered, setRegistered] = useState("");
+    const [data, setData] = useState([]);
 
     let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
 
     function checkName(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newFname = event.target.value;
         setFname(newFname);
 
@@ -42,7 +44,7 @@ const LoginSection = () => {
     }
 
     function checkLname(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newLname = event.target.value;
         setLname(newLname);
 
@@ -70,7 +72,7 @@ const LoginSection = () => {
     }
 
     function checkPhoneNumber(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newPhname = event.target.value;
         setPhone(newPhname);
 
@@ -86,10 +88,11 @@ const LoginSection = () => {
         console.log(event.target.value);
         newDept = event.target.value;
         setDept(newDept);
+        setDeptMessage("");
     }
 
     function checkPassword(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newPname = event.target.value;
         setPassword(newPname);
 
@@ -102,7 +105,7 @@ const LoginSection = () => {
     }
 
     function checkConfPassword(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newCPname = event.target.value;
         setConfPassword(newCPname);
 
@@ -114,36 +117,76 @@ const LoginSection = () => {
         }
     }
 
+    useEffect(() => {
+        fetch("https://ofijan.com/api/departments")
+            .then((res) => res.json())
+            .then((d) => setData(d))
+
+    }, [])
+
     async function signUp() {
         // let info = { fname, lname, email, phone, dept, password, confpassword };
         let crinfo = { fname, lname, email, phone, dept, password };
         // console.warn(info);
         // console.warn(crinfo);
-        let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
-            method: "POST",
-            body: JSON.stringify(crinfo),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        })
-
-        result = await result.json()
-        if (result) {
-            let respresult = result.message;
-            let status = result.status;
-            console.log(respresult);
-            Swal.fire({
-                text:respresult,
-                icon:status
-            })
-            // console.warn(registered);
-            // console.log(result.message)
-            console.warn("result:", result.message)
-            
+        if (fname === "") {
+            setFnMessage("First name required");
+        }
+        else if (lname === "") {
+            setLnMessage("Last name required");
+        }
+        else if (email === "") {
+            setMessage("Email address required");
+        }
+        else if (phone === "") {
+            setPhoneMessage("Phone number required");
+        }
+        else if (dept === "") {
+            setDeptMessage("Please Select your Department");
+        }
+        else if (password === "") {
+            setPasMessage("Password required");
+        }
+        else if (confpassword === "") {
+            setConfMessage("Confirm password required");
         }
         else {
-            setRegistered[checkuser];
+            let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
+                method: "POST",
+                body: JSON.stringify(crinfo),
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
+
+            result = await result.json()
+            // console.log(result);
+            if (result) {
+                let respresult = result.message;
+                let status = result.status;
+
+                // console.log(respresult);
+                // Swal.fire({
+                //     text:respresult,
+                //     icon:status
+                // })
+                if (status === "success") {
+                    navigate("/Login", {state:respresult})
+                }
+                else {
+                    setMessage(respresult)
+                    setRegistered("User not registered");
+                    // navigate("/signup");
+                }
+                // console.warn(registered);
+                // console.log(result.message)
+                // console.warn("result:", result.message)
+
+            }
+            else {
+                setRegistered[checkuser];
+            }
         }
     }
     return (
@@ -162,8 +205,8 @@ const LoginSection = () => {
                                 <h1>Ofijan</h1>
                             </div>
                             <div className="login__header">
-                                <h4>Create your Ofijan Account</h4>
-                                <p>Continue your study to increase your achivement.</p>
+                                <div className="signupregistered">Create your Ofijan Account</div>
+                                <p className='infos'>Continue your study to increase your achivement.</p>
                             </div>
                             <hr></hr>
                         </div>
@@ -197,12 +240,13 @@ const LoginSection = () => {
                                 </div>
                                 <div className="department">
                                     <label>Department</label>
-                                    <select name='department' className='dept' value={dept} onChange={checkDept} required>
-                                        <option value="Computer Science">Computer Science</option>
-                                        <option value="Information Science">Information Science</option>
-                                        <option value="Information System">Information System</option>
-                                        <option value="Plant Science">Plant Science</option>
+                                    <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
+                                        <option value=""></option>
+                                        {data.map(data => (
+                                            <option key={data.id} value={data.id} selected>{data.title}</option>
+                                        ))}
                                     </select>
+                                    <div className="errormessage">{deptMessage}</div>
                                 </div>
                                 <label>Password</label>
                                 <input type="password" placeholder='Password' className="pass" onBlur={checkPassword} required />
@@ -219,6 +263,7 @@ const LoginSection = () => {
                                     <h5 className="mes">Already have an account? </h5>
                                     <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2' /></Link>
                                 </div>
+
                             </div>
                         </div>
                     </div>

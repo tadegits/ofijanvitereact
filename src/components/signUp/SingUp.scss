@@ -10,14 +10,17 @@
         align-items: center;
         width: fit-content;
         // background-color: aquamarine;
-        margin-top: -20px;
+        margin-top: 0px;
 
-        h4 {
-            font-size: 23px;
+        .signupregistered {
+            margin-top: 0.5rem;
+            font-size: 24px;
+            font-weight: 700;
+            // font-size: 30px;
         }
 
-        p {
-            margin-top: -20px;
+        p.infos {
+            margin-top: 10px;
         }
 
     }

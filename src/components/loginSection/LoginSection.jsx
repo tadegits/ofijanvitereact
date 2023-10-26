@@ -4,14 +4,19 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, setUser] = useState("");
     const [isLoggedin, setIsLoggedin] = useState(false);
+    const [registered, setRegistered] = useState("");
     const navigate = useNavigate();
+    const {state} = useLocation();
+    // setRegistered({state})
+
+    console.log({state});
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -76,8 +81,8 @@ const LoginSection = () => {
                                 <h1>Ofijan</h1>
                             </div>
                             <div className="login__header">
-                                <h4>Log in to Ofijan</h4>
-                                <p>Continue your study to increase your achivement.</p>
+                                <div className='registered'>{state}</div>
+                                <p className='infos'>Continue your study to increase your achivement.</p>
                             </div>
                             <hr></hr>
                         </div>
