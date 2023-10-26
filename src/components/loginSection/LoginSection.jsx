@@ -4,8 +4,10 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
+import Seller from '../../Seller'
+
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,15 +23,25 @@ const LoginSection = () => {
             "http://127.0.0.1:8000/api/login",
             user
         );
+        const role = JSON.stringify(response.data.user.role_id);
+       
         // set the state of the user
         setUser(response.data)
         if (response.data) {
+          if(role == 3)
+            
+          {
+            window.location.href = '/teacher';
+          }
+          else{
             window.location.href = '/dashboard';
+          }
+
         }
         setIsLoggedin(true);
         // store the user in localStorage
         localStorage.setItem('user', JSON.stringify(response.data))
-        console.log("iziga", response.data)
+        
     };
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -38,6 +50,10 @@ const LoginSection = () => {
             setUser(foundUser);
         }
     }, []);
+
+    <Routes>
+          <Route path="/teacher" element={<Seller/>} />
+    </Routes>
     //login without axios
     async function login() {
         console.warn(email, password);

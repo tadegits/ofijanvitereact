@@ -35,7 +35,7 @@ const ExitExam = () => {
       setEmail(foundUser.user.email);
       setFirstName(foundUser.user.name);
       setDepartmentId(parseInt(foundUser.user.dept_id))
-      console.log(deptId);
+      setSelectedDepartmentId(parseInt(foundUser.user.dept_id));
       //setUser(foundUser);
     }
   }, []);
@@ -56,6 +56,7 @@ const ExitExam = () => {
         .then((d) => setCourses(d))
     }
     else {
+      console.log(deptId);
       fetch(`https://ofijan.com/api/exams/${deptId}`)
         .then((res) => res.json())
         .then((d) => setCourses(d))
