@@ -4,6 +4,7 @@ import { useEffect, useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
+import Seller from "./Seller"
 // import Navbar from "./components/navbar/Navbar";
 // import Grade12 from "./components/Grade12/Grade12";
 // import Grade8 from "./components/Grade8/Grade8"
@@ -16,21 +17,36 @@ import Loged from "./Layout/Loged";
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 function App() {
   const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
+      const roleUser = JSON.parse(loggedInUser);
       const foundUser = JSON.stringify(loggedInUser);
       setUser(foundUser);
+      setRole(parseInt(roleUser.user.role_id))
     }
   }, []);
 
+console.log(role) 
   if (user) {
-    return (
+    if(role===2)
+    {
+       return (
       <>
         <Loged/>
       </>
     )
+    }
+    else if(role===3){
+return(
+  <>
+  <Seller/>
+  </>
+)
+    }
+   
   }
   else {
     return (
