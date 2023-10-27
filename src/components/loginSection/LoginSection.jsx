@@ -34,7 +34,6 @@ const LoginSection = () => {
         setUser(response.data)
         if (response.data) {
           if(role == 3)
-            
           {
             window.location.href = '/teacher';
           }
