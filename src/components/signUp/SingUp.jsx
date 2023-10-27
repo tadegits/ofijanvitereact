@@ -85,7 +85,7 @@ const LoginSection = () => {
     }
 
     function checkDept(event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         newDept = event.target.value;
         setDept(newDept);
         setDeptMessage("");
@@ -172,7 +172,7 @@ const LoginSection = () => {
                 //     icon:status
                 // })
                 if (status === "success") {
-                    navigate("/Login", {state:respresult})
+                    navigate("/Login", {state:{registered:{respresult}}})
                 }
                 else {
                     setMessage(respresult)

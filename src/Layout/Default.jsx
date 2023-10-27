@@ -18,6 +18,7 @@ import Insraw from "../components/insraw/insraw"
 import { useEffect, useState, } from "react";
 import LoginSection from "../components/loginSection/LoginSection";
 import SignUp from "../components/signUp/SingUp";
+import Index from '../Seller/index';
 
 const Default = () => {
   return (
@@ -32,7 +33,7 @@ const Default = () => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} /> 
+          <Route path="/dashboard" element={<Dashboard />} />  
         </Routes>
        
     </>

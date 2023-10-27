@@ -15,10 +15,31 @@ const LoginSection = () => {
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [registered, setRegistered] = useState("");
     const navigate = useNavigate();
-    const {state} = useLocation();
-    // setRegistered({state})
+    const state = useLocation();
+    let userdone, sellarinfor = "";
 
-    console.log({state});
+    if (state.state !== null) {
+
+        const name = state.state.name;
+        const registereduser = state.state.registered;
+        // const registereduser = state;
+        // setRegistered({state})
+        if (registereduser !== undefined) {
+            userdone = registereduser.respresult;
+        }
+        else {
+            userdone = userdone;
+        }
+
+        if(name !== undefined){
+            sellarinfor = name;
+        }
+        else {
+            sellarinfor = sellarinfor;
+        }
+        // console.log(state);
+        console.log(sellarinfor);
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -29,23 +50,22 @@ const LoginSection = () => {
             user
         );
         const role = JSON.stringify(response.data.user.role_id);
-       
+
         // set the state of the user
         setUser(response.data)
         if (response.data) {
-          if(role == 3)
-          {
-            window.location.href = '/teacher';
-          }
-          else{
-            window.location.href = '/dashboard';
-          }
+            if (role == 3) {
+                window.location.href = '/teacher';
+            }
+            else {
+                window.location.href = '/seller';
+            }
 
         }
         setIsLoggedin(true);
         // store the user in localStorage
         localStorage.setItem('user', JSON.stringify(response.data))
-        
+
     };
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -56,7 +76,7 @@ const LoginSection = () => {
     }, []);
 
     <Routes>
-          <Route path="/teacher" element={<Seller/>} />
+        <Route path="/teacher" element={<Seller />} />
     </Routes>
     //login without axios
     async function login() {
@@ -96,7 +116,7 @@ const LoginSection = () => {
                                 <h1>Ofijan</h1>
                             </div>
                             <div className="login__header">
-                                <div className='registered'>{state}</div>
+                                <div className='registered'>{userdone}</div>
                                 <p className='infos'>Continue your study to increase your achivement.</p>
                             </div>
                             <hr></hr>
