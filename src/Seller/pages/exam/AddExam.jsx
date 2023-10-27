@@ -3,37 +3,41 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import "./exam.scss";
 import Wrapper from '../../../components/wrapper/Wrapper'
 export default function AddExam() {
-    const [title, setTitle] = useState('');
+    const [exam_name, setExamName] = useState('');
     const [description, setDescription] = useState('');
-    const [subtopic, setSubTopic] = useState('');
-    const [reference, setReference] = useState('');
-    const [dept_id, setDeptId] = useState('');
+    const [exam_duration, setDuration] = useState('');
+    const [teacher_id , setUserId] = useState('');
+    const [department_id, setDepartmentId] = useState('');
+    const [exam_grade, setGrade] = useState(100);
+    const [exam_date, setExamDate] = useState("2023-10-27")
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             const userDept = JSON.parse(loggedInUser);
-            setDeptId(parseInt(userDept.user.dept_id));
+            setDepartmentId(parseInt(userDept.user.dept_id));
+            setUserId(parseInt(userDept.user.id));
 
         }
     }, []);
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://api.example.com/books', {
+            const response = await fetch(`${import.meta.env.API_ROOT}/add_exams`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, description, subtopic, reference }),
+                body: JSON.stringify({ exam_name, exam_duration, description, department_id, exam_grade, exam_date,  teacher_id }),
             });
 
             if (response.ok) {
-                console.log('Topic data sent successfully!');
+                console.log(response)
+                console.log('Exam data sent successfully!');
                 // Reset the form fields
-                setTitle('');
+                setExamName('');
                 setDescription('');
-                setSubTopic('');
-                setReference('');
+                setDuration('');
             } else {
+                console.log(response)
                 console.log('Failed to send topic data.');
             }
         } catch (error) {
@@ -60,8 +64,8 @@ export default function AddExam() {
                                             placeholder="2016 Model Exam for Accounting Department (Avoid using vague titles)"
                                             className="dept"
                                             required
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)} />
+                                            value={exam_name}
+                                            onChange={(e) => setExamName(e.target.value)} />
                                         <div className="errormessage"></div>
                                     </div>
                                     <div className="fnames">
@@ -71,8 +75,8 @@ export default function AddExam() {
                                             placeholder=' 10 min'
                                             className="dept"
                                             required
-                                            value={subtopic}
-                                            onChange={(e) => setSubTopic(e.target.value)} />
+                                            value={exam_duration}
+                                            onChange={(e) => setDuration(e.target.value)} />
                                         <div className="errormessage"></div>
                                     </div>
                                     <div className="fnames">

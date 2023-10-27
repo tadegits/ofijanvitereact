@@ -1,50 +1,21 @@
 import "../list.scss";
+import React from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 export default function Exam() {
-  const [data, setData] = useState(userRows);
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-  
+  const [data, setData] = useState([]);
+  const [userID, setUserID] = useState('');
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "user",
-      headerName: "Exam Name",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    { 
-      field: "email", 
-      headerName: "Date Added", 
-      width: 200 },
-    {
-      field: "status",
-      headerName: "Link",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Type",
-      width: 160,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
+    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'exam_name', headerName: 'Exam Name', width: 200 },
+    { field: 'exam_duration', headerName: 'Duration', width: 150 },
+    { field: 'description', headerName: 'Description', width: 350},
+    {field: "action", headerName: "Action", width: 150,
       renderCell: (params) => {
         return (
           <>
@@ -60,6 +31,26 @@ export default function Exam() {
       },
     },
   ];
+
+useEffect(() => {
+const loggedInUser = localStorage.getItem("user");
+if(loggedInUser)
+{
+  const users = JSON.parse(loggedInUser);
+setUserID(users.user.id);
+const uri = `${import.meta.env.API_ROOT}/all_exams/${userID}`;
+axios.get(uri)
+      .then(response => {
+        setData(response.data.exams);
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+}
+},[userID]);
+  
 
   return (
     <div className="userList">

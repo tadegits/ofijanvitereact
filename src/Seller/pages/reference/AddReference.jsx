@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import { Link } from "react-router-dom";
 import "./reference.scss";
 import Wrapper from '../../../components/wrapper/Wrapper'
 export default function Reference() {
@@ -10,7 +9,7 @@ export default function Reference() {
     const [url, setUrlSource] = useState('');
     const [author, setAuthor] = useState('');
     const [publication_date, setPubDate] = useState('');
-    const [user_id , setUserId] = useState('');
+    const [user_id, setUserId] = useState('');
     const [department_id, setDepartmentId] = useState('');
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -25,7 +24,7 @@ export default function Reference() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/references', {
+            const response = await fetch(`${import.meta.env.API_ROOT}/references`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,20 +109,20 @@ export default function Reference() {
                                     <div className="names">
                                         <div className="fnames">
                                             <label>Author</label>
-                                            <input type="text" 
-                                            placeholder='Author' 
-                                            className="dept"
-                                             value={author}
-                                             onChange={(e)=> setAuthor(e.target.value)}/>
+                                            <input type="text"
+                                                placeholder='Author'
+                                                className="dept"
+                                                value={author}
+                                                onChange={(e) => setAuthor(e.target.value)} />
                                             <div className="errormessage"></div>
                                         </div>
                                         <div className="fnames">
                                             <label>Publication Date</label>
-                                            <input type="date" 
-                                            placeholder='Publication Date' 
-                                            className="dept"
-                                            value={publication_date}
-                                             onChange={(e)=> setPubDate(e.target.value)}
+                                            <input type="date"
+                                                placeholder='Publication Date'
+                                                className="dept"
+                                                value={publication_date}
+                                                onChange={(e) => setPubDate(e.target.value)}
                                             />
                                             <div className="errormessage"></div>
                                         </div>
@@ -135,6 +134,7 @@ export default function Reference() {
                             </div>
                         </div>
                     </div>
+
                 </Wrapper>
             </section>
         </div>
