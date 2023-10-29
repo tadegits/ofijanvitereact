@@ -127,7 +127,6 @@ export default function AddTopic() {
                             </div>
                         </div>
                     </div>
-                    <Topic />
                 </Wrapper>
             </section>
         </div>

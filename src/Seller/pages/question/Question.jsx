@@ -1,63 +1,66 @@
-import {
-  CalendarToday,
-  LocationSearching,
-  MailOutline,
-  PermIdentity,
-  PhoneAndroid,
-  Publish,
-} from "@material-ui/icons";
+import "../list.scss";
+import React from "react";
+import { DataGrid } from "@material-ui/data-grid";
+import { DeleteOutline } from "@material-ui/icons";
+import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import "./question.scss";
-import Wrapper from '../../../components/wrapper/Wrapper'
+import { useState,useEffect } from "react";
+import axios from "axios";
+
 export default function Question() {
+  const [data, setData] = useState([]);
+  const [userID, setUserID] = useState('');
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'exam_name', headerName: 'Exam Name', width: 200 },
+    { field: 'exam_duration', headerName: 'Duration', width: 150 },
+    { field: 'description', headerName: 'Description', width: 350},
+    {field: "action", headerName: "Action", width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={"/user/" + params.row.id}>
+              <button className="userListEdit">Edit</button>
+            </Link>
+            <DeleteOutline
+              className="userListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            />
+          </>
+        );
+      },
+    },
+  ];
+
+useEffect(() => {
+const loggedInUser = localStorage.getItem("user");
+if(loggedInUser)
+{
+  const users = JSON.parse(loggedInUser);
+setUserID(users.user.id);
+const uri = `${import.meta.env.API_ROOT}/all_exams/${userID}`;
+axios.get(uri)
+      .then(response => {
+        setData(response.data.exams);
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+}
+},[userID]);
+  
+
   return (
-    <div className="question">
-      <h1>We add Question here</h1>
-      <section className="login">
-        <Wrapper>
-          <div className="login__container">
-            <div className="form2">
-
-              <div className="form-contents1">
-                <div className="names">
-                  <div className="fnames">
-                    <label>First Name</label>
-                    <input type="text" placeholder='First Name' className="fname" required />
-                    <div className="errormessage"></div>
-                  </div>
-                  <div className="lnames">
-                    <label>Last Name</label>
-                    <input type="text" placeholder='Last Name' className="lname" required />
-                    <div className="errormessage"></div>
-                  </div>
-
-                </div>
-                <div className="department">
-                  <label>Department</label>
-                  <select name='department' className='dept' required>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Information Science">Information Science</option>
-                    <option value="Information System">Information System</option>
-                    <option value="Plant Science">Plant Science</option>
-                  </select>
-                </div>
-                <label>Password</label>
-                <input type="password" placeholder='Password' className="pass" required />
-                <div className="errormessage"></div>
-                <label>Confirm Password</label>
-                <input type="password" placeholder='Confirm-Password' className="copass" required />
-                <div className="errormessage"></div>
-                <div className="errormessage"></div>
-                <div className="summit-signup">
-                  <button className='sigbtn'  >Sing Up</button>
-                  {/* <input type="submit" value="Log In" className="sigbtn"/> */}
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </Wrapper>
-      </section>
+    <div className="userList">
+      <DataGrid
+        rows={data}
+        disableSelectionOnClick
+        columns={columns}
+        pageSize={8}
+        checkboxSelection
+      />
     </div>
   );
 }

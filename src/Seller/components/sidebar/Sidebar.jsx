@@ -92,7 +92,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Manage Questions</h3>
           <ul className="sidebarList">
-            <Link to="/questions" className="link">
+            <Link to="/select_exam" className="link">
               <li className="sidebarListItem">
                 <TokenIcon className="sidebarIcon" />
                 Add Question
