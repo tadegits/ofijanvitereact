@@ -10,14 +10,17 @@
         align-items: center;
         width: fit-content;
         // background-color: aquamarine;
-        margin-top: -20px;
+        margin-top: 0px;
 
-        h4 {
-            font-size: 23px;
+        .signupregistered {
+            margin-top: 0.5rem;
+            font-size: 24px;
+            font-weight: 700;
+            // font-size: 30px;
         }
 
-        p {
-            margin-top: -20px;
+        p.infos {
+            margin-top: 10px;
         }
 
     }
@@ -195,14 +198,16 @@
                 }
 
                 .singup2 {
-                    background-color: #fff;
+                    // background-color: #fff;
                     font-size: 0.8rem;
-                    font-weight: 900;
+                    font-weight: 700;
                     border-top: 0;
                     border-left: 0;
                     border-right: 0;
+                    border-radius: 0;
                     padding: 0;
-                    padding-bottom: 4.5px;
+                    padding-bottom: 3px;
+                    border-width: 3px;
                     border-color: #594fb6;
                     color: #594fb6;
                     cursor: pointer;

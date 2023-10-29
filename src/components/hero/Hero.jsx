@@ -6,6 +6,7 @@ import Img3 from '../../assets/sun1.png';
 import Img4 from '../../assets/sun2.png';
 import anim from "../../assets/animation_lnk8tp8u.json"
 import Lottie from "lottie-react";
+import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 const Hero = () => {
    
@@ -31,12 +32,15 @@ const Hero = () => {
             </p>
 
             <div className="hero__btn-container">
-                <a href="/SinUp" className="button-primary">
+                <a href="/signup" className="button-primary">
                     Join Us
                 </a>
-                <a href="#" className="button-outline">
-                    Tell me more
-                </a>
+                <Link to={'/Login'} state={{name:'seller'}} className='button-outline'>
+                  Be Sellar
+                </Link>
+                {/* <a href="/Login" className="button-outline">
+                    
+                </a> */}
             </div>
         </div>
 

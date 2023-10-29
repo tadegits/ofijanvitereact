@@ -25,7 +25,6 @@ const Loged = () => {
           <Route path="/ExitExam" element={<ExitExam />} />
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
-          <Route path="/dashboard" element={<Dashboard />} /> 
           <Route path="/Exit_Exam" element={<LExitExam />} />
           
         </Routes>

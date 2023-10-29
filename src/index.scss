@@ -16,6 +16,9 @@ body{
     font-size: 16px;
     font-weight: 400;
     line-height: 1.7em;
+    font-family: "Roboto";
+    src: url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu7GxKOzY.woff2") format("woff2"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxK.woff2") format("woff2");
+    font-display: swap;
 }
 img{
     display: block;

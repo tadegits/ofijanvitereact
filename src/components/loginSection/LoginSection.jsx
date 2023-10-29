@@ -4,7 +4,7 @@ import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
-import { useNavigate, Link, Routes, Route } from 'react-router-dom';
+import { useNavigate, Link, Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Seller from '../../Seller'
 
@@ -13,7 +13,33 @@ const LoginSection = () => {
     const [password, setPassword] = useState("");
     const [user, setUser] = useState("");
     const [isLoggedin, setIsLoggedin] = useState(false);
+    const [registered, setRegistered] = useState("");
     const navigate = useNavigate();
+    const state = useLocation();
+    let userdone, sellarinfor = "";
+
+    if (state.state !== null) {
+
+        const name = state.state.name;
+        const registereduser = state.state.registered;
+        // const registereduser = state;
+        // setRegistered({state})
+        if (registereduser !== undefined) {
+            userdone = registereduser.respresult;
+        }
+        else {
+            userdone = userdone;
+        }
+
+        if(name !== undefined){
+            sellarinfor = name;
+        }
+        else {
+            sellarinfor = sellarinfor;
+        }
+        // console.log(state);
+        console.log(sellarinfor);
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -24,24 +50,22 @@ const LoginSection = () => {
             user
         );
         const role = JSON.stringify(response.data.user.role_id);
-       
+
         // set the state of the user
         setUser(response.data)
         if (response.data) {
-          if(role == 3)
-            
-          {
-            window.location.href = '/teacher';
-          }
-          else{
-            window.location.href = '/dashboard';
-          }
+            if (role == 3) {
+                window.location.href = '/teacher';
+            }
+            else {
+                window.location.href = '/seller';
+            }
 
         }
         setIsLoggedin(true);
         // store the user in localStorage
         localStorage.setItem('user', JSON.stringify(response.data))
-        
+
     };
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -52,7 +76,7 @@ const LoginSection = () => {
     }, []);
 
     <Routes>
-          <Route path="/teacher" element={<Seller/>} />
+        <Route path="/teacher" element={<Seller />} />
     </Routes>
     //login without axios
     async function login() {
@@ -92,8 +116,8 @@ const LoginSection = () => {
                                 <h1>Ofijan</h1>
                             </div>
                             <div className="login__header">
-                                <h4>Log in to Ofijan</h4>
-                                <p>Continue your study to increase your achivement.</p>
+                                <div className='registered'>{userdone}</div>
+                                <p className='infos'>Continue your study to increase your achivement.</p>
                             </div>
                             <hr></hr>
                         </div>

@@ -1,24 +1,20 @@
-import React from 'react'
+
 import './StyleBox.css'
 import  Instructions from './Instructions'
+import QuestionPage from './QuestionPage';
+import data from './data';
+
 
 const handleClick = (event) => {
-alert(event.target.id)
+  <QuestionPage 
+  name = {event.target.name}
+  choice1 = {event.target.choice1}
+  choice2 = {event.target.choice2}
+  choice3 = {event.target.choice3}
+  choice4 = {event.target.choice4}
+  answer = {event.target.answer}
+  />
 }
-const questions = [
-  {
-  qId: 1,
-  name: "What type of data structure used in order to implement printer program ?"
-  },
-  {
-  qId: 2,
-  name: "Data representation inside the computer memory is known as__________?"
-  },
-  {
-  qId: 3,
-  name: "____________ is program translator that convert the whole source code to executable code at one time."
-  }
- ];
  
 
 function QuestionList() {
@@ -28,10 +24,10 @@ function QuestionList() {
         <div> <Instructions /> </div>
         
         {
-          questions.map(question => (
+          data.map(question => (
           <button key={question.name} id = "1" className="square" onClick={handleClick} >
             <span role="img" aria-label={question.name}
-                  id={question.name}>{question.qId}</span>
+                  id={question.Id}>{question.Id}</span>
                   </button> ))
            }
 
