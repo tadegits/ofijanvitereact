@@ -71,6 +71,7 @@ export default function AddQuestion() {
     const handleStepClick = (step) => {
         setCurrentStep(step);
     };
+    // selectedExam
     return (
         <div className="question">
             <div className='gon_le_gon'>
@@ -173,22 +174,6 @@ export default function AddQuestion() {
                                         <div className="form-contents1">
                                             <div className='names'>
                                                 <div className='fnames'>
-                                                    <label>Exam Name</label>
-                                                    <select
-                                                        name="type"
-                                                        className="dept"
-                                                        value={reference_id}
-                                                        onChange={(e) => setReference(e.target.value)}
-                                                        required>
-                                                        {referenceData &&
-                                                            referenceData.map((rData) => (
-                                                                <option key={rData.id} value={rData.id}>
-                                                                    {rData.title}
-                                                                </option>
-                                                            ))}
-                                                    </select>
-                                                </div>
-                                                <div className='fnames'>
                                                     <label>Topic</label>
                                                     <select
                                                         name="type"
@@ -248,7 +233,7 @@ export default function AddQuestion() {
                     <button
                         className="next-button"
                         onClick={handleNextStep}
-                        disabled={currentStep === 3}
+                        disabled={currentStep === 4}
                     >
                         Next
                         <ArrowRightIcon  />

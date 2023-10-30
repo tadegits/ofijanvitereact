@@ -14,13 +14,22 @@ import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
 import TopicSharpIcon from '@mui/icons-material/TopicSharp';
 import TokenIcon from '@mui/icons-material/Token';
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Sidebar() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeItem, setActiveItem] = useState('');
+
+  const handleMenuClick = (item) => {
+    setIsExpanded(!isExpanded);
+    setActiveItem(item);
+  };
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Dashboard</h3>
+      <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
+            Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
             <li className="sidebarListItem active">
@@ -38,8 +47,8 @@ export default function Sidebar() {
             </li>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Manage References</h3>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle" onClick={() => handleMenuClick('reference')}>Manage References</h3>
           <ul className="sidebarList">
             <Link to="/references" className="link">
               <li className="sidebarListItem">
@@ -55,8 +64,8 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Manage Topic/Courses</h3>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle" onClick={handleMenuClick} >Manage Topic/Courses</h3>
           <ul className="sidebarList">
             <Link to="/add_topics" className="link">
               <li className="sidebarListItem">
@@ -72,8 +81,8 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Manage Exams</h3>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle" >Manage Exams</h3>
           <ul className="sidebarList">
             <Link to="/add_exams" className="link">
               <li className="sidebarListItem">
@@ -89,8 +98,8 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Manage Questions</h3>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle" >Manage Questions</h3>
           <ul className="sidebarList">
             <Link to="/select_exam" className="link">
               <li className="sidebarListItem">
@@ -106,8 +115,8 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <h3 className="sidebarTitle"  >Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <MailOutline className="sidebarIcon" />

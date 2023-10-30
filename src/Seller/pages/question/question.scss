@@ -1,5 +1,8 @@
 @import '../../../styles/mixin.scss';
 
+// my two basic collors 
+// #594fb6
+// #110d34;
 
 .step_holder{
     background-color: rgb(255, 255, 255);
@@ -12,7 +15,7 @@
     border-radius: 4px;
     border: 1px solid;
     background-color: #ffffff;
-    color: #110d34;
+    color: #594fb6;
     font-size: 16px;
     font-weight: 500;
 }
@@ -21,8 +24,8 @@
     margin-right: 8px;
 }
 .my-button:hover{
-     background-color: #110d34;
-     color: white;
+    background-color: #594fb6;
+    color: white;
 }
 
 .my-button svg {
@@ -58,7 +61,7 @@
     border-radius: 4px;
     border: 1px solid;
     margin-top: 10px;
-    background-color: #110d34;
+    background-color: #594fb6;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -81,7 +84,7 @@
     border-radius: 4px;
     border: 1px solid;
     margin-top: 10px;
-    background-color: #110d34;
+    background-color: #594fb6;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -104,7 +107,7 @@
 
 .previous-button,
 .next-button {
-    background-color: #110d34;
+    background-color: #594fb6;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -136,7 +139,7 @@
     width: 30px;
     height: 30px;
     border-radius: 0%;
-    color: #110d34;
+    color:#594fb6;
     background-color: #fff;
     text-align: center;
     

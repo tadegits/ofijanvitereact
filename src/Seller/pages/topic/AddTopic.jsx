@@ -38,7 +38,7 @@ export default function AddTopic() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, subtopic, description, reference_id }),
+                body: JSON.stringify({ title, subtopic, description, reference_id, user_id, department_id }),
 
             });
             console.log(JSON.stringify({ title, subtopic, description, reference_id, department_id, user_id }))

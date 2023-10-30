@@ -38,7 +38,7 @@ if(loggedInUser)
 {
   const users = JSON.parse(loggedInUser);
 setUserID(users.user.id);
-const uri = `${import.meta.env.API_ROOT}/all_exams/${userID}`;
+const uri = `http://127.0.0.1:8000/api/all_exams/${userID}`;
 axios.get(uri)
       .then(response => {
         setData(response.data.exams);
