@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import "./question.scss";
 import Wrapper from '../../../components/wrapper/Wrapper'
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 import axios from 'axios';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -14,7 +15,16 @@ export default function AddQuestion() {
     const [reference_id, setReference] = useState(1);
     const [department_id, setDeptId] = useState('');
     const [referenceData, setReferenceData] = useState('');
+    const [topicData, setTopicData] = useState('');
     const [user_id, setUserID] = useState('');
+    const [rcUri, setReferenceUri] = useState();
+    const [topicUri, setTopicUri] = useState();
+    const [question_text, setQuestionText] = useState();
+    const [qtError, setQtError] = useState();
+    const state = useLocation();
+    if (state.state !== null) {
+        console.log(state.state);
+    }
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
@@ -22,20 +32,36 @@ export default function AddQuestion() {
             setDeptId(parseInt(userDept.user.dept_id));
             const users = JSON.parse(loggedInUser);
             setUserID(users.user.id);
-            const uri = `http://127.0.0.1:8000/api/all_references/${user_id}`;
-            console.log(uri)
-            axios.get(uri)
-                .then(response => {
-                    setReferenceData(response.data.references);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-
         }
     }, [user_id]);
+    useEffect(() => {
+        setReferenceUri(`http://127.0.0.1:8000/api/all_references/${user_id}`);
+        console.log('rcuri', rcUri);
+        axios.get(rcUri)
+            .then(response => {
+                setReferenceData(response.data.references);
+                // console.log('reference', referenceData);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [rcUri]);
+
+    useEffect(() => {
+        setTopicUri(`http://127.0.0.1:8000/api/all_topics/${user_id}`);
+        console.log("topicUri", topicUri);
+        axios.get(topicUri)
+            .then(response => {
+                setTopicData(response.data.topics);
+                // console.log('reference', referenceData);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [topicUri]);
     const handleSubmit = async () => {
-        try {
+       console.log(question_text) 
+       try {
             const response = await fetch('http://127.0.0.1:8000/api/add_topics', {
                 method: 'POST',
                 headers: {
@@ -71,13 +97,18 @@ export default function AddQuestion() {
     const handleStepClick = (step) => {
         setCurrentStep(step);
     };
+    const handleEditorChange = (content, editor) => {
+        setQuestionText(content);
+      };
+      
     // selectedExam
     return (
         <div className="question">
             <div className='gon_le_gon'>
-                <h4>Add Question</h4>
+                <h4>Add Question {question_text}</h4>
                 <p>You have added 5 Questions so far!</p>
                 <MyButton />
+
             </div>
             <div className='step_holder'>
                 <StepLine currentStep={currentStep} onStepClick={handleStepClick} />
@@ -86,7 +117,10 @@ export default function AddQuestion() {
 
                         <label>Question:</label>
                         <Editor
-                            apiKey='bri3o5uila5hipo3wlvn2g31ebamxqqhrijyijvt8wmky45t'
+                            value={question_text}
+                            onEditorChange={handleEditorChange}
+                            onChange={(e) => setQuestionText(e.target.value)}
+                            apiKey='no1p57zpyjhhqjd9l5i03o52suh9n0vbklw8njdgdoramilj'
                             init={{
                                 height: '300', plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
                                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
@@ -100,70 +134,71 @@ export default function AddQuestion() {
                             }}
                             initialValue="Type the question here!"
                         />
-
+                        <div className="errormessage" onClick={handleSubmit}><p>Editor Value: {question_text}</p>
+</div>
                     </div>
                 )}
                 {currentStep === 2 && (
                     <div className='choice'>
-                      
-                                <div className="gon_le_gon">
-                                    <label>Choice 1</label>
-                                    <div class="textarea-wrapper">
-                                        <textarea placeholder="Enter your text here"></textarea>
-                                        <input type="radio" id="radio-button" name="radio-button" />
 
-                                    </div>
-                                </div>
-                                <div className="gon_le_gon">
-                                    <label>Choice 2</label>
-                                    <div class="textarea-wrapper">
-                                        <textarea placeholder="Enter your text here"></textarea>
-                                        <input type="radio" id="radio-button" name="radio-button" />
+                        <div className="gon_le_gon">
+                            <label>Choice 1</label>
+                            <div class="textarea-wrapper">
+                                <textarea placeholder="Enter your text here"></textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
 
-                                    </div>
-                                </div>
-
-                                <div className="gon_le_gon">
-                                    <label>Choice 3</label>
-                                    <div class="textarea-wrapper">
-                                        <textarea placeholder="Enter your text here"></textarea>
-                                        <input type="radio" id="radio-button" name="radio-button" />
-
-                                    </div>
-                                </div>
-                                <div className="gon_le_gon">
-                                    <label>Choice 4</label>
-                                    <div class="textarea-wrapper">
-                                        <textarea placeholder="Enter your text here"></textarea>
-                                        <input type="radio" id="radio-button" name="radio-button" />
-
-                                    </div>
-                                </div>
                             </div>
-                         
+                        </div>
+                        <div className="gon_le_gon">
+                            <label>Choice 2</label>
+                            <div class="textarea-wrapper">
+                                <textarea placeholder="Enter your text here"></textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+
+                            </div>
+                        </div>
+
+                        <div className="gon_le_gon">
+                            <label>Choice 3</label>
+                            <div class="textarea-wrapper">
+                                <textarea placeholder="Enter your text here"></textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+
+                            </div>
+                        </div>
+                        <div className="gon_le_gon">
+                            <label>Choice 4</label>
+                            <div class="textarea-wrapper">
+                                <textarea placeholder="Enter your text here"></textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+
+                            </div>
+                        </div>
+                    </div>
+
                 )}
                 {currentStep === 3 && (
                     <div className='mulu_mulu'>
-                                <div className='Explanation'>
-                                    <label>Answer Expalnation and study tip:</label>
-                                    <Editor
-                                        apiKey='bri3o5uila5hipo3wlvn2g31ebamxqqhrijyijvt8wmky45t'
-                                        init={{
-                                            height: '300',
-                                            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                            tinycomments_mode: 'embedded',
-                                            tinycomments_author: 'Author name',
-                                            mergetags_list: [
-                                                { value: 'First.Name', title: 'First Name' },
-                                                { value: 'Email', title: 'Email' },
-                                            ],
-                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                        }}
-                                        initialValue="Type the description for the correct answer here!"
-                                    />
-                                </div>
-                            </div>
+                        <div className='Explanation'>
+                            <label>Answer Expalnation and study tip:</label>
+                            <Editor
+                                apiKey='bri3o5uila5hipo3wlvn2g31ebamxqqhrijyijvt8wmky45t'
+                                init={{
+                                    height: '300',
+                                    plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                    tinycomments_mode: 'embedded',
+                                    tinycomments_author: 'Author name',
+                                    mergetags_list: [
+                                        { value: 'First.Name', title: 'First Name' },
+                                        { value: 'Email', title: 'Email' },
+                                    ],
+                                    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                                }}
+                                initialValue="Type the description for the correct answer here!"
+                            />
+                        </div>
+                    </div>
                 )}
                 {currentStep === 4 && (
                     <div className='step1_question'>
@@ -181,10 +216,10 @@ export default function AddQuestion() {
                                                         value={reference_id}
                                                         onChange={(e) => setReference(e.target.value)}
                                                         required>
-                                                        {referenceData &&
-                                                            referenceData.map((rData) => (
-                                                                <option key={rData.id} value={rData.id}>
-                                                                    {rData.title}
+                                                        {topicData &&
+                                                            topicData.map((tData) => (
+                                                                <option key={tData.id} value={tData.id}>
+                                                                    {tData.title}
                                                                 </option>
                                                             ))}
                                                     </select>
@@ -220,15 +255,15 @@ export default function AddQuestion() {
                         </section>
                     </div>
                 )}
-                
+
                 <div className="button-container">
                     <button
                         className="previous-button"
                         onClick={handlePreviousStep}
                         disabled={currentStep === 1}
-                    > <ArrowLeftIcon  />
+                    > <ArrowLeftIcon />
                         Previous
-                       
+
                     </button>
                     <button
                         className="next-button"
@@ -236,8 +271,8 @@ export default function AddQuestion() {
                         disabled={currentStep === 4}
                     >
                         Next
-                        <ArrowRightIcon  />
-                       
+                        <ArrowRightIcon />
+
                     </button></div>
             </div>
         </div >
