@@ -1,5 +1,6 @@
 
 import { Editor } from '@tinymce/tinymce-react';
+import useLoggedInUser from '../../../Globals/useLoggedInUser'
 import "./question.scss";
 import Wrapper from '../../../components/wrapper/Wrapper'
 import React, { useState, useEffect } from 'react';
@@ -9,33 +10,60 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 export default function AddQuestion() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [subtopic, setSubTopic] = useState('');
+    const { deptId, userId } = useLoggedInUser();
     const [reference_id, setReference] = useState(1);
-    const [department_id, setDeptId] = useState('');
     const [referenceData, setReferenceData] = useState('');
     const [topicData, setTopicData] = useState('');
-    const [user_id, setUserID] = useState('');
     const [rcUri, setReferenceUri] = useState();
     const [topicUri, setTopicUri] = useState();
     const [question_text, setQuestionText] = useState();
-    const [qtError, setQtError] = useState();
+    const [option1, setOption1] = useState();
+    const [option2, setOption2] = useState();
+    const [option3, setOption3] = useState();
+    const [option4, setOption4] = useState();
+    const [correctOption, setCorrectOption] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const data = {
+            question_text: question_text,
+            // option: options.map((option) => option.text),
+            option1: option1,
+            option2: option2,
+            option3: option3,
+            option4: option4,
+            correct: correctOption,
+        };
+        console.log(data);
+        axios.post('http://127.0.0.1:8000/api/questions', data)
+            .then(response => {
+                console.log(response.data);
+                // handle success
+            })
+            .catch(error => {
+                console.log(error);
+                // handle error
+            });
+    };
+    const handleCorrectOptionChange = (event) => {
+        setCorrectOption(event.target.value);
+    };
     const state = useLocation();
     if (state.state !== null) {
         console.log(state.state);
     }
+    // useEffect(() => {
+    //     const loggedInUser = localStorage.getItem("user");
+    //     if (loggedInUser) {
+    //         const userDept = JSON.parse(loggedInUser);
+    //         setDeptId(parseInt(userDept.user.dept_id));
+    //         const users = JSON.parse(loggedInUser);
+    //         setUserID(users.user.id);
+    //     }
+    // }, [user_id]);
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            const userDept = JSON.parse(loggedInUser);
-            setDeptId(parseInt(userDept.user.dept_id));
-            const users = JSON.parse(loggedInUser);
-            setUserID(users.user.id);
-        }
-    }, [user_id]);
-    useEffect(() => {
-        setReferenceUri(`http://127.0.0.1:8000/api/all_references/${user_id}`);
+        setReferenceUri(`http://127.0.0.1:8000/api/all_references/${userId}`);
         console.log('rcuri', rcUri);
         axios.get(rcUri)
             .then(response => {
@@ -48,7 +76,7 @@ export default function AddQuestion() {
     }, [rcUri]);
 
     useEffect(() => {
-        setTopicUri(`http://127.0.0.1:8000/api/all_topics/${user_id}`);
+        setTopicUri(`http://127.0.0.1:8000/api/all_topics/${userId}`);
         console.log("topicUri", topicUri);
         axios.get(topicUri)
             .then(response => {
@@ -59,33 +87,7 @@ export default function AddQuestion() {
                 console.error('Error fetching data:', error);
             });
     }, [topicUri]);
-    const handleSubmit = async () => {
-       console.log(question_text) 
-       try {
-            const response = await fetch('http://127.0.0.1:8000/api/add_topics', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ title, subtopic, description, reference_id }),
-
-            });
-            console.log(JSON.stringify({ title, subtopic, description, reference_id, department_id, user_id }))
-            if (response.ok) {
-                console.log('Topic data sent successfully!');
-                // Reset the form fields
-                setTitle('');
-                setDescription('');
-                setSubTopic('');
-                setReference('');
-            } else {
-                console.log('Failed to send topic data.');
-                console.log()
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+    
     const [currentStep, setCurrentStep] = useState(1);
 
     const handleNextStep = () => {
@@ -99,15 +101,18 @@ export default function AddQuestion() {
     };
     const handleEditorChange = (content, editor) => {
         setQuestionText(content);
-      };
-      
+    };
+
     // selectedExam
     return (
         <div className="question">
             <div className='gon_le_gon'>
-                <h4>Add Question {question_text}</h4>
+                <h4>Add Question </h4>
                 <p>You have added 5 Questions so far!</p>
-                <MyButton />
+                <button className="my-button" onClick={handleSubmit}>
+                    <span>Submit</span>
+                    <NavigateNextIcon />
+                </button>
 
             </div>
             <div className='step_holder'>
@@ -135,44 +140,103 @@ export default function AddQuestion() {
                             initialValue="Type the question here!"
                         />
                         <div className="errormessage" onClick={handleSubmit}><p>Editor Value: {question_text}</p>
-</div>
+                        </div>
                     </div>
                 )}
                 {currentStep === 2 && (
                     <div className='choice'>
 
-                        <div className="gon_le_gon">
-                            <label>Choice 1</label>
-                            <div class="textarea-wrapper">
-                                <textarea placeholder="Enter your text here"></textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
 
+                        {/* {options.map((option) => (
+                            <div key={option.id}>
+                                <label htmlFor={`option${option.id}`}>Option {option.id}</label>
+                                <div class="textarea-wrapper">
+                                    <textarea
+                                        id={`option_${option.id}`}
+                                        name={`option_${option.id}`}
+                                        value={option.text}
+                                        placeholder="Enter your text here"
+                                        onChange={(event) => handleOptionChange(option.id, event.target.value)}
+                                        required
+
+                                    ></textarea>
+                                    <input type="radio" id="radio-button" name="radio-button" />
+
+                                </div>
                             </div>
-                        </div>
-                        <div className="gon_le_gon">
-                            <label>Choice 2</label>
-                            <div class="textarea-wrapper">
-                                <textarea placeholder="Enter your text here"></textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
-
-                            </div>
-                        </div>
-
-                        <div className="gon_le_gon">
-                            <label>Choice 3</label>
-                            <div class="textarea-wrapper">
-                                <textarea placeholder="Enter your text here"></textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
-
-                            </div>
-                        </div>
-                        <div className="gon_le_gon">
+                        ))} */}
+                        <div className='gon-le-gon'>
                             <label>Choice 4</label>
                             <div class="textarea-wrapper">
-                                <textarea placeholder="Enter your text here"></textarea>
+                                <textarea
+                                    id={`option1`}
+                                    name={`option1`}
+                                    value={option1}
+                                    placeholder="Enter your text here"
+                                    onChange={(e) => setOption1(e.target.value)}
+                                    required>
+                                </textarea>
                                 <input type="radio" id="radio-button" name="radio-button" />
-
                             </div>
+                        </div>
+                        <div className='gon-le-gon'>
+                            <label>Choice 4</label>
+                            <div class="textarea-wrapper">
+                                <textarea
+                                    id={`option2`}
+                                    name={`option2`}
+                                    value={option2}
+                                    placeholder="Enter your text here"
+                                    onChange={(e) => setOption2(e.target.value)}
+                                    required>
+                                </textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+                            </div>
+                        </div>
+                        <div className='gon-le-gon'>
+                            <label>Choice 4</label>
+                            <div class="textarea-wrapper">
+                                <textarea
+                                    id={`option3`}
+                                    name={`option3`}
+                                    value={option3}
+                                    placeholder="Enter your text here"
+                                    onChange={(e) => setOption3(e.target.value)}
+                                    required>
+                                </textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+                            </div>
+                        </div>
+                        <div className='gon-le-gon'>
+                            <label>Choice 4</label>
+                            <div class="textarea-wrapper">
+                                <textarea
+                                    id={`option4`}
+                                    name={`option4`}
+                                    value={option4}
+                                    placeholder="Enter your text here"
+                                    onChange={(e) => setOption4(e.target.value)}
+                                    required>
+                                </textarea>
+                                <input type="radio" id="radio-button" name="radio-button" />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="correct">Correct Option</label>
+                            <select
+                                id="correct"
+                                name="correct"
+                                value={correctOption}
+                                onChange={handleCorrectOptionChange}
+                                required
+                            >
+                                <option value="">-- Select Correct Option --</option>
+                                {options.map((option) => (
+                                    <option key={option.id} value={`option${option.id}`}>
+                                        Option {option.id}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 
@@ -309,7 +373,7 @@ function GlobalSaveButton() {
 }
 function MyButton() {
     return (
-        <button className="my-button">
+        <button className="my-button" onClick={handleSubmit}>
             <span>Submit</span>
             <NavigateNextIcon />
         </button>
