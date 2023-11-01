@@ -1,6 +1,7 @@
 
 import { Editor } from '@tinymce/tinymce-react';
-import useLoggedInUser from '../../../Globals/useLoggedInUser'
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
+import API_BASE_URL from '../../../Globals/apiConfig';
 import "./question.scss";
 import Wrapper from '../../../components/wrapper/Wrapper'
 import React, { useState, useEffect } from 'react';
@@ -14,18 +15,90 @@ export default function AddQuestion() {
     const [reference_id, setReference] = useState(1);
     const [referenceData, setReferenceData] = useState('');
     const [topicData, setTopicData] = useState('');
-    const [rcUri, setReferenceUri] = useState();
-    const [topicUri, setTopicUri] = useState();
-    const [question_text, setQuestionText] = useState();
-    const [option1, setOption1] = useState();
-    const [option2, setOption2] = useState();
-    const [option3, setOption3] = useState();
-    const [option4, setOption4] = useState();
+    const [rcUri, setReferenceUri] = useState('');
+    const [topicUri, setTopicUri] = useState('');
+    const [exam_id, setExamId] = useState('');
+    const [answer_description, setAnswerDescription] = useState('')
+    const [question_text, setQuestionText] = useState('');
+    const [option1, setOption1] = useState('');
+    const [option2, setOption2] = useState('');
+    const [option3, setOption3] = useState('');
+    const [option4, setOption4] = useState('');
+    const [question_text_error, setQuestionTextError] = useState('');
+    const [option1Error, setOption1Error] = useState('');
+    const [option2Error, setOption2Error] = useState('');
+    const [option3Error, setOption3Error] = useState('');
+    const [option4Error, setOption4Error] = useState('');
     const [correctOption, setCorrectOption] = useState('');
+    const handleCorrectOptionChange = (event) => {
+        setCorrectOption(event.target.value);
+    };
+    const state = useLocation();
+    
+    useEffect(() => {
+        setReferenceUri(`${API_BASE_URL}/all_references/${userId}`);
+        setTopicUri(`${API_BASE_URL}/all_topics/${userId}`);
+if (state.state !== null) {
+        setExamId(state.state.name)
+    }
+        axios.get(rcUri, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                setReferenceData(response.data.references);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+        axios.get(topicUri, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                setTopicData(response.data.topics);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [rcUri]);
 
+    const handleSubmit = async () => {
+
+        setOption1Error('');
+        setOption2Error('');
+        setOption3Error('');
+        setOption4Error('');
+        setQuestionTextError('')
+
+        // Validate form fields
+        if (question_text.trim() === '') {
+            setQuestionTextError('Question Text is required');
+            return;
+        }
+        if (option1.trim() === '') {
+            setOption1Error('Option 1 is required');
+            return;
+        }
+        if (option2.trim() === '') {
+            setOption2Error('Option 2 is required');
+            return;
+        }
+        if (option3.trim() === '') {
+            setOption3Error('Option 3 is required');
+            return;
+        }
+        if (option4.trim() === '') {
+            setOption4Error('Option 4 is required');
+            return;
+        }
+        if (correctOption.trim() === '') {
+            setCorrectOption('Correct option is required');
+            return;
+        }
         const data = {
             question_text: question_text,
             // option: options.map((option) => option.text),
@@ -34,9 +107,12 @@ export default function AddQuestion() {
             option3: option3,
             option4: option4,
             correct: correctOption,
+            exam_id: exam_id,
+            answer_description: answer_description,
+
         };
         console.log(data);
-        axios.post('http://127.0.0.1:8000/api/questions', data)
+        axios.post(`${API_BASE_URL}/questions`, data)
             .then(response => {
                 console.log(response.data);
                 // handle success
@@ -46,48 +122,6 @@ export default function AddQuestion() {
                 // handle error
             });
     };
-    const handleCorrectOptionChange = (event) => {
-        setCorrectOption(event.target.value);
-    };
-    const state = useLocation();
-    if (state.state !== null) {
-        console.log(state.state);
-    }
-    // useEffect(() => {
-    //     const loggedInUser = localStorage.getItem("user");
-    //     if (loggedInUser) {
-    //         const userDept = JSON.parse(loggedInUser);
-    //         setDeptId(parseInt(userDept.user.dept_id));
-    //         const users = JSON.parse(loggedInUser);
-    //         setUserID(users.user.id);
-    //     }
-    // }, [user_id]);
-    useEffect(() => {
-        setReferenceUri(`http://127.0.0.1:8000/api/all_references/${userId}`);
-        console.log('rcuri', rcUri);
-        axios.get(rcUri)
-            .then(response => {
-                setReferenceData(response.data.references);
-                // console.log('reference', referenceData);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, [rcUri]);
-
-    useEffect(() => {
-        setTopicUri(`http://127.0.0.1:8000/api/all_topics/${userId}`);
-        console.log("topicUri", topicUri);
-        axios.get(topicUri)
-            .then(response => {
-                setTopicData(response.data.topics);
-                // console.log('reference', referenceData);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, [topicUri]);
-    
     const [currentStep, setCurrentStep] = useState(1);
 
     const handleNextStep = () => {
@@ -102,6 +136,7 @@ export default function AddQuestion() {
     const handleEditorChange = (content, editor) => {
         setQuestionText(content);
     };
+    
 
     // selectedExam
     return (
@@ -119,12 +154,11 @@ export default function AddQuestion() {
                 <StepLine currentStep={currentStep} onStepClick={handleStepClick} />
                 {currentStep === 1 && (
                     <div className='step1_question'>
-
-                        <label>Question:</label>
+                        <label>Question: <div className="errormessage">{question_text_error}</div></label>
                         <Editor
                             value={question_text}
                             onEditorChange={handleEditorChange}
-                            onChange={(e) => setQuestionText(e.target.value)}
+                            // onChange={(e) => setQuestionText(e.target.value)}
                             apiKey='no1p57zpyjhhqjd9l5i03o52suh9n0vbklw8njdgdoramilj'
                             init={{
                                 height: '300', plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
@@ -137,37 +171,17 @@ export default function AddQuestion() {
                                 ],
                                 ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
                             }}
-                            initialValue="Type the question here!"
+                        // initialValue="Type the question here!"
                         />
-                        <div className="errormessage" onClick={handleSubmit}><p>Editor Value: {question_text}</p>
+                        <div className="" onClick={handleSubmit}><p>Editor Value: {question_text}</p>
                         </div>
                     </div>
                 )}
                 {currentStep === 2 && (
                     <div className='choice'>
-
-
-                        {/* {options.map((option) => (
-                            <div key={option.id}>
-                                <label htmlFor={`option${option.id}`}>Option {option.id}</label>
-                                <div class="textarea-wrapper">
-                                    <textarea
-                                        id={`option_${option.id}`}
-                                        name={`option_${option.id}`}
-                                        value={option.text}
-                                        placeholder="Enter your text here"
-                                        onChange={(event) => handleOptionChange(option.id, event.target.value)}
-                                        required
-
-                                    ></textarea>
-                                    <input type="radio" id="radio-button" name="radio-button" />
-
-                                </div>
-                            </div>
-                        ))} */}
                         <div className='gon-le-gon'>
-                            <label>Choice 4</label>
-                            <div class="textarea-wrapper">
+                            <label>Choice 1 <div className="errormessage">{option1Error}</div></label>
+                            <div className="textarea-wrapper">
                                 <textarea
                                     id={`option1`}
                                     name={`option1`}
@@ -180,8 +194,8 @@ export default function AddQuestion() {
                             </div>
                         </div>
                         <div className='gon-le-gon'>
-                            <label>Choice 4</label>
-                            <div class="textarea-wrapper">
+                            <label>Choice 2 <div className="errormessage">{option2Error}</div></label>
+                            <div className="textarea-wrapper">
                                 <textarea
                                     id={`option2`}
                                     name={`option2`}
@@ -194,22 +208,22 @@ export default function AddQuestion() {
                             </div>
                         </div>
                         <div className='gon-le-gon'>
-                            <label>Choice 4</label>
-                            <div class="textarea-wrapper">
+                            <label>Choice 3 <div className="errormessage">{option3Error}</div></label>
+                            <div className="textarea-wrapper">
                                 <textarea
                                     id={`option3`}
                                     name={`option3`}
                                     value={option3}
                                     placeholder="Enter your text here"
-                                    onChange={(e) => setOption3(e.target.value)}
+                                    onChange={(er) => setOption3(er.target.value)}
                                     required>
                                 </textarea>
                                 <input type="radio" id="radio-button" name="radio-button" />
                             </div>
                         </div>
                         <div className='gon-le-gon'>
-                            <label>Choice 4</label>
-                            <div class="textarea-wrapper">
+                            <label>Choice 4 <div className="errormessage">{option4Error}</div></label>
+                            <div className="textarea-wrapper">
                                 <textarea
                                     id={`option4`}
                                     name={`option4`}
@@ -228,18 +242,15 @@ export default function AddQuestion() {
                                 name="correct"
                                 value={correctOption}
                                 onChange={handleCorrectOptionChange}
-                                required
-                            >
-                                <option value="">-- Select Correct Option --</option>
-                                {options.map((option) => (
-                                    <option key={option.id} value={`option${option.id}`}>
-                                        Option {option.id}
-                                    </option>
-                                ))}
+                                required>
+                                <option key="option0" value="">Select Correct Option</option>
+                                <option key="option1" value="option1">Option1</option>
+                                <option key="option2" value="option2">Option2</option>
+                                <option key="option3" value="option3">Option3</option>
+                                <option key="option4" value="option4">Option4</option>
                             </select>
                         </div>
                     </div>
-
                 )}
                 {currentStep === 3 && (
                     <div className='mulu_mulu'>
@@ -305,21 +316,14 @@ export default function AddQuestion() {
                                                             ))}
                                                     </select>
                                                 </div>
-
                                             </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
-
                             </Wrapper>
                         </section>
                     </div>
                 )}
-
                 <div className="button-container">
                     <button
                         className="previous-button"
@@ -341,7 +345,6 @@ export default function AddQuestion() {
             </div>
         </div >
     );
-
 }
 function StepLine({ currentStep, onStepClick }) {
 
@@ -364,22 +367,3 @@ function StepLine({ currentStep, onStepClick }) {
         </div>
     );
 }
-function GlobalSaveButton() {
-    return (
-        <button className="button-outline">
-            Save
-        </button>
-    );
-}
-function MyButton() {
-    return (
-        <button className="my-button" onClick={handleSubmit}>
-            <span>Submit</span>
-            <NavigateNextIcon />
-        </button>
-    );
-}
-//three steps
-//1 question page
-//2 answer page
-//3 category

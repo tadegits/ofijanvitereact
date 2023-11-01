@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Wrapper from '../../../components/wrapper/Wrapper';
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
+import API_BASE_URL from '../../../Globals/apiConfig';
 
 export default function AddExam() {
+  
   const [exam_name, setExamName] = useState('');
   const [description, setDescription] = useState('');
   const [exam_duration, setDuration] = useState('');
@@ -14,7 +17,7 @@ export default function AddExam() {
   const [durationError, setDurationError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-
+  const { deptId, userId } = useLoggedInUser();
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -46,7 +49,7 @@ export default function AddExam() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/add_exams", {
+      const response = await fetch(`${API_BASE_URL}/add_exams`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
