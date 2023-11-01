@@ -12,13 +12,14 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 export default function AddQuestion() {
     const { deptId, userId } = useLoggedInUser();
-    const [reference_id, setReference] = useState(1);
+    const [reference_id, setReferenceId] = useState(1);
+    const [topic_id, setTopicId] = useState(1);
     const [referenceData, setReferenceData] = useState('');
     const [topicData, setTopicData] = useState('');
     const [rcUri, setReferenceUri] = useState('');
     const [topicUri, setTopicUri] = useState('');
     const [exam_id, setExamId] = useState('');
-    const [answer_description, setAnswerDescription] = useState('')
+    const [answer_description, setAnswerDescription] = useState('');
     const [question_text, setQuestionText] = useState('');
     const [option1, setOption1] = useState('');
     const [option2, setOption2] = useState('');
@@ -29,18 +30,20 @@ export default function AddQuestion() {
     const [option2Error, setOption2Error] = useState('');
     const [option3Error, setOption3Error] = useState('');
     const [option4Error, setOption4Error] = useState('');
+    const [correctOptionError, setCorrectOptionError] = useState('');
     const [correctOption, setCorrectOption] = useState('');
+    const [successsMessage, setSuccessMessage] = useState('');
     const handleCorrectOptionChange = (event) => {
         setCorrectOption(event.target.value);
     };
     const state = useLocation();
-    
+
     useEffect(() => {
         setReferenceUri(`${API_BASE_URL}/all_references/${userId}`);
         setTopicUri(`${API_BASE_URL}/all_topics/${userId}`);
-if (state.state !== null) {
-        setExamId(state.state.name)
-    }
+        if (state.state !== null) {
+            setExamId(state.state.name)
+        }
         axios.get(rcUri, {
             headers: {
                 'Content-Type': 'application/json',
@@ -73,30 +76,37 @@ if (state.state !== null) {
         setOption3Error('');
         setOption4Error('');
         setQuestionTextError('')
+        setSuccessMessage('')
 
         // Validate form fields
         if (question_text.trim() === '') {
             setQuestionTextError('Question Text is required');
+            setCurrentStep(1);
             return;
         }
         if (option1.trim() === '') {
             setOption1Error('Option 1 is required');
+            setCurrentStep(2);
             return;
         }
         if (option2.trim() === '') {
             setOption2Error('Option 2 is required');
+            setCurrentStep(2);
             return;
         }
         if (option3.trim() === '') {
             setOption3Error('Option 3 is required');
+            setCurrentStep(2);
             return;
         }
         if (option4.trim() === '') {
             setOption4Error('Option 4 is required');
+            setCurrentStep(2);
             return;
         }
         if (correctOption.trim() === '') {
-            setCorrectOption('Correct option is required');
+            setCorrectOptionError('Correct option is required');
+            setCurrentStep(2);
             return;
         }
         const data = {
@@ -108,14 +118,25 @@ if (state.state !== null) {
             option4: option4,
             correct: correctOption,
             exam_id: exam_id,
+            reference_id: reference_id,
+            tag_id: topic_id,
+            teacher_id: userId,
             answer_description: answer_description,
-
+            department_id: deptId,
         };
         console.log(data);
         axios.post(`${API_BASE_URL}/questions`, data)
             .then(response => {
                 console.log(response.data);
-                // handle success
+                setSuccessMessage("Question Saved!");
+                setCurrentStep(1);
+                setAnswerDescription('');
+                setCorrectOption('');
+                setOption1('');
+                setOption2('');
+                setOption3('');
+                setOption4('');
+                setQuestionText('');
             })
             .catch(error => {
                 console.log(error);
@@ -136,7 +157,10 @@ if (state.state !== null) {
     const handleEditorChange = (content, editor) => {
         setQuestionText(content);
     };
-    
+    const handleEditorChange2 = (content, editor) => {
+        setAnswerDescription(content);
+    };
+
 
     // selectedExam
     return (
@@ -173,12 +197,13 @@ if (state.state !== null) {
                             }}
                         // initialValue="Type the question here!"
                         />
-                        <div className="" onClick={handleSubmit}><p>Editor Value: {question_text}</p>
+                        <div className="" onClick={handleSubmit}><p>{successsMessage}</p>
                         </div>
                     </div>
                 )}
                 {currentStep === 2 && (
                     <div className='choice'>
+                        <div className="errormessage">{correctOptionError}</div>
                         <div className='gon-le-gon'>
                             <label>Choice 1 <div className="errormessage">{option1Error}</div></label>
                             <div className="textarea-wrapper">
@@ -190,7 +215,16 @@ if (state.state !== null) {
                                     onChange={(e) => setOption1(e.target.value)}
                                     required>
                                 </textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
+                                <input
+                                    type="radio"
+                                    id="option1"
+                                    name="correct"
+                                    value="option1"
+                                    checked={correctOption === "option1"}
+                                    onChange={handleCorrectOptionChange}
+                                    required
+                                />
+                                <label htmlFor="option1">Option 1</label>
                             </div>
                         </div>
                         <div className='gon-le-gon'>
@@ -204,7 +238,16 @@ if (state.state !== null) {
                                     onChange={(e) => setOption2(e.target.value)}
                                     required>
                                 </textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
+                                <input
+                                    type="radio"
+                                    id="option2"
+                                    name="correct"
+                                    value="option2"
+                                    checked={correctOption === "option2"}
+                                    onChange={handleCorrectOptionChange}
+                                    required
+                                />
+                                <label htmlFor="option1">Option 2</label>
                             </div>
                         </div>
                         <div className='gon-le-gon'>
@@ -218,7 +261,16 @@ if (state.state !== null) {
                                     onChange={(er) => setOption3(er.target.value)}
                                     required>
                                 </textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
+                                <input
+                                    type="radio"
+                                    id="option3"
+                                    name="correct"
+                                    value="option3"
+                                    checked={correctOption === "option3"}
+                                    onChange={handleCorrectOptionChange}
+                                    required
+                                />
+                                <label htmlFor="option1">Option 1</label>
                             </div>
                         </div>
                         <div className='gon-le-gon'>
@@ -232,31 +284,38 @@ if (state.state !== null) {
                                     onChange={(e) => setOption4(e.target.value)}
                                     required>
                                 </textarea>
-                                <input type="radio" id="radio-button" name="radio-button" />
+
+                                <input
+                                    type="radio"
+                                    id="option1"
+                                    name="correct"
+                                    value="option1"
+                                    checked={correctOption === "option1"}
+                                    onChange={handleCorrectOptionChange}
+                                    required
+                                />
+                                <label htmlFor="option1">Option 1</label>
+
                             </div>
-                        </div>
-                        <div>
-                            <label htmlFor="correct">Correct Option</label>
-                            <select
-                                id="correct"
-                                name="correct"
-                                value={correctOption}
-                                onChange={handleCorrectOptionChange}
-                                required>
-                                <option key="option0" value="">Select Correct Option</option>
-                                <option key="option1" value="option1">Option1</option>
-                                <option key="option2" value="option2">Option2</option>
-                                <option key="option3" value="option3">Option3</option>
-                                <option key="option4" value="option4">Option4</option>
-                            </select>
                         </div>
                     </div>
                 )}
                 {currentStep === 3 && (
                     <div className='mulu_mulu'>
-                        <div className='Explanation'>
-                            <label>Answer Expalnation and study tip:</label>
+                        <div className='explanation'>
+                            <label>
+                                <small>
+                                    <i>
+                                        <b>Add expalanation and study tip for the selected correct answer:</b>
+                                    </i>
+                                </small>
+                            </label>
+                            <div className='SelecteCorrectAnswer'>
+                                <p><label>Selected Correct answer is  </label><b><u>{correctOption}</u></b></p>
+                            </div>
                             <Editor
+                                value={answer_description}
+                                onEditorChange={handleEditorChange2}
                                 apiKey='bri3o5uila5hipo3wlvn2g31ebamxqqhrijyijvt8wmky45t'
                                 init={{
                                     height: '300',
@@ -288,8 +347,8 @@ if (state.state !== null) {
                                                     <select
                                                         name="type"
                                                         className="dept"
-                                                        value={reference_id}
-                                                        onChange={(e) => setReference(e.target.value)}
+                                                        value={topic_id}
+                                                        onChange={(e) => setTopicId(e.target.value)}
                                                         required>
                                                         {topicData &&
                                                             topicData.map((tData) => (
@@ -305,7 +364,7 @@ if (state.state !== null) {
                                                         name="type"
                                                         className="dept"
                                                         value={reference_id}
-                                                        onChange={(e) => setReference(e.target.value)}
+                                                        onChange={(e) => setReferenceId(e.target.value)}
                                                         required
                                                     >
                                                         {referenceData &&
@@ -357,7 +416,7 @@ function StepLine({ currentStep, onStepClick }) {
                 Choice/options
             </div>
             <div className={currentStep === 3 ? 'step active' : 'step'} onClick={() => onStepClick(3)}>
-                correct answer with description
+                Answer description
             </div>
             <div className={currentStep === 4 ? 'step active' : 'step'} onClick={() => onStepClick(4)}>
                 Tags

@@ -4,35 +4,34 @@ import "./question.scss";
 import axios from 'axios';
 import '../../components/featuredInfo/featuredInfo.css'
 import '../../pages/home/home.css'
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
+import API_BASE_URL from '../../../Globals/apiConfig';
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 export default function SelectExam() {
+    const { deptId, userId } = useLoggedInUser();
+    const [examsUri, setExamsUri] = useState('');
     const [data, setData] = useState([]);
-  const [userID, setUserID] = useState('');
+    const [userID, setUserID] = useState('');
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if(loggedInUser)
-        {
-          const users = JSON.parse(loggedInUser);
-        setUserID(users.user.id);
-        const uri = `http://127.0.0.1:8000/api/all_exams/${userID}`;
-        axios.get(uri)
-              .then(response => {
+         setUserID(userId);
+         setExamsUri(`${API_BASE_URL}/all_exams/${userId}`);
+       
+        axios.get(examsUri)
+            .then(response => {
                 setData(response.data.exams);
                 console.log(data)
-              })
-              .catch(error => {
+            })
+            .catch(error => {
                 console.error('Error fetching data:', error);
-              });
-        
-        }
-        },[userID]);
+            });
+    }, [examsUri]);
     return (
         <div className='home'>
             <h3>Select Exam You want add question to:</h3>
             <div className="mulu_mulu">
-                {data  && data.map((eData) => (
-                    <div className="featuredItem ">
+                {data && data.map((eData) => (
+                    <div className="featuredItem" key={eData.id}>
                         <span className="featuredTitle">Exam Name: {eData.exam_name}</span>
                         <div className="featuredMoneyContainer gon_le_gon">
                             <span className="featuredMoneyRate">

@@ -5,7 +5,7 @@ import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../../Globals/apiConfig';
 
 export default function AddExam() {
-  
+
   const [exam_name, setExamName] = useState('');
   const [description, setDescription] = useState('');
   const [exam_duration, setDuration] = useState('');
@@ -18,23 +18,20 @@ export default function AddExam() {
   const [descriptionError, setDescriptionError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { deptId, userId } = useLoggedInUser();
+  const [addExamUri, setAddExamUri] = useState('');
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const userDept = JSON.parse(loggedInUser);
-      setDepartmentId(parseInt(userDept.user.dept_id));
-      setUserId(parseInt(userDept.user.id));
-    }
+    setAddExamUri(`${API_BASE_URL}/add_exams`);
+    setDepartmentId(deptId);
+    setUserId(userId);
   }, []);
 
   const handleSubmit = async () => {
-    // Reset error messages and success message
+
     setNameError('');
     setDurationError('');
     setDescriptionError('');
     setSuccessMessage('');
 
-    // Validate form fields
     if (exam_name.trim() === '') {
       setNameError('Exam name is required');
       return;
@@ -49,7 +46,7 @@ export default function AddExam() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/add_exams`, {
+      const response = await fetch(addExamUri, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,9 +74,9 @@ export default function AddExam() {
   return (
     <div className="topic">
       <h3>Add Exam</h3>
-      <span><i><PriorityHighIcon />"Grouping questions within exams enables organized packaging and presentation. 
-      By bundling questions under exam names, you can showcase your work in a more appealing and controlled 
-      manner, streamlining clicks and driving sales."</i></span>
+      <span><i><PriorityHighIcon />"Grouping questions within exams enables organized packaging and presentation.
+        By bundling questions under exam names, you can showcase your work in a more appealing and controlled
+        manner, streamlining clicks and driving sales."</i></span>
       <br></br>
       <section className="login">
         <Wrapper>

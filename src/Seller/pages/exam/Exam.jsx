@@ -4,18 +4,24 @@ import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
+import API_BASE_URL from '../../../Globals/apiConfig';
+
 
 export default function Exam() {
   const [data, setData] = useState([]);
+  const { deptId, userId } = useLoggedInUser();
   const [userID, setUserID] = useState('');
+  const [examsUri, setExamUri] = useState('');
   const columns = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'exam_name', headerName: 'Exam Name', width: 200 },
     { field: 'exam_duration', headerName: 'Duration', width: 150 },
-    { field: 'description', headerName: 'Description', width: 350},
-    {field: "action", headerName: "Action", width: 150,
+    { field: 'description', headerName: 'Description', width: 350 },
+    {
+      field: "action", headerName: "Action", width: 150,
       renderCell: (params) => {
         return (
           <>
@@ -32,25 +38,19 @@ export default function Exam() {
     },
   ];
 
-useEffect(() => {
-const loggedInUser = localStorage.getItem("user");
-if(loggedInUser)
-{
-  const users = JSON.parse(loggedInUser);
-setUserID(users.user.id);
-const uri = `http://127.0.0.1:8000/api/all_exams/${userID}`;
-axios.get(uri)
-      .then(response => {
-        setData(response.data.exams);
-        console.log(data)
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-
-}
-},[userID]);
-  
+  useEffect(() => {
+    setUserID(userId);
+    setExamUri(`${API_BASE_URL}/all_exams/${userId}`);
+    const loggedInUser = localStorage.getItem("user");
+      axios.get(examsUri)
+        .then(response => {
+          setData(response.data.exams);
+          console.log(data)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+  }, [examsUri]);
 
   return (
     <div className="userList">
