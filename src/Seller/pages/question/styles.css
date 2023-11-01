@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #e8ecf4;
   height: 100vh;
   
@@ -111,4 +111,40 @@ span {
 .panel-body {
   font-size: 12px;
   font-weight: lighter;
+} */
+.questionHolder
+{
+  background-color: aqua;
+}
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.alphabet {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.option-text {
+  margin-right: 5px;
+}
+
+.correct {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-icon {
+  color: rgb(66, 18, 129);
+}
+
+.delete-icon {
+  color: rgb(206, 9, 9);
 }

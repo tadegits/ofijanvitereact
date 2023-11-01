@@ -1,9 +1,12 @@
 import "../list.scss";
+import "./question.scss";
+import './styles.css'
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../../Globals/apiConfig';
+import Wrapper from '../../../components/wrapper/Wrapper'
 import { Link } from "react-router-dom";
 
 export default function Question() {
@@ -28,23 +31,25 @@ export default function Question() {
   }, [questionUri]);
 
   return (
-      <div className="userList">
-        {questionData && questionData.map((question) => (
-          <div key={question.id}>
-            <b><p dangerouslySetInnerHTML={{ __html: question.question_text }}/></b>
-            <ul>
-              {question.options.map((option, index) => (
-                <li key={option.id}>
-                  <span>{alphabet[index]}. </span>
-                  {option.option} - {option.correct === 1 ? "Correct" : "Incorrect"}
-                </li>
-              ))}
-            </ul>
-            <Link to="/">
-              <p>Edit</p>
-            </Link>
-          </div>
-        ))}
-      </div>
+    <div className="question">
+      <Wrapper>
+      {questionData && questionData.map((question) => (
+        <div key={question.id}>
+          <h2 dangerouslySetInnerHTML={{ __html: question.question_text }}/>
+          {question.options.map((option, index) => (
+            <div key={option.id} className="gon-le-gon">
+              <span className="alphabet">{alphabet[index]}. </span>
+              <span className={`option-text ${option.correct === 1 ? "correct" : ""}`}>
+                {option.option}
+              </span>
+              <span className="icon edit-icon">✎</span>
+              <span className="icon delete-icon">✖</span>
+            </div>
+          ))}
+        </div>
+      ))}
+      </Wrapper>
+    </div>
+    
   );
 }
