@@ -22,11 +22,13 @@ import EducationLevel from "./pages/EducationLevel/EducationLevel";
 import SellerMain from "./pages/SellerMain/SellerMain";
 
 function index() {
+  
   return (
     <>
       <Topbar />
       <div className="container">
         <Sidebar />
+        
         <Routes>
           <Route exact path="/" element={<Home />} />
           {/* exams */}
