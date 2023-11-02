@@ -94,7 +94,6 @@ const LoginSection = () => {
         result = await result.json();
         localStorage.setItem("user-info", JSON.stringify(result))
         navigate('/dashboard');
-
     }
 
     function refreshPage() {
