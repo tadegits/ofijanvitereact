@@ -1,12 +1,17 @@
 @import "../../styles/mixin.scss";
 
 .footer{
-    background-color: #6f00eb;
+    background-color: #ffffff;
     padding-block: 1rem;
-    color: white;
+    color: #594fb6;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     h3{
-        color: #fff;
+        color: #594fb6;
+        font-size: large;
     }
     &__text{
         text-align: center;
@@ -37,7 +42,7 @@ img{
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
 
 }
 li{
@@ -49,4 +54,5 @@ li{
             color: #212123;
 }
 }
+
 }

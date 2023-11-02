@@ -7,6 +7,7 @@ const Grade6 = () => {
   return (<section className="features">
     <Wrapper>
 <div>
+  grade 6
       </div>
     </Wrapper>
     </section>

@@ -7,14 +7,19 @@ import SignUpSection from "../SignUpSection/SignUpSection"
 import Footer from "../footer/footer"
 import Plans from "../PlanSection/PlanSection";
 import Insraw from "../insraw/insraw"
+import Testimonals from '../Testimonals/Testimonals'
+
 const Home = () => {
   return (
     <>
-       <Hero/>
-      <CompanySection/> 
-      <CounterUpPage/>
+      <Hero/>
+      
+      {/* <CompanySection/>  */}
+     {/* <CounterUpPage/> */}
       <FeaturesSection/>
-      <SignUpSection/>  
+      {/* <SignUpSection/>  */}
+      <Testimonals/>
+      <Footer/> 
     </>
   )
 }

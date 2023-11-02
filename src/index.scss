@@ -11,9 +11,9 @@
 }
 
 body {
-    color: #212123;
+    color: #0c0c0c9a;
     background-color: #fff;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.7em;
@@ -33,7 +33,7 @@ button {
 }
 
 h1 {
-    color: #110d34;
+    color: #594fb6;
     letter-spacing: -1.7px;
     font-family: "Poppins", sans-serif;
     font-size: 70px;
@@ -47,7 +47,7 @@ h1 {
 }
 
 h4 {
-    color: #110d34;
+    color: #594fb6;
     font-family: "Poppins", sans-serif;
     font-size: 36px;
     font-weight: 700;
@@ -59,7 +59,7 @@ h4 {
 }
 
 h3 {
-    color: #110d34;
+    color: #594fb6;
     margin-bottom: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 50px;
@@ -72,7 +72,7 @@ h3 {
 }
 
 h6 {
-    color: #110d34;
+    color: #594fb6;
     margin-bottom: 10px;
     font-family: 20px;
     font-weight: 700;
@@ -82,29 +82,29 @@ h6 {
 .button-primary {
     color: #fff;
     text-align: center;
-    background-color: #6f00eb;
+    background-color: #594fb6;
     border-radius: 30px;
     padding: 10px 30px;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
-        background-color: #9e54f0;
+        background-color: #6358c4c4;
     }
 }
 
 .button-outline {
-    color: #110d34;
+    color: #594fb6;
     text-align: center;
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #110d34;
+    border: 1px solid #594fb6;
     border-radius: 30px;
     padding: 10px 30px;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
 
     &:hover {
-        background-color: #110d34;
+        background-color: #594fb6;
         color: #fff;
     }
 }
@@ -119,15 +119,15 @@ h6 {
 
     &:hover {
         background-color: #fff;
-        color: #110d34;
+        color: #594fb6;
     }
 }
 
 .button-courses {
-    color: #110d34;
+    color: #594fb6;
     text-align: center;
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #110d34;
+    border: 1px solid #594fb6;;
     border-radius: 30px;
     padding: 5px 15px;
     margin: 0.22rem;
@@ -136,7 +136,7 @@ h6 {
     text-decoration: none;
 
     &:hover {
-        background-color: #110d34;
+        background-color: #594fb6;
         color: #fff;
     }
 }

@@ -2,8 +2,8 @@ import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
 import { FaBars } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
+import { useEffect, useState, } from "react";
 const Navbar = () => {
     const [user, setUser] = useState("")
     const [showNav, setShowNav] = useState(false);
@@ -21,14 +21,14 @@ const Navbar = () => {
 
     };
     return (
-        <nav className="navbar">
-            <Wrapper className="navbar__container">
-                <Link to="/" className="navbar__logo"
+        <nav className="navbarz">
+            <Wrapper className="navbarz__container">
+                <Link to="/" className="navbarz__logo"
                     onClick={() => setShowNav(false)}>
                     <img src={Logo} alt="" />
 
                 </Link>
-                <ul className={`navbar__links ${showNav ? "show-nav" : ""}`}>
+                <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
                     </li>
@@ -46,24 +46,22 @@ const Navbar = () => {
                         <Link to="/ExitExam">Exit Exam</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <a href="#">About</a>
+                        <a href="#">Blog</a>
                     </li>
                 </ul>
                 <>
-                    <Link to='/Login' className="button-primary navbar__btn">
+                    <Link to='/Login' className="button-primary navbarz__btn">
                         Sign in
                     </Link>
                 </>
-
-
-
-                <div className={`navbar__menubar ${showNav ? "bg-color" : ""}`}
-                    onClick={() => setShowNav(!showNav)}
-                >
+                <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`}
+                    onClick={() => setShowNav(!showNav)}>
                     <FaBars />
                 </div>
             </Wrapper>
+          
         </nav>
+        
     )
 }
 

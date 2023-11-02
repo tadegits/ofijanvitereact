@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 const Hero = () => {
    
-        const [text, setText] = useState('The Ethiopian Exam Bank!');
+        const [text, setText] = useState('Study with exams!');
       
         useEffect(() => {
           const interval = setInterval(() => {
@@ -36,7 +36,7 @@ const Hero = () => {
                     Join Us
                 </a>
                 <Link to={'/Login'} state={{name:'seller'}} className='button-outline'>
-                  Be Sellar
+                  Start Selling Answers!
                 </Link>
                 {/* <a href="/Login" className="button-outline">
                     

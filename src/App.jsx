@@ -28,7 +28,6 @@ console.log(role)
     {
        return (
       <>
-       <NetworkStatus />
         <Loged/>
       </>
     )
@@ -36,7 +35,6 @@ console.log(role)
     else if(role===3){
 return(
   <>
-   <NetworkStatus />
   <Seller/>
   </>
 )
@@ -46,7 +44,6 @@ return(
   else {
     return (
       <>
-       <NetworkStatus />
         <Default/>
       </>
     )
