@@ -18,6 +18,8 @@ import AddReference from "./pages/reference/AddReference";
 import Question from "./pages/question/Question";
 import AddQuestion from "./pages/question/AddQuestion";
 import SelectExam from "./pages/question/SelectExam";
+import EducationLevel from "./pages/EducationLevel/EducationLevel";
+import SellerMain from "./pages/SellerMain/SellerMain";
 
 function index() {
   return (
@@ -40,6 +42,9 @@ function index() {
           <Route exact path="/questions" element={<Question />} />
           <Route exact path="/add_questions" element={<AddQuestion />} />
           <Route exact path="/select_exam" element={<SelectExam/>} />
+          {/* Education Level */}
+          <Route exact path="/educationlevel" element={<EducationLevel />} />
+          <Route exact path="/mainseller" element={<SellerMain />} />
 
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />

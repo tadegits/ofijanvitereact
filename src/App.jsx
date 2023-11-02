@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
 import Seller from "./Seller"
+import SellerMain from "./Seller/pages/SellerMain/SellerMain";
 import NetworkStatus from "./network/NetworkStatus";
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
