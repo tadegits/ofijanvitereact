@@ -25,6 +25,7 @@
 .topRight{
     display: flex;
     align-items: center;
+    /* background-color: blue; */
 }
 
 .topbarIconContainer {
@@ -54,4 +55,23 @@
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+    padding: 2px;
+    align-items: center;
+    margin-inline: auto;
+}
+
+.profiles {
+  /* background-color: #7fffd4; */
+  margin-top: 3rem;
+}
+
+li.profile{
+  /* background-color: #c3cbda; */
+  width: 100%;
+  margin-bottom: 2px;
+  list-style: none;
+  border-color: #555;
+  border: 2px;
+  cursor: pointer;
+  /* margin-bottom: 0.8rem; */
 }

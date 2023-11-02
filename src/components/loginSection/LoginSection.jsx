@@ -6,7 +6,8 @@ import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
 import { useNavigate, Link, Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Seller from '../../Seller'
+import Seller from '../../Seller';
+import SellerMain from '../../Seller/pages/SellerMain/SellerMain';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ const LoginSection = () => {
             sellarinfor = sellarinfor;
         }
         // console.log(state);
-        console.log(sellarinfor);
+        // console.log(sellarinfor);
     }
 
     const handleSubmit = async e => {
@@ -55,6 +56,7 @@ const LoginSection = () => {
         setUser(response.data)
         if (response.data) {
             if (role == 3) {
+                // navigate('/teacher');
                 window.location.href = '/teacher';
             }
             else {
@@ -79,22 +81,22 @@ const LoginSection = () => {
         <Route path="/teacher" element={<Seller />} />
     </Routes>
     //login without axios
-    async function login() {
-        console.warn(email, password);
-        let item = { email, password };
-        let result = await fetch("http://127.0.0.1:8000/api/login", {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": 'application/json'
-            },
-            body: JSON.stringify(item)
-        });
-        console.log(result);
-        result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result))
-        navigate('/dashboard');
-    }
+    // async function login() {
+    //     console.warn(email, password);
+    //     let item = { email, password };
+    //     let result = await fetch("http://127.0.0.1:8000/api/login", {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": 'application/json'
+    //         },
+    //         body: JSON.stringify(item)
+    //     });
+    //     console.log(result);
+    //     result = await result.json();
+    //     localStorage.setItem("user-info", JSON.stringify(result))
+    //     navigate('/dashboard');
+    // }
 
     function refreshPage() {
         window.location.reload(false);

@@ -36,7 +36,7 @@ const Hero = () => {
                     Join Us
                 </a>
                 <Link to={'/Login'} state={{name:'seller'}} className='button-outline'>
-                  Be Sellar
+                  Be Seller
                 </Link>
                 {/* <a href="/Login" className="button-outline">
                     

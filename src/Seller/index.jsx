@@ -16,6 +16,8 @@ import AddTopic from "./pages/topic/AddTopic";
 import Reference from "./pages/reference/Reference";
 import AddReference from "./pages/reference/AddReference";
 import Question from "./pages/question/index";
+import EducationLevel from "./pages/EducationLevel/EducationLevel";
+import SellerMain from "./pages/SellerMain/SellerMain";
 
 function index() {
   return (
@@ -36,6 +38,9 @@ function index() {
           <Route exact path="/add_references" element={<AddReference />} />
           {/* questions */}
           <Route exact path="/questions" element={<Question />} />
+          {/* Education Level */}
+          <Route exact path="/educationlevel" element={<EducationLevel />} />
+          <Route exact path="/mainseller" element={<SellerMain />} />
 
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />

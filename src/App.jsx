@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
 import Seller from "./Seller"
+import SellerMain from "./Seller/pages/SellerMain/SellerMain";
 // import Navbar from "./components/navbar/Navbar";
 // import Grade12 from "./components/Grade12/Grade12";
 // import Grade8 from "./components/Grade8/Grade8"
