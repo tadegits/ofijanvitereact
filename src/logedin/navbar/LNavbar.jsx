@@ -16,13 +16,13 @@ const LNavbar = () => {
    };
    return (
       <nav className="navbar">
-         <Wrapper className="navbar__container">
-            <Link to="/" className="navbar__logo"
+         <Wrapper className="navbarz__container">
+            <Link to="/" className="navbarz__logo"
                onClick={() => setShowNav(false)}>
                <img src={Logo} alt="" />
 
             </Link>
-            <ul className={`navbar__links ${showNav ? "show-nav" : ""}`}>
+            <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                <li onClick={() => setShowNav(false)}>
                   <Link to="/">Home</Link>
                </li>
@@ -45,11 +45,11 @@ const LNavbar = () => {
             </ul>
 
             <Link to='#' onClick={handleLogout} className="button-primary 
-navbar__btn">
+navbarz__btn">
                Log out
             </Link>
 
-            <div className={`navbar__menubar ${showNav ? "bg-color" : ""}`}
+            <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`}
                onClick={() => setShowNav(!showNav)}
             >
                <FaBars />
