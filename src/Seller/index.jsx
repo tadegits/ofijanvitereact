@@ -28,7 +28,6 @@ function index() {
       <Topbar />
       <div className="container">
         <Sidebar />
-        
         <Routes>
           <Route exact path="/" element={<Home />} />
           {/* exams */}
