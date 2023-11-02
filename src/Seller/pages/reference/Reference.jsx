@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import axios from "axios";
 
-export default function Exam() {
+export default function Reference() {
   const [data, setData] = useState([]);
   const [userID, setUserID] = useState('');
   const columns = [
@@ -39,7 +39,9 @@ if(loggedInUser)
 {
   const users = JSON.parse(loggedInUser);
 setUserID(users.user.id);
-const uri = `${import.meta.env.API_ROOT}/all_references/${userID}`;
+
+const uri = `http://127.0.0.1:8000/api/all_references/${userID}`;
+console.log(uri)
 axios.get(uri)
       .then(response => {
         setData(response.data.references);

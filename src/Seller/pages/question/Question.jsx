@@ -1,63 +1,55 @@
-import {
-  CalendarToday,
-  LocationSearching,
-  MailOutline,
-  PermIdentity,
-  PhoneAndroid,
-  Publish,
-} from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import "../list.scss";
 import "./question.scss";
+import './styles.css'
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
+import API_BASE_URL from '../../../Globals/apiConfig';
 import Wrapper from '../../../components/wrapper/Wrapper'
+import { Link } from "react-router-dom";
+
 export default function Question() {
+  const { deptId, userId } = useLoggedInUser();
+  const [questionUri, setQuestionUri] = useState('');
+  const [userID, setUserID] = useState();
+  const [questionData, setQuestionData] = useState('');
+  const [questionOption, setQuestionOption] = useState('');
+  const alphabet = ["A", "B", "C", "D"];
+  useEffect(() => {
+    setUserID(userId);
+    setQuestionUri(`${API_BASE_URL}/all_questions/${userId}`);
+    axios.get(questionUri)
+      .then(response => {
+        setQuestionData(response.data.questions);
+        setQuestionOption(response.data.questions.options)
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, [questionUri]);
+
   return (
     <div className="question">
-      <h1>We add Question here</h1>
-      <section className="login">
-        <Wrapper>
-          <div className="login__container">
-            <div className="form2">
-
-              <div className="form-contents1">
-                <div className="names">
-                  <div className="fnames">
-                    <label>First Name</label>
-                    <input type="text" placeholder='First Name' className="fname" required />
-                    <div className="errormessage"></div>
-                  </div>
-                  <div className="lnames">
-                    <label>Last Name</label>
-                    <input type="text" placeholder='Last Name' className="lname" required />
-                    <div className="errormessage"></div>
-                  </div>
-
-                </div>
-                <div className="department">
-                  <label>Department</label>
-                  <select name='department' className='dept' required>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Information Science">Information Science</option>
-                    <option value="Information System">Information System</option>
-                    <option value="Plant Science">Plant Science</option>
-                  </select>
-                </div>
-                <label>Password</label>
-                <input type="password" placeholder='Password' className="pass" required />
-                <div className="errormessage"></div>
-                <label>Confirm Password</label>
-                <input type="password" placeholder='Confirm-Password' className="copass" required />
-                <div className="errormessage"></div>
-                <div className="errormessage"></div>
-                <div className="summit-signup">
-                  <button className='sigbtn'  >Sing Up</button>
-                  {/* <input type="submit" value="Log In" className="sigbtn"/> */}
-                </div>
-                
-              </div>
+      <Wrapper>
+      {questionData && questionData.map((question) => (
+        <div key={question.id}>
+          <h2 dangerouslySetInnerHTML={{ __html: question.question_text }}/>
+          {question.options.map((option, index) => (
+            <div key={option.id} className="gon-le-gon">
+              <span className="alphabet">{alphabet[index]}. </span>
+              <span className={`option-text ${option.correct === 1 ? "correct" : ""}`}>
+                {option.option}
+              </span>
+              <span className="icon edit-icon">✎</span>
+              <span className="icon delete-icon">✖</span>
             </div>
-          </div>
-        </Wrapper>
-      </section>
+          ))}
+        </div>
+      ))}
+      </Wrapper>
     </div>
+    
   );
 }
