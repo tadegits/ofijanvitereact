@@ -1,5 +1,4 @@
 import Wrapper from '../../../components/wrapper/Wrapper';
-import Img2 from '../../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import validator from 'validator';
@@ -223,7 +222,7 @@ const Experience = () => {
 
                                 {/* <div className="errormessage">{registered}</div> */}
                                 <div className="summit-signup">
-                                    <button className='sigbtn' onClick={signUp} >Sing Up</button>
+                                    <button className='sigbtn' onClick={signUp} >Save</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
                                 </div>
 
