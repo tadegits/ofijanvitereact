@@ -1,0 +1,21 @@
+.category-div {
+    opacity: 1;
+    display: grid;
+    margin-top: 100px;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .category-div.hidden {
+    opacity: 0;
+  }
+  .categories
+  {
+display: flex;
+gap: 2rem;
+
+a
+{
+  color: gray;
+}
+  }
+  

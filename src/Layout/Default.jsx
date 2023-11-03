@@ -19,6 +19,7 @@ import { useEffect, useState, } from "react";
 import LoginSection from "../components/loginSection/LoginSection";
 import SignUp from "../components/signUp/SingUp";
 import Index from '../Seller/index';
+import Blog from '../components/Blog/Blog';
 
 const Default = () => {
   return (
@@ -34,6 +35,7 @@ const Default = () => {
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />  
+          <Route exact path="/ofijan_blogs" element={<Blog/>}/>
         </Routes>
        
     </>
