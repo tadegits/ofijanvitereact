@@ -190,10 +190,12 @@ export default function Sidebar() {
                   Add Education Level
                 </li>
               </Link>
+              <Link to="/experience" className="link">
               <li className="sidebarListItem">
                 <AccountBalance className="sidebarIcon" />
                 Work Expereince
               </li>
+              </Link>
               <li className="sidebarListItem">
                 <FaBriefcase className="sidebarIcon" />
                 Add your Resume

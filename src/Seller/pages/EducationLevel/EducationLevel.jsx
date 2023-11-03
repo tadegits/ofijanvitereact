@@ -66,10 +66,10 @@ const EducationLevel = () => {
         if (gpas === "") {
             setGpaMessage("Gpa Required");
         }
-        else if(gpas < 2.00){
+        else if (gpas < 2.00) {
             setGpaMessage("Your Gpa must be greater than 2.00");
         }
-        else if(gpas > 4.00){
+        else if (gpas > 4.00) {
             setGpaMessage("Use Proper Gpa format like 2.00, 3.25, 4.00");
         }
         else {
@@ -184,26 +184,29 @@ const EducationLevel = () => {
                         <div className="form2">
                             <div className="form-contents1">
                                 <div className="department">
-                                    <div className="fnames">
-                                        <label>Education Level</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Your Acadamic level"
-                                            className="dept"
-                                            required
-                                            // value={eduLevel}
-                                            onChange={handleEduLevel} />
-                                        <div className="errormessage">{eduLevelMessage}</div>
+                                    <div className="dept_pho">
+                                        <div className="fnames">
+                                            <label>Education Level</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Your Acadamic level"
+                                                className="dept"
+                                                required
+                                                // value={eduLevel}
+                                                onChange={handleEduLevel} />
+                                            <div className="errormessage">{eduLevelMessage}</div>
+                                        </div>
+                                        <div className="fnames">
+                                            <label>Degree Level</label>
+                                            <select className='dept' onChange={handleDegreeLevel} value={degreeLevel}>
+                                                <option value=""></option>
+                                                <option value="Msc">Msc</option>
+                                                <option value="Phd">Phd</option>
+                                            </select>
+                                            <div className="errormessage">{degreeLevelMessage}</div>
+                                        </div>
                                     </div>
-                                    <div className="fnames">
-                                        <label>Degree Level</label>
-                                        <select className='dept' onChange={handleDegreeLevel} value={degreeLevel}>
-                                            <option value=""></option>
-                                            <option value="Msc">Msc</option>
-                                            <option value="Phd">Phd</option>
-                                        </select>
-                                        <div className="errormessage">{degreeLevelMessage}</div>
-                                    </div>
+                                    <div className="dept_pho">
                                     <div className="fnames">
                                         <label>Attended Year</label>
                                         <input
@@ -225,6 +228,8 @@ const EducationLevel = () => {
                                             required />
                                         <div className="errormessage">{gpaMessage}</div>
                                     </div>
+                                    </div>
+                                    <div className="dept_pho">
                                     <div className="fnames">
                                         <label>Start Date</label>
                                         <input type="date"
@@ -245,6 +250,8 @@ const EducationLevel = () => {
                                             required />
                                         <div className="errormessage">{endMessage}</div>
                                     </div>
+                                    </div>
+                                    <div className="dept_pho">
                                     <div className="fnames">
                                         <label>University Name</label>
                                         <input type="text"
@@ -254,6 +261,7 @@ const EducationLevel = () => {
                                             onChange={handleUnName}
                                             required />
                                         <div className="errormessage">{unNameMessage}</div>
+                                    </div>
                                     </div>
                                 </div>
                                 <div className="summit-signup">

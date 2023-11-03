@@ -20,6 +20,7 @@ import AddQuestion from "./pages/question/AddQuestion";
 import SelectExam from "./pages/question/SelectExam";
 import EducationLevel from "./pages/EducationLevel/EducationLevel";
 import SellerMain from "./pages/SellerMain/SellerMain";
+import Experience from "./pages/Experience/Experience";
 
 function index() {
   
@@ -28,7 +29,6 @@ function index() {
       <Topbar />
       <div className="container">
         <Sidebar />
-        
         <Routes>
           <Route exact path="/" element={<Home />} />
           {/* exams */}
@@ -47,6 +47,8 @@ function index() {
           {/* Education Level */}
           <Route exact path="/educationlevel" element={<EducationLevel />} />
           <Route exact path="/mainseller" element={<SellerMain />} />
+          {/* Experience */}
+          <Route exact path="/experience" element={<Experience />} />
 
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />

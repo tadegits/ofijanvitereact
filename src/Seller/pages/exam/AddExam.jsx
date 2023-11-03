@@ -17,7 +17,7 @@ export default function AddExam() {
   const [durationError, setDurationError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const { deptId, userId } = useLoggedInUser();
+  const {deptId, userId } = useLoggedInUser();
   const [addExamUri, setAddExamUri] = useState('');
   useEffect(() => {
     setAddExamUri(`${API_BASE_URL}/add_exams`);
