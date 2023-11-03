@@ -1,8 +1,6 @@
 import Wrapper from '../../../components/wrapper/Wrapper';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import validator from 'validator';
-import Swal from 'sweetalert2';
 
 const Experience = () => {
 
