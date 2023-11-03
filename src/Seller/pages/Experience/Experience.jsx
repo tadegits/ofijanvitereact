@@ -1,4 +1,3 @@
-// import './SingUp.scss';
 import Wrapper from '../../../components/wrapper/Wrapper';
 import Img2 from '../../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
