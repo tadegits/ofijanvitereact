@@ -137,43 +137,27 @@ const Experience = () => {
             setlocationMessage("Location is required");
         }
         else {
-            console.log(crinfo);
-            // let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
-            //     method: "POST",
-            //     body: JSON.stringify(crinfo),
-            //     headers: {
-            //         "Content-Type": 'application/json',
-            //         "Accept": 'application/json'
-            //     }
-            // })
+            // console.log(crinfo);
+            let result = await fetch("http://127.0.0.1:8000/api/add_experience", {
+                method: "POST",
+                body: JSON.stringify(crinfo),
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
 
-            // result = await result.json()
-            // // console.log(result);
-            // if (result) {
-            //     let respresult = result.message;
-            //     let status = result.status;
+            result = await result.json()
+            // console.log(result);
+            if (result) {
+                let respresult = result.message;
+                let status = result.status;
 
-            //     // console.log(respresult);
-            //     // Swal.fire({
-            //     //     text:respresult,
-            //     //     icon:status
-            //     // })
-            //     if (status === "success") {
-            //         navigate("/Login", { state: { registered: { respresult } } })
-            //     }
-            //     else {
-            //         setMessage(respresult)
-            //         setRegistered("User not registered");
-            //         // navigate("/signup");
-            //     }
-            //     // console.warn(registered);
-            //     // console.log(result.message)
-            //     // console.warn("result:", result.message)
-
-            // }
-            // else {
-            //     setRegistered[checkuser];
-            // }
+                console.log(respresult);
+            }
+            else {
+                console.log(respresult);
+            }
         }
     }
 
