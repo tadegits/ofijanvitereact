@@ -91,7 +91,6 @@ const Experience = () => {
         // console.log(event.target.value);
         newPhname = event.target.value;
         setEndDate(newPhname);
-
         if (newPhname === "") {
             setEndMessage("Please select end date of your employement")
         }
