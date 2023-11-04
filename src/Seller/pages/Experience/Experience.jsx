@@ -19,8 +19,17 @@ const Experience = () => {
     const [startMess, setStartMessage] = useState("");
     const [end_date, setEndDate] = useState("");
     const [endMess, setEndMessage] = useState("");
+    const [user_id, setUser_id] = useState("");
 
-    let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
+    useEffect(()=>{
+        const logedUser = localStorage.getItem("user");
+        if(logedUser){
+            const userInfo = JSON.parse(logedUser);
+            setUser_id(userInfo.user.id);
+            // console.log(user_id);
+        }
+    })
+    let newEmail, newFname, newLname, newPhname, newAchieve;
 
     function checkName(event) {
         // console.log(event.target.value);
@@ -58,6 +67,11 @@ const Experience = () => {
         else {
             setEmployMessage("")
         }
+    }
+
+    function checkAchievement(event) {
+        newAchieve = event.target.value;
+        setAchievement(newAchieve);
     }
 
     function checkStart(event) {
@@ -101,7 +115,7 @@ const Experience = () => {
 
     async function signUp() {
         // let info = { fname, lname, email, phone, dept, password, confpassword };
-        let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location };
+        let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location, user_id };
         // console.warn(info);
         // console.warn(crinfo);
         if (jop_title === "") {
@@ -192,8 +206,8 @@ const Experience = () => {
                                     </div>
                                     <div className="phones">
                                         <label>Achievement <small>(Optional)</small></label>
-                                        <input type="tel" placeholder='achievement' className="phone" />
-                                        <div className="errormessage">{achieveMess}</div>
+                                        <input type="tel" placeholder='achievement' onChange={checkAchievement} className="phone" />
+                                        {/* <div className="errormessage">{achieveMess}</div> */}
                                     </div>
                                 </div>
 
