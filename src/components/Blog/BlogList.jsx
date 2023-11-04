@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
 import './Blogs.scss';
 const BlogList = ({ blogs }) => {
-    
+
     return (
         <section className="blogs">
             <Wrapper className="blogs__container">
@@ -32,10 +32,14 @@ const BlogList = ({ blogs }) => {
                                         </div>
                                         <p>{blog.body.slice(0, 300)}..</p>
                                         <Link to={`/blog/${blog.categories}/${blog.title}/full`}>Read More</Link>
+                                        <div className='imageSpace'>
+                                            <img height={'100%'} width={'100%'} src={'https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg'}
+                                            />
+                                        </div>
                                         <hr />
                                     </div>
                                 </div>))}
-                                </div>
+                        </div>
                     </div>
                     <div className='blogs_side'>
                         <h3 className='title'>Popular Posts</h3>

@@ -48,17 +48,7 @@ const FullBlog = ({ blogs }) => {
     }
   }, [blog, views]);
 
-  useEffect(() => {
-    if (blog) {
-      const url = `${window.location.origin}/${blog.categories}/${blog.title}`;
-      setShareUrl(url);
-    }
-  }, [blog]);
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(shareUrl);
-    // Show a success message or perform any other action
-  };
+ 
 
   const handleShareOnSocialMedia = (platform) => {
     // Implement sharing logic for the specific social media platform
@@ -73,32 +63,15 @@ const FullBlog = ({ blogs }) => {
     <div className='fullblog'>
       <div className='fullblog__content'>
         <h1 className='fullblog__title'>{blog.title}</h1>
+        
         <p>Category: {blog.categories}</p>
+        <div className='imageSpace'>
+                  <img height={'100%'} width={'100%'} src={'https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg'}
+                  />
+                </div>
         <p>{blog.body}</p>
         <p>Views: {views}</p>
-
         <BlogActions blog={blog} />
-
-        <div className='share-buttons'>
-          <button onClick={handleCopyLink}>Copy Link</button>
-          <button onClick={() => handleShareOnSocialMedia('facebook')}>Share on Facebook</button>
-          <button onClick={() => handleShareOnSocialMedia('twitter')}>Share on Twitter</button>
-          {/* Add more social media buttons as needed */}
-        </div>
-
-        {/* Modal component to display social media options and copy link */}
-        <div className='modal'>
-          <div className='modal-content'>
-            <h2>Share Blog</h2>
-            <p>Share this blog on social media:</p>
-            <button onClick={() => handleShareOnSocialMedia('facebook')}>Facebook</button>
-            <button onClick={() => handleShareOnSocialMedia('twitter')}>Twitter</button>
-            {/* Add more social media buttons as needed */}
-            <p>Or copy the link:</p>
-            <input type='text' value={shareUrl} readOnly />
-            <button onClick={handleCopyLink}>Copy Link</button>
-          </div>
-        </div>
       </div>
     </div>
   );
