@@ -1,9 +1,6 @@
 import Wrapper from '../../../components/wrapper/Wrapper';
-import Img2 from '../../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import validator from 'validator';
-import Swal from 'sweetalert2';
 
 const Experience = () => {
 
@@ -22,8 +19,18 @@ const Experience = () => {
     const [startMess, setStartMessage] = useState("");
     const [end_date, setEndDate] = useState("");
     const [endMess, setEndMessage] = useState("");
+    const [user_id, setUser_id] = useState("");
+    const [currentDate, setCurrentDate] = useState(new Date());
 
-    let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
+    useEffect(()=>{
+        const logedUser = localStorage.getItem("user");
+        if(logedUser){
+            const userInfo = JSON.parse(logedUser);
+            setUser_id(userInfo.user.id);
+            // console.log(user_id);
+        }
+    })
+    let newEmail, newFname, newLname, startDates, endDates, locations, newAchieve;
 
     function checkName(event) {
         // console.log(event.target.value);
@@ -63,13 +70,21 @@ const Experience = () => {
         }
     }
 
+    function checkAchievement(event) {
+        newAchieve = event.target.value;
+        setAchievement(newAchieve);
+    }
+
     function checkStart(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
-        setStartDate(newPhname);
+        startDates = new Date(event.target.value);
+        setStartDate(startDates);
 
-        if (newPhname === "") {
+        if (startDates === "") {
             setStartMessage("Please select your employement date")
+        }
+        else if(startDates > currentDate){
+            setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
             setStartMessage("")
@@ -78,11 +93,17 @@ const Experience = () => {
 
     function checkEnd(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
-        setEndDate(newPhname);
-
-        if (newPhname === "") {
+        endDates = new Date(event.target.value);
+        // const currentDate = new Date();
+        setEndDate(endDates);
+        if (endDates === "") {
             setEndMessage("Please select end date of your employement")
+        }
+        else if(endDates > currentDate){
+            setEndMessage("Employement end date must be equeal or less than current date")
+        }
+        else if(start_date > end_date){
+            setEndMessage("Employement end date must be greater than employment date")
         }
         else {
             setEndMessage("")
@@ -91,10 +112,10 @@ const Experience = () => {
 
     function checkLocation(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
-        setLocation(newPhname);
+        locations = event.target.value;
+        setLocation(locations);
 
-        if (newPhname === "") {
+        if (locations === "") {
             setlocationMessage("Location is required")
         }
         else {
@@ -104,7 +125,7 @@ const Experience = () => {
 
     async function signUp() {
         // let info = { fname, lname, email, phone, dept, password, confpassword };
-        let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location };
+        let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location, user_id };
         // console.warn(info);
         // console.warn(crinfo);
         if (jop_title === "") {
@@ -119,50 +140,43 @@ const Experience = () => {
         else if (start_date === "") {
             setStartMessage("Please select your employement date");
         }
-        else if (end_date === "") {
-            setEndMessage("Please select your end date of employement");
+        else if (end_date === "" || end_date > currentDate || start_date > end_date) {
+            console.log(startDates, endDates);
+            if(end_date === ""){
+                setEndMessage("Please select your end date of employement");
+            }
+            else if(end_date > currentDate){
+                setEndMessage("Employement end date must be equeal or less than current date");
+            }
+            else if(start_date > end_date){
+                setEndMessage("Employment date must be less than end date of employment");
+            }
         }
         else if (location === "") {
             setlocationMessage("Location is required");
         }
         else {
             console.log(crinfo);
-            // let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
-            //     method: "POST",
-            //     body: JSON.stringify(crinfo),
-            //     headers: {
-            //         "Content-Type": 'application/json',
-            //         "Accept": 'application/json'
-            //     }
-            // })
+        //     let result = await fetch("http://127.0.0.1:8000/api/add_experience", {
+        //         method: "POST",
+        //         body: JSON.stringify(crinfo),
+        //         headers: {
+        //             "Content-Type": 'application/json',
+        //             "Accept": 'application/json'
+        //         }
+        //     })
 
-            // result = await result.json()
-            // // console.log(result);
-            // if (result) {
-            //     let respresult = result.message;
-            //     let status = result.status;
+        //     result = await result.json()
+        //     // console.log(result);
+        //     if (result) {
+        //         let respresult = result.message;
+        //         let status = result.status;
 
-            //     // console.log(respresult);
-            //     // Swal.fire({
-            //     //     text:respresult,
-            //     //     icon:status
-            //     // })
-            //     if (status === "success") {
-            //         navigate("/Login", { state: { registered: { respresult } } })
-            //     }
-            //     else {
-            //         setMessage(respresult)
-            //         setRegistered("User not registered");
-            //         // navigate("/signup");
-            //     }
-            //     // console.warn(registered);
-            //     // console.log(result.message)
-            //     // console.warn("result:", result.message)
-
-            // }
-            // else {
-            //     setRegistered[checkuser];
-            // }
+        //         console.log(respresult);
+        //     }
+        //     else {
+        //         console.log(respresult);
+        //     }
         }
     }
 
@@ -195,8 +209,8 @@ const Experience = () => {
                                     </div>
                                     <div className="phones">
                                         <label>Achievement <small>(Optional)</small></label>
-                                        <input type="tel" placeholder='achievement' className="phone" />
-                                        <div className="errormessage">{achieveMess}</div>
+                                        <input type="tel" placeholder='achievement' onChange={checkAchievement} className="phone" />
+                                        {/* <div className="errormessage">{achieveMess}</div> */}
                                     </div>
                                 </div>
 
@@ -208,7 +222,7 @@ const Experience = () => {
                                     </div>
                                     <div className="phones">
                                         <label>End Date</label>
-                                        <input type="date" placeholder='end date' className="phone" onBlur={checkEnd} required />
+                                        <input type="date" placeholder='end date' className="phone" onChange={checkEnd} required />
                                         <div className="errormessage">{endMess}</div>
                                     </div>
                                 </div>
@@ -223,7 +237,7 @@ const Experience = () => {
 
                                 {/* <div className="errormessage">{registered}</div> */}
                                 <div className="summit-signup">
-                                    <button className='sigbtn' onClick={signUp} >Sing Up</button>
+                                    <button className='sigbtn' onClick={signUp} >Save</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
                                 </div>
 
