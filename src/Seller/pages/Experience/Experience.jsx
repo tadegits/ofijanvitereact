@@ -89,10 +89,14 @@ const Experience = () => {
 
     function checkEnd(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
+        newPhname = new Date(event.target.value);
+        const currentDate = new Date();
         setEndDate(newPhname);
         if (newPhname === "") {
             setEndMessage("Please select end date of your employement")
+        }
+        else if(newPhname > currentDate){
+            setEndMessage("Employement end date must be equeal or less than current date")
         }
         else {
             setEndMessage("")
@@ -129,7 +133,7 @@ const Experience = () => {
         else if (start_date === "") {
             setStartMessage("Please select your employement date");
         }
-        else if (end_date === "") {
+        else if (end_date === "" || end_date > "") {
             setEndMessage("Please select your end date of employement");
         }
         else if (location === "") {
@@ -202,7 +206,7 @@ const Experience = () => {
                                     </div>
                                     <div className="phones">
                                         <label>End Date</label>
-                                        <input type="date" placeholder='end date' className="phone" onBlur={checkEnd} required />
+                                        <input type="date" placeholder='end date' className="phone" onChange={checkEnd} required />
                                         <div className="errormessage">{endMess}</div>
                                     </div>
                                 </div>
