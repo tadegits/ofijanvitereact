@@ -1,13 +1,16 @@
 @import "../../styles/mixin.scss";
 
 
+
+
+
 .blog__section {
     align-items: right;
     justify-items: left;
     display: flex;
     background-color: rgb(255, 255, 255);
     width: 100%;
-    height: max-content;
+   
 
     h3 {
         font-size: 35px;
@@ -46,12 +49,13 @@
     height: 1rem;
     justify-items: center;
 
-
+    height: 700px;
+    overflow-y: scroll;
     .blogs_content_single {
         margin-top: 1rem;
         background-color: rgb(255, 255, 255);
         margin-bottom: 1rem;
-        border: 1px solid #594fb6;
+        border: 1px solid #594fb679;
         padding: 1rem;
         box-shadow: 0px 2px 4px #594fb6;
     }
@@ -166,4 +170,29 @@
     font-size: 14px;
     color: #888;
     margin-bottom: 10px;
+}
+.latest_post
+{
+    display: flex;
+    justify-content: center;
+}
+.fullblog{
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+    justify-content: center;
+    &__content
+    {
+justify-content: center;
+width: 50%;
+    }
+    &__title
+    {
+        font-size: 50px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    p{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    };
 }
