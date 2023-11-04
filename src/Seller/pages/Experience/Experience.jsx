@@ -20,6 +20,7 @@ const Experience = () => {
     const [end_date, setEndDate] = useState("");
     const [endMess, setEndMessage] = useState("");
     const [user_id, setUser_id] = useState("");
+    const [currentDate, setCurrentDate] = useState(new Date());
 
     useEffect(()=>{
         const logedUser = localStorage.getItem("user");
@@ -29,7 +30,7 @@ const Experience = () => {
             // console.log(user_id);
         }
     })
-    let newEmail, newFname, newLname, newPhname, newAchieve;
+    let newEmail, newFname, newLname, startDates, endDates, locations, newAchieve;
 
     function checkName(event) {
         // console.log(event.target.value);
@@ -76,11 +77,14 @@ const Experience = () => {
 
     function checkStart(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
-        setStartDate(newPhname);
+        startDates = new Date(event.target.value);
+        setStartDate(startDates);
 
-        if (newPhname === "") {
+        if (startDates === "") {
             setStartMessage("Please select your employement date")
+        }
+        else if(startDates > currentDate){
+            setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
             setStartMessage("")
@@ -89,14 +93,17 @@ const Experience = () => {
 
     function checkEnd(event) {
         // console.log(event.target.value);
-        newPhname = new Date(event.target.value);
-        const currentDate = new Date();
-        setEndDate(newPhname);
-        if (newPhname === "") {
+        endDates = new Date(event.target.value);
+        // const currentDate = new Date();
+        setEndDate(endDates);
+        if (endDates === "") {
             setEndMessage("Please select end date of your employement")
         }
-        else if(newPhname > currentDate){
+        else if(endDates > currentDate){
             setEndMessage("Employement end date must be equeal or less than current date")
+        }
+        else if(start_date > end_date){
+            setEndMessage("Employement end date must be greater than employment date")
         }
         else {
             setEndMessage("")
@@ -105,10 +112,10 @@ const Experience = () => {
 
     function checkLocation(event) {
         // console.log(event.target.value);
-        newPhname = event.target.value;
-        setLocation(newPhname);
+        locations = event.target.value;
+        setLocation(locations);
 
-        if (newPhname === "") {
+        if (locations === "") {
             setlocationMessage("Location is required")
         }
         else {
@@ -133,34 +140,43 @@ const Experience = () => {
         else if (start_date === "") {
             setStartMessage("Please select your employement date");
         }
-        else if (end_date === "" || end_date > "") {
-            setEndMessage("Please select your end date of employement");
+        else if (end_date === "" || end_date > currentDate || start_date > end_date) {
+            console.log(startDates, endDates);
+            if(end_date === ""){
+                setEndMessage("Please select your end date of employement");
+            }
+            else if(end_date > currentDate){
+                setEndMessage("Employement end date must be equeal or less than current date");
+            }
+            else if(start_date > end_date){
+                setEndMessage("Employment date must be less than end date of employment");
+            }
         }
         else if (location === "") {
             setlocationMessage("Location is required");
         }
         else {
-            // console.log(crinfo);
-            let result = await fetch("http://127.0.0.1:8000/api/add_experience", {
-                method: "POST",
-                body: JSON.stringify(crinfo),
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Accept": 'application/json'
-                }
-            })
+            console.log(crinfo);
+        //     let result = await fetch("http://127.0.0.1:8000/api/add_experience", {
+        //         method: "POST",
+        //         body: JSON.stringify(crinfo),
+        //         headers: {
+        //             "Content-Type": 'application/json',
+        //             "Accept": 'application/json'
+        //         }
+        //     })
 
-            result = await result.json()
-            // console.log(result);
-            if (result) {
-                let respresult = result.message;
-                let status = result.status;
+        //     result = await result.json()
+        //     // console.log(result);
+        //     if (result) {
+        //         let respresult = result.message;
+        //         let status = result.status;
 
-                console.log(respresult);
-            }
-            else {
-                console.log(respresult);
-            }
+        //         console.log(respresult);
+        //     }
+        //     else {
+        //         console.log(respresult);
+        //     }
         }
     }
 
