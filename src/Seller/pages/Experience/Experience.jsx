@@ -2,6 +2,7 @@ import Wrapper from '../../../components/wrapper/Wrapper';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+
 const Experience = () => {
 
     const navigate = useNavigate();
@@ -217,7 +218,7 @@ const Experience = () => {
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>Start Date</label>
-                                        <input type="date" placeholder='start date' className="email" onBlur={checkStart} required />
+                                        <input type="date" placeholder='start date' className="email" onChange={checkStart} required />
                                         <div className="errormessage">{startMess}</div>
                                     </div>
                                     <div className="phones">
