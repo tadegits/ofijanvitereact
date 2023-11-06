@@ -199,12 +199,12 @@ const Experience = () => {
                                 <div className="names">
                                     <div className="fnames">
                                         <label>Jop Title</label>
-                                        <input type="text" placeholder='jop title' className="fname" onBlur={checkName} required />
+                                        <input type="text" placeholder='jop title' className="fname" onChange={checkName} required />
                                         <div className="errormessage">{jop_titleMess}</div>
                                     </div>
                                     <div className="lnames">
                                         <label>Company Name</label>
-                                        <input type="text" placeholder='company name' className="lname" onBlur={checkLname} required />
+                                        <input type="text" placeholder='company name' className="lname" onChange={checkLname} required />
                                         <div className="errormessage">{companyMess}</div>
                                     </div>
 
@@ -212,7 +212,7 @@ const Experience = () => {
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>Employement Type</label>
-                                        <input type="text" placeholder='employement type' className="email" onBlur={checkEmail} required />
+                                        <input type="text" placeholder='employement type' className="email" onChange={checkEmail} required />
                                         <div className="errormessage">{employMess}</div>
                                     </div>
                                     <div className="phones">

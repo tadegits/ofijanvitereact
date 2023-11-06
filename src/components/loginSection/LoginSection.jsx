@@ -63,7 +63,7 @@ const LoginSection = () => {
     console.log(role);
 
     if(role === 2 || role === 3){
-        navigate('/Seller/Gezi')
+        navigate('/teacher')
     }
 
     const handleSubmit = async e => {

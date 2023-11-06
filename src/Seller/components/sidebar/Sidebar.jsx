@@ -10,8 +10,8 @@ import {
   Report,
   AccountCircle,
   ShoppingCart,
-  School, 
-  Book, 
+  School,
+  Book,
   AccountBalance,
 } from "@material-ui/icons";
 import { FaUser, FaBriefcase, FaGraduationCap } from "react-icons/fa";
@@ -19,7 +19,7 @@ import QuizSharpIcon from '@mui/icons-material/QuizSharp';
 import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
 import TopicSharpIcon from '@mui/icons-material/TopicSharp';
 import TokenIcon from '@mui/icons-material/Token';
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
@@ -42,13 +42,12 @@ export default function Sidebar() {
     setIsExpanded(!isExpanded);
     setActiveItem(item);
   };
-  if(role===3)
-  {
+  if (role === 2) {
     return (
-    
+
       <div className="sidebar">
         <div className="sidebarWrapper">
-        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Dashboard</h3>
             <ul className="sidebarList">
@@ -170,17 +169,17 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
-         
+
         </div>
       </div>
     );
   }
-  else if(role === 2){
+  else if (role === 3) {
     return (
-    
-    <div className="sidebar">
-      <div className="sidebarWrapper">
-      <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+
+      <div className="sidebar">
+        <div className="sidebarWrapper">
+          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Education Background</h3>
             <ul className="sidebarList">
@@ -191,24 +190,28 @@ export default function Sidebar() {
                 </li>
               </Link>
               <Link to="/experience" className="link">
-              <li className="sidebarListItem">
-                <AccountBalance className="sidebarIcon" />
-                Work Expereince
-              </li>
+                <li className="sidebarListItem">
+                  <AccountBalance className="sidebarIcon" />
+                  Work Expereince
+                </li>
               </Link>
-              <li className="sidebarListItem">
-                <FaBriefcase className="sidebarIcon" />
-                Add your Resume
-              </li>
-              <li className="sidebarListItem">
-                <Book className="sidebarIcon" />
-                Add your Document
-              </li>
+              <Link to="/resume" className="link">
+                <li className="sidebarListItem">
+                  <FaBriefcase className="sidebarIcon" />
+                  Add your Resume
+                </li>
+              </Link>
+              <Link to="#" className="link">
+                <li className="sidebarListItem">
+                  <Book className="sidebarIcon" />
+                  Add your Document
+                </li>
+              </Link>
             </ul>
           </div>
-          </div>
-    </div>
-  );
+        </div>
+      </div>
+    );
   }
-  
+
 }
