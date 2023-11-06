@@ -21,6 +21,9 @@ import SelectExam from "./pages/question/SelectExam";
 import EducationLevel from "./pages/EducationLevel/EducationLevel";
 import SellerMain from "./pages/SellerMain/SellerMain";
 import Experience from "./pages/Experience/Experience";
+import WriteBlog from "./pages/blog/write";
+import EditBlog from "./pages/blog/Edit";
+import BlogAnalytics from "./pages/blog/Analytics"
 
 function index() {
   
@@ -31,6 +34,10 @@ function index() {
         <Sidebar />
         <Routes>
           <Route exact path="/" element={<Home />} />
+          {/* blogs */}
+          <Route exact path="/write_blog" element={<WriteBlog/>} />
+          <Route exact path="/edit_blog" element={<EditBlog />} />
+          <Route exact path="/blog_analytics" element={<BlogAnalytics />} />
           {/* exams */}
           <Route exact path="/exams" element={<Exam />} />
           <Route exact path="/add_exams" element={<AddExam />} />
