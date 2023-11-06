@@ -18,11 +18,7 @@ const CompanySection = () => {
       <hr></hr>
       <h2>1000,000+ Exit Exam questions and answer!</h2>
       <div className="company__companies">
-        <img src={Company1} width={50} alt=""/>
-        <img src={Company2} width={50} alt=""/>
-        <img src={Company3} width={50} alt=""/>
-        <img src={Company4} width={50} alt=""/>
-        <img src={Company5} width={50} alt=""/>
+     
       </div>
       <div className="company__container">
         <div className="company__left">
@@ -35,7 +31,7 @@ const CompanySection = () => {
           </div>
         </div>
         <div className="company__right">
-          <h3>How to get the exams!</h3>
+          <h1>How to get the exams!</h1>
           <p>
            Simple steps
           </p>
@@ -68,7 +64,7 @@ const CompanySection = () => {
         </div>
       </div> 
     </Wrapper>
-     <img src={Bg} alt="" className="company__bg" />
+  
   </section>
 }
 

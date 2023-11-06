@@ -5,25 +5,14 @@ import Grade8 from "../components/Grade8/Grade8"
 import Grade6 from "../components/Grade6/Grade6";
 import ExitExam from "../components/ExitExam/ExitExam"
 import Home from "../components/Home/Home"
-import Footer from "../components/footer/footer"
 import Dashboard from "../components/Dashboard/Dashboard"
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
-import Hero from "../components/hero/Hero"
-import CounterUpPage from "../components/counter/CounterUpPage"
-import CompanySection from "../components/companySection/CompanySection"
-import FeaturesSection from "../components/featuresSection/FeaturesSection"
-import SignUpSection from "../components/SignUpSection/SignUpSection"
-import Plans from "../components/PlanSection/PlanSection";
-import Insraw from "../components/insraw/insraw"
 import { useEffect, useState, } from "react";
 import LoginSection from "../components/loginSection/LoginSection";
 import SignUp from "../components/signUp/SingUp";
 import BlogList from '../components/Blog/BlogList';
 import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
-import Index from '../Seller/index';
-import Blog from '../components/Blog/Blog';
-import BlogReader from '../components/Blog/SingleBlog';
 import API_BASE_URL from '../Globals/apiConfig';
 import axios from 'axios';
 const Default = () => {
@@ -58,6 +47,7 @@ const Default = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path="/ofijan_blogs" element={<Blog />} />
         <Route path="/blog/:category/:title" element={<BlogReader blogs={blogData} />} /> */}
+        
         <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />

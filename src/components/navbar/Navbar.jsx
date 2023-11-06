@@ -4,9 +4,20 @@ import Logo from "../../assets/logo.png";
 import { FaBars } from "react-icons/fa";
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import { useEffect, useState, } from "react";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const Navbar = () => {
     const [user, setUser] = useState("")
     const [showNav, setShowNav] = useState(false);
+    const [showExams, setShowExams] = useState(false);
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
     const loggedInUser = localStorage.getItem("user");
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -31,19 +42,20 @@ const Navbar = () => {
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
-                    </li>
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade6">Grade 6<sup>th</sup></Link>
-                    </li>
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade8">Grade 8<sup>th</sup></Link>
-                    </li>
+                    </li> 
+                    <li   onClick={() => setShowNav(false)}>
+                        <Link to="/ExitExam">Exit Exam</Link> 
+                        </li>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/Grade12">Grade 12<sup>th</sup></Link>
 
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/ExitExam">Exit Exam</Link>
+                        <Link to="/Grade8">Grade 8<sup>th</sup></Link>
+                    </li>
+                   
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/Grade6">Grade 6<sup>th</sup></Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
                         <a href="/ofijan_blogs">Blog</a>
