@@ -42,7 +42,7 @@ export default function Sidebar() {
     setIsExpanded(!isExpanded);
     setActiveItem(item);
   };
-  if(role===1)
+  if(role===3)
   {
     return (
     
@@ -175,7 +175,7 @@ export default function Sidebar() {
       </div>
     );
   }
-  else{
+  else if(role === 2){
     return (
     
     <div className="sidebar">
