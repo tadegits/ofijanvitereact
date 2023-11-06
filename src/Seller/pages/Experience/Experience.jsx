@@ -97,7 +97,7 @@ const Experience = () => {
         // console.log(event.target.value);
         endDates = new Date(event.target.value);
         const gapInMilliseconds = Math.abs(endDates - start_date);
-        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 ));
+        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         // const currentDate = new Date();
         console.log(endDates, start_date);
         console.log(gapInMilliseconds);
