@@ -1,6 +1,7 @@
 import Wrapper from '../../../components/wrapper/Wrapper';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import './Experience.scss';
 
 const Experience = () => {
 
@@ -21,6 +22,7 @@ const Experience = () => {
     const [endMess, setEndMessage] = useState("");
     const [user_id, setUser_id] = useState("");
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [gap, setGap] = useState('');
 
     useEffect(()=>{
         const logedUser = localStorage.getItem("user");
@@ -94,8 +96,14 @@ const Experience = () => {
     function checkEnd(event) {
         // console.log(event.target.value);
         endDates = new Date(event.target.value);
+        const gapInMilliseconds = Math.abs(endDates - start_date);
+        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         // const currentDate = new Date();
+        console.log(endDates, start_date);
+        console.log(gapInMilliseconds);
+        console.log(gapInDays);
         setEndDate(endDates);
+
         if (endDates === "") {
             setEndMessage("Please select end date of your employement")
         }
@@ -182,9 +190,9 @@ const Experience = () => {
 
     return (
         <div className="topic">
-            <h3>Add Your Work Experience</h3>
             <section className="login">
                 <Wrapper>
+                <h3 className='exp'>Add Your Work Experience</h3>
                     <div className="login__container">
                         <div className="form2">
                             <div className="form-contents1">
@@ -217,7 +225,7 @@ const Experience = () => {
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>Start Date</label>
-                                        <input type="date" placeholder='start date' className="email" onBlur={checkStart} required />
+                                        <input type="date" placeholder='start date' className="email" onChange={checkStart} required />
                                         <div className="errormessage">{startMess}</div>
                                     </div>
                                     <div className="phones">
