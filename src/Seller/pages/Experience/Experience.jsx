@@ -22,6 +22,7 @@ const Experience = () => {
     const [endMess, setEndMessage] = useState("");
     const [user_id, setUser_id] = useState("");
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [gap, setGap] = useState('');
 
     useEffect(()=>{
         const logedUser = localStorage.getItem("user");
@@ -95,8 +96,14 @@ const Experience = () => {
     function checkEnd(event) {
         // console.log(event.target.value);
         endDates = new Date(event.target.value);
+        const gapInMilliseconds = Math.abs(endDates - start_date);
+        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 ));
         // const currentDate = new Date();
+        console.log(endDates, start_date);
+        console.log(gapInMilliseconds);
+        console.log(gapInDays);
         setEndDate(endDates);
+
         if (endDates === "") {
             setEndMessage("Please select end date of your employement")
         }
