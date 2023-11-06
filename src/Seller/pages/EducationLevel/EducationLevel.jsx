@@ -178,7 +178,6 @@ const EducationLevel = () => {
     return (
         <div className="topic">
             <h3>Add Your Education Backgraund</h3>
-            <section className="login">
                 <Wrapper>
                     <div className="login__container">
                         <div className="form2">

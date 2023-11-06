@@ -183,7 +183,6 @@ const Experience = () => {
 
     return (
         <div className="topic">
-            <h3>Add Your Work Experience</h3>
             <section className="login">
                 <Wrapper>
                     <div className="login__container">
