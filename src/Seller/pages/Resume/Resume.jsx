@@ -1,12 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Wrapper from '../../../components/wrapper/Wrapper'
 
 const Resume = () => {
 
     const [resume, setResume] = useState('');
+    const [user_id, setUser_id] = useState('');
+
+    useEffect(() =>{
+        const users = localStorage.getItem('user');
+        const userinfo = JSON.parse(users);
+        setUser_id(userinfo.user.id);
+    }
+    );
 
     async function uploadResume() {
-
+        let files = {resume}
     }
     return (
         <div className="topic">
