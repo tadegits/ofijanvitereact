@@ -69,13 +69,6 @@ const LoginSection = () => {
         localStorage.setItem('user', JSON.stringify(response.data))
 
     };
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            const foundUser = JSON.stringify(loggedInUser);
-            setUser(foundUser);
-        }
-    }, []);
 
     <Routes>
         <Route path="/teacher" element={<Seller />} />
