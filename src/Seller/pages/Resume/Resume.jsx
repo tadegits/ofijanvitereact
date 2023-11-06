@@ -4,7 +4,9 @@ import Wrapper from '../../../components/wrapper/Wrapper'
 const Resume = () => {
 
     const [resume, setResume] = useState('');
+    const [resumeMess, setResumeMess] = useState('');
     const [user_id, setUser_id] = useState('');
+    const [valueRusume, setValueResume] = useState('');
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -20,13 +22,22 @@ const Resume = () => {
 
     const getResume = (event) => {
         const resumes = event.target.files[0];
+        const resumesval = event.target.value;
         setResume(resumes);
+        setValueResume(resumesval);
+        if(resumesval !== ""){
+            setResumeMess("");
+        }
     };
 
     async function uploadResume() {
         let files = { resume, user_id }
-        if (resume.size > 2 * 1024 * 1024) {
-            console.log("file size must be less or equal to 2MB");
+        if(valueRusume === ""){
+            setResumeMess("Please select file to upload");
+        }
+        else if (resume.size > 2 * 1024 * 1024) {
+            setResumeMess("file size must be less or equal to 2MB");
+            // console.log("file size must be less or equal to 2MB");
         }
         else {
             console.log(resume.size/(1024*1024));
@@ -45,7 +56,7 @@ const Resume = () => {
                                 <div className="fnames">
                                     <label>Upload your resume</label>
                                     <input type="file" placeholder='select your resume' className="fname" onChange={getResume} required />
-                                    {/* <div className="errormessage">{jop_titleMess}</div> */}
+                                    <div className="errormessage">{resumeMess}</div>
                                 </div>
 
                                 {/* <div className="errormessage">{registered}</div> */}
