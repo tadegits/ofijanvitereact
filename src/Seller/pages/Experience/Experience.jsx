@@ -1,7 +1,7 @@
 import Wrapper from '../../../components/wrapper/Wrapper';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-
+import './Experience.scss';
 
 const Experience = () => {
 
@@ -185,6 +185,7 @@ const Experience = () => {
         <div className="topic">
             <section className="login">
                 <Wrapper>
+                <h3 className='exp'>Add Your Work Experience</h3>
                     <div className="login__container">
                         <div className="form2">
                             <div className="form-contents1">
