@@ -14,7 +14,8 @@ const Resume = () => {
     );
 
     async function uploadResume() {
-        let files = {resume}
+        let files = {resume, user_id}
+        console.log(files);
     }
     return (
         <div className="topic">
