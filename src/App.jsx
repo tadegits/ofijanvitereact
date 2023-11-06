@@ -7,6 +7,7 @@ import Loged from "./Layout/Loged";
 import Seller from "./Seller"
 import SellerMain from "./Seller/pages/SellerMain/SellerMain";
 import NetworkStatus from "./network/NetworkStatus";
+import Footer from './components/footer/footer';
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 function App() {
@@ -30,6 +31,7 @@ console.log(role)
        return (
       <>
         <Loged/>
+        <Footer/>
       </>
     )
     }
@@ -46,6 +48,7 @@ return(
     return (
       <>
         <Default/>
+        <Footer/>
       </>
     )
   }

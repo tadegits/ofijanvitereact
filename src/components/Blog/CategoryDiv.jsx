@@ -23,14 +23,24 @@ const CategoryDiv = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+
+    
   }, []);
+  const handleScrollLeft = () => {
+      const categoryDiv = document.querySelector('.category-div');
+      categoryDiv.scrollLeft -= 100;
+    };
+  
+    const handleScrollRight = () => {
+      const categoryDiv = document.querySelector('.category-div');
+      categoryDiv.scrollLeft += 100;
+    };
 
   return (
     <div
       className={`category-div ${isHidden ? 'hidden' : ''}`}
-      style={{ position: 'fixed', top: 0, width: '100%', zIndex: 999 }}
-    >
-      <ul className='categories'>
+      style={{ position: 'fixed', top: 0, width: '40%', zIndex: 999, overflowX: 'auto' }}>
+      <ul className='category-list'>
         <li><a href="#">Exam /</a></li>
         <li><a className={`category-item ${isActive? 'active' : ''}`} href="#">Study tips /</a></li>
         <li><a href="#">Books /</a></li>

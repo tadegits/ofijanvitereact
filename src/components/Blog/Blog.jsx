@@ -2,18 +2,19 @@ import React from 'react';
 import axios from 'axios';
 
 import API_BASE_URL from '../../Globals/apiConfig';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import './Blogs.scss';
 import Footer from '../../components/footer/footer'
 import BlogActions from './BlogActions';
 import Wrapper from '../wrapper/Wrapper';
 import CategoryDiv from './CategoryDiv';
+import {useNavigate } from 'react-router-dom';
 
 const Blog = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
-
+  const navigate = useNavigate();
   useEffect(() => {
     setPostUri(`${API_BASE_URL}/all_blogs`);
     axios.get(postUri)
@@ -31,6 +32,9 @@ const Blog = () => {
 
   const handleBack = () => {
     setSelectedPost(null);
+  };
+  const handleClick = (category, title) => {
+    navigate(`/blog/${category}/${title}`);
   };
 
   const renderPostContent = (post) => {
@@ -60,10 +64,10 @@ const Blog = () => {
 
     <div className='blog__section'>
        <div className='blogs_side'> 
-       
+      
        </div>
       <div className='blogs_content'>
-        <div><CategoryDiv/></div>
+         {/* <CategoryDiv/> */}
         <h3>Latest post</h3>
         
         <div className='underline'></div>
@@ -92,6 +96,9 @@ const Blog = () => {
                 <div className='footer'>
                   <small>{blog.created_at}</small>
                   <button className='button-readmore' onClick={() => handleReadMore(blog)}>Read More</button>
+                  <button onClick={handleClick(blog)}>
+      Go to Single Blog
+    </button>
                 </div>
               </div>
             );

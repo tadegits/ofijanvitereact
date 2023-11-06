@@ -28,7 +28,7 @@ const Loged = () => {
           <Route path="/Exit_Exam" element={<LExitExam />} />
           
         </Routes>
-        <Footer />
+      
     </>
   )
 }
