@@ -15,6 +15,7 @@ const LoginSection = () => {
     const [user, setUser] = useState("");
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [registered, setRegistered] = useState("");
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
     const state = useLocation();
     let userdone, sellarinfor = "";
@@ -32,7 +33,7 @@ const LoginSection = () => {
             userdone = userdone;
         }
 
-        if(name !== undefined){
+        if (name !== undefined) {
             sellarinfor = name;
         }
         else {
@@ -40,6 +41,29 @@ const LoginSection = () => {
         }
         // console.log(state);
         // console.log(sellarinfor);
+    }
+
+    // console.log(isLoggedin);
+    // console.log(localStorage.getItem('user'));
+    // if (localStorage.getItem('user') !== null) {
+    //     setIsLoggedin(true);
+    // }
+
+    useEffect(() => {
+        const logedUser = localStorage.getItem("user");
+        if(logedUser !== null) {
+            setIsLoggedin(true)
+        }
+        if (isLoggedin === true) {
+            const userLoged = JSON.parse(logedUser);
+            setRole(userLoged.user.role_id);
+        }
+    })
+
+    console.log(role);
+
+    if(role === 2 || role === 3){
+        navigate('/Seller/Gezi')
     }
 
     const handleSubmit = async e => {
@@ -69,6 +93,13 @@ const LoginSection = () => {
         localStorage.setItem('user', JSON.stringify(response.data))
 
     };
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.stringify(loggedInUser);
+            setUser(foundUser);
+        }
+    }, []);
 
     <Routes>
         <Route path="/teacher" element={<Seller />} />
