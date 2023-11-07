@@ -7,6 +7,7 @@ const Resume = () => {
     const [resumeMess, setResumeMess] = useState('');
     const [user_id, setUser_id] = useState('');
     const [valueRusume, setValueResume] = useState('');
+    const [resumeType, setTypeResume] = useState(null);
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -23,8 +24,11 @@ const Resume = () => {
     const getResume = (event) => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
+        const resumetype = event.target.files[0];
         setResume(resumes);
         setValueResume(resumesval);
+        setTypeResume(resumetype);
+        console.log(resumeType);
         if(resumesval !== ""){
             setResumeMess("");
         }
