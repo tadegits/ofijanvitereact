@@ -22,6 +22,7 @@ import EducationLevel from "./pages/EducationLevel/EducationLevel";
 import SellerMain from "./pages/SellerMain/SellerMain";
 import Experience from "./pages/Experience/Experience";
 import Resume from "./pages/Resume/Resume";
+import Document from "./pages/Document/Document";
 
 function index() {
   
@@ -48,6 +49,7 @@ function index() {
           {/* Education Level */}
           <Route exact path="/educationlevel" element={<EducationLevel />} />
           <Route exact path="/resume" element={<Resume />} />
+          <Route exact path="/document" element={<Document />} />
           <Route exact path="/mainseller" element={<SellerMain />} />
           {/* Experience */}
           <Route exact path="/experience" element={<Experience />} />

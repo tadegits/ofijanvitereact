@@ -201,7 +201,7 @@ export default function Sidebar() {
                   Add your Resume
                 </li>
               </Link>
-              <Link to="#" className="link">
+              <Link to="/document" className="link">
                 <li className="sidebarListItem">
                   <Book className="sidebarIcon" />
                   Add your Document
