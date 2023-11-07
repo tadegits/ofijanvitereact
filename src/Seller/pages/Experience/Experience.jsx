@@ -81,11 +81,16 @@ const Experience = () => {
         // console.log(event.target.value);
         startDates = new Date(event.target.value);
         setStartDate(startDates);
+        const gapInMilliseconds = Math.abs(currentDate - start_date);
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
+
+        console.log(gapInMilliseconds);
+        console.log(gapInMonth);
 
         if (startDates === "") {
             setStartMessage("Please select your employement date")
         }
-        else if(startDates > currentDate){
+        else if(startDates > currentDate || gapInMonth < 7){
             setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
@@ -97,11 +102,11 @@ const Experience = () => {
         // console.log(event.target.value);
         endDates = new Date(event.target.value);
         const gapInMilliseconds = Math.abs(endDates - start_date);
-        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         // const currentDate = new Date();
-        console.log(endDates, start_date);
-        console.log(gapInMilliseconds);
-        console.log(gapInDays);
+        // console.log(endDates, start_date);
+        // console.log(gapInMilliseconds);
+        console.log(gapInMonth);
         setEndDate(endDates);
 
         if (endDates === "") {
@@ -112,6 +117,9 @@ const Experience = () => {
         }
         else if(start_date > end_date){
             setEndMessage("Employement end date must be greater than employment date")
+        }
+        else if(gapInMonth < 7){
+            setEndMessage("Your experience must be at least 6 months")
         }
         else {
             setEndMessage("")
@@ -159,6 +167,7 @@ const Experience = () => {
             else if(start_date > end_date){
                 setEndMessage("Employment date must be less than end date of employment");
             }
+            
         }
         else if (location === "") {
             setlocationMessage("Location is required");
