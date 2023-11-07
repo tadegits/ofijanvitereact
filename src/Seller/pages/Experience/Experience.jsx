@@ -80,16 +80,22 @@ const Experience = () => {
     function checkStart(event) {
         // console.log(event.target.value);
         startDates = new Date(event.target.value);
+        
+        console.log("start date",startDates);
+        console.log("current date",currentDate);
+        const gapInMilliseconds = Math.abs(currentDate - startDates);
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         setStartDate(startDates);
 
         if (startDates === "") {
             setStartMessage("Please select your employement date")
         }
-        else if(startDates > currentDate){
+        else if(startDates > currentDate || startDates === currentDate || gapInMonth < 7){
             setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
-            setStartMessage("")
+            setStartMessage("");
+            setEndMessage("");
         }
     }
 
@@ -97,11 +103,11 @@ const Experience = () => {
         // console.log(event.target.value);
         endDates = new Date(event.target.value);
         const gapInMilliseconds = Math.abs(endDates - start_date);
-        const gapInDays = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         // const currentDate = new Date();
-        console.log(endDates, start_date);
-        console.log(gapInMilliseconds);
-        console.log(gapInDays);
+        // console.log(endDates, start_date);
+        // console.log(gapInMilliseconds);
+        console.log(gapInMonth);
         setEndDate(endDates);
 
         if (endDates === "") {
@@ -112,6 +118,9 @@ const Experience = () => {
         }
         else if(start_date > end_date){
             setEndMessage("Employement end date must be greater than employment date")
+        }
+        else if(gapInMonth < 7){
+            setEndMessage("Your experience must be at least 6 months")
         }
         else {
             setEndMessage("")
@@ -136,6 +145,10 @@ const Experience = () => {
         let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location, user_id };
         // console.warn(info);
         // console.warn(crinfo);
+        const gapInMilliseconds = Math.abs(end_date - start_date);
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
+        console.log(gapInMonth);
+
         if (jop_title === "") {
             setJopMessage("Jop title required");
         }
@@ -148,7 +161,7 @@ const Experience = () => {
         else if (start_date === "") {
             setStartMessage("Please select your employement date");
         }
-        else if (end_date === "" || end_date > currentDate || start_date > end_date) {
+        else if (end_date === "" || end_date > currentDate || start_date > end_date ) {
             console.log(startDates, endDates);
             if(end_date === ""){
                 setEndMessage("Please select your end date of employement");
@@ -159,6 +172,10 @@ const Experience = () => {
             else if(start_date > end_date){
                 setEndMessage("Employment date must be less than end date of employment");
             }
+
+        }
+        else if(gapInMonth < 7){
+            setEndMessage("Your experience must be at least 6 months");
         }
         else if (location === "") {
             setlocationMessage("Location is required");
@@ -199,12 +216,12 @@ const Experience = () => {
                                 <div className="names">
                                     <div className="fnames">
                                         <label>Jop Title</label>
-                                        <input type="text" placeholder='jop title' className="fname" onBlur={checkName} required />
+                                        <input type="text" placeholder='jop title' className="fname" onChange={checkName} required />
                                         <div className="errormessage">{jop_titleMess}</div>
                                     </div>
                                     <div className="lnames">
                                         <label>Company Name</label>
-                                        <input type="text" placeholder='company name' className="lname" onBlur={checkLname} required />
+                                        <input type="text" placeholder='company name' className="lname" onChange={checkLname} required />
                                         <div className="errormessage">{companyMess}</div>
                                     </div>
 
@@ -212,7 +229,7 @@ const Experience = () => {
                                 <div className="dept_pho">
                                     <div className="emails">
                                         <label>Employement Type</label>
-                                        <input type="text" placeholder='employement type' className="email" onBlur={checkEmail} required />
+                                        <input type="text" placeholder='employement type' className="email" onChange={checkEmail} required />
                                         <div className="errormessage">{employMess}</div>
                                     </div>
                                     <div className="phones">

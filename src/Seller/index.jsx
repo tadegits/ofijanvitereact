@@ -21,9 +21,13 @@ import SelectExam from "./pages/question/SelectExam";
 import EducationLevel from "./pages/EducationLevel/EducationLevel";
 import SellerMain from "./pages/SellerMain/SellerMain";
 import Experience from "./pages/Experience/Experience";
+<<<<<<< HEAD
 import WriteBlog from "./pages/blog/write";
 import EditBlog from "./pages/blog/Edit";
 import BlogAnalytics from "./pages/blog/Analytics"
+=======
+import Resume from "./pages/Resume/Resume";
+>>>>>>> e20a16cf403a1302b892fedf10a606d4f898f1c4
 
 function index() {
   
@@ -53,6 +57,7 @@ function index() {
           <Route exact path="/select_exam" element={<SelectExam/>} />
           {/* Education Level */}
           <Route exact path="/educationlevel" element={<EducationLevel />} />
+          <Route exact path="/resume" element={<Resume />} />
           <Route exact path="/mainseller" element={<SellerMain />} />
           {/* Experience */}
           <Route exact path="/experience" element={<Experience />} />

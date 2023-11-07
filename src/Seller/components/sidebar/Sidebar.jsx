@@ -45,7 +45,7 @@ export default function Sidebar() {
       setExpandedMenu(menu);
     }
   };
-  if (role === 3) {
+  if (role === 2) {
     return (
 
       <div className="sidebar">
@@ -201,13 +201,13 @@ export default function Sidebar() {
       </div>
     );
   }
-  else if (role === 2) {
+  else if (role === 3) {
     return (
 
       <div className="sidebar">
         <div className="sidebarWrapper">
-          <div className={`sidebarMenu ${expandedMenu === 'education' ? 'expanded' : ''} `}>
-            <h3 className="sidebarTitle" onClick={() => handleMenuClick('education')}>
+          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Education Background</h3>
             <ul className="sidebarList">
               <Link to="/educationlevel" className="link">
@@ -222,26 +222,23 @@ export default function Sidebar() {
                   Work Expereince
                 </li>
               </Link>
-              <li className="sidebarListItem">
-                <FaBriefcase className="sidebarIcon" />
-                Add your Resume
-              </li>
-              <li className="sidebarListItem">
-                <Book className="sidebarIcon" />
-                Add your Document
-              </li>
+              <Link to="/resume" className="link">
+                <li className="sidebarListItem">
+                  <FaBriefcase className="sidebarIcon" />
+                  Add your Resume
+                </li>
+              </Link>
+              <Link to="#" className="link">
+                <li className="sidebarListItem">
+                  <Book className="sidebarIcon" />
+                  Add your Document
+                </li>
+              </Link>
             </ul>
           </div>
         </div>
       </div>
     );
-  }
-  else {
-    return (
-      <>
-        <p>hey hey</p>
-      </>
-    )
   }
 
 }
