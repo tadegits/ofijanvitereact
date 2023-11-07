@@ -47,7 +47,6 @@ const Default = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path="/ofijan_blogs" element={<Blog />} />
         <Route path="/blog/:category/:title" element={<BlogReader blogs={blogData} />} /> */}
-        
         <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />

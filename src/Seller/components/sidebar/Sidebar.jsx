@@ -70,7 +70,7 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
-          <div className={`sidebarMenu ${expandedMenu === 'reference' ? 'expanded' : ''}`}>
+          <div className={`sidebarMenu ${expandedMenu === 'reference' ? 'expanded' : ''} `}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('reference')}>Manage References</h3>
             <ul className="sidebarList">
               <Link to="/references" className="link">

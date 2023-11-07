@@ -1,4 +1,5 @@
 @import "../../styles/mixin.scss";
+@import "../../styles//colors.scss";
 
 .sidebar {
   width: 250px;
@@ -30,191 +31,310 @@
 .main-content.closed {
   margin-left: -250px;
 }
-.exitexam
-{
-    display: grid;
-    height: max-content;
-    background-color: #ffffff00;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    grid-template-columns: 1fr 3fr;
-    @include respond(phone)
-    {
-      display: grid;
-      margin-left: 0%;
-    }
-    @include respond(tab-land)
-    {
-      display: block
-    }
-    @include respond(tab-port)
-    {
-      display: block
-    }
-   
+
+// .exitexam
+// {
+//     display: grid;
+//     height: max-content;
+//     background-color: #f0f;
+//     padding-top: 1rem;
+//     padding-bottom: 1rem;
+// }
+// .exams_list{
+//     background-color: #009624;
+
+// }
+// .departments{
+//    background-color: rgb(182, 12, 12);
+//    overflow-y: scroll;
+//    max-height: 500px;
+//    margin-bottom: 20px;
+//    width: 250px;
+//    height: 100vh;
+
+// a{
+//     text-decoration: none;
+//     color: rgb(82, 12, 82);
+// }
+// li{
+//     list-style: none;
+//     gap: 0.1rem;
+//     margin-bottom: 2px;
+//     &:hover{
+//         background-color: rgb(184, 179, 184);
+//     a{
+//     color: white;
+//     }       
+// }
+
+// }
+
+// }
+.exit_exam_page {
+
+  width: 100%;
+  background-color: #fff;
 }
-.exams_list{
-    
-    background-color: #ffffff00;
-    margin-left: 10px;
-    display: grid;
-    gap: 1rem;
-    height: 100vh;
-    margin-right: 25%;
-    grid-template-columns: repeat(3, 1fr);
-    border-radius: 0%;
-    align-items: left;
-    justify-content: left;
-    color: #110d34;
-    flex-direction: row;
-    @include respond(phone)
-    {
-      display: grid;
-      background-color: #2bda08fa;
-      margin-right: 0%;
-      overflow-y: scroll;
-      margin-left: 0%;
-      
-    }
-    @include respond(tab-port)
-    {
-      background-color: #000000;
-      display: grid;
-      margin-left: 0px;
-      grid-template-rows: 1fr;
-    }
-    @include respond(tab-land)
-    {
-      display: grid;
-      padding-left: 0px;
-      grid-template-columns:  1fr 1fr;
-    }
+
+.header {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  justify-content: start;
 }
-.departments{
-   background-color: #ffffff00;
-   overflow-y: scroll;
-   max-height: 500px;
-   margin-bottom: 20px;
-   width: 250px;
-   height: 100vh;
+
+.dept_exam {
+  display: flex;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.all_exams {
   
-a{
-    text-decoration: none;
-    color: rgb(82, 12, 82);
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin: 10px;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-y: scroll;
+  height: 500px;
 }
-li{
-    list-style: none;
+.exam_div
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
+  flex-direction: row;
+
+
+}
+
+.all_departments {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
+  height: 500px;
+  overflow-y: scroll;
+  width: 35%;
+
+  :hover {
+    background-color: #fdfdfd;
+    color: $tade-color;
+  }
+
+  @include respond(tab-port) {
+    display: none;
+    width: 250px;
+
+  }
+  @include respond(tab-land) {
+    display: none;
+    width: 250px;
+
+  }
+  @include respond(phone) {
+    display: none;
+    width: 250px;
+
+  }
+
+  &__card {
+    flex-basis: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
     gap: 0.1rem;
-    margin-bottom: 2px;
-    &:hover{
-        background-color: rgb(184, 179, 184);
-    a{
-    color: white;
-    }       
-}
+    margin: 10px;
+    padding: 10px;
+    background-color: $tade-color;
+    font-weight: bold;
+    color: #fafafa;
+    border-left: solid 1px $tade-color;
+
+    p {
+      font-weight: bold;
+    }
+
    
+
+  }
 }
 
+.show-nav {
+  display: flex;
 }
 
+.bg-color {
+  background-color: #000000;
+}
 
+.close-button {
+  display: none;
+  @include respond(phone) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+    padding-left: 150px;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+
+  }
+  @include respond(tab-land) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+    padding-left: 150px;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+
+  }
+
+  @include respond(tab-port) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+    padding-left: 150px;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+
+  }
+
+}
+
+.open-button {
+  display: none;
+
+  @include respond(tab-port) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+  }
+  @include respond(tab-land) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+  }
+  @include respond(phone) {
+    display: flex;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0.4rem;
+    background-color: #fff;
+
+    svg {
+      color: $tade-color;
+      background-color: #fff;
+    }
+  }
+}
 
 .product_card .buttons {
   display: flex;
   justify-content: space-between;
 }
+.buttons
+{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .product_card {
-  width: 300px;
   height: max-content;
   border: 1px solid #ccc;
   border-radius: 5px;
+  justify-content: start;
   padding: 10px;
-  @include respond(phone)
-  {
-    margin: 0px;
-    display: grid;
-    width: 300px;
-  }
-}
-.product_card:hover
-{
-  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
-  background-color: #13dfe607;
-}
-.product_card .buttons a button{
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
+  align-items: start;
+  width: 350px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+
+  @include respond(tab-port) {}
+
 }
 
-.product_card .buttons .preview-button {
-  background-color: #64167c;
-  color: #fff;
-  border: none;
+
+.product_card:hover {
+  border-color: $tade-color;
+  background-color: #01dee609;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Add box shadow on hover */
+  filter: brightness(110%); /* Add glow effect on hover */
+ 
 }
 
-.product_card .buttons .buy-button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
+.details {
+  flex-basis: 60%;
+  height: max-content;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  justify-content: start;
+  padding: 10px;
+  align-items: start;
+  width: 400px;
+  height: 390px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  opacity: 0;
+  color: $tade-color;
+  transition: all 0.3s ease;
 }
-
-.product_card .buttons .buy-button:hover,
-.product_card .buttons .preview-button:hover {
-  opacity: 0.8;
+.btnpreview{
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  color: $tade-color;
 }
-
-  
-  .product-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .product_head{
-display: grid;
-grid-template-columns: 1fr 4fr;
-img{
-  background-color: #ffffff00;
-  border-radius: 200px;
-  padding: 0px;
-  
-}  
+h2{
+  color: #000000;
 }
-  .product-description {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 10px;
-  }
-  
-  .product-questions {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product-answer {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product_card .btn {
-    background-color: #00c853;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .product_card .btn:hover {
-    background-color: #009624;
-  }
-  

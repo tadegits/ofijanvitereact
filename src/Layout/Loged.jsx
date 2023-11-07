@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import LNavbar from '../logedin/navbar/LNavbar'
 import Footer from '../components/footer/footer';
 import Grade12 from "../components/Grade12/Grade12";
@@ -9,10 +9,30 @@ import Home from "../components/Home/Home"
 import LExitExam from "../logedin/ExitExam/ExitExam.jsx"
 import Dashboard from "../components/Dashboard/Dashboard"
 import LoginSection from "../components/loginSection/LoginSection";
-
+import BlogList from '../components/Blog/BlogList';
+import SingleBlog from '../components/Blog/SingleBlog';
+import FullBlog from '../components/Blog/FullBlog';
+import API_BASE_URL from '../Globals/apiConfig';
+import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
+
+
 const Loged = () => {
+  const [blogData, setBlogData] = useState([]);
+const [selectedPost, setSelectedPost] = useState(null);
+const [postUri, setPostUri] = useState('');
+
+useEffect(() => {
+  setPostUri(`${API_BASE_URL}/all_blogs`);
+  axios.get(postUri)
+    .then(response => {
+      setBlogData(response.data.blogs);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}, [postUri]);
   return (
     <>
       <LNavbar />
@@ -26,7 +46,9 @@ const Loged = () => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
-          
+          <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
+        <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
+        <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
         </Routes>
       
     </>

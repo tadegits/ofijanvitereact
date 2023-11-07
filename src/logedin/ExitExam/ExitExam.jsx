@@ -2,44 +2,70 @@ import '../../components/ExitExam/ExitExam.scss';
 import Wrapper from '../../components/wrapper/Wrapper';
 import Logo from "../../assets/logo.png";
 import { useRef, useState, useEffect } from 'react'
+import Pay from "../../Pay"
 import { Link } from 'react-router-dom';
-import Pay from '../../Pay';
+
 import Questions from '../../components/Questions/Questions';
 
+import {
+  AiOutlineArrowRight,
+  AiOutlineArrowLeft,
+} from 'react-icons/ai';
+
+
+ 
 
 const ExitExam = () => {
   const url = "https://ofijan.com/api/departments";
   const [firstName, setFirstName] = useState("Million");
   const [lastName, setLastName] = useState("Sime");
-  const [email, setEmail] = useState("simemillion@gmail.com");
-  const [amount, setAmount] = useState(50);
-  const [deptId, setDepartmentId]= useState("")
-  const[examTitle, setExamTitle] = useState("");
-  const tx_ref = "weygudemelamede";
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState(97);
+  const [deptId, setDepartmentId] = useState("")
+  const [examTitle, setExamTitle] = useState("");
+  const tx_ref = "weygudemelameddfgsdbfbe";
   const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
   const [data, setData] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
   const [courses, setCourses] = useState([]);
   const [isShown, setIsShown] = useState(false);
+  const [showDept, setShowDept] = useState('false');
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
+  const [deptTitle, setDepartmentTitle] = useState('');
+
+  
   const ref = useRef(null);
   const scollToRef = useRef();
-  const handleDepartmentClick = (departmentId) => {
+  const handleDepartmentClick = (departmentId, departmentTitle) => {
     setSelectedDepartmentId(departmentId);
+    setDepartmentTitle(departmentTitle);
+    setShowDept(false);
+    setIsNavBarOpen(!isNavBarOpen);
+
   };
-  
+  const toggleNavBar = () => {
+    setIsNavBarOpen(!isNavBarOpen);
+    setShowDept(!showDept);
+  };
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleCard = () => {
+    setIsActive(!isActive);
+  };
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       const userEmail = foundUser.user.email;
       setEmail(foundUser.user.email);
-      setFirstName(foundUser.user.name);
+      setFirstName(foundUser.user.fname);
       setDepartmentId(parseInt(foundUser.user.dept_id))
       setSelectedDepartmentId(parseInt(foundUser.user.dept_id));
       //setUser(foundUser);
     }
   }, []);
-   
+
 
   useEffect(() => {
     fetch(url)
@@ -65,12 +91,76 @@ const ExitExam = () => {
   }, [selectedDepartmentId]);
 
   return <section className="examsholder">
-    <Wrapper>
-
+    <Wrapper className="exit_exam_page">
       <div className='exitexam'>
+        <h2 className='header'> Select Your field of Study!</h2>
+        <div className="underline"></div>
+        {isNavBarOpen ? (
+          <button className="open-button" onClick={toggleNavBar}><AiOutlineArrowRight /></button>
+          //
+        ) : (
+          //
+          <button className="close-button" onClick={toggleNavBar}><AiOutlineArrowLeft /> </button>)}
+        <div className="dept_exam">
+
+          <div className={`all_departments ${showDept ? "show-nav" : ""}`}>
+            {data.map((dataObj, index) => {
+              return (
+                <div className="all_departments__card">
+                  <div key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id, dataObj.title)}><p>{dataObj.title}</p>
+                  </div>
+                </div>
+              );
+            })}
 
 
-        <div className='departments'>
+          </div>
+          <div className={`open_menu ${showDept ? "open_menu" : ""}`}
+            onClick={() => setShowDept(!showDept)}
+          >
+
+          </div>
+          <div className="exam_div">
+            {courses ? (<h2>Here are the exams we have for  <b>{deptTitle}</b> department</h2>):
+            (<h2>We do not have exams in <b>{deptTitle}</b> department yet. stay tuned!</h2>)}
+          
+          <div className='all_exams'>
+            {courses.map((course, index) => {
+              return (
+                <>
+                
+                  <div key={course.id} className="product_card">
+
+                    <div className='product_head'>
+                      <div className="product-title"><h2>{course.exam_name
+                      }</h2></div>
+                    </div>
+                    <div>Only for 50.00 ETB</div>
+                    <div className="product-description">Brief description of the exam questions.</div>
+                    <div className="product-questions">This bocklet contains <b>100</b> questions</div>
+                    <div className="buttons">
+                      <button onClick={() => scollToRef.current.scrollIntoView()} className="btnpreview" >Preview</button>
+                      <Pay
+                        fname={firstName}
+                        lname={lastName}
+                        email={email}
+                        amount={amount}
+                        public_key={public_key}
+                        tx_ref={tx_ref}
+                        title={course.exam_name} />
+                    </div>
+                  </div>
+<div className="details">
+  gfdgfdg
+  gsdfg
+</div>
+                </>
+              )
+            })}
+            </div>
+          </div>
+        </div>
+        {/* <div className='departments'>
           <p> Select Your field of Study!</p>
           {data.map((dataObj, index) => {
             return (
@@ -116,12 +206,11 @@ const ExitExam = () => {
             )
           })}
         </div>
-      </div>
-      <div ref={ref} className='selected'>
-        {isShown && <SelectedDepartment />}
-      </div>
+      </div> */}
+      
       <div className='previewDiv' ref={scollToRef}>
         <Questions />
+      </div>
       </div>
     </Wrapper>
   </section>

@@ -73,8 +73,8 @@ const FullBlog = ({ blogs }) => {
                   <img height={'100%'} width={'100%'} src={'https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg'}
                   />
                 </div>
-        <p>{blog.body}</p>
-         <p>Views: {views}</p>
+                <p dangerouslySetInnerHTML={{ __html: blog.body}}/>
+         {/* <p>Views: {views}</p> */}
         <BlogActions blog={blog} />
        
       </div>

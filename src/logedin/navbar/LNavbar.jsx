@@ -40,7 +40,7 @@ const LNavbar = () => {
                   <Link to="/Exit_Exam">Exit Exam</Link>
                </li>
                <li onClick={() => setShowNav(false)}>
-                  <a href="#">About</a>
+                  <a href="/ofijan_blogs">Blog</a>
                </li>
             </ul>
 
