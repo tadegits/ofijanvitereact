@@ -80,12 +80,12 @@ const Experience = () => {
     function checkStart(event) {
         // console.log(event.target.value);
         startDates = new Date(event.target.value);
-        setStartDate(startDates);
-        console.log("start date",start_date);
+        
+        console.log("start date",startDates);
         console.log("current date",currentDate);
-        const gapInMilliseconds = Math.abs(currentDate - start_date);
+        const gapInMilliseconds = Math.abs(currentDate - startDates);
         const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
-
+        setStartDate(startDates);
         console.log(gapInMilliseconds);
         console.log(gapInMonth);
 
@@ -96,7 +96,8 @@ const Experience = () => {
             setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
-            setStartMessage("")
+            setStartMessage("");
+            setEndMessage("");
         }
     }
 
