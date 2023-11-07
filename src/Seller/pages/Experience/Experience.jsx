@@ -144,6 +144,10 @@ const Experience = () => {
         let crinfo = { jop_title, company_name, employement_type, achievement, start_date, end_date, location, user_id };
         // console.warn(info);
         // console.warn(crinfo);
+        const gapInMilliseconds = Math.abs(end_date - start_date);
+        const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
+        console.log(gapInMonth);
+
         if (jop_title === "") {
             setJopMessage("Jop title required");
         }
@@ -156,7 +160,7 @@ const Experience = () => {
         else if (start_date === "") {
             setStartMessage("Please select your employement date");
         }
-        else if (end_date === "" || end_date > currentDate || start_date > end_date) {
+        else if (end_date === "" || end_date > currentDate || start_date > end_date ) {
             console.log(startDates, endDates);
             if(end_date === ""){
                 setEndMessage("Please select your end date of employement");
@@ -167,7 +171,10 @@ const Experience = () => {
             else if(start_date > end_date){
                 setEndMessage("Employment date must be less than end date of employment");
             }
-            
+
+        }
+        else if(gapInMonth < 7){
+            setEndMessage("Your experience must be at least 6 months");
         }
         else if (location === "") {
             setlocationMessage("Location is required");
