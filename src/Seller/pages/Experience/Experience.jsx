@@ -81,6 +81,8 @@ const Experience = () => {
         // console.log(event.target.value);
         startDates = new Date(event.target.value);
         setStartDate(startDates);
+        console.log("start date",start_date);
+        console.log("current date",currentDate);
         const gapInMilliseconds = Math.abs(currentDate - start_date);
         const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
 
@@ -90,7 +92,7 @@ const Experience = () => {
         if (startDates === "") {
             setStartMessage("Please select your employement date")
         }
-        else if(startDates > currentDate || gapInMonth < 7){
+        else if(startDates > currentDate || startDates === currentDate || gapInMonth < 7){
             setStartMessage("Employement date must be 6 month less than current date")
         }
         else {
