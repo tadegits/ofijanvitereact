@@ -31,16 +31,11 @@ const Resume = () => {
         if (resumetype.type === 'application/pdf') {
             setTypeResume(resumetype.type);
             setResumeMess("");
-            console.log(resumeType);
-
         }
 
         else {
             setResumeMess("Upload only pdf format");
         }
-        // if (resumesval !== "") {
-        //     setResumeMess("");
-        // }
     };
 
     async function uploadResume() {
