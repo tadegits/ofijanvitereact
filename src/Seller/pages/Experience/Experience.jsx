@@ -86,8 +86,6 @@ const Experience = () => {
         const gapInMilliseconds = Math.abs(currentDate - startDates);
         const gapInMonth = Math.ceil(gapInMilliseconds / (1000 * 60 * 60 * 24 * 30 ));
         setStartDate(startDates);
-        console.log(gapInMilliseconds);
-        console.log(gapInMonth);
 
         if (startDates === "") {
             setStartMessage("Please select your employement date")
