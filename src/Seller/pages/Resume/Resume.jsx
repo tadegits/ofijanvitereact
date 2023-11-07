@@ -27,16 +27,25 @@ const Resume = () => {
         const resumetype = event.target.files[0];
         setResume(resumes);
         setValueResume(resumesval);
-        setTypeResume(resumetype);
-        console.log(resumeType);
-        if(resumesval !== ""){
+        console.log(resumetype);
+        if (resumetype.type === 'application/pdf') {
+            setTypeResume(resumetype.type);
             setResumeMess("");
+            console.log(resumeType);
+
         }
+
+        else {
+            setResumeMess("Upload only pdf format");
+        }
+        // if (resumesval !== "") {
+        //     setResumeMess("");
+        // }
     };
 
     async function uploadResume() {
         let files = { resume, user_id }
-        if(valueRusume === ""){
+        if (valueRusume === "") {
             setResumeMess("Please select file to upload");
         }
         else if (resume.size > 2 * 1024 * 1024) {
@@ -44,7 +53,7 @@ const Resume = () => {
             // console.log("file size must be less or equal to 2MB");
         }
         else {
-            console.log(resume.size/(1024*1024));
+            console.log(resume.size / (1024 * 1024));
             console.log(files);
         }
 
