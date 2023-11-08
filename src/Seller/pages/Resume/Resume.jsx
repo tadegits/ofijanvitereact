@@ -41,7 +41,8 @@ const Resume = () => {
     };
 
     async function uploadResume() {
-        let files = { resume, user_id }
+        const names = resume.name;
+        let files = { names, user_id }
         if (valueRusume === "") {
             setResumeMess("Please select file to upload");
         }
@@ -53,6 +54,7 @@ const Resume = () => {
             setResumeMess("Upload only pdf format");
         }
         else {
+            console.log(resume)
             let result = await fetch('http://127.0.0.1:8000/api/add_resume', {
                 method: "POST",
                 body: JSON.stringify(files),
