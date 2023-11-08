@@ -26,7 +26,7 @@ const Resume = () => {
         const resumesval = event.target.value;
         const resumetype = event.target.files[0];
         const filePath = URL.createObjectURL(resumetype);
-        console.log("path",filePath);
+        // console.log("path",filePath);
         setResume(resumes);
         setValueResume(resumesval);
         console.log(resumetype);
@@ -53,7 +53,7 @@ const Resume = () => {
             setResumeMess("Upload only pdf format");
         }
         else {
-            result = await fetch('http://127.0.0.1:8000/api/add_resume', {
+            let result = await fetch('http://127.0.0.1:8000/api/add_resume', {
                 method: "POST",
                 body: JSON.stringify(files),
                 headers:{
@@ -63,8 +63,8 @@ const Resume = () => {
             });
             result = await result.json();
             console.log(result);
-            console.log(resume.size / (1024 * 1024));
-            console.log(files);
+            // console.log(resume.size / (1024 * 1024));
+            // console.log(files);
         }
 
     }
