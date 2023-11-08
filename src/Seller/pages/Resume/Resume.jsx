@@ -25,6 +25,8 @@ const Resume = () => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
         const resumetype = event.target.files[0];
+        const filePath = URL.createObjectURL(resumetype);
+        console.log("path",filePath);
         setResume(resumes);
         setValueResume(resumesval);
         console.log(resumetype);
