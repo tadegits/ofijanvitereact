@@ -57,8 +57,8 @@ const Resume = () => {
                 method: "POST",
                 body: JSON.stringify(files),
                 headers:{
-                    "Content type":"application/json",
-                    "Accept":"application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 }
             });
             result = await result.json();
