@@ -53,6 +53,15 @@ const Resume = () => {
             setResumeMess("Upload only pdf format");
         }
         else {
+            result = await fetch('http://127.0.0.1:8000/api/add_resume', {
+                method: "POST",
+                body: JSON.stringify(files),
+                headers:{
+                    "Content type":"application/json",
+                    "Accept":"application/json"
+                }
+            });
+            
             console.log(resume.size / (1024 * 1024));
             console.log(files);
         }
