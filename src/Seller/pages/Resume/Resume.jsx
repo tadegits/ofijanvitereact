@@ -61,7 +61,8 @@ const Resume = () => {
                     "Accept":"application/json"
                 }
             });
-            
+            result = await result.json();
+            console.log(result);
             console.log(resume.size / (1024 * 1024));
             console.log(files);
         }
