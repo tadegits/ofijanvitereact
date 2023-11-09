@@ -50,7 +50,7 @@ export default function Sidebar() {
 
       <div className="sidebar">
         <div className="sidebarWrapper">
-          <div className={`sidebarMenu ${expandedMenu === 'dashboard' ? 'expanded' : ''}`}>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Dashboard</h3>
             <ul className="sidebarList">
@@ -201,7 +201,7 @@ export default function Sidebar() {
       </div>
     );
   }
-  else if (role === 3) {
+  else if(role === 2){
     return (
 
       <div className="sidebar">
@@ -217,10 +217,10 @@ export default function Sidebar() {
                 </li>
               </Link>
               <Link to="/experience" className="link">
-                <li className="sidebarListItem">
-                  <AccountBalance className="sidebarIcon" />
-                  Work Expereince
-                </li>
+                  <li className="sidebarListItem">
+                    <AccountBalance className="sidebarIcon" />
+                    Work Expereince
+                  </li>
               </Link>
               <Link to="/resume" className="link">
                 <li className="sidebarListItem">

@@ -13,6 +13,7 @@ import BlogList from '../components/Blog/BlogList';
 import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
+import Payment from '../logedin/payment/payment';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
@@ -46,6 +47,7 @@ useEffect(() => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
+          <Route path="/payment/:refrence/:itemId" element={<Payment/>} />
           <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />

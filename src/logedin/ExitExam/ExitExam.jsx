@@ -20,15 +20,13 @@ const ExitExam = () => {
   const [firstName, setFirstName] = useState("Million");
   const [lastName, setLastName] = useState("Sime");
   const [email, setEmail] = useState("");
-  const [amount, setAmount] = useState(97);
+  const [amount, setAmount] = useState(9070);
   const [deptId, setDepartmentId] = useState("")
-  const [examTitle, setExamTitle] = useState("");
   const tx_ref = "weygudemelameddfgsdbfbe";
   const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
   const [data, setData] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
   const [courses, setCourses] = useState([]);
-  const [isShown, setIsShown] = useState(false);
   const [showDept, setShowDept] = useState('false');
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
   const [deptTitle, setDepartmentTitle] = useState('');
@@ -147,7 +145,8 @@ const ExitExam = () => {
                         amount={amount}
                         public_key={public_key}
                         tx_ref={tx_ref}
-                        title={course.exam_name} />
+                        title={course.exam_name}
+                        examId= {course.id} />
                     </div>
                   </div>
 <div className="details">
