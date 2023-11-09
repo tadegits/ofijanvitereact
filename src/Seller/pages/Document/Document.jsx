@@ -38,7 +38,7 @@ const Document = () => {
     };
 
     async function uploadResume() {
-        // let files = { resume, user_id }
+        let files = { document, user_id }
         const formData = new FormData();
         formData.append("file", document);
         formData.append("user", user_id);
@@ -49,11 +49,11 @@ const Document = () => {
             setResumeMess("file size must be less or equal to 2MB");
             // console.log("file size must be less or equal to 2MB");
         }
-        else if(resumeType !== "application/pdf"){
+        else if(documentType !== "application/pdf"){
             setResumeMess("Upload only pdf format");
         }
         else {
-            console.log(resume.size / (1024 * 1024));
+            console.log(document.size / (1024 * 1024));
             console.log(files);
         }
 
