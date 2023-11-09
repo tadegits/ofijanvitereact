@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Wrapper from '../../../components/wrapper/Wrapper'
 import axios from 'axios';
+import "./Resume.scss";
 
 const Resume = () => {
 
@@ -9,6 +10,7 @@ const Resume = () => {
     const [user_id, setUser_id] = useState('');
     const [valueRusume, setValueResume] = useState('');
     const [resumeType, setTypeResume] = useState(null);
+    const [status, setStatus] = useState("");
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -33,11 +35,12 @@ const Resume = () => {
         console.log(resumetype);
         if (resumetype.type === 'application/pdf') {
             setTypeResume(resumetype.type);
-            setResumeMess("");
+            setStatus("errormessage");
         }
 
         else {
             setResumeMess("Upload only pdf format");
+            setStatus("errormessage");
         }
     };
 
@@ -46,13 +49,16 @@ const Resume = () => {
         let files = { resume, user_id }
         if (valueRusume === "") {
             setResumeMess("Please select file to upload");
+            setStatus("errormessage");
         }
         else if (resume.size > 2 * 1024 * 1024) {
             setResumeMess("file size must be less or equal to 2MB");
+            setStatus("errormessage");
             // console.log("file size must be less or equal to 2MB");
         }
         else if(resumeType !== "application/pdf"){
             setResumeMess("Upload only pdf format");
+            setStatus("errormessage");
         }
         else {
             // console.log(resume)
@@ -69,6 +75,7 @@ const Resume = () => {
             .then(response => {
                 // console.log(response.data.message);
                 setResumeMess(response.data.message);
+                setStatus(response.data.status);
                 // console.log('R uploaded successfully');
               })
               .catch(error => {
@@ -93,7 +100,7 @@ const Resume = () => {
                                 <div className="fnames">
                                     <label>Upload your resume</label>
                                     <input type="file" placeholder='select your resume' className="fname" onChange={getResume} required />
-                                    <div className="errormessage">{resumeMess}</div>
+                                    <div className={status}>{resumeMess}</div>
                                 </div>
 
                                 {/* <div className="errormessage">{registered}</div> */}

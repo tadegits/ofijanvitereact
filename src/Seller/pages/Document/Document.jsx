@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import Wrapper from '../../../components/wrapper/Wrapper';
 
 const Document = () => {
-    const [resume, setResume] = useState('');
-    const [resumeMess, setResumeMess] = useState('');
+    const [document, setDocument] = useState('');
+    const [documentMess, setDocumentMess] = useState('');
     const [user_id, setUser_id] = useState('');
-    const [valueRusume, setValueResume] = useState('');
-    const [resumeType, setTypeResume] = useState(null);
+    const [valueDocs, setValueDocs] = useState('');
+    const [documentType, setTypeDocument] = useState(null);
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -21,28 +21,31 @@ const Document = () => {
     // }
 
     const getDocs = (event) => {
-        const resumes = event.target.files[0];
-        const resumesval = event.target.value;
-        const resumetype = event.target.files[0];
-        setResume(resumes);
-        setValueResume(resumesval);
-        console.log(resumetype);
-        if (resumetype.type === 'application/pdf') {
-            setTypeResume(resumetype.type);
-            setResumeMess("");
+        const documents = event.target.files[0];
+        const documentsval = event.target.value;
+        const documentstype = event.target.files[0];
+        setDocument(documents);
+        setValueDocs(documentsval);
+        // console.log(resumetype);
+        if (documentstype.type === 'application/pdf') {
+            setTypeDocument(documentstype.type);
+            setDocumentMess("");
         }
 
         else {
-            setResumeMess("Upload only pdf format");
+            setDocumentMess("Upload only pdf format");
         }
     };
 
     async function uploadResume() {
-        let files = { resume, user_id }
-        if (valueRusume === "") {
+        // let files = { resume, user_id }
+        const formData = new FormData();
+        formData.append("file", document);
+        formData.append("user", user_id);
+        if (valueDocs === "") {
             setResumeMess("Please select file to upload");
         }
-        else if (resume.size > 2 * 1024 * 1024) {
+        else if (document.size > 2 * 1024 * 1024) {
             setResumeMess("file size must be less or equal to 2MB");
             // console.log("file size must be less or equal to 2MB");
         }
