@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Wrapper from '../../../components/wrapper/Wrapper'
+import axios from 'axios';
 
 const Resume = () => {
 
-    const [resume, setResume] = useState('');
+    const [resume, setResume] = useState(null);
     const [resumeMess, setResumeMess] = useState('');
     const [user_id, setUser_id] = useState('');
     const [valueRusume, setValueResume] = useState('');
@@ -25,7 +26,7 @@ const Resume = () => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
         const resumetype = event.target.files[0];
-        const filePath = URL.createObjectURL(resumetype);
+        // const filePath = URL.createObjectURL(resumetype);
         // console.log("path",filePath);
         setResume(resumes);
         setValueResume(resumesval);
@@ -41,8 +42,8 @@ const Resume = () => {
     };
 
     async function uploadResume() {
-        const names = resume.name;
-        let files = { names, user_id }
+        // const names = resume.name;
+        let files = { resume, user_id }
         if (valueRusume === "") {
             setResumeMess("Please select file to upload");
         }
@@ -54,17 +55,26 @@ const Resume = () => {
             setResumeMess("Upload only pdf format");
         }
         else {
-            console.log(resume)
-            let result = await fetch('http://127.0.0.1:8000/api/add_resume', {
-                method: "POST",
-                body: JSON.stringify(files),
+            // console.log(resume)
+            const formData = new FormData();
+            formData.append('file', resume);
+            formData.append('user',  user_id);
+            // console.log(formData);
+
+            axios.post('http://127.0.0.1:8000/api/add_resume', formData,{
                 headers:{
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    'Content-Type': 'multipart/form-data'
                 }
-            });
-            result = await result.json();
-            console.log(result);
+            })
+            .then(response => {
+                console.log(response.data);
+                // console.log('File uploaded successfully');
+              })
+              .catch(error => {
+                console.error('Error uploading file', error);
+              });
+            // result = await result.json();
+            // console.log("Returned result is ", result);
             // console.log(resume.size / (1024 * 1024));
             // console.log(files);
         }
