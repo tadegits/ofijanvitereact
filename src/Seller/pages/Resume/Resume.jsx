@@ -67,11 +67,13 @@ const Resume = () => {
                 }
             })
             .then(response => {
-                console.log(response.data);
-                // console.log('File uploaded successfully');
+                // console.log(response.data.message);
+                setResumeMess(response.data.message);
+                // console.log('R uploaded successfully');
               })
               .catch(error => {
-                console.error('Error uploading file', error);
+                // console.error('Error uploading file', error);
+                setResumeMess("Error uploading your resume");
               });
             // result = await result.json();
             // console.log("Returned result is ", result);
