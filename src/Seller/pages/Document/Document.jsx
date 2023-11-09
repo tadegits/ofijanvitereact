@@ -37,20 +37,20 @@ const Document = () => {
         }
     };
 
-    async function uploadResume() {
+    async function uploadDocument() {
         let files = { document, user_id }
         const formData = new FormData();
         formData.append("file", document);
         formData.append("user", user_id);
         if (valueDocs === "") {
-            setResumeMess("Please select file to upload");
+            setDocumentMess("Please select file to upload");
         }
         else if (document.size > 2 * 1024 * 1024) {
-            setResumeMess("file size must be less or equal to 2MB");
+            setDocumentMess("file size must be less or equal to 2MB");
             // console.log("file size must be less or equal to 2MB");
         }
         else if(documentType !== "application/pdf"){
-            setResumeMess("Upload only pdf format");
+            setDocumentMess("Upload only pdf format");
         }
         else {
             console.log(document.size / (1024 * 1024));
@@ -69,12 +69,12 @@ const Document = () => {
                                 <div className="fnames">
                                     <label>Upload your document</label>
                                     <input type="file" placeholder='select your resume' className="fname" onChange={getDocs} required />
-                                    <div className="errormessage">{resumeMess}</div>
+                                    <div className="errormessage">{documentMess}</div>
                                 </div>
 
                                 {/* <div className="errormessage">{registered}</div> */}
                                 <div className="summit-signup">
-                                    <button className='sigbtn' onClick={uploadResume} >Save</button>
+                                    <button className='sigbtn' onClick={uploadDocument} >Save</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
                                 </div>
 
