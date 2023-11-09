@@ -55,6 +55,14 @@ const Document = () => {
         else {
             console.log(document.size / (1024 * 1024));
             console.log(files);
+            let result = await fetch("http://127.0.0.1:8000/api/add_education", formData, {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                }
+            });
+            result = await result.json()
+            console.log(result);
         }
 
     }
