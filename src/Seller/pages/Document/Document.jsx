@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Wrapper from '../../../components/wrapper/Wrapper';
+import axios from 'axios';
 
 const Document = () => {
     const [document, setDocument] = useState('');
@@ -7,6 +8,7 @@ const Document = () => {
     const [user_id, setUser_id] = useState('');
     const [valueDocs, setValueDocs] = useState('');
     const [documentType, setTypeDocument] = useState(null);
+    const [docstatus, setDocStatus] = useState("");
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -34,6 +36,7 @@ const Document = () => {
 
         else {
             setDocumentMess("Upload only pdf format");
+            setDocStatus("errormessage");
         }
     };
 
@@ -44,22 +47,33 @@ const Document = () => {
         formData.append("user", user_id);
         if (valueDocs === "") {
             setDocumentMess("Please select file to upload");
+            setDocStatus("errormessage");
         }
         else if (document.size > 2 * 1024 * 1024) {
             setDocumentMess("file size must be less or equal to 2MB");
+            setDocStatus("errormessage");
             // console.log("file size must be less or equal to 2MB");
         }
         else if(documentType !== "application/pdf"){
             setDocumentMess("Upload only pdf format");
+            setDocStatus("errormessage");
         }
         else {
-            console.log(document.size / (1024 * 1024));
-            console.log(files);
-            let result = await fetch("http://127.0.0.1:8000/api/add_education", formData, {
-                method: "POST",
+            // console.log(document.size / (1024 * 1024));
+            // console.log(files);
+            axios.post("http://127.0.0.1:8000/api/add_document", formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
                 }
+            })
+            .then(response => {
+                console.log(response.data);
+                setDocumentMess(response.data.message);
+                setDocStatus(response.data.status);
+            })
+            .catch(error => {
+                setDocumentMess("Error uploading you document");
+                setDocStatus("errormessage");
             });
         }
 
@@ -75,7 +89,7 @@ const Document = () => {
                                 <div className="fnames">
                                     <label>Upload your document</label>
                                     <input type="file" placeholder='select your resume' className="fname" onChange={getDocs} required />
-                                    <div className="errormessage">{documentMess}</div>
+                                    <div className={docstatus}>{documentMess}</div>
                                 </div>
 
                                 {/* <div className="errormessage">{registered}</div> */}
