@@ -99,7 +99,6 @@ const Resume = () => {
                                     <div className={status}>{resumeMess}</div>
                                 </div>
 
-                                {/* <div className="errormessage">{registered}</div> */}
                                 <div className="summit-signup">
                                     <button className='sigbtn' onClick={uploadResume} >Save</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
