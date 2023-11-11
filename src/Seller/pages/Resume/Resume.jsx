@@ -46,7 +46,6 @@ const Resume = () => {
         else if (resume.size > 2 * 1024 * 1024) {
             setResumeMess("file size must be less or equal to 2MB");
             setStatus("errormessage");
-            // console.log("file size must be less or equal to 2MB");
         }
         else if(resumeType !== "application/pdf"){
             setResumeMess("Upload only pdf format");
