@@ -52,7 +52,6 @@ const Resume = () => {
             setStatus("errormessage");
         }
         else {
-            // console.log(resume)
             const formData = new FormData();
             formData.append('file', resume);
             formData.append('user',  user_id);
