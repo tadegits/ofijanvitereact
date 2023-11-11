@@ -74,10 +74,8 @@ const Resume = () => {
             .then(response => {
                 setResumeMess(response.data.message);
                 setStatus(response.data.status);
-                // console.log('R uploaded successfully');
               })
               .catch(error => {
-                // console.error('Error uploading file', error);
                 setResumeMess("Error uploading your resume");
               });
             // result = await result.json();
