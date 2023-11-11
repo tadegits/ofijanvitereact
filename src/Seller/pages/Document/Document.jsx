@@ -17,10 +17,6 @@ const Document = () => {
     }
     );
 
-    // function getResume(e){
-    //     const resumes = e.target.files[0];
-    //     setResume(resumes)
-    // }
 
     const getDocs = (event) => {
         const documents = event.target.files[0];
@@ -28,7 +24,6 @@ const Document = () => {
         const documentstype = event.target.files[0];
         setDocument(documents);
         setValueDocs(documentsval);
-        // console.log(resumetype);
         if (documentstype.type === 'application/pdf') {
             setTypeDocument(documentstype.type);
             setDocumentMess("");
@@ -52,7 +47,6 @@ const Document = () => {
         else if (document.size > 2 * 1024 * 1024) {
             setDocumentMess("file size must be less or equal to 2MB");
             setDocStatus("errormessage");
-            // console.log("file size must be less or equal to 2MB");
         }
         else if(documentType !== "application/pdf"){
             setDocumentMess("Upload only pdf format");
