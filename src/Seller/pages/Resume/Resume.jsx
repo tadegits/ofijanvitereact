@@ -65,7 +65,6 @@ const Resume = () => {
             const formData = new FormData();
             formData.append('file', resume);
             formData.append('user',  user_id);
-            // console.log(formData);
 
             axios.post('http://127.0.0.1:8000/api/add_resume', formData,{
                 headers:{
