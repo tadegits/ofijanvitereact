@@ -92,7 +92,6 @@ const Document = () => {
                                     <div className={docstatus}>{documentMess}</div>
                                 </div>
 
-                                {/* <div className="errormessage">{registered}</div> */}
                                 <div className="summit-signup">
                                     <button className='sigbtn' onClick={uploadDocument} >Save</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
