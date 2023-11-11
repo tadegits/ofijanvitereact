@@ -38,7 +38,6 @@ const Resume = () => {
     };
 
     async function uploadResume() {
-        // const names = resume.name;
         let files = { resume, user_id }
         if (valueRusume === "") {
             setResumeMess("Please select file to upload");
