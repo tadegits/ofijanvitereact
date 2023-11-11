@@ -73,7 +73,6 @@ const Resume = () => {
                 }
             })
             .then(response => {
-                // console.log(response.data.message);
                 setResumeMess(response.data.message);
                 setStatus(response.data.status);
                 // console.log('R uploaded successfully');

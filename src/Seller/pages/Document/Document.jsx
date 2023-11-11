@@ -59,8 +59,6 @@ const Document = () => {
             setDocStatus("errormessage");
         }
         else {
-            // console.log(document.size / (1024 * 1024));
-            // console.log(files);
             axios.post("http://127.0.0.1:8000/api/add_document", formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
