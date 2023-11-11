@@ -19,11 +19,6 @@ const Resume = () => {
     }
     );
 
-    // function getResume(e){
-    //     const resumes = e.target.files[0];
-    //     setResume(resumes)
-    // }
-
     const getResume = (event) => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
