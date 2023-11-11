@@ -61,8 +61,6 @@ const Document = () => {
                     "Content-Type": 'multipart/form-data',
                 }
             });
-            result = await result.json()
-            console.log(result);
         }
 
     }
