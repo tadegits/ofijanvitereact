@@ -78,10 +78,7 @@ const Resume = () => {
               .catch(error => {
                 setResumeMess("Error uploading your resume");
               });
-            // result = await result.json();
-            // console.log("Returned result is ", result);
-            // console.log(resume.size / (1024 * 1024));
-            // console.log(files);
+
         }
 
     }
