@@ -4,7 +4,7 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #d30f0f;
   position: fixed;
   top: 0;
   left: 0;
@@ -32,309 +32,196 @@
   margin-left: -250px;
 }
 
-// .exitexam
-// {
-//     display: grid;
-//     height: max-content;
-//     background-color: #f0f;
-//     padding-top: 1rem;
-//     padding-bottom: 1rem;
-// }
-// .exams_list{
-//     background-color: #009624;
-
-// }
-// .departments{
-//    background-color: rgb(182, 12, 12);
-//    overflow-y: scroll;
-//    max-height: 500px;
-//    margin-bottom: 20px;
-//    width: 250px;
-//    height: 100vh;
-
-// a{
-//     text-decoration: none;
-//     color: rgb(82, 12, 82);
-// }
-// li{
-//     list-style: none;
-//     gap: 0.1rem;
-//     margin-bottom: 2px;
-//     &:hover{
-//         background-color: rgb(184, 179, 184);
-//     a{
-//     color: white;
-//     }       
-// }
-
-// }
-
-// }
-.exit_exam_page {
-
+.select_field {
   width: 100%;
+  height: 150px;
   background-color: #fff;
-}
-
-.header {
-  display: flex;
-  width: 100%;
-  margin: 10px;
-  justify-content: start;
-}
-
-.dept_exam {
-  display: flex;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-}
-
-.all_exams {
-  
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  flex-wrap: wrap;
-  margin: 10px;
-  flex-direction: row;
-  gap: 1rem;
-  overflow-y: scroll;
-  height: 500px;
-}
-.exam_div
-{
-  width: 100%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  margin: 10px;
-  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
 
-
-}
-
-.all_departments {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 10px;
-  height: 500px;
-  overflow-y: scroll;
-  width: 35%;
-
-  :hover {
-    background-color: #fdfdfd;
-    color: $tade-color;
-  }
-
-  @include respond(tab-port) {
-    display: none;
-    width: 250px;
-
-  }
-  @include respond(tab-land) {
-    display: none;
-    width: 250px;
-
-  }
   @include respond(phone) {
-    display: none;
-    width: 250px;
-
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
-  &__card {
-    flex-basis: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+
+
+  .input_holder {
+
+    height: 30%;
     gap: 0.1rem;
-    margin: 10px;
-    padding: 10px;
-    background-color: $tade-color;
-    font-weight: bold;
-    color: #fafafa;
-    border-left: solid 1px $tade-color;
+    display: flex;
+    border: solid 1px $tade-color;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     p {
-      font-weight: bold;
+      font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+      width: 50%;
+      height: 50%;
+      font-size: 1rem;
+      align-items: center;
     }
 
-   
-
-  }
-}
-
-.show-nav {
-  display: flex;
-}
-
-.bg-color {
-  background-color: #000000;
-}
-
-.close-button {
-  display: none;
-  @include respond(phone) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-    padding-left: 150px;
-
-    svg {
-      color: $tade-color;
+    select {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
       background-color: #fff;
+      font-size: 16px;
+      color: $tade-color;
+      outline: none;
     }
 
-  }
-  @include respond(tab-land) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-    padding-left: 150px;
-
-    svg {
-      color: $tade-color;
+    option {
+      width: 100%;
       background-color: #fff;
-    }
-
-  }
-
-  @include respond(tab-port) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-    padding-left: 150px;
-
-    svg {
-      color: $tade-color;
-      background-color: #fff;
-    }
-
-  }
-
-}
-
-.open-button {
-  display: none;
-
-  @include respond(tab-port) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-
-    svg {
-      color: $tade-color;
-      background-color: #fff;
-    }
-  }
-  @include respond(tab-land) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-
-    svg {
-      color: $tade-color;
-      background-color: #fff;
-    }
-  }
-  @include respond(phone) {
-    display: flex;
-    font-weight: bold;
-    font-size: larger;
-    padding: 0.4rem;
-    background-color: #fff;
-
-    svg {
-      color: $tade-color;
-      background-color: #fff;
+      color: $tade-color
     }
   }
 }
 
-.product_card .buttons {
-  display: flex;
-  justify-content: space-between;
-}
-.buttons
-{
-  display: flex;
-  justify-content: space-between;
+.exit_exam_page {
   width: 100%;
+  height: 700px;
 }
 
-.product_card {
-  height: max-content;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: start;
-  padding: 10px;
-  align-items: start;
-  width: 350px;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 20px;
+.examsholder {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: all 0.3s ease;
+  width: 100%;
+  height: max-content;
+  min-height: 400px;
+  background-color: rgb(255, 255, 255);
+  flex-wrap: wrap;
+  justify-content: space-evenly
+}
 
-  @include respond(tab-port) {}
-
+.exams_card {
+  min-width: 350px;
+  width: 45%;
+  height: max-content;
+  display: block;
+  border: 1px inset $milli_gray;
+  border-radius: 0px;
+  justify-content: start;
+  align-items: start;
+  padding: 0px;
+  margin: 5px;
+  align-items: flex-end;
+  background-color: #ffffff;
+  .underline
+  {
+    background-color: $milli_gray;
+  }
+}
+.exam_table
+{
+  padding: 15px;
+  width: 100%;
+  li{
+    list-style: square;
+  }
+  tr{
+    border: 0px solid $milli_gray;
+  }
+  td{
+    border: 0rem double $milli_gray;
+  }
 }
 
 
-.product_card:hover {
+.exams_card .__buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.exams_card:hover {
   border-color: $tade-color;
   background-color: #01dee609;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Add box shadow on hover */
-  filter: brightness(110%); /* Add glow effect on hover */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  /* Add box shadow on hover */
+  filter: brightness(110%);
+  /* Add glow effect on hover */
+
+}
+
+.__price {
+
+  display: flex;
+  justify-content: end;
+
+  p {
+    color: rgb(255, 255, 255);
+    background-color: #d30f0f;
+    border-radius: 2px;
+    padding: 0.11rem;
+    width: max-content;
+    font-weight: bold;
+  }
+}
+
+.btnpreview {
+  background-color: #ffffff00;
+  border-radius: 0px;
+  font-weight: bold;
+  padding: 5px;
+  color: $tade-color;
+  text-decoration: underline;
+  font-family: Georgia, 'Times New Roman', Times, serif;
  
 }
 
-.details {
-  flex-basis: 60%;
-  height: max-content;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: start;
-  padding: 10px;
-  align-items: start;
-  width: 400px;
-  height: 390px;
-  border-radius: 10px;
+.exams_head {
+  width: 100%;
+  font-weight: bold;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 5rem;
+  background-color: $milli_gray;
+ .__title
+ {
+  display: flex;
   justify-content: center;
+  align-items: flex-end;
+  align-items: center;
+  margin-right: 60px;
+ }
+ .__logo
+ {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+ }
+}
+/* Style for the button */
+.free-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   position: relative;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
+  overflow: hidden;
+}
+
+.icon {
   position: absolute;
-  top: 0;
-  left: 20%;
-  opacity: 0;
-  color: $tade-color;
-  transition: all 0.3s ease;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
-.btnpreview{
-  background-color: #ffffff;
-  border-radius: 20px;
-  padding: 10px;
-  color: $tade-color;
+
+.ope-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-h2{
-  color: #000000;
-}
+

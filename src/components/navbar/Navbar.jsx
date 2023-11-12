@@ -63,6 +63,11 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <a href="/ofijan_blogs">Blog</a>
                     </li>
+                    <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+               onClick={handleLogout}
+            >
+              <a href="/Login">Sign in</a> 
+               </li>
                 </ul>
                 <>
                     <Link to='/Login' className="button-primary navbarz__btn">

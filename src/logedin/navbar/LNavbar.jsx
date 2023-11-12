@@ -44,6 +44,11 @@ const LNavbar = () => {
                <li onClick={() => setShowNav(false)}>
                   <a href="/ofijan_blogs">Blog</a>
                </li>
+               <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+               onClick={handleLogout}
+            >
+               Log out
+               </li>
             </ul>
             <Link to='#' onClick={handleLogout} className="button-primary 
 navbarz__btn">
@@ -55,6 +60,7 @@ navbarz__btn">
             >
                <FaBars />
             </div>
+            
          </Wrapper>
       </nav>
    )

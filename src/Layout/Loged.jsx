@@ -14,9 +14,12 @@ import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
 import Payment from '../logedin/payment/payment';
+import Plate from '../logedin/ExitExam/Plate'
 import axios from 'axios';
-
+import Questions from '../components/Questions/Questions';
+import Details from '../logedin/ExitExam/Details.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
+import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
 
 
 const Loged = () => {
@@ -47,10 +50,13 @@ useEffect(() => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
+          <Route path="/fryexam" element={<ExamsForMe />} />
+          <Route path="/exit_exam/:message" element={<Plate />} />
           <Route path="/payment/:refrence/:itemId" element={<Payment/>} />
           <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
+        <Route exact path='/exam_details/:id' element={<Details/>}/>
         </Routes>
       
     </>

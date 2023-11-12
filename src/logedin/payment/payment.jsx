@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import API_BASE_URL from '../../Globals/apiConfig';
+import useLoggedInUser from '../../Globals/useLoggedInUser';
 const Payment = ({ transactionId }) => {
 const [verificationResult, setVerificationResult] = useState(null);
 const { refrence, itemId } = useParams();
+const {deptId, userId} = useLoggedInUser();
 const navigate = useNavigate();
-console.log(itemId)
+console.log("the item", itemId);
 const verifyPayment = () => {
-    fetch(`http://127.0.0.1:8000/api/verify-payment/${refrence}`)
+    fetch(`${API_BASE_URL}/verify-payment/${refrence}`)
       .then(response => {
         if (response.ok) {
           const contentType = response.headers.get('content-type');
@@ -32,9 +36,19 @@ const verifyPayment = () => {
 
   useEffect(() => {
     if (verificationResult === "success") {
-      navigate('/dashboard'); 
+      axios.post(`${API_BASE_URL}/storePurchase`, {
+      userId: userId,
+      itemId: itemId
+    })
+    .then(response => {
+      console.log('Purchase stored successfully');
+    })
+    .catch(error => {
+      console.error('Error storing purchase:', error);
+    });
+      navigate('/exit_exam/1'); 
     } else if (verificationResult === "failure") {
-      navigate('/ofijan_blogs'); 
+      navigate('/exit_exam/0'); 
     }
   }, [verificationResult]);
 

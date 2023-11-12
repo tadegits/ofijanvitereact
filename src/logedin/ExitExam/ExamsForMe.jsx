@@ -2,7 +2,7 @@ import './lexitexam.scss';
 import Wrapper from '../../components/wrapper/Wrapper';
 import Logo from "../../assets/logo.png";
 import { useRef, useState, useEffect } from 'react'
-import Pay from "../payment/Pay"
+import Pay from '../payment/Pay';
 import { Link, useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 
@@ -13,7 +13,7 @@ import {
   AiOutlineArrowLeft,
 } from 'react-icons/ai';
 import { ConstructionOutlined } from '@mui/icons-material';
-const ExitExam = () => {
+const ExamsForMe = () => {
   const url = "https://ofijan.com/api/departments";
   const [firstName, setFirstName] = useState("Million");
   const [lastName, setLastName] = useState("Sime");
@@ -23,22 +23,16 @@ const ExitExam = () => {
   const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
   const [data, setData] = useState([]);
   const { deptId, userId } = useLoggedInUser();
-  const [selectedDepartmentId, setSelectedDepartmentId] = useState(deptId);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState('');
   const [courses, setCourses] = useState([]);
   const [showDept, setShowDept] = useState(true);
   const [isNavBarOpen, setIsNavBarOpen] = useState(true);
   const [deptTitle, setDepartmentTitle] = useState('');
-  const [did, setDid] = useState('');
-  const [loading, setLoading] = useState(true);
+  
+ 
   const ref = useRef(null);
   const scollToRef = useRef();
-  const handleDepartmentClick = (departmentId, departmentTitle) => {
-    setSelectedDepartmentId(departmentId);
-    setDepartmentTitle(departmentTitle);
-    setShowDept(false);
-    setIsNavBarOpen(!isNavBarOpen);
-
-  };
+  
  
 
   const toggleNavBar = () => {
@@ -50,76 +44,44 @@ const ExitExam = () => {
   const toggleCard = () => {
     setIsActive(!isActive);
   };
+
   useEffect(() => {
+
+    setSelectedDepartmentId(deptId);
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setDid(foundUser.user.dept_id);
-      console.log('the user', foundUser.user.dept_id);
-   
-
-    console.log('deptId:', did);
+      const userEmail = foundUser.user.email;
+      setEmail(foundUser.user.email);
+      setFirstName(foundUser.user.fname);
+     
+      //setUser(foundUser);
+    }
+  }, []);
+  useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((d) => setData(d))
-   if (selectedDepartmentId === null || selectedDepartmentId === "") {
-      fetch(`https://ofijan.com/api/exams/${did}`)
+      fetch(`https://ofijan.com/api/exams/${deptId}`)
         .then((res) => res.json())
-        .then((data) => 
-        {
-        console.log('Fetched data:', data);
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching courses:', error);
-        setLoading(false);
-      });
-    } else {
-      fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`)
-        .then((res) => res.json())
-        .then((data) => 
-        {
-        console.log('Fetched data:', data);
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching courses:', error);
-        setLoading(false);
-      });
-    }  
-    }
-  }, [deptId]);
+        .then((d) => setCourses(d))
+    // }
 
-
-
-  // useEffect(() => {
-  //   if (selectedDepartmentId === null || selectedDepartmentId === "") {
-  //     fetch(`https://ofijan.com/api/exams/${deptId}`)
-  //       .then((res) => res.json())
-  //       .then((d) => setCourses(d))
-  //   } else {
-  //     fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`)
-  //       .then((res) => res.json())
-  //       .then((d) => setCourses(d))
-  //   }
-  
-   
-  
-  // }, [courses]);
-  
-  
+  }, [selectedDepartmentId])
+  const handleDepartmentClick = (departmentId, departmentTitle) => {
+    setSelectedDepartmentId(departmentId);
+    setDepartmentTitle(departmentTitle);
+    setShowDept(false);
+    setIsNavBarOpen(!isNavBarOpen);
+console.log("dept id", selectedDepartmentId);
+  };
   return <section className="examsholder">
     <Wrapper className="exit_exam_page">
       <div className='exitexam'>
-        
-
         {isNavBarOpen ? (
           <button className="open-button" onClick={toggleNavBar}> <h2 className='my-button'> <AiOutlineArrowRight /> Other Field of studies</h2></button>
           
-        ) : (
-          
+        ) : ( 
           <button className="close-button" onClick={toggleNavBar}><AiOutlineArrowLeft /> </button>)}
         <div className="dept_exam">
 
@@ -170,60 +132,9 @@ const ExitExam = () => {
             </div>
           </div>
         </div>
-        {/* <div className='departments'>
-          <p> Select Your field of Study!</p>
-          {data.map((dataObj, index) => {
-            return (
-
-              <div className='text'>
-                <ul><li><div key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id)}>{dataObj.title}</div></li></ul>
-
-
-              </div>
-
-
-            );
-          })}
-        </div>
-        <div className='exams_list'>
-
-          {courses.map((course, index) => {
-            return (
-              <div key={course.id} className="product_card">
- 
-                <div className='product_head'>
-                  <img src={Logo} alt='' width={30} height={20} />
-                  <div className="product-title">{course.exam_name
-                 
-                  }</div>
-                </div>
-
-                <div className="product-description">Brief description of the exam questions.</div>
-                <div className="product-questions">This bocklet contains <b>100</b> questions</div>
-                <div className="product-price">Only for 50.00 ETB</div>
-                <div className="buttons">
-                  <button onClick={() => scollToRef.current.scrollIntoView()} className="button-primary" >Preview</button>
-                  <Pay
-                    fname={firstName}
-                    lname={lastName}
-                    email={email}
-                    amount={amount}
-                    public_key={public_key}
-                    tx_ref={tx_ref}
-                    title={course.exam_name} />
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div> */}
-      
-      {/* <div className='previewDiv' ref={scollToRef}>
-        <Questions />
-      </div> */}
       </div>
     </Wrapper>
   </section>
 }
 
-export default ExitExam
+export default ExamsForMe
