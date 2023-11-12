@@ -37,7 +37,6 @@ function Pay({ fname, examId, amount, email, lname}) {
     e.preventDefault();
  
   };
-  https://api.chapa.co/v1/hosted/pay
   return (
     <div>
       <form method="POST" action="https://api.chapa.co/v1/hosted/pay" >
@@ -56,9 +55,7 @@ function Pay({ fname, examId, amount, email, lname}) {
         <input type="hidden" name="meta[title]" value="test" />
         <button type="submit" className='button-outline' >Buy</button>
       </form>
-
     </div>
   )
 }
-
 export default Pay

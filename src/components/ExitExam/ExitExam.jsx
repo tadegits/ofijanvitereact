@@ -135,9 +135,9 @@ const ExitExam = () => {
                 </tr>
                 <tr className='table_body'>
                   <td className='categorizer'>
-                    <button class="ope-button">
+                   <Link to={`/ofijan_question_plate/${exam.id}`}>
                       Open
-                    </button>
+                    </Link>
                   </td>
                   <td className='info'>
                   </td>

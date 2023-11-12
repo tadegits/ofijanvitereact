@@ -1,0 +1,135 @@
+@import "../../styles/mixin.scss";
+@import "../../styles//colors.scss";
+
+.ofijan_exam_plate
+{
+width: 100%;
+height: 400px;
+
+}
+.plate
+{
+display: grid;
+
+grid-template-columns: 1fr 2.5fr 1.5fr;
+height: 100%;
+gap: 0.2rem;
+}
+.flag_plate
+{
+    background-color: $light_gray;
+}
+.question_plate
+{
+    background-color: rgb(186, 230, 230); 
+}
+.answer_plate
+{
+    background-color: $milli_gray;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.11rem;
+    
+    .answer_box
+    {
+        width: 35px;
+        height: 35px;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: center;
+        
+
+    }
+}
+.ofijan_exam_plate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+  }
+  
+  .plate {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flag_plate {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .question_plate {
+    margin-bottom: 20px;
+  }
+  
+  .option_box {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .option_box input {
+    display: none;
+  }
+  
+  .option_box.selected {
+    background-color: #e1f5fe;
+    border: 1px solid $tade-color;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .answer_plate {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .answer_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: #e0e0e0;
+    margin: 0 1px;
+    cursor: pointer;
+  }
+  
+  .answer_box.selected {
+    background-color: $tade-color;
+    color: #ffffff;
+  }
+  
+  
+  
+  .correct_counter {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .navigation_buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navigation_buttons button {
+    padding: 10px 20px;
+    border: none;
+    background-color: $tade-color;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .navigation_buttons button:disabled {
+    background-color: #e0e0e0;
+    color: #757575;
+    cursor: not-allowed;
+  }
+  
