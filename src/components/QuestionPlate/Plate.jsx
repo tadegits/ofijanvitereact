@@ -2,103 +2,121 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 import './plate.scss';
+
 const Plate = () => {
     const { ofin_id } = useParams();
-    const [questionData, setQuestionData] = useState([]);
-    const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0); // State to store the index of the selected question
-    const [selectedOptionIndex, setSelectedOptionIndex] = useState(null); // State to store the index of the selected option
-    const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0); // Counter for correct answers
     const { deptId, userId } = useLoggedInUser();
-  
+    const [questionData, setQuestionData] = useState([]);
+    const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
+    const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
+    const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
+
     useEffect(() => {
-      fetch(`https://ofijan.com/api/way_questions/48`)
-        .then((res) => res.json())
-        .then((data) => {
-          setQuestionData(data);
-        })
-        .catch((err) => console.log(err));
+        fetch(`https://ofijan.com/api/way_questions/48`)
+            .then((res) => res.json())
+            .then((data) => {
+                setQuestionData(data);
+            })
+            .catch((err) => console.log(err));
     }, [ofin_id, userId]);
-  
+
+    useEffect(() => {
+        if (questionData.length > 0) {
+            const selectedOption = questionData[selectedQuestionIndex].options.find((option) => option.selected);
+            setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
+        }
+    }, [selectedQuestionIndex, questionData]);
     const handleQuestionClick = (index) => {
-      setSelectedQuestionIndex(index);
-      setSelectedOptionIndex(null); // Reset the selected option when a new question is selected
+        setSelectedQuestionIndex(index);
+        setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
-  
     const handleOptionClick = (index) => {
-      setSelectedOptionIndex(index);
-      if (questionData[selectedQuestionIndex].options[index].correct === '1') {
-        // Increment the correct answers counter if the selected option is correct
-        setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
-      } else {
-        // Decrement the correct answers counter if the selected option is incorrect
-        setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
-      }
+        const updatedQuestionData = [...questionData];
+        updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map((option, i) => ({
+            ...option,
+            selected: i === index
+        }));
+        setQuestionData(updatedQuestionData);
+        setSelectedOptionIndex(index);
+        if (questionData[selectedQuestionIndex].options[index].correct === '1') {
+            setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
+        } else {
+            setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
+        }
     };
-  
     const handleNextClick = () => {
-      if (selectedQuestionIndex < questionData.length - 1) {
-        setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
-        setSelectedOptionIndex(null); // Reset the selected option when moving to the next question
-      }
+        if (selectedQuestionIndex < questionData.length - 1) {
+            setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
+            setSelectedOptionIndex(null);
+        }
     };
-  
     const handlePreviousClick = () => {
-      if (selectedQuestionIndex > 0) {
-        setSelectedQuestionIndex((prevIndex) => prevIndex - 1);
-        setSelectedOptionIndex(null); // Reset the selected option when moving to the previous question
-      }
+        if (selectedQuestionIndex > 0) {
+            setSelectedQuestionIndex((prevIndex) => prevIndex - 1);
+            setSelectedOptionIndex(null);
+        }
     };
-  
     return (
-      <div className='ofijan_exam_plate'>
-        <div className='plate'>
-          <div className='flag_plate'>{ofin_id}</div>
-  
-          <div className='question_plate'>
-            {questionData.length > 0 && (
-              <>
-                <p dangerouslySetInnerHTML={{ __html:  questionData[selectedQuestionIndex].question_text }}/>
-                {questionData[selectedQuestionIndex].options.map((option, index) => (
-                  <label
-                    className={`option_box ${selectedOptionIndex === index ? 'selected' : ''}`}
-                    key={index}
-                    onClick={() => handleOptionClick(index)}
-                  >
-                    <input
-                      type='radio'
-                      name={`option_${selectedQuestionIndex}`}
-                      value={option.option}
-                      checked={selectedOptionIndex === index}
-                      readOnly
-                    />
-                    {option.option}
-                  </label>
-                ))}
-              </>
-            )} <div className='navigation_buttons'>
-            <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>Previous</button>
-            <button onClick={handleNextClick} disabled={selectedQuestionIndex === questionData.length - 1}>Next</button>
-          </div>
-          </div>
-  
-          <div className='answer_plate'>
-            {questionData.map((question, index) => (
-              <div
-                className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options[selectedOptionIndex]?.correct === '1' ? 'answered_correct' : question.options[selectedOptionIndex] ? 'answered_incorrect' : ''}`}
-                key={index}
-                onClick={() => handleQuestionClick(index)}
-              >
-                {index + 1}
-              </div>
-            ))}
-          </div>
-  
-          <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div>
-  
-         
+        <div className='ofijan_exam_plate'>
+            <div className='plate'>
+                <div className='flag_plate'>
+                    <h5>Question {selectedQuestionIndex + 1}</h5>
+                    <p>Answer saved</p>
+                    <p>Marked out of 100</p>
+                    <p></p>
+                    <p><a href='#'>Flag Question</a></p>
+                    </div>
+                <div className='question_plate'>
+                    {questionData.length > 0 && (
+                        <>
+                            <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                            {questionData[selectedQuestionIndex].options.map((option, index) => (
+                                <label
+                                    className={`option_box ${selectedOptionIndex === index ? 'selected' : ''}`}
+                                    key={index}
+                                    onClick={() => handleOptionClick(index)}
+                                >
+                                    <input
+                                        type='radio'
+                                        name={`option_${selectedQuestionIndex}`}
+                                        value={option.option}
+                                        checked={selectedOptionIndex === index}
+                                        readOnly
+                                    />
+                                    {option.option}
+                                </label>
+                            ))}
+                            <div className='navigation_buttons'>
+                                <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
+                                    Previous
+                                </button>
+                                <button onClick={handleNextClick} disabled={selectedQuestionIndex === questionData.length - 1}>
+                                    Next
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+                <div className='answer_plate'>
+                    {questionData.map((question, index) => (
+                        <div className='answer_box_holder'>
+                            <div className='sasa'>{index + 1}</div>
+                        <div
+                            className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
+                            key={index}
+                            onClick={() => handleQuestionClick(index)}
+                        >
+                            
+                        </div>
+                        
+                        </div>
+                    ))}
+                </div>
+                <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div>
+            </div>
         </div>
-      </div>
     );
-  };
-  
-  export default Plate;
+};
+
+export default Plate;
+
