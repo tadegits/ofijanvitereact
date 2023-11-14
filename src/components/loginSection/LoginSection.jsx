@@ -16,9 +16,11 @@ const LoginSection = () => {
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [registered, setRegistered] = useState("");
     const [role, setRole] = useState("");
+    const [stat, setStat] = useState("");
+    const [statMess, setStatMess] = useState("");
     const navigate = useNavigate();
     const state = useLocation();
-    let userdone, sellarinfor = "";
+    let userdone, sellarinfor, roles = "";
 
     if (state.state !== null) {
 
@@ -51,7 +53,7 @@ const LoginSection = () => {
 
     useEffect(() => {
         const logedUser = localStorage.getItem("user");
-        if(logedUser !== null) {
+        if (logedUser !== null) {
             setIsLoggedin(true)
         }
         if (isLoggedin === true) {
@@ -62,7 +64,7 @@ const LoginSection = () => {
 
     console.log(role);
 
-    if(role === 2 || role === 3){
+    if (role === 2 || role === 3) {
         navigate('/teacher')
     }
 
@@ -73,25 +75,39 @@ const LoginSection = () => {
         const response = await axios.post(
             "http://127.0.0.1:8000/api/login",
             user
-        );
-        const role = JSON.stringify(response.data.user.role_id);
+        ).then(response => {
+            console.log(response);
+            roles = JSON.stringify(response.data.user.role_id);
+            setUser(response.data)
+            console.log("check", response);
+            // set the state of the user
+            // setUser(response.data)
+            if (response.data) {
+                if (role == 3) {
+                    // navigate('/teacher');
+                    window.location.href = '/teacher';
+                }
+                else {
+                    window.location.href = '/seller';
+                }
 
-        // set the state of the user
-        setUser(response.data)
-        if (response.data) {
-            if (role == 3) {
-                // navigate('/teacher');
-                window.location.href = '/teacher';
+            }
+            setIsLoggedin(true);
+            // store the user in localStorage
+            localStorage.setItem('user', JSON.stringify(response.data))
+        }).catch(response => {
+            console.log(response.response.status);
+            setStat(response.response.status);
+            console.log("hjghghghghg", stat);
+            if(stat === 422){
+                setStatMess("Error username or password");
             }
             else {
-                window.location.href = '/seller';
+                setStatMess("");
             }
-
-        }
-        setIsLoggedin(true);
-        // store the user in localStorage
-        localStorage.setItem('user', JSON.stringify(response.data))
-
+            // console.log(response.data.message);
+        });
+        // const role = JSON.stringify(response.data.user.role_id);
     };
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -147,8 +163,8 @@ const LoginSection = () => {
                             <hr></hr>
                         </div>
                         <div className="login__form1">
-
                             <div className="form-contents">
+                            <div className="errormessage">{statMess}</div>
                                 <input type="text" placeholder='Email'
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="email" />
