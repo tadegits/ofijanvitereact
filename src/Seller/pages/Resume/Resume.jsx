@@ -11,6 +11,9 @@ const Resume = () => {
     const [valueRusume, setValueResume] = useState('');
     const [resumeType, setTypeResume] = useState(null);
     const [status, setStatus] = useState("");
+    const [resumeExist, setResumeExist] = useState(false);
+    const [needCheck, setNeedCheck] = useState(false);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -19,13 +22,44 @@ const Resume = () => {
     }
     );
 
+    useEffect(() => {
+        const users = localStorage.getItem('user');
+        const userinfo = JSON.parse(users);
+        if (resumeExist === false) {
+            // console.log("check user", userinfo.user.id);
+            axios.get(`http://127.0.0.1:8000/api/get_resume/${userinfo.user.id}`, {
+                // headers: {
+                //     'Content-Type': 'multipart/form-data'
+                // }
+            })
+                .then(response => {
+                    console.log(response.data.status);
+                    if (response.data.status === "success") {
+                        setResumeExist(true);
+                        setNeedCheck(true);
+                    }
+                    else {
+                        setResumeExist(false)
+                        setNeedCheck(false)
+                    }
+                })
+            // .then((d) => setData(d))
+            // console.log(res);
+        }
+        else {
+            setResumeExist(false)
+        }
+    }, []);
+
+
+
     const getResume = (event) => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
         const resumetype = event.target.files[0];
         setResume(resumes);
         setValueResume(resumesval);
-        console.log(resumetype);
+        // console.log(resumetype);
         if (resumetype.type === 'application/pdf') {
             setTypeResume(resumetype.type);
             setStatus("errormessage");
@@ -47,58 +81,73 @@ const Resume = () => {
             setResumeMess("file size must be less or equal to 2MB");
             setStatus("errormessage");
         }
-        else if(resumeType !== "application/pdf"){
+        else if (resumeType !== "application/pdf") {
             setResumeMess("Upload only pdf format");
             setStatus("errormessage");
         }
         else {
             const formData = new FormData();
             formData.append('file', resume);
-            formData.append('user',  user_id);
+            formData.append('user', user_id);
 
-            axios.post('http://127.0.0.1:8000/api/add_resume', formData,{
-                headers:{
+            axios.post('http://127.0.0.1:8000/api/add_resume', formData, {
+                headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(response => {
-                setResumeMess(response.data.message);
-                setStatus(response.data.status);
-              })
-              .catch(error => {
-                setResumeMess("Error uploading your resume");
-              });
+                .then(response => {
+                    setResumeMess(response.data.message);
+                    setStatus(response.data.status);
+                })
+                .catch(error => {
+                    setResumeMess("Error uploading your resume");
+                });
 
         }
 
     }
-    return (
-        <div className="topic">
-            <section className="login">
-                <Wrapper>
-                    <h3 className='exp'>Upload your resume here</h3>
-                    <div className="login__container">
-                        <div className="form2">
-                            <div className="form-contents1">
-                                <div className="fnames">
-                                    <label>Upload your resume</label>
-                                    <input type="file" placeholder='select your resume' className="fname" onChange={getResume} required />
-                                    <div className={status}>{resumeMess}</div>
-                                </div>
+    if (needCheck === true) {
+        if (resumeExist === true) {
+            return (<>
+                <h1>Resume Exist</h1>
+            </>)
+        }
+        else {
+            return (
+                <div className="topic">
+                    <section className="login">
+                        <Wrapper>
+                            <h3 className='exp'>Upload your resume here</h3>
+                            <div className="login__container">
+                                <div className="form2">
+                                    <div className="form-contents1">
+                                        <div className="fnames">
+                                            <label>Upload your resume</label>
+                                            <input type="file" placeholder='select your resume' className="fname" onChange={getResume} required />
+                                            <div className={status}>{resumeMess}</div>
+                                        </div>
 
-                                <div className="summit-signup">
-                                    <button className='sigbtn' onClick={uploadResume} >Save</button>
-                                    {/* <input type="submit" value="Log In" className="sigbtn"/> */}
-                                </div>
+                                        <div className="summit-signup">
+                                            <button className='sigbtn' onClick={uploadResume} >Save</button>
+                                            {/* <input type="submit" value="Log In" className="sigbtn"/> */}
+                                        </div>
 
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                </Wrapper>
-            </section>
-        </div>
-    )
+                        </Wrapper>
+                    </section>
+                </div>
+            )
+        }
+    }
+    else {
+        <>
+        <h1>Loading</h1>
+        </>
+    }
+
 }
 
 export default Resume
