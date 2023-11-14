@@ -121,7 +121,6 @@ const LoginSection = () => {
         fetch("https://ofijan.com/api/departments")
             .then((res) => res.json())
             .then((d) => setData(d))
-
     }, [])
 
     async function signUp() {
