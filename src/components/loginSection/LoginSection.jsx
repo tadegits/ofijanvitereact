@@ -94,7 +94,7 @@ const LoginSection = () => {
             setEmailMess("Email or username required!");
         }
         else if (password === "") {
-            setEmailMess("Password is required!");
+            setPasswordMess("Password is required!");
         }
         else {
             const user = { email, password };
@@ -127,7 +127,19 @@ const LoginSection = () => {
                 setStat(response.response.status);
                 console.log("hjghghghghg", stat);
                 if (stat === 422) {
-                    setStatMess("Error username or password");
+                    setStatMess("Incorrect username or password");
+
+                    //
+                    function updateState(newValue, delay) {
+                        setTimeout(() => {
+                          state.value = newValue;
+                          setStatMess(state.value);
+                        //   console.log("State updated to: " + state.value);
+                        }, delay);
+                      }
+                      
+                      // Call the function to update state after 3 seconds with a new value of 5
+                      updateState("", 3000);                      
                     // setStatMess("", 30000);
                 }
                 else {
