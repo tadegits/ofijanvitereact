@@ -14,6 +14,7 @@ const Resume = () => {
     const [resumeExist, setResumeExist] = useState(false);
     const [needCheck, setNeedCheck] = useState(false);
     const [data, setData] = useState([]);
+    let number = 0;
 
     useEffect(() => {
         const users = localStorage.getItem('user');
@@ -35,6 +36,11 @@ const Resume = () => {
                 .then(response => {
                     console.log(response.data.status);
                     if (response.data.status === "success") {
+                        // const datas = Array.from(response.data.message);
+                        // console.log("datas",datas);
+                        setData(response.data.message);
+                        console.log(response.data.message);
+                        console.log(data.id)
                         setResumeExist(true);
                         setNeedCheck(true);
                     }
@@ -94,7 +100,8 @@ const Resume = () => {
                 }
             })
                 .then(response => {
-                    setResumeMess(response.data.message);
+                    // const datas = Array.form(response.data.message);
+                    // setResumeMess(datas);
                     setStatus(response.data.status);
                 })
                 .catch(error => {
@@ -108,6 +115,26 @@ const Resume = () => {
             return (
                 <div className="topic">
                     <h1>Resume Exist</h1>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>N<u>o</u></th>
+                                <th>path</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                Array.isArray(data) && data.map(item => (
+                                    <tr key={item.id}>
+                                        <td>{number=number+1}</td>
+                                        <td>{item.path}</td>
+                                        <td>Update / Delete</td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </table>
+                    <div>{data.id}</div>
                 </div>
             )
         }
@@ -143,7 +170,7 @@ const Resume = () => {
     }
     else {
         <>
-        <h1>Loading</h1>
+            <h1>Loading</h1>
         </>
     }
 
