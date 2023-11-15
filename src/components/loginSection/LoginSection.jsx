@@ -125,7 +125,7 @@ const LoginSection = () => {
             }).catch(response => {
                 console.log(response.response.status);
                 setStat(response.response.status);
-                console.log("hjghghghghg", stat);
+                // console.log("hjghghghghg", stat);
                 if (stat === 422) {
                     setStatMess("Incorrect username or password");
 

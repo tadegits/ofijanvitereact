@@ -51,8 +51,6 @@ const Resume = () => {
         }
     }, []);
 
-
-
     const getResume = (event) => {
         const resumes = event.target.files[0];
         const resumesval = event.target.value;
@@ -108,9 +106,11 @@ const Resume = () => {
     }
     if (needCheck === true) {
         if (resumeExist === true) {
-            return (<>
-                <h1>Resume Exist</h1>
-            </>)
+            return (
+                <div className="topic">
+                    <h1>Resume Exist</h1>
+                </div>
+            )
         }
         else {
             return (
