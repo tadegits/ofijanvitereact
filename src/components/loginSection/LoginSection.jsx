@@ -11,7 +11,9 @@ import SellerMain from '../../Seller/pages/SellerMain/SellerMain';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
+    const [emailMess, setEmailMess] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordMess, setPasswordMess] = useState("");
     const [user, setUser] = useState("");
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [registered, setRegistered] = useState("");
@@ -45,6 +47,17 @@ const LoginSection = () => {
         // console.log(sellarinfor);
     }
 
+    function checkemail(e) {
+        const emails = e.target.value;
+        // console.log(emails);
+        setEmail(emails);
+    }
+
+    function checkpassword(e) {
+        const passwords = e.target.value;
+        setPassword(passwords);
+    }
+
     // console.log(isLoggedin);
     // console.log(localStorage.getItem('user'));
     // if (localStorage.getItem('user') !== null) {
@@ -70,44 +83,54 @@ const LoginSection = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const user = { email, password };
-        // send the username and password to the server
-        const response = await axios.post(
-            "http://127.0.0.1:8000/api/login",
-            user
-        ).then(response => {
-            console.log(response);
-            roles = JSON.stringify(response.data.user.role_id);
-            setUser(response.data)
-            console.log("check", response);
-            // set the state of the user
-            // setUser(response.data)
-            if (response.data) {
-                if (role == 3) {
-                    // navigate('/teacher');
-                    window.location.href = '/teacher';
+
+        if (email === "") {
+            setEmailMess("Email or username required!");
+        }
+        else if (password === "") {
+            setEmailMess("Password is required!");
+        }
+        else {
+            const user = { email, password };
+            // send the username and password to the server
+            const response = await axios.post(
+                "http://127.0.0.1:8000/api/login",
+                user
+            ).then(response => {
+                console.log(response);
+                roles = JSON.stringify(response.data.user.role_id);
+                setUser(response.data)
+                console.log("check", response);
+                // set the state of the user
+                // setUser(response.data)
+                if (response.data) {
+                    if (role == 3) {
+                        // navigate('/teacher');
+                        window.location.href = '/teacher';
+                    }
+                    else {
+                        window.location.href = '/seller';
+                    }
+
+                }
+                setIsLoggedin(true);
+                // store the user in localStorage
+                localStorage.setItem('user', JSON.stringify(response.data))
+            }).catch(response => {
+                console.log(response.response.status);
+                setStat(response.response.status);
+                console.log("hjghghghghg", stat);
+                if (stat === 422) {
+                    setStatMess("Error username or password");
+                    // setStatMess("", 30000);
                 }
                 else {
-                    window.location.href = '/seller';
+                    setStatMess("");
                 }
-
-            }
-            setIsLoggedin(true);
-            // store the user in localStorage
-            localStorage.setItem('user', JSON.stringify(response.data))
-        }).catch(response => {
-            console.log(response.response.status);
-            setStat(response.response.status);
-            console.log("hjghghghghg", stat);
-            if(stat === 422){
-                setStatMess("Error username or password");
-            }
-            else {
-                setStatMess("");
-            }
-            // console.log(response.data.message);
-        });
-        // const role = JSON.stringify(response.data.user.role_id);
+                // console.log(response.data.message);
+            });
+            // const role = JSON.stringify(response.data.user.role_id);
+        }
     };
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -164,13 +187,15 @@ const LoginSection = () => {
                         </div>
                         <div className="login__form1">
                             <div className="form-contents">
-                            <div className="errormessage">{statMess}</div>
+                                <div className="errormessage">{statMess}</div>
                                 <input type="text" placeholder='Email'
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={checkemail}
                                     className="email" />
+                                <div className="errormessage">{emailMess}</div>
                                 <input type="password" placeholder='Password'
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={checkpassword}
                                     className="pass" />
+                                <div className="errormessage">{passwordMess}</div>
                                 <div className="summit-forget">
                                     <p>Forgot your password ?</p>
                                 </div>
