@@ -139,7 +139,7 @@ const LoginSection = () => {
                       }
                       
                       // Call the function to update state after 3 seconds with a new value of 5
-                      updateState("", 3000);                      
+                      updateState("", 5000);                      
                     // setStatMess("", 30000);
                 }
                 else {
