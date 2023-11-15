@@ -51,11 +51,17 @@ const LoginSection = () => {
         const emails = e.target.value;
         // console.log(emails);
         setEmail(emails);
+        if(emails !== ""){
+            setEmailMess("");
+        }
     }
 
     function checkpassword(e) {
         const passwords = e.target.value;
         setPassword(passwords);
+        if(passwords !== ""){
+            setPasswordMess("");
+        }
     }
 
     // console.log(isLoggedin);
