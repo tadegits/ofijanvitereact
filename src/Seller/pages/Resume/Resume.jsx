@@ -102,7 +102,6 @@ const Resume = () => {
                 });
 
         }
-
     }
     if (needCheck === true) {
         if (resumeExist === true) {
