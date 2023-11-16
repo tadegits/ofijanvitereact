@@ -1,127 +1,200 @@
 @import "../../styles/mixin.scss";
 @import "../../styles//colors.scss";
 
-.ofijan_exam_plate
-{
-width: 100%;
-height: 400px;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-background-color: #f2f2f2;
-margin-top: 10vh;
-}
-.plate
-{
-display: grid;
+.ofijan_exam_plate {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  margin-top: 0vh;
 
-grid-template-columns: .5fr 2.5fr 1fr;
-height: 100%;
-gap: 0.2rem;
-background-color: #ffffff;
-padding: 0px;
-border-radius: 8px;
+  @include respond(phone) {}
+}
 
-}
-.flag_plate
-{
-    background-color: $milli_gray;
-    height: 50vh;
-    line-height: 2em;
-    margin: 0.41rem;
-    padding: 0.31rem;
-    h5{
-        font-size: x-large;
-        font-weight: bold;
-    }
-    p{
-        font-weight: normal;
-        font-size: 1em;
-    }
-}
-.question_plate
-{
-    background-color: rgb(186, 230, 230); 
-    padding: 3rem;
-    height: fit-content;
-    margin-bottom: 20px;
-}
-.answer_plate
-{
-    background-color: $milli_gray;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.09rem;
-    .answer_box_holder{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 45px;
-        background-color: #e0e0e0;
-        margin: 0 1px;
-        border: 1px solid gray;
-        flex-direction: column;
-        cursor: pointer;
-      }
-    .answer_box
-    {
-        width: 35px;
-        display: flex;
-        height: 50%;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-}  
-  .option_box {
-    display: block;
-    margin-bottom: 10px;
-    cursor: pointer;
-    gap: 1rem;
+.exam_info_plate {
+
+  width: 100%;
+  background-color: $milli_gray;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 15px;
+  margin: 1em;
+
+  .__text {
+    size: 20px;
   }
+}
+
+.plate {
+  display: grid;
+  grid-template-columns: .5fr 2.5fr 1fr;
+  gap: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0px;
+  border-radius: 8px;
+
+  @include respond(phone) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+th{
+  background-color: rgb(117, 116, 116);
+}
+.basicInfoPlate
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
   
- 
-  
-  .answer_plate {
+
+}
+.basicInfoPlate2
+{
+  width: 75%;
+  table{
+    width: 100%;
+  }
+tr{
+  width: 50%;
+}
+td
+{
+  width: 50%;
+}
+}
+
+
+.flag_plate {
+  background-color: $milli_gray;
+  line-height: 2em;
+  margin: 0.41rem;
+  padding: 0.31rem;
+  margin-top: 100px;
+  margin-bottom: 50px;
+
+  h5 {
+    font-size: x-large;
+    font-weight: bold;
+  }
+
+  p {
+    font-weight: normal;
+    font-size: 1em;
+  }
+}
+
+.question_plate {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.questionplate {
+  background-color: rgb(186, 230, 230);
+  padding: 0rem;
+}
+
+.timePlate {
+
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+
+  .timebox2 {
+    border: red solid 1px;
+    width: fit-content;
+    padding: 2px;
+  }
+
+
+}
+
+.questionText {
+  padding: 1rem;
+}
+
+.choicePlate {
+  padding-left: 5rem;
+}
+
+.answer_plate {
+  background-color: $milli_gray;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.09rem;
+
+  .answer_box_holder {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
-  }  
-  .correct_counter {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .navigation_buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .navigation_buttons button {
-    padding: 10px 20px;
-    border: none;
-    background-color: $tade-color;
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 4px;
-    outline: none;
-  }
-  
-  .navigation_buttons button:disabled {
+    align-items: center;
+    width: 30px;
+    height: 29px;
     background-color: #e0e0e0;
-    color: #757575;
-    cursor: not-allowed;
+    margin: 0 1px;
+    border: 1px solid gray;
+    flex-direction: column;
+    cursor: pointer;
   }
- 
-  
-  .answer_box.selected {
- 
-    border: 2px #000 solid;
+
+  .answer_box {
+    width: 30px;
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
   }
-  
-  .answer_box.answered {
-    background-color: rgb(70, 71, 70);
-  }
-  
+}
+
+.option_box {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+
+
+.answer_plate {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.correct_counter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navigation_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation_buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: $tade-color;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+}
+
+.navigation_buttons button:disabled {
+  background-color: #e0e0e0;
+  color: #757575;
+  cursor: not-allowed;
+}
+
+.answer_box_holder.selected {
+  border: 2px #636262 solid;
+}
+
+.answer_box.answered {
+  background-color: #636262;
+}

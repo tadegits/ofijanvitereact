@@ -3,7 +3,7 @@ import './LoginSection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import Img1 from '../../assets/animation_lnk8tp8u.json';
 import Lottie from 'lottie-react';
-import Img2 from '../../assets/logo.png';
+import Img2 from '../../assets/ofijan_logo.png';
 import { useNavigate, Link, Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Seller from '../../Seller';
@@ -79,6 +79,7 @@ const LoginSection = () => {
         // set the state of the user
         setUser(response.data)
         if (response.data) {
+            console.log(response.data.message)
             if (role == 3) {
                 // navigate('/teacher');
                 window.location.href = '/teacher';

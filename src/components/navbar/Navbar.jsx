@@ -1,6 +1,6 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/ofijan_logo.png";
 import { FaBars } from "react-icons/fa";
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import { useEffect, useState, } from "react";

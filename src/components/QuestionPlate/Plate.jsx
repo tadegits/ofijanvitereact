@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 import './plate.scss';
+import Logo from "../../assets/logo.png"
 
 const Plate = () => {
     const { ofin_id } = useParams();
@@ -12,7 +13,7 @@ const Plate = () => {
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
 
     useEffect(() => {
-        fetch(`https://ofijan.com/api/way_questions/48`)
+        fetch(`https://ofijan.com/api/way_questions/${ofin_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
@@ -42,7 +43,26 @@ const Plate = () => {
             setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
         } else {
             setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
+
         }
+
+        // // Send the selected answer to the backend
+        // const selectedQuestion = questionData[questionIndex];
+        // const selectedOption = selectedQuestion.options[optionIndex];
+
+        // axios.post('/selected-answers', {
+        //   user_id: userId,
+        //   question_id: selectedQuestion.id, // Assuming you have question IDs in your data
+        //   option_id: selectedOption.id, // Assuming you have option IDs in your data
+        // })
+        // .then(response => {
+        //   // Handle the response if needed
+        // })
+        // .catch(error => {
+        //   // Handle errors if needed
+        // });
+
+
     };
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length - 1) {
@@ -58,18 +78,51 @@ const Plate = () => {
     };
     return (
         <div className='ofijan_exam_plate'>
+            <div  className='basicInfoPlate'>
+                <table>
+                    <tr>
+                        <th>Picture</th>
+                        <th>Basic Information</th>
+                    </tr>
+                    <tr>
+                        <td><img src={Logo} alt='profile picture'/></td>
+                        <td  className='basicInfoPlate2'>
+                            <tr>
+                            <td>Full Name Million Sime</td>
+                            <td>Institution:  Ofin University</td>
+                            </tr>
+                            <tr><td>Enrolment Type: Regular</td>
+                            <td>University ID O/UR28147/11</td>
+                            </tr>
+                            <tr><td>Exam Center: Ofin University</td>
+                            <td>Department: Computer Science</td>
+                            </tr>
+                        </td>
+                    </tr>
+                </table>
+               
+            </div>
             <div className='plate'>
+
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}</h5>
                     <p>Answer saved</p>
                     <p>Marked out of 100</p>
                     <p></p>
                     <p><a href='#'>Flag Question</a></p>
-                    </div>
+                </div>
                 <div className='question_plate'>
+                    <div className="timePlate"> 
+                    <div className="timebox1"></div>
+                    <div className="timebox2">Time left 20 min</div>
+                    </div>
+                    <div className="questionplate">
                     {questionData.length > 0 && (
                         <>
-                            <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                          <div className="questionText"> 
+                          <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                          </div> 
+                          <div className="choicePlate">
                             {questionData[selectedQuestionIndex].options.map((option, index) => (
                                 <label
                                     className={`option_box ${selectedOptionIndex === index ? 'selected' : ''}`}
@@ -85,7 +138,8 @@ const Plate = () => {
                                     />
                                     {option.option}
                                 </label>
-                            ))}
+                                
+                            ))}</div>
                             <div className='navigation_buttons'>
                                 <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
                                     Previous
@@ -96,24 +150,29 @@ const Plate = () => {
                             </div>
                         </>
                     )}
+                    </div>
                 </div>
                 <div className='answer_plate'>
+                    <h5>Exam Navigation</h5>
+                    <div className='answer_plate'>
                     {questionData.map((question, index) => (
-                        <div className='answer_box_holder'>
-                            <div className='sasa'>{index + 1}</div>
-                        <div
-                            className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
+                        <div className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
                             key={index}
-                            onClick={() => handleQuestionClick(index)}
-                        >
-                            
-                        </div>
-                        
+                            onClick={() => handleQuestionClick(index)}>
+                            <div className='answer_box'>{index + 1}</div>
+                            <div
+                                className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
+                                key={index}
+                                onClick={() => handleQuestionClick(index)}>
+                            </div>
+
                         </div>
                     ))}
+                    </div>
                 </div>
-                <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div>
+                
             </div>
+            <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div>
         </div>
     );
 };

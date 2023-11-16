@@ -1,6 +1,6 @@
 import './SingUp.scss';
 import Wrapper from '../wrapper/Wrapper';
-import Img1 from '../../assets/animation_lnk8tp8u.json';
+import Img1 from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -268,10 +268,8 @@ const LoginSection = () => {
                         </div>
                     </div>
                 </div>
-
             </Wrapper>
         </section>
     )
 }
-
 export default LoginSection

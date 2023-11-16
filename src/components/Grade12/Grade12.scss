@@ -1,0 +1,16 @@
+@import '../../styles/mixin.scss';
+@import '../../styles//colors.scss';
+
+.gr5ad
+.g12_subjects {
+    background-color: $tade-color;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+        list-style: none;
+        margin: 2em;
+    }
+}

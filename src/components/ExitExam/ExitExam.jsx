@@ -89,31 +89,34 @@ const ExitExam = () => {
               </div>
               <div className="underline"></div>
               {/* <div className="__department">From: {exam.department_id ? exam.department.title : "Unknown "}. Department!</div> */}
-              <table className='exam_table' border={1}>
+              <table className='exam_table'  border={1}>
                 <tr className='table_body'>
-                  <td className='categorizer'>Booklet Name: </td>
-                  <td className='info'><b>{exam.exam_name}</b></td>
+                  <td className='categorizer' >Booklet Name: </td>
+                  <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
+                 
                 </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Ofijan Id: </td>
+                <tr className='table_body'> 
+                <td className='categorizer'>Ofijan Id: </td>
                   <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
+                  <td className='categorizer'>Prepared By: </td>
+                  <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
                 </tr>
                 <tr className='table_body'>
-                  <td className='categorizer'>Description </td>
-                  <td className='info'>{exam.description ? exam.description : "No Description!"}</td>
+                <td className='categorizer'>Description </td>
+                  <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
                 </tr>
                 <tr className='table_body'>
                   <td className='categorizer'>Total no of Questions </td>
-                  <td className='info'>{exam.questions_count}</td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Topics Covered </td>
+                  <td className='info'>{exam.questions_count}</td> 
+                  <td className='categorizer' colSpan={2}>Topics Covered </td>
                   <td className='info'>12</td>
                 </tr>
+                
 
                 <tr className='table_body'>
+
                   <td className='categorizer'>Topics </td>
-                  <td className='info'>
+                  <td className='' colSpan={4}>
                     <ul>
                       <li>
                         Electromechanics
@@ -125,21 +128,10 @@ const ExitExam = () => {
 
                 </tr>
                 <tr className='table_body'>
-                  <td className='categorizer'>Price </td>
-                  <td className='info'>
-                    <button class="free-button">
-                      It is free
-
-                    </button>
-                  </td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>
-                   <Link to={`/ofijan_question_plate/${exam.id}`}>
+                   <td  colSpan={5} className='open-holder'>
+                   <Link  className='button-open' to={`/ofijan_question_plate/${exam.id}`}>
                       Open
                     </Link>
-                  </td>
-                  <td className='info'>
                   </td>
                 </tr>
               </table>

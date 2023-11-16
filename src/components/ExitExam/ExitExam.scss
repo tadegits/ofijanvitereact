@@ -1,7 +1,7 @@
 @import "../../styles/mixin.scss";
 @import "../../styles//colors.scss";
 
-.sidebar {
+.sidebar { 
   width: 250px;
   height: 100vh;
   background-color: #d30f0f;
@@ -128,21 +128,41 @@
   tr{
     border: 0px solid $milli_gray;
   }
+  .categorizer{
+    width: 35%;
+   font-weight: bold;
+  }
+  .info
+  {
+    width: 15%;
+  }
   td{
+
     border: 0rem double $milli_gray;
   }
 }
 
-
+.button-open
+{
+color: $tade-color;
+width: 100%;
+padding: 2px;
+display: flex;
+justify-content: center;
+font-weight: bold;
+&:hover{
+  color: #594fb6d8
+}
+}
 .exams_card .__buttons {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.exams_card:hover {
+.examss_card:hover {
   border-color: $tade-color;
-  background-color: #01dee609;
+  background-color: #01dee600;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   /* Add box shadow on hover */
   filter: brightness(110%);

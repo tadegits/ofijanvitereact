@@ -4,7 +4,7 @@ import Img1 from '../../assets/education1.png';
 import Img2 from '../../assets/education2.png';
 import Img3 from '../../assets/sun1.png';
 import Img4 from '../../assets/sun2.png';
-import anim from "../../assets/animation_lnk8tp8u.json"
+import anim from "../../assets/aguytakingexam.json"
 import Lottie from "lottie-react";
 import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
