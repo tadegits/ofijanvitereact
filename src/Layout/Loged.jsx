@@ -11,8 +11,8 @@ import Dashboard from "../components/Dashboard/Dashboard"
 import LoginSection from "../components/loginSection/LoginSection";
 // import Seller from '../components/Seller/Seller';
 import Seller from '../Seller'
-
-
+import API_BASE_URL from '../Globals/apiConfig.jsx';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
 

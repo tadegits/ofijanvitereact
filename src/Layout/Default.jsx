@@ -1,4 +1,5 @@
 import React from 'react'
+import API_BASE_URL from '../Globals/apiConfig';
 import Navbar from '../components/navbar/Navbar';
 import Grade12 from "../components/Grade12/Grade12";
 import Grade8 from "../components/Grade8/Grade8"
@@ -13,13 +14,11 @@ import SignUp from "../components/signUp/SingUp";
 import BlogList from '../components/Blog/BlogList';
 import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
-import API_BASE_URL from '../Globals/apiConfig';
 // import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
 import Seller from '../Seller';
 import Plate from '../components/QuestionPlate/Plate';
 import CoC from '../components/CoC/CoC';
 import axios from 'axios';
-import Seller from '../Seller';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -51,7 +50,7 @@ const Default = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route exact path='/gezi' element={<Gezi/>}/>
+        {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
         <Route path="/seller" element={<Seller />} />
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
