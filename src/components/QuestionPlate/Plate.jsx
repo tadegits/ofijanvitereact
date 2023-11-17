@@ -85,7 +85,7 @@ const Plate = () => {
                         <th>Basic Information</th>
                     </tr>
                     <tr>
-                        <td><img src={Logo} alt='profile picture'/></td>
+                        <td><img src={Logo} width={10} height={10} alt='profile picture'/></td>
                         <td  className='basicInfoPlate2'>
                             <tr>
                             <td>Full Name Million Sime</td>
