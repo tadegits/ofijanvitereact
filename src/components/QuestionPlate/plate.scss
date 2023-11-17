@@ -95,6 +95,9 @@ td
 .questionplate {
   background-color: rgb(186, 230, 230);
   padding: 0rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
 }
 
 .timePlate {
@@ -114,6 +117,7 @@ td
 
 .questionText {
   padding: 1rem;
+  width: 100%;
 }
 
 .choicePlate {
@@ -157,7 +161,10 @@ td
   gap: 1rem;
 }
 
-
+.answer_box_holder:nth-child(n+6) .answer_box {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 .answer_plate {
   display: flex;
@@ -197,4 +204,49 @@ td
 
 .answer_box.answered {
   background-color: #636262;
+}
+
+
+.option_box {
+  
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+// .option_box.selected {
+//   background-color: $tade-color; 
+//   color: white; 
+// }
+
+
+.option_box.correct-answer {
+  border-color: #4CAF50; 
+  background-color: #4CAF50;
+  
+}
+.correct_is.hi.selected
+  {
+    background-color: red;
+    justify-content: end;
+    align-items: end;
+  }
+
+
+  .right-icon-animation {
+    display: inline-block;
+    margin-left: 5px;
+    animation: rightIconAnimation 0.5s ease;
+}
+
+@keyframes rightIconAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
