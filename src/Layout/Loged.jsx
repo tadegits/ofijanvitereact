@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import LNavbar from '../logedin/navbar/LNavbar'
 import Footer from '../components/footer/footer';
 import Grade12 from "../components/Grade12/Grade12";
@@ -14,7 +14,24 @@ import Seller from '../Seller'
 
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
+import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
+
+
 const Loged = () => {
+  const [blogData, setBlogData] = useState([]);
+const [selectedPost, setSelectedPost] = useState(null);
+const [postUri, setPostUri] = useState('');
+
+useEffect(() => {
+  setPostUri(`${API_BASE_URL}/all_blogs`);
+  axios.get(postUri)
+    .then(response => {
+      setBlogData(response.data.blogs);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}, [postUri]);
   return (
     <>
       <LNavbar />

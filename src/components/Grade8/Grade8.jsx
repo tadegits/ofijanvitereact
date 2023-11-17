@@ -1,82 +1,98 @@
-import '../featuresSection/FeaturesSection.scss'
 import Wrapper from '../wrapper/Wrapper'
-import Img1 from '../../assets/resource1.png'
-import Img2 from '../../assets/resource2.png'
-import Img3 from '../../assets/resource3.png'
-import Img4 from '../../assets/resource4.png'
-import Img5 from '../../assets/resource5.png'
-import Img6 from '../../assets/resource6.png'
-
+import './Grade8.scss';
+import Plate from '../QuestionPlate/Plate'
+import { Link } from 'react-router-dom';
 const Grade8 = () => {
-  return <section className="features">
-    <Wrapper>
-      <div className="features__text">
-        <h3>8</h3>
-        <p>
-          Lose john poor same it case do year we Full how way even sigh Extremely nor furniture fat questions now provision incommode.
-        </p>
-      </div>
-      <div className="features__container">
-        <div className="features__feature dark-feature">
-          <img src={Img1} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Free Enrollment
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img2} width={200} alt="" />
-          <h4 className="white-feature-title">
-            Fast and easy registration
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature dark-feature">
-          <img src={Img3} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Crypto Support
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img4} width={200} alt="" />
-          <h4 className="white-feature-title">
-            No Hidden Fees
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature dark-feature">
-          <img src={Img5} width={200} alt="" />
-          <h4 className="dark-feature-title">
-            Automatic card lock/unlock
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
-        <div className="features__feature white-feature">
-          <img src={Img6} width={200} alt="" />
-          <h4 className="white-feature-title">
-            24/7 Customer Support
-          </h4>
-          <p>
-            Engaged was the evident pleased husband. Ye goodness falicity does disposal dwellin no.
-          </p>
-        </div>
-
+  return <section className="grade8">
+    <Wrapper className="grade8-holder">
+      <ul className='g8_subjects'>
+        <li>Herrega </li>
+        <li>Baayooloojii</li>
+        <li>kemiistrii</li>
+        <li>Fiiziksii</li>
+        <li>Haawaasa</li>
+        <li>English</li>
+      </ul>
+      <div className='g8_exams_list'>
+        
+        <table className='single_exam' border={1}>
+          <tr>
+            <td><b>BOOKLET CODE: 242</b></td>
+            <td><b>SUBJECT CODE:10</b></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><b>TIME ALLOWED: 3:00 HOURS</b></td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>THIS BOOKLET CONTAINS <b>MATHEMATICS EXAMINATION</b> FOR THE <b>SOCIAL SCIENCE </b>CANDIDATES ONLY</td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>IN THIS EXAMINATION THERE ARE A TOTLA OF <b>65 MULTIPLE CHOICE ITEMS</b></td>
+          </tr>
+          <tr>
+          <td  colSpan={5} className='open-holder'>
+                   <Link  className='button-open' to={`/ofijan_question_plate/1`}>
+                      Open
+                    </Link>
+                  </td>
+            </tr>
+        </table>
+       
+      
+        <table className='single_exam' border={1}>
+          <tr>
+            <td><b>BOOKLET CODE: 242</b></td>
+            <td><b>SUBJECT CODE:10</b></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><b>TIME ALLOWED: 3:00 HOURS</b></td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>THIS BOOKLET CONTAINS <b>MATHEMATICS EXAMINATION</b> FOR THE <b>SOCIAL SCIENCE </b>CANDIDATES ONLY</td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>IN THIS EXAMINATION THERE ARE A TOTLA OF <b>65 MULTIPLE CHOICE ITEMS</b></td>
+          </tr>
+          <tr>
+          <td  colSpan={5} className='open-holder'>
+                   <Link  className='button-open' to={`/ofijan_question_plate/1`}>
+                      Open
+                    </Link>
+                  </td>
+            </tr>
+        </table>
+        
+        <table className='single_exam' border={1}>
+          <tr>
+            <td><b>BOOKLET CODE: 242</b></td>
+            <td><b>SUBJECT CODE:10</b></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><b>TIME ALLOWED: 3:00 HOURS</b></td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>THIS BOOKLET CONTAINS <b>MATHEMATICS EXAMINATION</b> FOR THE <b>SOCIAL SCIENCE </b>CANDIDATES ONLY</td>
+          </tr>
+          <br></br>
+          <tr>
+            <td colSpan={3}>IN THIS EXAMINATION THERE ARE A TOTLA OF <b>65 MULTIPLE CHOICE ITEMS</b></td>
+          </tr>
+          <tr>
+          <td  colSpan={5} className='open-holder'>
+                   <Link  className='button-open' to={`/ofijan_question_plate/1`}>
+                      Open
+                    </Link>
+                  </td>
+            </tr>
+        </table>
       </div>
     </Wrapper>
   </section>

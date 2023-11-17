@@ -16,32 +16,18 @@ const CompanySection = () => {
   return <section className="company">
     <Wrapper>
       <hr></hr>
-      <h2>1000,000+ Exit Exam questions and answer!</h2>
+      <h3>Pay easly with all banks in Ethiopia</h3>
+      <p>Powered by Chapa Payment API</p>
       <div className="company__companies">
-     
       </div>
       <div className="company__container">
-        <div className="company__left">
-           <img src={Logo} alt="" className='img-1'/>
-          <div className="img-2">
-            <img src={Logo} alt="" /> 
-          </div>
-          <div className="img-3">
-            <img src={Logo} alt="" /> 
-          </div>
-        </div>
         <div className="company__right">
-          <h1>How to get the exams!</h1>
-          <p>
-           Simple steps
-          </p>
-          <div className="company__points-container">
             <div className="company__point">
               <div className="company__point-icon">
                 <div>1</div>
               </div>
               <div className="company__point-text">
-                Select the course you wanted.
+                <h5>Select Exam you want to take</h5>
               </div>
             </div>
             <div className="company__point">
@@ -49,7 +35,7 @@ const CompanySection = () => {
                 <div>2</div>
               </div>
               <div className="company__point-text">
-                Select Your prefered Payment method
+                <h5>Click <button className='button-primary'><h5>Buy</h5></button></h5>
               </div>
             </div>
             <div className="company__point">
@@ -57,12 +43,41 @@ const CompanySection = () => {
                 <div>3</div>
               </div>
               <div className="company__point-text">
-                Start test right away.
+                <h5>Select your convinient bank</h5>
+              </div>
+            </div>
+          </div>
+       
+        <div className="company__right">
+         
+       
+            <div className="company__point">
+              <div className="company__point-icon">
+                <div>4</div>
+              </div>
+              <div className="company__point-text">
+                <h5>Add Your information</h5>
+              </div>
+            </div>
+            <div className="company__point">
+              <div className="company__point-icon">
+                <div>5</div>
+              </div>
+              <div className="company__point-text">
+                <h5>Click <button className='button-primary'><h5>Ok</h5></button></h5>
+              </div>
+            </div>
+            <div className="company__point">
+              <div className="company__point-icon">
+                <div>6</div>
+              </div>
+              <div className="company__point-text">
+                <h5>Start test right away.</h5>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+  
     </Wrapper>
   
   </section>

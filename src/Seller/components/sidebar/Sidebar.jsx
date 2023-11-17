@@ -21,13 +21,12 @@ import TopicSharpIcon from '@mui/icons-material/TopicSharp';
 import TokenIcon from '@mui/icons-material/Token';
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import useLoggedInUser from '../../../Globals/useLoggedInUser';
 
 export default function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [activeItem, setActiveItem] = useState('');
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState('');
   const [user, setUser] = useState('');
+  const { deptId, userId } = useLoggedInUser();
   const navigate = useNavigate();
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -37,17 +36,21 @@ export default function Sidebar() {
       setUser(foundUser);
       setRole(parseInt(roleUser.user.role_id))
     }
-  }, []);
-  const handleMenuClick = (item) => {
-    setIsExpanded(!isExpanded);
-    setActiveItem(item);
+  }, [role]);
+  const [expandedMenu, setExpandedMenu] = useState(null);
+  const handleMenuClick = (menu) => {
+    if (expandedMenu === menu) {
+      setExpandedMenu(null);
+    } else {
+      setExpandedMenu(menu);
+    }
   };
   if (role === 2) {
     return (
 
       <div className="sidebar">
         <div className="sidebarWrapper">
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Dashboard</h3>
             <ul className="sidebarList">
@@ -67,7 +70,7 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+          <div className={`sidebarMenu ${expandedMenu === 'reference' ? 'expanded' : ''} `}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('reference')}>Manage References</h3>
             <ul className="sidebarList">
               <Link to="/references" className="link">
@@ -84,8 +87,9 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" onClick={handleMenuClick} >Manage Topic/Courses</h3>
+          <div className={`sidebarMenu ${expandedMenu === 'topic' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() => handleMenuClick('topic')} >Manage Topic/Courses</h3>
+
             <ul className="sidebarList">
               <Link to="/add_topics" className="link">
                 <li className="sidebarListItem">
@@ -101,8 +105,8 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" >Manage Exams</h3>
+          <div className={`sidebarMenu ${expandedMenu === 'exams' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() => handleMenuClick('exams')}>Manage Exams</h3>
             <ul className="sidebarList">
               <Link to="/add_exams" className="link">
                 <li className="sidebarListItem">
@@ -118,8 +122,9 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" >Manage Questions</h3>
+          <div className={`sidebarMenu ${expandedMenu === 'questions' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() => handleMenuClick('questions')}>Manage Questions</h3>
+
             <ul className="sidebarList">
               <Link to="/select_exam" className="link">
                 <li className="sidebarListItem">
@@ -135,8 +140,8 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle"  >Notifications</h3>
+          {/* <div className={`sidebarMenu ${expandedMenu === 'notifications' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() =>handleMenuClick('notifications')} >Notifications</h3>
             <ul className="sidebarList">
               <li className="sidebarListItem">
                 <MailOutline className="sidebarIcon" />
@@ -151,9 +156,9 @@ export default function Sidebar() {
                 Messages
               </li>
             </ul>
-          </div>
-          <div className="sidebarMenu">
-            <h3 className="sidebarTitle">Staff</h3>
+          </div> */}
+          {/* <div className={`sidebarMenu ${expandedMenu === 'staff' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() =>handleMenuClick('staff')}>Staff</h3>
             <ul className="sidebarList">
               <li className="sidebarListItem">
                 <WorkOutline className="sidebarIcon" />
@@ -168,13 +173,35 @@ export default function Sidebar() {
                 Reports
               </li>
             </ul>
+          </div> */}
+          <div className={`sidebarMenu ${expandedMenu === 'blog_w' ? 'expanded' : ''}`}>
+            <h3 className="sidebarTitle" onClick={() => handleMenuClick('blog_w')}>Blog Writer</h3>
+            <ul className="sidebarList">
+              <Link to="/write_blog" className="link">
+                <li className="sidebarListItem">
+                  <WorkOutline className="sidebarIcon" />
+                  Write
+                </li>
+              </Link>
+              <Link to="/edit_blog" className="link">
+              <li className="sidebarListItem">
+                <Timeline className="sidebarIcon" />
+                Edit
+              </li>
+              </Link>
+              <Link to="/blog_analytics" className="link">
+              <li className="sidebarListItem">
+                <Report className="sidebarIcon" />
+                Analytics
+              </li>
+              </Link>
+            </ul>
           </div>
-
         </div>
       </div>
     );
   }
-  else if (role === 3) {
+  else if(role === 2){
     return (
 
       <div className="sidebar">
@@ -190,10 +217,10 @@ export default function Sidebar() {
                 </li>
               </Link>
               <Link to="/experience" className="link">
-                <li className="sidebarListItem">
-                  <AccountBalance className="sidebarIcon" />
-                  Work Expereince
-                </li>
+                  <li className="sidebarListItem">
+                    <AccountBalance className="sidebarIcon" />
+                    Work Expereince
+                  </li>
               </Link>
               <Link to="/resume" className="link">
                 <li className="sidebarListItem">

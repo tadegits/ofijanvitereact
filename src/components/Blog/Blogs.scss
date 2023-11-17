@@ -3,7 +3,6 @@
 
 
 
-
 .blog__section {
     align-items: right;
     justify-items: left;
@@ -11,7 +10,12 @@
     background-color: rgb(255, 255, 255);
     width: 100%;
 
-
+    h1{
+        color: #000;
+        font-size: xx-large;
+        letter-spacing: 0.31px;
+    }
+    
     h3 {
         font-size: 35px;
         align-items: center;
@@ -51,7 +55,6 @@
     height: 1rem;
     padding: 3rem;
     justify-items: center;
-    overflow-y: scroll;
     scrollbar-color: rgb(241, 255, 192) rgb(203, 230, 173);
     height: 700px;
     scroll-behavior: smooth;
@@ -148,6 +151,7 @@
 .author-photo {
     width: 50px;
     height: 50px;
+    padding: 10px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
@@ -189,13 +193,13 @@
 .fullblog {
     display: flex;
     width: 100%;
-    background-color: #ffffff;
+    background-color: rgb(255, 255, 255);
     justify-content: center;
 
    
     &__content {
         justify-content: center;
-        width: 50%;
+        width: 60%;
     }
     &__title {
         font-size: 50px;
@@ -205,9 +209,16 @@
     p {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-align: justify;
+        font-weight: 100px;
+        color: #000;
 
     }
-
+h1{
+    color: #000;
+    font-size: xx-large;
+    font-family: 'Lucida Sans', sans-serif;
+    letter-spacing: 0.21px;
+}
     ;
 }
 

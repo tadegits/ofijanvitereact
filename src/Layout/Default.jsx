@@ -16,7 +16,10 @@ import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
 // import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
 import Seller from '../Seller';
+import Plate from '../components/QuestionPlate/Plate';
+import CoC from '../components/CoC/CoC';
 import axios from 'axios';
+import Seller from '../Seller';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -39,6 +42,7 @@ const Default = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/CoC" element={<CoC/>} />
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
@@ -47,12 +51,13 @@ const Default = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route exact path='/gezi' element={<Gezi/>}/>
+        <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
         <Route path="/seller" element={<Seller />} />
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}
         {/* <Route exact path="/ofijan_blogs" element={<Blog />} />
         <Route path="/blog/:category/:title" element={<BlogReader blogs={blogData} />} /> */}
-        
         <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />

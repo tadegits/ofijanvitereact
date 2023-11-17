@@ -1,6 +1,6 @@
 import './SingUp.scss';
 import Wrapper from '../wrapper/Wrapper';
-import Img1 from '../../assets/animation_lnk8tp8u.json';
+import Img1 from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
 import Img2 from '../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -233,7 +233,7 @@ const LoginSection = () => {
                                     </div>
                                     <div className="phones">
                                         <label>Phone Number</label>
-                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
+                                        <input type="tell" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
                                         <div className="errormessage">{phonemessage}</div>
                                     </div>
                                 </div>
@@ -267,10 +267,8 @@ const LoginSection = () => {
                         </div>
                     </div>
                 </div>
-
             </Wrapper>
         </section>
     )
 }
-
 export default LoginSection

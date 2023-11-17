@@ -1,9 +1,10 @@
 @import "../../styles/mixin.scss";
+@import "../../styles//colors.scss";
 
-.sidebar {
+.sidebar { 
   width: 250px;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #d30f0f;
   position: fixed;
   top: 0;
   left: 0;
@@ -30,191 +31,218 @@
 .main-content.closed {
   margin-left: -250px;
 }
-.exitexam
-{
-    display: grid;
-    height: max-content;
-    background-color: #ffffff00;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    grid-template-columns: 1fr 3fr;
-    @include respond(phone)
-    {
-      display: grid;
-      margin-left: 0%;
-    }
-    @include respond(tab-land)
-    {
-      display: block
-    }
-    @include respond(tab-port)
-    {
-      display: block
-    }
-   
-}
-.exams_list{
-    
-    background-color: #ffffff00;
-    margin-left: 10px;
-    display: grid;
-    gap: 1rem;
-    height: 100vh;
-    margin-right: 25%;
-    grid-template-columns: repeat(3, 1fr);
-    border-radius: 0%;
-    align-items: left;
-    justify-content: left;
-    color: #110d34;
-    flex-direction: row;
-    @include respond(phone)
-    {
-      display: grid;
-      background-color: #2bda08fa;
-      margin-right: 0%;
-      overflow-y: scroll;
-      margin-left: 0%;
-      
-    }
-    @include respond(tab-port)
-    {
-      background-color: #000000;
-      display: grid;
-      margin-left: 0px;
-      grid-template-rows: 1fr;
-    }
-    @include respond(tab-land)
-    {
-      display: grid;
-      padding-left: 0px;
-      grid-template-columns:  1fr 1fr;
-    }
-}
-.departments{
-   background-color: #ffffff00;
-   overflow-y: scroll;
-   max-height: 500px;
-   margin-bottom: 20px;
-   width: 250px;
-   height: 100vh;
-  
-a{
-    text-decoration: none;
-    color: rgb(82, 12, 82);
-}
-li{
-    list-style: none;
-    gap: 0.1rem;
-    margin-bottom: 2px;
-    &:hover{
-        background-color: rgb(184, 179, 184);
-    a{
-    color: white;
-    }       
-}
-   
-}
 
-}
-
-
-
-.product_card .buttons {
+.select_field {
+  width: 100%;
+  height: 150px;
+  background-color: #fff;
   display: flex;
-  justify-content: space-between;
-}
-.product_card {
-  width: 300px;
-  height: max-content;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  @include respond(phone)
-  {
-    margin: 0px;
-    display: grid;
-    width: 300px;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  @include respond(phone) {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+
+
+  .input_holder {
+
+    height: 30%;
+    gap: 0.1rem;
+    display: flex;
+    border: solid 1px $tade-color;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    p {
+      font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+      width: 50%;
+      height: 50%;
+      font-size: 1rem;
+      align-items: center;
+    }
+
+    select {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 16px;
+      color: $tade-color;
+      outline: none;
+    }
+
+    option {
+      width: 100%;
+      background-color: #fff;
+      color: $tade-color
+    }
   }
 }
-.product_card:hover
-{
-  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
-  background-color: #13dfe607;
+
+.exit_exam_page {
+  width: 100%;
+  height: 700px;
 }
-.product_card .buttons a button{
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  text-decoration: none;
+
+.examsholder {
+  display: flex;
+  width: 100%;
+  height: max-content;
+  min-height: 400px;
+  background-color: rgb(255, 255, 255);
+  flex-wrap: wrap;
+  justify-content: space-evenly
+}
+
+.exams_card {
+  min-width: 350px;
+  width: 45%;
+  height: max-content;
+  display: block;
+  border: 3px solid rgba(243, 238, 238, 0.247);
+  border-radius: 0px;
+  justify-content: start;
+  align-items: start;
+  padding: 0px;
+  margin: 5px;
+  align-items: flex-end;
+  background-color: #ffffff;
+  box-shadow: #4CAF50;
+  .underline
+  {
+    background-color: $milli_gray;
+  }
+}
+.exam_table
+{
+  padding: 15px;
+  width: 100%;
+  li{
+    list-style: square;
+  }
+  tr{
+    border: 0px solid $milli_gray;
+  }
+  .categorizer{
+    width: 35%;
+   font-weight: bold;
+  }
+  .info
+  {
+    width: 15%;
+  }
+  td{
+
+    border: 0rem double $milli_gray;
+  }
+}
+
+.button-open
+{
+color: $tade-color;
+width: 100%;
+padding: 2px;
+display: flex;
+justify-content: center;
+font-weight: bold;
+&:hover{
+  color: #594fb6d8
+}
+}
+.exams_card .__buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.examss_card:hover {
+  border-color: $tade-color;
+  background-color: #01dee600;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  /* Add box shadow on hover */
+  filter: brightness(110%);
+  /* Add glow effect on hover */
+
+}
+
+.__price {
+
+  display: flex;
+  justify-content: end;
+
+  p {
+    color: rgb(255, 255, 255);
+    background-color: #d30f0f;
+    border-radius: 2px;
+    padding: 0.11rem;
+    width: max-content;
+    font-weight: bold;
+  }
+}
+
+.btnpreview {
+  background-color: #ffffff00;
+  border-radius: 0px;
   font-weight: bold;
+  padding: 5px;
+  color: $tade-color;
+  text-decoration: underline;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ 
+}
+
+.exams_head {
+  width: 100%;
+  font-weight: bold;
+  display: flex;
+  gap: 5rem;
+  background-color: white;
+ .__title
+ {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-items: center;
+  margin-right: 60px;
+ }
+ .__logo
+ {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+ }
+}
+/* Style for the button */
+.free-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.ope-button {
+  padding: 10px 20px;
+  background-color: $tade-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.product_card .buttons .preview-button {
-  background-color: #64167c;
-  color: #fff;
-  border: none;
-}
-
-.product_card .buttons .buy-button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-}
-
-.product_card .buttons .buy-button:hover,
-.product_card .buttons .preview-button:hover {
-  opacity: 0.8;
-}
-
-  
-  .product-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .product_head{
-display: grid;
-grid-template-columns: 1fr 4fr;
-img{
-  background-color: #ffffff00;
-  border-radius: 200px;
-  padding: 0px;
-  
-}  
-}
-  .product-description {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 10px;
-  }
-  
-  .product-questions {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product-answer {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product_card .btn {
-    background-color: #00c853;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .product_card .btn:hover {
-    background-color: #009624;
-  }
-  

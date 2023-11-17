@@ -8,10 +8,10 @@ const LNavbar = () => {
    const navigate = useNavigate();
    const [showNav, setShowNav] = useState(false);
    const [user, setUser] = useState("");
-  
+
    const handleLogout = () => {
       localStorage.clear();
-        window.location.href = '/';
+      window.location.href = '/';
 
    };
    return (
@@ -27,23 +27,29 @@ const LNavbar = () => {
                   <Link to="/">Home</Link>
                </li>
                <li onClick={() => setShowNav(false)}>
-                  <Link to="/Grade6">Grade 6<sup>th</sup></Link>
+                  <Link to="/Exit_Exam">Exit Exam</Link>
+               </li>
+               <li onClick={() => setShowNav(false)}>
+                  <Link to="/Grade12">COC</Link>
+               </li>
+               <li onClick={() => setShowNav(false)}>
+                  <Link to="/Grade12">Grade 12<sup>th</sup></Link>
                </li>
                <li onClick={() => setShowNav(false)}>
                   <Link to="/Grade8">Grade 8<sup>th</sup></Link>
                </li>
                <li onClick={() => setShowNav(false)}>
-                  <Link to="/Grade12">Grade 12<sup>th</sup></Link>
-
+                  <Link to="/Grade6">Grade 6<sup>th</sup></Link>
                </li>
                <li onClick={() => setShowNav(false)}>
-                  <Link to="/Exit_Exam">Exit Exam</Link>
+                  <a href="/ofijan_blogs">Blog</a>
                </li>
-               <li onClick={() => setShowNav(false)}>
-                  <a href="#">About</a>
+               <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+               onClick={handleLogout}
+            >
+               Log out
                </li>
             </ul>
-
             <Link to='#' onClick={handleLogout} className="button-primary 
 navbarz__btn">
                Log out
@@ -54,6 +60,7 @@ navbarz__btn">
             >
                <FaBars />
             </div>
+            
          </Wrapper>
       </nav>
    )
