@@ -11,14 +11,18 @@ import SellerMain from '../../Seller/pages/SellerMain/SellerMain';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
+    const [emailMess, setEmailMess] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordMess, setPasswordMess] = useState("");
     const [user, setUser] = useState("");
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [registered, setRegistered] = useState("");
     const [role, setRole] = useState("");
+    const [stat, setStat] = useState("");
+    const [statMess, setStatMess] = useState("");
     const navigate = useNavigate();
     const state = useLocation();
-    let userdone, sellarinfor = "";
+    let userdone, sellarinfor, roles = "";
 
     if (state.state !== null) {
 
@@ -43,6 +47,23 @@ const LoginSection = () => {
         // console.log(sellarinfor);
     }
 
+    function checkemail(e) {
+        const emails = e.target.value;
+        // console.log(emails);
+        setEmail(emails);
+        if(emails !== ""){
+            setEmailMess("");
+        }
+    }
+
+    function checkpassword(e) {
+        const passwords = e.target.value;
+        setPassword(passwords);
+        if(passwords !== ""){
+            setPasswordMess("");
+        }
+    }
+
     // console.log(isLoggedin);
     // console.log(localStorage.getItem('user'));
     // if (localStorage.getItem('user') !== null) {
@@ -51,7 +72,7 @@ const LoginSection = () => {
 
     useEffect(() => {
         const logedUser = localStorage.getItem("user");
-        if(logedUser !== null) {
+        if (logedUser !== null) {
             setIsLoggedin(true)
         }
         if (isLoggedin === true) {
@@ -60,47 +81,85 @@ const LoginSection = () => {
         }
     })
 
-    console.log(role);
+    // console.log(role);
 
-    if(role === 2 || role === 3){
-        navigate('/teacher')
-    }
+    // if (role === 2 || role === 3) {
+    //     navigate('/')
+    // }
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const user = { email, password };
-        // send the username and password to the server
-        const response = await axios.post(
-            "http://127.0.0.1:8000/api/login",
-            user
-        );
-        const role = JSON.stringify(response.data.user.role_id);
 
-        // set the state of the user
-        setUser(response.data)
-        if (response.data) {
-            console.log(response.data.message)
-            if (role == 3) {
-                // navigate('/teacher');
-                window.location.href = '/teacher';
-            }
-            else {
-                window.location.href = '/seller';
-            }
-
+        if (email === "") {
+            setEmailMess("Email or username required!");
         }
-        setIsLoggedin(true);
-        // store the user in localStorage
-        localStorage.setItem('user', JSON.stringify(response.data))
+        else if (password === "") {
+            setPasswordMess("Password is required!");
+        }
+        else {
+            const user = { email, password };
+            // send the username and password to the server
+            const response = await axios.post(
+                "http://127.0.0.1:8000/api/login",
+                user
+            ).then(response => {
+                console.log(response);
+                roles = JSON.stringify(response.data.user.role_id);
+                setUser(response.data)
+                console.log("check", response);
+                // set the state of the user
+                setUser(response.data)
+                console.log(role)
+                if (response.data) {
+                    // if (role === 3) {
+                    //     console.log("check your problem please")
+                    //     // navigate('/');
+                        window.location.href = '/';
+                    // }
+                    // else {
+                    //     // window.location.href = '/seller';
+                    //     window.location.href = '/';
+                    // }
 
+                }
+                setIsLoggedin(true);
+                // store the user in localStorage
+                localStorage.setItem('user', JSON.stringify(response.data))
+            }).catch(response => {
+                console.log(response.response.status);
+                setStat(response.response.status);
+                // console.log("hjghghghghg", stat);
+                if (stat === 422) {
+                    setStatMess("Incorrect username or password");
+
+                    //
+                    function updateState(newValue, delay) {
+                        setTimeout(() => {
+                          state.value = newValue;
+                          setStatMess(state.value);
+                        //   console.log("State updated to: " + state.value);
+                        }, delay);
+                      }
+                      
+                      // Call the function to update state after 3 seconds with a new value of 5
+                      updateState("", 5000);                      
+                    // setStatMess("", 30000);
+                }
+                else {
+                    setStatMess("");
+                }
+                // console.log(response.data.message);
+            });
+            // const role = JSON.stringify(response.data.user.role_id);
+        }
     };
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            const foundUser = JSON.stringify(loggedInUser);
-            setUser(foundUser);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const loggedInUser = localStorage.getItem("user");
+    //     if (loggedInUser) {
+    //         const foundUser = JSON.stringify(loggedInUser);
+    //         setUser(foundUser);
+    //     }
+    // }, []);
 
     <Routes>
         <Route path="/teacher" element={<Seller />} />
@@ -148,14 +207,16 @@ const LoginSection = () => {
                             <hr></hr>
                         </div>
                         <div className="login__form1">
-
                             <div className="form-contents">
+                                <div className="errormessage">{statMess}</div>
                                 <input type="text" placeholder='Email'
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={checkemail}
                                     className="email" />
+                                <div className="errormessage">{emailMess}</div>
                                 <input type="password" placeholder='Password'
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={checkpassword}
                                     className="pass" />
+                                <div className="errormessage">{passwordMess}</div>
                                 <div className="summit-forget">
                                     <p>Forgot your password ?</p>
                                 </div>

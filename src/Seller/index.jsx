@@ -27,6 +27,8 @@ import EditBlog from "./pages/blog/Edit";
 import BlogAnalytics from "./pages/blog/Analytics"
 
 import Resume from "./pages/Resume/Resume";
+import Document from "./pages/Document/Document";
+import Seller from '../components/Seller/Seller';
 
 
 function index() {
@@ -58,6 +60,7 @@ function index() {
           {/* Education Level */}
           <Route exact path="/educationlevel" element={<EducationLevel />} />
           <Route exact path="/resume" element={<Resume />} />
+          <Route exact path="/document" element={<Document />} />
           <Route exact path="/mainseller" element={<SellerMain />} />
           {/* Experience */}
           <Route exact path="/experience" element={<Experience />} />
@@ -68,6 +71,7 @@ function index() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/seller" element={<Seller/>} />
         </Routes>
       </div>
     </>
