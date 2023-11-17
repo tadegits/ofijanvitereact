@@ -23,35 +23,33 @@ function App() {
     }
   }, []);
 
-console.log(role) 
+  console.log(role)
   if (user) {
-    if(role===2)
-    {
-       return (
-      <>
-        <Loged/>
-        <Footer/>
-      </>
-    )
+    if (role === 2) {
+      return (
+        <>
+          <Loged />
+          <Footer />
+        </>
+      )
     }
-    else if(role===3){
-return(
-  <>
-  <Seller/>
-  </>
-)
+    else if (role === 3) {
+      return (
+        <>
+          <Seller />
+        </>
+      )
     }
-   
+
   }
   else {
     return (
       <>
-        <Default/>
-        <Footer/>
+        <Default />
+        <Footer />
       </>
     )
   }
 
-  
 }
 export default App

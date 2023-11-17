@@ -23,6 +23,7 @@ import SellerMain from "./pages/SellerMain/SellerMain";
 import Experience from "./pages/Experience/Experience";
 import Resume from "./pages/Resume/Resume";
 import Document from "./pages/Document/Document";
+import Seller from '../components/Seller/Seller';
 
 function index() {
   
@@ -60,6 +61,7 @@ function index() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/seller" element={<Seller/>} />
         </Routes>
       </div>
     </>

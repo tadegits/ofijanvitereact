@@ -9,6 +9,8 @@ import Home from "../components/Home/Home"
 import LExitExam from "../logedin/ExitExam/ExitExam.jsx"
 import Dashboard from "../components/Dashboard/Dashboard"
 import LoginSection from "../components/loginSection/LoginSection";
+// import Seller from '../components/Seller/Seller';
+import Seller from '../Seller'
 
 
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
@@ -18,6 +20,7 @@ const Loged = () => {
       <LNavbar />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/seller" element={<Seller />} />
           <Route path="/" element={<Home />} />
           <Route path="/Grade12" element={<Grade12 />} />
           <Route path="/Grade8" element={<Grade8 />} />

@@ -15,6 +15,7 @@ import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
 import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
+import Seller from '../Seller';
 import axios from 'axios';
 const Default = () => {
 
@@ -46,7 +47,9 @@ const Default = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route exact path='/gezi' element={<Gezi/>}/>
+        <Route path="/seller" element={<Seller />} />
+        {/* <Route exact path='/gezi' element={<Gezi />} /> */}
+        {/* <Route path='/seller' element={<Seller />} /> */}
         {/* <Route exact path="/ofijan_blogs" element={<Blog />} />
         <Route path="/blog/:category/:title" element={<BlogReader blogs={blogData} />} /> */}
         

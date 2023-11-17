@@ -83,9 +83,9 @@ const LoginSection = () => {
 
     // console.log(role);
 
-    if (role === 2 || role === 3) {
-        navigate('/')
-    }
+    // if (role === 2 || role === 3) {
+    //     navigate('/')
+    // }
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -108,16 +108,18 @@ const LoginSection = () => {
                 setUser(response.data)
                 console.log("check", response);
                 // set the state of the user
-                // setUser(response.data)
+                setUser(response.data)
+                console.log(role)
                 if (response.data) {
-                    if (role == 3) {
-                        // navigate('/teacher');
-                        window.location.href = '/dashboard';
-                    }
-                    else {
-                        // window.location.href = '/seller';
+                    // if (role === 3) {
+                    //     console.log("check your problem please")
+                    //     // navigate('/');
                         window.location.href = '/';
-                    }
+                    // }
+                    // else {
+                    //     // window.location.href = '/seller';
+                    //     window.location.href = '/';
+                    // }
 
                 }
                 setIsLoggedin(true);
@@ -151,13 +153,13 @@ const LoginSection = () => {
             // const role = JSON.stringify(response.data.user.role_id);
         }
     };
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            const foundUser = JSON.stringify(loggedInUser);
-            setUser(foundUser);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const loggedInUser = localStorage.getItem("user");
+    //     if (loggedInUser) {
+    //         const foundUser = JSON.stringify(loggedInUser);
+    //         setUser(foundUser);
+    //     }
+    // }, []);
 
     <Routes>
         <Route path="/teacher" element={<Seller />} />
