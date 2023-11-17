@@ -11,6 +11,8 @@ import { useState, useEffect} from 'react';
 const Hero = () => {
    
         const [text, setText] = useState('Study with exams!');
+        const [role, setRole] = useState("");
+        const [isLoggedin, setIsLoggedin] = useState(false);
       
         useEffect(() => {
           const interval = setInterval(() => {
@@ -20,7 +22,17 @@ const Hero = () => {
       
           return () => clearInterval(interval);
         }, [text])
-    
+
+        useEffect(() => {
+          const logedUser = localStorage.getItem("user");
+          if (logedUser !== null) {
+              setIsLoggedin(true)
+          }
+          if (isLoggedin === true) {
+              const userLoged = JSON.parse(logedUser);
+              setRole(userLoged.user.role_id);
+          }
+      })
   return <section className="hero">
     <Wrapper className='hero__container'>
         <div className="hero__left">
@@ -35,7 +47,7 @@ const Hero = () => {
                 <a href="/signup" className="button-primary">
                     Join Us
                 </a>
-                <Link to={'/Login'} state={{name:'seller'}} className='button-outline'>
+                <Link to={isLoggedin?('/dashboard'):('/Login')} state={{name:'seller'}} className='button-outline'>
                   Start Selling Answers!
                 </Link>
                 {/* <a href="/Login" className="button-outline">

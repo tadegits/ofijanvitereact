@@ -81,7 +81,7 @@ const LoginSection = () => {
         }
     })
 
-    console.log(role);
+    // console.log(role);
 
     if (role === 2 || role === 3) {
         navigate('/')
@@ -112,10 +112,11 @@ const LoginSection = () => {
                 if (response.data) {
                     if (role == 3) {
                         // navigate('/teacher');
-                        window.location.href = '/teacher';
+                        window.location.href = '/dashboard';
                     }
                     else {
-                        window.location.href = '/seller';
+                        // window.location.href = '/seller';
+                        window.location.href = '/';
                     }
 
                 }
