@@ -110,35 +110,6 @@ const Resume = () => {
 
         }
     }
-    if (needCheck === true) {
-        if (resumeExist === true) {
-            return (
-                <div className="topic">
-                    <h1>Resume Exist</h1>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>N<u>o</u></th>
-                                <th>path</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                Array.isArray(data) && data.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{number=number+1}</td>
-                                        <td>{item.path}</td>
-                                        <td>Update / Delete</td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
-                    <div>{data.id}</div>
-                </div>
-            )
-        }
-        else {
             return (
                 <div className="topic">
                     <section className="login">
@@ -166,13 +137,6 @@ const Resume = () => {
                     </section>
                 </div>
             )
-        }
-    }
-    else {
-        <>
-            <h1>Loading</h1>
-        </>
-    }
 
 }
 
