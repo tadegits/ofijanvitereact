@@ -25,7 +25,7 @@ function App() {
 
   console.log(role)
   if (user) {
-    if (role === 2) {
+    if (role === 2 || role === 3) {
       return (
         <>
           <Loged />
@@ -33,13 +33,13 @@ function App() {
         </>
       )
     }
-    else if (role === 3) {
-      return (
-        <>
-          <Seller />
-        </>
-      )
-    }
+    // else if (role === 3) {
+    //   return (
+    //     <>
+    //       <Seller />
+    //     </>
+    //   )
+    // }
 
   }
   else {
