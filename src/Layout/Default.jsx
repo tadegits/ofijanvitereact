@@ -14,7 +14,7 @@ import BlogList from '../components/Blog/BlogList';
 import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
-import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
+// import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
 import Seller from '../Seller';
 import axios from 'axios';
 const Default = () => {
