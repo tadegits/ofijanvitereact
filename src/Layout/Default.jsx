@@ -16,6 +16,7 @@ import FullBlog from '../components/Blog/FullBlog';
 import API_BASE_URL from '../Globals/apiConfig';
 import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
 import Plate from '../components/QuestionPlate/Plate';
+import CoC from '../components/CoC/CoC';
 import axios from 'axios';
 const Default = () => {
 
@@ -39,6 +40,7 @@ const Default = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/CoC" element={<CoC/>} />
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />

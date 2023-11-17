@@ -47,7 +47,7 @@ const Navbar = () => {
                         <Link to="/ExitExam">Exit Exam</Link> 
                         </li>
                         <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade6">CoC</Link>
+                        <Link to="/CoC">CoC</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/Grade12">Grade 12<sup>th</sup></Link>

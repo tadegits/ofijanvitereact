@@ -1,21 +1,15 @@
 import Wrapper from '../wrapper/Wrapper'
-import './Grade12.scss';
+import './CoC.scss';
 import Plate from '../QuestionPlate/Plate'
 import { Link } from 'react-router-dom';
-const Grade12 = () => {
+const CoC = () => {
   return <section className="grade12">
     <Wrapper className="grade12-holder">
       <ul className='g12_subjects'>
-        <li>Mathematics(N)</li>
-        <li>Mathematics(S)</li>
-        <li>Economics</li>
-        <li>Biology</li>
-        <li>Geography</li>
-        <li>Chemistry</li>
-        <li>History</li>
-        <li>Aptitude</li>
-        <li>English</li>
-        <li>Phyiscs</li>
+        <li>Database</li>
+        <li>HNS</li>
+        <li>Accounting</li>
+      
       </ul>
       <div className='g12_exams_list'>
         
@@ -102,4 +96,4 @@ const Grade12 = () => {
   </section>
 }
 
-export default Grade12
+export default CoC

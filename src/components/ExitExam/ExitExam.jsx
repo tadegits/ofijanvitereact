@@ -111,10 +111,7 @@ const ExitExam = () => {
                   <td className='categorizer' colSpan={2}>Topics Covered </td>
                   <td className='info'>12</td>
                 </tr>
-                
-
                 <tr className='table_body'>
-
                   <td className='categorizer'>Topics </td>
                   <td className='' colSpan={4}>
                     <ul>
@@ -125,7 +122,6 @@ const ExitExam = () => {
                       <li>Super Conductor's</li>
                     </ul>
                   </td>
-
                 </tr>
                 <tr className='table_body'>
                    <td  colSpan={5} className='open-holder'>
@@ -140,12 +136,8 @@ const ExitExam = () => {
         })) : (<div className='exams_card'>
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
         </div>)}
-
-
       </Wrapper>
     </section>
-
   );
 }
-
 export default ExitExam

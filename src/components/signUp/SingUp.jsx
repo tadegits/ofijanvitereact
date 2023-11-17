@@ -234,7 +234,7 @@ const LoginSection = () => {
                                     </div>
                                     <div className="phones">
                                         <label>Phone Number</label>
-                                        <input type="tel" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
+                                        <input type="tell" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
                                         <div className="errormessage">{phonemessage}</div>
                                     </div>
                                 </div>
