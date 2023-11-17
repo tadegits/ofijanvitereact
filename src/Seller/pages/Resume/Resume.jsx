@@ -100,8 +100,8 @@ const Resume = () => {
                 }
             })
                 .then(response => {
-                    // const datas = Array.form(response.data.message);
-                    // setResumeMess(datas);
+                    const datas = response.data.message;
+                    setResumeMess(datas);
                     setStatus(response.data.status);
                 })
                 .catch(error => {
