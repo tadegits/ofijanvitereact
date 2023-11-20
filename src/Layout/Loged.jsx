@@ -16,7 +16,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
 
-
+import Plate from '../logedin/ExitExam/Plate.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
 const [selectedPost, setSelectedPost] = useState(null);
@@ -46,6 +46,9 @@ useEffect(() => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
+
+          <Route exact path='/ofijan_question_platel/:ofin_id' element={<Plate/>}/>
+          
         </Routes>
       
     </>

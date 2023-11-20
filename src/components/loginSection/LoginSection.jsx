@@ -7,7 +7,7 @@ import Img2 from '../../assets/ofijan_logo.png';
 import { useNavigate, Link, Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Seller from '../../Seller';
-import SellerMain from '../../Seller/pages/SellerMain/SellerMain';
+import API_BASE_URL from '../../Globals/apiConfig';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
@@ -100,7 +100,7 @@ const LoginSection = () => {
             const user = { email, password };
             // send the username and password to the server
             const response = await axios.post(
-                "http://127.0.0.1:8000/api/login",
+                `${API_BASE_URL}/login`,
                 user
             ).then(response => {
                 console.log(response);

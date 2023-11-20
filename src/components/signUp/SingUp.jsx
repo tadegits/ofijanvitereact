@@ -6,8 +6,7 @@ import Img2 from '../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import validator from 'validator';
-import Swal from 'sweetalert2';
-// import {withSwal} from 'react-sweetalert2';
+import API_BASE_URL from '../../Globals/apiConfig';
 
 const LoginSection = () => {
     const navigate = useNavigate();
@@ -150,7 +149,7 @@ const LoginSection = () => {
             setConfMessage("Confirm password required");
         }
         else {
-            let result = await fetch("http://127.0.0.1:8000/api/registeruser", {
+            let result = await fetch(`${API_BASE_URL}/registeruser`, {
                 method: "POST",
                 body: JSON.stringify(crinfo),
                 headers: {

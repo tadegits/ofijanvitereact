@@ -1,229 +1,139 @@
-import './lexitexam.scss';
-import Wrapper from '../../components/wrapper/Wrapper';
+import '../../components/ExitExam/ExitExam.scss';
+import React from "react";
+
+
+import Wrapper from '../../components/wrapper/Wrapper'
 import Logo from "../../assets/logo.png";
-import { useRef, useState, useEffect } from 'react'
-import Pay from "../payment/Pay"
-import { Link, useParams } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react';
+import { Link, useParams} from 'react-router-dom';
+import API_BASE_URL from '../../Globals/apiConfig';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 
-import Questions from '../../components/Questions/Questions';
-
-import {
-  AiOutlineArrowRight,
-  AiOutlineArrowLeft,
-} from 'react-icons/ai';
-import { ConstructionOutlined } from '@mui/icons-material';
+//import "../../App.css";
 const ExitExam = () => {
-  const url = "https://ofijan.com/api/departments";
-  const [firstName, setFirstName] = useState("Million");
-  const [lastName, setLastName] = useState("Sime");
-  const [email, setEmail] = useState("");
-  const [amount, setAmount] = useState(9070);
-  const tx_ref = "weygudemelameddfgsdbfbe";
-  const public_key = "CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK";
-  const [data, setData] = useState([]);
   const { deptId, userId } = useLoggedInUser();
-  const [selectedDepartmentId, setSelectedDepartmentId] = useState(deptId);
-  const [courses, setCourses] = useState([]);
-  const [showDept, setShowDept] = useState(true);
-  const [isNavBarOpen, setIsNavBarOpen] = useState(true);
-  const [deptTitle, setDepartmentTitle] = useState('');
+  const url = `https://ofijan.com/api/departments`;
+  const [departmentTitle, setDepartmentTitle] = useState('');
   const [did, setDid] = useState('');
-  const [loading, setLoading] = useState(true);
-  const ref = useRef(null);
+  const id = useParams();
+  const [data, setData] = useState([]);
+  const [price_tag, setPriceTag] = useState('');
+  const [exams, setExams] = useState([]);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState('');
   const scollToRef = useRef();
-  const handleDepartmentClick = (departmentId, departmentTitle) => {
-    setSelectedDepartmentId(departmentId);
-    setDepartmentTitle(departmentTitle);
-    setShowDept(false);
-    setIsNavBarOpen(!isNavBarOpen);
-
-  };
- 
-
-  const toggleNavBar = () => {
-    setIsNavBarOpen(!isNavBarOpen);
-    setShowDept(!showDept);
-  };
-  const [isActive, setIsActive] = useState(false);
-
-  const toggleCard = () => {
-    setIsActive(!isActive);
-  };
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setDid(foundUser.user.dept_id);
-      console.log('the user', foundUser.user.dept_id);
-   
-
-    console.log('deptId:', did);
     fetch(url)
       .then((res) => res.json())
-      .then((d) => setData(d))
-   if (selectedDepartmentId === null || selectedDepartmentId === "") {
-      fetch(`https://ofijan.com/api/exams/${did}`)
-        .then((res) => res.json())
-        .then((data) => 
-        {
-        console.log('Fetched data:', data);
-        setCourses(data);
-        setLoading(false);
+      .then((d) => {
+        setData(d);
+        const loggedInUser = localStorage.getItem('user');
+        if (loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          setDid(foundUser.user.dept_id);
+          if (foundUser.user.dept_id !== null) {
+             setDepartmentTitle(data.title);
+            console.log('the data', data.title);
+            fetch(`https://ofijan.com/api/exams/${foundUser.user.dept_id}`)
+              .then((res) => res.json())
+              .then((d) => setExams(d))
+              .catch((error) => console.error('Error fetching exams:', error));
+          }
+        }
       })
-      .catch((error) => {
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+  const handleDepartmentChange = async (event) => {
+    const selectedDepartmentId = event.target.value;
+    setSelectedDepartmentId(selectedDepartmentId);
+
+    if (selectedDepartmentId) {
+      try {
+        const response = await fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`);
+        if (response.ok) {
+          const examsData = await response.json();
+          setExams(examsData);
+        } else {
+          console.error('Failed to fetch courses');
+        }
+      } catch (error) {
         console.error('Error fetching courses:', error);
-        setLoading(false);
-      });
+      }
     } else {
-      fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`)
-        .then((res) => res.json())
-        .then((data) => 
-        {
-        console.log('Fetched data:', data);
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching courses:', error);
-        setLoading(false);
-      });
-    }  
+      // Handle the case when "All" is selected
+      setCourses([]);
     }
-  }, [deptId]);
+  };
+  return (
+    <section className='exit_exam_nli'>
+      <div className="select_field">
+<p>{departmentTitle}</p>
 
-
-
-  // useEffect(() => {
-  //   if (selectedDepartmentId === null || selectedDepartmentId === "") {
-  //     fetch(`https://ofijan.com/api/exams/${deptId}`)
-  //       .then((res) => res.json())
-  //       .then((d) => setCourses(d))
-  //   } else {
-  //     fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`)
-  //       .then((res) => res.json())
-  //       .then((d) => setCourses(d))
-  //   }
-  
-   
-  
-  // }, [courses]);
-  
-  
-  return <section className="examsholder">
-    <Wrapper className="exit_exam_page">
-      <div className='exitexam'>
-        
-
-        {isNavBarOpen ? (
-          <button className="open-button" onClick={toggleNavBar}> <h2 className='my-button'> <AiOutlineArrowRight /> Other Field of studies</h2></button>
-          
-        ) : (
-          
-          <button className="close-button" onClick={toggleNavBar}><AiOutlineArrowLeft /> </button>)}
-        <div className="dept_exam">
-
-          <div className={`all_departments ${showDept ? "show-nav" : ""}`}>
-            {data.map((dataObj, index) => {
-              return (
-                <div className="all_departments__card">
-                  <div  key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id, dataObj.title)}><p className='dept_holder'>{dataObj.title}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className={`open_menu ${showDept ? "open_menu" : ""}`}
-            onClick={() => setShowDept(!showDept)}>
-          </div>
-          <div className="exam_div">
-         
-            {courses ? (<h2>Here are the exams we have for  <small className='h7'>{deptTitle? deptTitle : "your"  }</small> department</h2>):
-            (<h2>We do not have exams in <b>{deptTitle}</b> department yet. stay tuned!</h2>)}
-          <div className='all_exams'>
-            {courses.map((course, index) => {
-              return (
-                  <div key={course.id} className="product_card">
-                    <div className='product_head'>
-                      <div className="product-title"><h2>{course.exam_name
-                      }</h2></div>
-                    </div>
-                    <div>Only for 50.00 ETB</div>
-                    <div className="product-description">Brief description of the exam questions.</div>
-                    <div className="product-questions">This bocklet contains <b>100</b> questions</div>
-                    <div className="buttons">
-                      {/* <button onClick={() => scollToRef.current.scrollIntoView()} className="btnpreview" >Preview</button> */}
-                      <Link to={`/exam_details/${course.id}`} className='btnpreview'>Preview</Link>
-                      <Pay
-                        fname={firstName}
-                        lname={lastName}
-                        email={email}
-                        amount={amount}
-                        public_key={public_key}
-                        tx_ref={tx_ref}
-                        title={course.exam_name}
-                        examId= {course.id} />
-                    </div>
-                  </div>
-              )
-            })}
-            </div>
-          </div>
-        </div>
-        {/* <div className='departments'>
-          <p> Select Your field of Study!</p>
-          {data.map((dataObj, index) => {
-            return (
-
-              <div className='text'>
-                <ul><li><div key={dataObj.id} onClick={() => handleDepartmentClick(dataObj.id)}>{dataObj.title}</div></li></ul>
-
-
-              </div>
-
-
-            );
-          })}
-        </div>
-        <div className='exams_list'>
-
-          {courses.map((course, index) => {
-            return (
-              <div key={course.id} className="product_card">
- 
-                <div className='product_head'>
-                  <img src={Logo} alt='' width={30} height={20} />
-                  <div className="product-title">{course.exam_name
-                 
-                  }</div>
-                </div>
-
-                <div className="product-description">Brief description of the exam questions.</div>
-                <div className="product-questions">This bocklet contains <b>100</b> questions</div>
-                <div className="product-price">Only for 50.00 ETB</div>
-                <div className="buttons">
-                  <button onClick={() => scollToRef.current.scrollIntoView()} className="button-primary" >Preview</button>
-                  <Pay
-                    fname={firstName}
-                    lname={lastName}
-                    email={email}
-                    amount={amount}
-                    public_key={public_key}
-                    tx_ref={tx_ref}
-                    title={course.exam_name} />
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div> */}
-      
-      {/* <div className='previewDiv' ref={scollToRef}>
-        <Questions />
-      </div> */}
       </div>
-    </Wrapper>
-  </section>
-}
+      <Wrapper className="examsholder">
+        {/* <div className='exitexamhjgjh'>
 
+          <Sidebar /> 
+      
+        </div> */}
+
+        {exams ? (exams.map((exam, index) => {
+          return (
+            <div key={exams.id} className="exams_card">
+              <div className='exams_head'>
+                <img className='__logo' src={Logo} alt='' width={30} height={20} />
+                <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
+              </div>
+              <div className="underline"></div>
+              {/* <div className="__department">From: {exam.department_id ? exam.department.title : "Unknown "}. Department!</div> */}
+              <table className='exam_table'  border={1}>
+                <tr className='table_body'>
+                  <td className='categorizer' >Booklet Name: </td>
+                  <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
+                 
+                </tr>
+                <tr className='table_body'> 
+                <td className='categorizer'>Ofijan Id: </td>
+                  <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
+                  <td className='categorizer'>Prepared By: </td>
+                  <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
+                </tr>
+                <tr className='table_body'>
+                <td className='categorizer'>Description </td>
+                  <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
+                </tr>
+                <tr className='table_body'>
+                  <td className='categorizer'>Total no of Questions </td>
+                  <td className='info'>{exam.questions_count}</td> 
+                  <td className='categorizer' colSpan={2}>Topics Covered </td>
+                  <td className='info'>12</td>
+                </tr>
+                <tr className='table_body'>
+                  <td className='categorizer'>Topics </td>
+                  <td className='' colSpan={4}>
+                    <ul>
+                      <li>
+                        Electromechanics
+                      </li>
+                      <li>Double Linked List</li>
+                      <li>Super Conductor's</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr className='table_body'>
+                   <td  colSpan={5} className='open-holder'>
+                   <Link  className='button-open' to={`/ofijan_question_plate/${exam.id}`}>
+                      Open
+                    </Link>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          )
+        })) : (<div className='exams_card'>
+          <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
+        </div>)}
+      </Wrapper>
+    </section>
+  );
+}
 export default ExitExam

@@ -6,6 +6,7 @@ import Logo from "../../assets/logo.png"
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 import Swal from 'sweetalert2';
+import CheckIcon from '@mui/icons-material/Check';
 const Plate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
@@ -91,7 +92,7 @@ setAnswered(true)
     };
     return (
         <div className='ofijan_exam_plate'>
-            <div className='basicInfoPlate'>
+            {/* <div className='basicInfoPlate'>
                 <table>
                     <tr>
                         <th>Picture</th>
@@ -113,7 +114,7 @@ setAnswered(true)
                         </td>
                     </tr>
                 </table>
-            </div>
+            </div> */}
             <div className='plate'>
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}</h5>
@@ -154,7 +155,7 @@ setAnswered(true)
                                                 <span className="alphabet">{alphabet[index]}. </span>
                                                 
                                                 {option.option}
-                                                <span className={`correct_is ${isCorrectAnswer ? 'hi': '' } ${selectedQuestionIndex === index ? 'selected' : ''} `} >{alphabet[index]}. </span>
+                                                <span className={`correct_is ${isCorrectAnswer ? 'hi': '' } ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon/></span>
                                             </label>
                                         );
                                     })}
@@ -209,7 +210,7 @@ setAnswered(true)
                 </div>
 
             </div>
-            <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div>
+            {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
     );
 };

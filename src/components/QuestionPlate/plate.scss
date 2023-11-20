@@ -221,16 +221,19 @@ td
 // }
 
 
-.option_box.correct-answer {
-  border-color: #4CAF50; 
-  background-color: #4CAF50;
-  
+
+.correct_is
+{
+  opacity: 0;
 }
-.correct_is.hi.selected
+.correct_is.answered.hi
   {
-    background-color: red;
+    //laundary 
+    //cafe
+    // 
     justify-content: end;
     align-items: end;
+    opacity: 1;
   }
 
 
