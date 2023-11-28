@@ -97,6 +97,7 @@
   min-height: 400px;
   background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
+ 
   justify-content: space-evenly
 }
 
@@ -105,7 +106,7 @@
   width: 45%;
   height: max-content;
   display: block;
-  border: 3px solid rgba(243, 238, 238, 0.247);
+  border: 1px solid $tade-color;
   border-radius: 0px;
   justify-content: start;
   align-items: start;
@@ -160,8 +161,11 @@ font-weight: bold;
   align-items: flex-end;
   justify-content: space-between;
 }
-
-.examss_card:hover {
+.exams_head
+{
+  background-color: red;
+}
+.exams_card:hover {
   border-color: $tade-color;
   background-color: #01dee600;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -202,7 +206,7 @@ font-weight: bold;
   font-weight: bold;
   display: flex;
   gap: 5rem;
-  background-color: white;
+  background-color: rgb(243, 243, 243);
  .__title
  {
   display: flex;

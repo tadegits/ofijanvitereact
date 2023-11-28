@@ -16,7 +16,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
 
-import Plate from '../logedin/ExitExam/Plate.jsx';
+import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
 const [selectedPost, setSelectedPost] = useState(null);

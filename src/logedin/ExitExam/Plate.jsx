@@ -14,7 +14,7 @@ const Plate = () => {
           setIsPayed(false);
         }
           };
-          useEffect(()=> {
+          useEffect(()=> { 
             payedMessage();
           },[])
   return (

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
-import './plate.scss';
-import Logo from "../../assets/logo.png"
+
 import axios from 'axios';
-import API_BASE_URL from '../../Globals/apiConfig';
 import Swal from 'sweetalert2';
 import CheckIcon from '@mui/icons-material/Check';
+import TimerIcon from '@mui/icons-material/Timer';
 const Plate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
@@ -16,7 +15,22 @@ const Plate = () => {
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [correctAnswer, setCorrectAnswer] = useState('')
+    const [timeLeft, setTimeLeft] = useState(60); 
     const alphabet = ["A", "B", "C", "D"];
+
+    useEffect(() => {
+        const timerInterval = setInterval(() => {
+            setTimeLeft((prevTime) => prevTime - 1);
+        }, 1000);
+
+        return () => clearInterval(timerInterval);
+    }, []);
+
+    useEffect(() => {
+        if (timeLeft === 0) {
+            // Handle when time is up
+        }
+    }, [timeLeft]);
     useEffect(() => {
         fetch(`https://ofijan.com/api/way_questions/${ofin_id}`)
             .then((res) => res.json())
@@ -90,6 +104,21 @@ setAnswered(true)
             }
         });
     };
+    const handleClearChoiceClick = () => {
+        const updatedQuestionData = [...questionData];
+        updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map(option => ({
+            ...option,
+            selected: false,
+        }));
+        setQuestionData(updatedQuestionData);
+        setSelectedOptionIndex(null);
+        setAnswered(false);
+    };
+    const handleFlagClick = (index) => {
+        const updatedQuestionData = [...questionData];
+        updatedQuestionData[index].flagged = !updatedQuestionData[index].flagged;
+        setQuestionData(updatedQuestionData);
+      };
     return (
         <div className='ofijan_exam_plate'>
             {/* <div className='basicInfoPlate'>
@@ -121,12 +150,14 @@ setAnswered(true)
                     <p>Answer saved</p>
                     <p>Marked out of 100</p>
                     <p></p>
-                    <p><a href='#'>Flag Question</a></p>
+                    <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
                 </div>
                 <div className='question_plate'>
                     <div className="timePlate">
                         <div className="timebox1"></div>
-                        <div className="timebox2">Time left 20 min</div>
+                        <div className='timebox2'>
+                    <TimerIcon /> Time left {timeLeft} sec
+                </div>
                     </div>
                     <div className="questionplate">
                         {questionData.length > 0 && (
@@ -153,13 +184,12 @@ setAnswered(true)
                                                     readOnly
                                                 />
                                                 <span className="alphabet">{alphabet[index]}. </span>
-                                                
                                                 {option.option}
                                                 <span className={`correct_is ${isCorrectAnswer ? 'hi': '' } ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon/></span>
                                             </label>
                                         );
                                     })}
-                                    <h5>Clear Choice</h5>
+                                    <h5 onClick={handleClearChoiceClick}>Clear Choice</h5>
                                 </div>
 
                             </>
@@ -180,9 +210,9 @@ setAnswered(true)
                             <>
                                 {index < 5 ? (<>
                                     <div
-                                        className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-                                        key={index}
-                                        onClick={() => handleQuestionClick(index)}>
+    className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.flagged ? 'flagged' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
+    key={index}
+    onClick={() => handleQuestionClick(index)}>
                                         <div className='answer_box'>{index + 1}</div>
                                         <div
                                             className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}

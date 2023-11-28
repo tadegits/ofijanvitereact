@@ -121,7 +121,7 @@ const ExitExam = () => {
                 </tr>
                 <tr className='table_body'>
                    <td  colSpan={5} className='open-holder'>
-                   <Link  className='button-open' to={`/ofijan_question_plate/${exam.id}`}>
+                   <Link  className='button-open' to={`/ofijan_question_platel/${exam.id}`}>
                       Open
                     </Link>
                   </td>
