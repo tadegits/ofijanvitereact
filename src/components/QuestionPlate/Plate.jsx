@@ -28,7 +28,7 @@ const Plate = () => {
 
     useEffect(() => {
         if (timeLeft === 0) {
-            // Handle when time is up
+            // Handle when time is up   
         }
     }, [timeLeft]);
     useEffect(() => {
