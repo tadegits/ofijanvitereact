@@ -15,38 +15,40 @@ const LNavbar = () => {
 
    };
    return (
-      <nav className="navbar">
-         <Wrapper className="navbarz__container">
-            <Link to="/" className="navbarz__logo"
-               onClick={() => setShowNav(false)}>
-               <img src={Logo} alt="" />
+      <nav className="navbarz">
+      <Wrapper className="navbarz__container">
+          <Link to="/" className="navbarz__logo"
+              onClick={() => setShowNav(false)}>
+              <img src={Logo} alt="" />
 
-            </Link>
-            <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
-               <li onClick={() => setShowNav(false)}>
+          </Link>
+          <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
+              <li onClick={() => setShowNav(false)}>
                   <Link to="/">Home</Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
-                  <Link to="/Exit_Exam">Exit Exam</Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
-                  <Link to="/Grade12">COC</Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
+              </li> 
+              <li   onClick={() => setShowNav(false)}>
+                  <Link to="/ExitExam">Exit Exam</Link> 
+                  </li>
+                  <li onClick={() => setShowNav(false)}>
+                  <Link to="/CoC">CoC</Link>
+              </li>
+              <li onClick={() => setShowNav(false)}>
                   <Link to="/Grade12">Grade 12<sup>th</sup></Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
+
+              </li>
+              <li onClick={() => setShowNav(false)}>
                   <Link to="/Grade8">Grade 8<sup>th</sup></Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
+              </li>
+             
+              <li onClick={() => setShowNav(false)}>
                   <Link to="/Grade6">Grade 6<sup>th</sup></Link>
-               </li>
-               <li onClick={() => setShowNav(false)}>
+              </li>
+              <li onClick={() => setShowNav(false)}>
                   <a href="/ofijan_blogs">Blog</a>
-               </li>
-               <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+              </li>
+              <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
                onClick={handleLogout}
-            >
+            > 
                Log out
                </li>
             </ul>
@@ -60,9 +62,9 @@ navbarz__btn">
             >
                <FaBars />
             </div>
-            
-         </Wrapper>
-      </nav>
+      </Wrapper>
+    
+  </nav>
    )
 }
 

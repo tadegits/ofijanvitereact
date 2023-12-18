@@ -117,16 +117,13 @@ const LoginSection = () => {
     }
 
     useEffect(() => {
-        fetch("https://ofijan.com/api/departments")
+        fetch(`${API_BASE_URL}/departments`)
             .then((res) => res.json())
             .then((d) => setData(d))
     }, [])
 
     async function signUp() {
-        // let info = { fname, lname, email, phone, dept, password, confpassword };
         let crinfo = { fname, lname, email, phone, dept, password };
-        // console.warn(info);
-        // console.warn(crinfo);
         if (fname === "") {
             setFnMessage("First name required");
         }
@@ -164,22 +161,15 @@ const LoginSection = () => {
                 let respresult = result.message;
                 let status = result.status;
 
-                // console.log(respresult);
-                // Swal.fire({
-                //     text:respresult,
-                //     icon:status
-                // })
                 if (status === "success") {
                     navigate("/Login", {state:{registered:{respresult}}})
                 }
                 else {
                     setMessage(respresult)
                     setRegistered("User not registered");
-                    // navigate("/signup");
+                  
                 }
-                // console.warn(registered);
-                // console.log(result.message)
-                // console.warn("result:", result.message)
+   
 
             }
             else {
@@ -198,10 +188,7 @@ const LoginSection = () => {
                     </div>
                     <div className="login__form_container1">
                         <div className="login__image_holder2">
-                            <div className="logtitle">
-                                <img src={Img2} className='img-2' />
-                                <h1>Ofijan</h1>
-                            </div>
+                           
                             <div className="login__header">
                                 <div className="signupregistered">Create your Ofijan Account</div>
                                 <p className='infos'>Continue your study to increase your achivement.</p>
@@ -239,7 +226,7 @@ const LoginSection = () => {
                                 <div className="department">
                                     <label>Department</label>
                                     <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
-                                        <option value=""></option>
+                                        <option value="1"></option>
                                         {data.map(data => (
                                             <option key={data.id} value={data.id} selected>{data.title}</option>
                                         ))}

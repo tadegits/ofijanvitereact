@@ -8,12 +8,14 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Feedback from 'react-bootstrap/esm/Feedback';
 const footer = () => {
   return (
     <section className='footer'>
         <Wrapper>
+          <Feedback/>
         <div className='footer__text'>
-            <h3>Learn, Study & Test Your Study with  <span>Ofijan</span></h3>
+            <h3>Learn, Sty & Test Your Study with  <span>Ofijan</span></h3>
         </div>
         <ul className='footer__links'>
             <li><FacebookIcon/></li>

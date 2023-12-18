@@ -45,7 +45,7 @@ export default function Sidebar() {
       setExpandedMenu(menu);
     }
   };
-  if (role === 2) {
+  if (role === 3) {
     return (
 
       <div className="sidebar">
@@ -201,7 +201,7 @@ export default function Sidebar() {
       </div>
     );
   }
-  else if(role === 2){
+  else if(role === 3){
     return (
 
       <div className="sidebar">

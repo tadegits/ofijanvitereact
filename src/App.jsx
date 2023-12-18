@@ -33,13 +33,6 @@ function App() {
         </>
       )
     }
-    // else if (role === 3) {
-    //   return (
-    //     <>
-    //       <Seller />
-    //     </>
-    //   )
-    // }
 
   }
   else {

@@ -44,9 +44,9 @@ const Hero = () => {
             </p>
 
             <div className="hero__btn-container">
-                <a href="/signup" className="button-primary">
+                {isLoggedin? '' : (<a href="/signup" className="button-primary">
                     Join Us
-                </a>
+                </a>)}
                 <Link to={isLoggedin?(role === 3?('/seller'):('/requestseller')):('/Login')} state={{name:'seller'}} className='button-outline'>
                   Start Selling Answers!
                 </Link>

@@ -10,6 +10,9 @@ import LExitExam from "../logedin/ExitExam/ExitExam.jsx"
 import Dashboard from "../components/Dashboard/Dashboard"
 import LoginSection from "../components/loginSection/LoginSection";
 // import Seller from '../components/Seller/Seller';
+import BlogList from '../components/Blog/BlogList.jsx';
+import SingleBlog from '../components/Blog/SingleBlog.jsx';
+import FullBlog from '../components/Blog/FullBlog.jsx';
 import Seller from '../Seller'
 import API_BASE_URL from '../Globals/apiConfig.jsx';
 import axios from 'axios';
@@ -32,7 +35,7 @@ useEffect(() => {
       console.error('Error fetching data:', error);
     });
 }, [postUri]);
-  return (
+  return ( 
     <>
       <LNavbar />
         <Routes>
@@ -46,9 +49,10 @@ useEffect(() => {
           <Route path="/exit/:id" element={<ExitExam />} />
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
-
           <Route exact path='/ofijan_question_platel/:ofin_id' element={<Plate/>}/>
-          
+          <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
+        <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
+        <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
         </Routes>
       
     </>
