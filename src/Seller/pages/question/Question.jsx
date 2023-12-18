@@ -23,7 +23,7 @@ export default function Question() {
       .then(response => {
         setQuestionData(response.data.questions);
         setQuestionOption(response.data.questions.options)
-        console.log(data)
+        console.log(response.data.questions)
       })
       .catch(error => {
         console.error('Error fetching data:', error);

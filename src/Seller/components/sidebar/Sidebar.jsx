@@ -27,6 +27,7 @@ export default function Sidebar() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState('');
   const { deptId, userId } = useLoggedInUser();
+  const [isExpanded, setIisExpanded] = (true);
   const navigate = useNavigate();
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -36,7 +37,7 @@ export default function Sidebar() {
       setUser(foundUser);
       setRole(parseInt(roleUser.user.role_id))
     }
-  }, [role]);
+  }, [setRole]);
   const [expandedMenu, setExpandedMenu] = useState(null);
   const handleMenuClick = (menu) => {
     if (expandedMenu === menu) {
