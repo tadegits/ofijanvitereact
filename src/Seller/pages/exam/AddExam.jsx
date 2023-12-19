@@ -64,7 +64,7 @@ export default function AddExam() {
         setSuccessMessage('Exam added successfully!');
       } else {
         console.log(response);
-        console.log('Failed to send topic data.');
+        console.log('Failed to send exam data.');
       }
     } catch (error) {
       console.error('Error:', error);

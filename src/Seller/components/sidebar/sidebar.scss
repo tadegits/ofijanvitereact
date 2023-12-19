@@ -1,46 +1,42 @@
 @import '../../../styles/colors.scss';
-.sidebar {
+.sidebar2 {
   flex: 1;
   height: max-content;
-  background-color: $tade-color; 
-  position: sticky;
-  top: 50px;
 }
 
-.sidebarWrapper {
+.sidebarWrapper2 {
   padding: 10px;
   color: #444040;
-  margin-top: 40px;
 }
 
 .sidebarMenu {
   margin-bottom: 20px;
   height: 40px;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: white;
   overflow: hidden;
   transition: width 0.3s ease;
-  border: solid 0px #8d8d8f;
+  border-left: solid 4px $tade-color;
   border-radius: 0px;
-  color: #594fb6;
 }
 
 .sidebarMenu.expanded {
   height: fit-content;
-  background-color: #594fb6;
+  background-color: rgb(255, 255, 255);
+  color: #050505;
   
 }
 .sidebarMenu.expanded .sidebarTitle{
-  color: #ffffff; 
+  color: #050505; 
 }
 .sidebarMenu.expanded .sidebarListItem{
-  color: #ffffff; 
+  color: #030303; 
 }
 .sidebarMenu.expanded .sidebarListItem.active {
-  color: #594fb6; 
+  color: black;
 }
 .sidebarMenu.expanded .sidebarListItem:hover{
-  color: #594fb6; 
+  color: black;
 }
 
 
@@ -49,7 +45,8 @@
   font-size: 13px;
   padding-left: 12px;
   padding-top: 10px;
-  color: #594fb6; 
+  color: $tade-color;
+  opacity: 0.8;
 }
 
 

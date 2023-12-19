@@ -47,7 +47,7 @@ export default function Sidebar() {
   const renderSellerSidebar = () => (
    
       <>
-        <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+       <div className={`sidebarMenu ${expandedMenu === 'dashboard' ? 'expanded' : ''} `}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Dashboard</h3>
             <ul className="sidebarList">
@@ -200,8 +200,8 @@ export default function Sidebar() {
   );
 
   return (
-    <div className="sidebar">
-      <div className="sidebarWrapper">
+    <div className="sidebar2">
+      <div className="sidebarWrapper2">
         {role === 3 ? renderSellerSidebar() : null}
         {role === 2 ? renderEducationSidebar() : null}
       </div>

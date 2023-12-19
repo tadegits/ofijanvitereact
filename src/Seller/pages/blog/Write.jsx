@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import Wrapper from '../../../components/wrapper/Wrapper';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../../Globals/apiConfig';
-
+import './index.scss';
 
 export default function Write() {
   const [title, setTitle] = useState('');
@@ -102,9 +103,12 @@ export default function Write() {
                   </div>
                   <div className="lnames">
                     <label>Add Blog text here: </label>
+                   <div className="ck_editor">
+
                     <CKEditor
                       editor={ClassicEditor}
-                      data="<p>Hello from CKEditor&nbsp;5!</p>"
+                      className="ck_editor"
+                      data=""
                       onReady={(editor) => {
                         console.log('Editor is ready to use!', editor);
                       }}
@@ -115,7 +119,7 @@ export default function Write() {
                         console.log('Focus.', editor);
                       }}
                       onEditorChange={handleEditorChange}
-                    />
+                    /></div>
                   </div>
                 </div>
                 <div className="summit-signup">

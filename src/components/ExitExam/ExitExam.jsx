@@ -66,7 +66,7 @@ const ExitExam = () => {
           <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue="" required>
             <option value="">All</option>
             {data.map(data => (
-              <option key={data.id} value={data.id} selected>{data.title}</option>
+              <option key={data.id} value={data.id}>{data.title}</option>
             ))}
           </select>
 
@@ -82,55 +82,55 @@ const ExitExam = () => {
 
         {exams ? (exams.map((exam, index) => {
           return (
-            <div key={exams.id} className="exams_card">
+            <div key={exam.id} className="exams_card">
               <div className='exams_head'>
                 <img className='__logo' src={Logo} alt='' width={30} height={20} />
                 <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
               </div>
               <div className="underline"></div>
               {/* <div className="__department">From: {exam.department_id ? exam.department.title : "Unknown "}. Department!</div> */}
-              <table className='exam_table'  border={1}>
-                <tr className='table_body'>
-                  <td className='categorizer' >Booklet Name: </td>
-                  <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
-                 
-                </tr>
-                <tr className='table_body'> 
-                <td className='categorizer'>Ofijan Id: </td>
-                  <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
-                  <td className='categorizer'>Prepared By: </td>
-                  <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
-                </tr>
-                <tr className='table_body'>
-                <td className='categorizer'>Description </td>
-                  <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Total no of Questions </td>
-                  <td className='info'>{exam.questions_count}</td> 
-                  <td className='categorizer' colSpan={2}>Topics Covered </td>
-                  <td className='info'>12</td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Topics </td>
-                  <td className='' colSpan={4}>
-                    <ul>
-                      <li>
-                        Electromechanics
-                      </li>
-                      <li>Double Linked List</li>
-                      <li>Super Conductor's</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr className='table_body'>
-                   <td  colSpan={5} className='open-holder'>
-                   <Link  className='button-open' to={`/ofijan_question_plate/${exam.id}`}>
-                      Open
-                    </Link>
-                  </td>
-                </tr>
-              </table>
+              <table className='exam_table' border={1}>
+  <tbody>
+    <tr className='table_body'>
+      <td className='categorizer'>Booklet Name: </td>
+      <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
+    </tr>
+    <tr className='table_body'>
+      <td className='categorizer'>Ofijan Id: </td>
+      <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
+      <td className='categorizer'>Prepared By: </td>
+      <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
+    </tr>
+    <tr className='table_body'>
+      <td className='categorizer'>Description </td>
+      <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
+    </tr>
+    <tr className='table_body'>
+      <td className='categorizer'>Total no of Questions </td>
+      <td className='info'>{exam.questions_count}</td>
+      <td className='categorizer' colSpan={2}>Topics Covered </td>
+      <td className='info'>12</td>
+    </tr>
+    <tr className='table_body'>
+      <td className='categorizer'>Topics </td>
+      <td className='' colSpan={4}>
+        <ul>
+          <li>Electromechanics</li>
+          <li>Double Linked List</li>
+          <li>Super Conductor's</li>
+        </ul>
+      </td>
+    </tr>
+    <tr className='table_body'>
+      <td colSpan={5} className='open-holder'>
+        <Link className='button-open' to={`/ofijan_question_plate/${exam.id}`}>
+          Open
+        </Link>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
             </div>
           )
         })) : (<div className='exams_card'>

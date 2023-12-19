@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
-
+import  NavigationButtons from './NavigationButtons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import CheckIcon from '@mui/icons-material/Check';
 import TimerIcon from '@mui/icons-material/Timer';
+import API_BASE_URL from '../../Globals/apiConfig';
 const Plate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
@@ -15,7 +16,7 @@ const Plate = () => {
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [correctAnswer, setCorrectAnswer] = useState('')
-    const [timeLeft, setTimeLeft] = useState(60); 
+    const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Plate = () => {
         }
     }, [timeLeft]);
     useEffect(() => {
-        fetch(`https://ofijan.com/api/way_questions/${ofin_id}`)
+        fetch(`${API_BASE_URL}/way_questions/${ofin_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
@@ -48,7 +49,7 @@ const Plate = () => {
     }, [selectedQuestionIndex, questionData]);
     const handleQuestionClick = (index) => {
         setSelectedQuestionIndex(index);
-      
+
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
     const handleOptionClick = (index) => {
@@ -60,7 +61,7 @@ const Plate = () => {
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
         //set the correct answer
-setAnswered(true)
+        setAnswered(true)
 
         if (questionData[selectedQuestionIndex].options[index].correct === '1') {
             setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
@@ -69,7 +70,7 @@ setAnswered(true)
         }
         const selectedQuestion = questionData[selectedQuestionIndex];
         const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
-        axios.post('http://127.0.0.1:8000/api/selected-answers', {
+        axios.post(`${API_BASE_URL}/selected-answers`, {
             user_id: 1,
             question_id: selectedQuestion,
             option_id: selectedOptionID,
@@ -118,7 +119,7 @@ setAnswered(true)
         const updatedQuestionData = [...questionData];
         updatedQuestionData[index].flagged = !updatedQuestionData[index].flagged;
         setQuestionData(updatedQuestionData);
-      };
+    };
     return (
         <div className='ofijan_exam_plate'>
             {/* <div className='basicInfoPlate'>
@@ -156,8 +157,8 @@ setAnswered(true)
                     <div className="timePlate">
                         <div className="timebox1"></div>
                         <div className='timebox2'>
-                    <TimerIcon /> Time left {timeLeft} sec
-                </div>
+                            <TimerIcon /> Time left {timeLeft} sec
+                        </div>
                     </div>
                     <div className="questionplate">
                         {questionData.length > 0 && (
@@ -185,7 +186,7 @@ setAnswered(true)
                                                 />
                                                 <span className="alphabet">{alphabet[index]}. </span>
                                                 {option.option}
-                                                <span className={`correct_is ${isCorrectAnswer ? 'hi': '' } ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon/></span>
+                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
                                             </label>
                                         );
                                     })}
@@ -194,14 +195,12 @@ setAnswered(true)
 
                             </>
                         )}
-                    </div>  <div className='navigation_buttons'>
-                        <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
-                            Previous
-                        </button>
-                        <button onClick={handleNextClick} disabled={selectedQuestionIndex === 4}>
-                            Next
-                        </button>
-                    </div>
+                    </div> 
+                    <NavigationButtons
+          handlePreviousClick={handlePreviousClick}
+          handleNextClick={handleNextClick}
+          selectedQuestionIndex={selectedQuestionIndex}
+        />
                 </div>
                 <div className='answer_plate'>
                     <h5>Exam Navigation</h5>
@@ -210,9 +209,9 @@ setAnswered(true)
                             <>
                                 {index < 5 ? (<>
                                     <div
-    className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.flagged ? 'flagged' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-    key={index}
-    onClick={() => handleQuestionClick(index)}>
+                                        className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.flagged ? 'flagged' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
+                                        key={index}
+                                        onClick={() => handleQuestionClick(index)}>
                                         <div className='answer_box'>{index + 1}</div>
                                         <div
                                             className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
@@ -246,3 +245,7 @@ setAnswered(true)
 };
 
 export default Plate;
+
+
+
+

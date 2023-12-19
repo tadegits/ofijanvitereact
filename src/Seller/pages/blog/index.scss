@@ -152,5 +152,20 @@
       color: white;
       font-weight: 600;
   }
+ 
+.ck_editor {
+  .ck.ck-editor {
+    border: 1px solid #ccc;
+    border-radius: 4px;
 
+    .ck.ck-editor__editable {
+      padding: 10px;
+      min-height: 200px;
+      font-size: 16px;
+      line-height: 1.5;
+      border: none;
+      outline: none;
+    }
+  }
+}
   
