@@ -1,7 +1,8 @@
+@import '../../../styles/colors.scss';
 .sidebar {
   flex: 1;
-  height: calc(100vh - 150px);
-  background-color: #594fb6; 
+  height: max-content;
+  background-color: $tade-color; 
   position: sticky;
   top: 50px;
 }
@@ -9,6 +10,7 @@
 .sidebarWrapper {
   padding: 10px;
   color: #444040;
+  margin-top: 40px;
 }
 
 .sidebarMenu {

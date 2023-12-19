@@ -12,7 +12,7 @@ import useLoggedInUser from '../../Globals/useLoggedInUser';
 //import "../../App.css";
 const ExitExam = () => {
   const { deptId, userId } = useLoggedInUser();
-  const url = `https://ofijan.com/api/departments`;
+  const url = `https://server.ofijan.com/api/departments`;
   const [departmentTitle, setDepartmentTitle] = useState('');
   const [did, setDid] = useState('');
   const id = useParams();
@@ -33,7 +33,7 @@ const ExitExam = () => {
           if (foundUser.user.dept_id !== null) {
              setDepartmentTitle(data.title);
             console.log('the data', data.title);
-            fetch(`https://ofijan.com/api/exams/${foundUser.user.dept_id}`)
+            fetch(`https://server.ofijan.com/api/exams/${foundUser.user.dept_id}`)
               .then((res) => res.json())
               .then((d) => setExams(d))
               .catch((error) => console.error('Error fetching exams:', error));

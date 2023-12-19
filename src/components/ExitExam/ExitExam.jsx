@@ -17,8 +17,8 @@ import { DynamicItem, Sidebar, dummyData } from "../../components";
 import API_BASE_URL from '../../Globals/apiConfig';
 import "../../App.css";
 const ExitExam = () => {
-  const url = `${API_BASE_URL}/departments`;
-  const url2 = `${API_BASE_URL}/way_exams`;
+  const url = `https://server.ofijan.com/api/departments`;
+  const url2 = `https://server.ofijan.com/api/way_exams`;
   const id = useParams();
   const [data, setData] = useState([]);
   const [price_tag, setPriceTag] = useState('');
@@ -41,7 +41,7 @@ const ExitExam = () => {
 
     if (selectedDepartmentId) {
       try {
-        const response = await fetch(`${API_BASE_URL}/exams/${selectedDepartmentId}`);
+        const response = await fetch(`https://server.ofijan.com/api/exams/${selectedDepartmentId}`);
         if (response.ok) {
           const examsData = await response.json();
           setExams(examsData);

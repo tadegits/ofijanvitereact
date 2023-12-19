@@ -53,7 +53,8 @@ const Hero = () => {
             )}
 
             <Link
-              to={isLoggedin ? (role === 3 ? '/seller' : '/requestseller') : '/Login'}
+              // to={isLoggedin ? (role === 3 ? '/seller' : '/requestseller') : '/Login'}
+              to={isLoggedin ? ('/seller') : '/Login'}
               state={{ name: 'seller' }}
               className="button-outline"
             >

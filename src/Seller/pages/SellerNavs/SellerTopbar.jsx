@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../components/topbar/topbar.css';
+import '../../components/topbar/topbar.scss';
 import Logo from '../../../assets/logo.png';
 import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 

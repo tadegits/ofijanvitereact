@@ -7,4 +7,12 @@ export default defineConfig({
     ReactRefresh(),
    
   ],
+  optimizeDeps: {
+    include: ['@workspace/ckeditor5-custom-build'],
+  },
+  build: {
+    commonjsOptions: {
+      include: [/@workspace\/ckeditor5-custom-build/, /node_modules/],
+    }
+  }
 });

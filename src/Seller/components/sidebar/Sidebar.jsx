@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import "./sidebar.scss";
 import {
   LineStyle,
   Timeline,
@@ -27,35 +27,31 @@ export default function Sidebar() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState('');
   const { deptId, userId } = useLoggedInUser();
-  const [isExpanded, setIisExpanded] = (true);
+  const [isExpanded, setIisExpanded] = ('false');
   const navigate = useNavigate();
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const roleUser = JSON.parse(loggedInUser);
-      const foundUser = JSON.stringify(loggedInUser);
-      setUser(foundUser);
-      setRole(parseInt(roleUser.user.role_id))
-    }
-  }, [setRole]);
-  const [expandedMenu, setExpandedMenu] = useState(null);
-  const handleMenuClick = (menu) => {
-    if (expandedMenu === menu) {
-      setExpandedMenu(null);
-    } else {
-      setExpandedMenu(menu);
-    }
-  };
-  if (role === 3) {
-    return (
 
-      <div className="sidebar">
-        <div className="sidebarWrapper">
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    if (loggedInUser) {
+      setUser(loggedInUser);
+      setRole(parseInt(loggedInUser.user.role_id, 10));
+    }
+  }, []);
+
+  const [expandedMenu, setExpandedMenu] = useState(null);
+
+  const handleMenuClick = (menu) => {
+    setExpandedMenu((prevMenu) => (prevMenu === menu ? null : menu));
+  };
+
+  const renderSellerSidebar = () => (
+   
+      <>
         <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
               Dashboard</h3>
             <ul className="sidebarList">
-              <Link to="/" className="link">
+              <Link to="/seller" className="link">
                 <li className="sidebarListItem active">
                   <LineStyle className="sidebarIcon" />
                   Home
@@ -74,13 +70,13 @@ export default function Sidebar() {
           <div className={`sidebarMenu ${expandedMenu === 'reference' ? 'expanded' : ''} `}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('reference')}>Manage References</h3>
             <ul className="sidebarList">
-              <Link to="/references" className="link">
+              <Link to="/seller/references" className="link">
                 <li className="sidebarListItem">
                   <TokenIcon className="sidebarIcon" />
                   All References
                 </li>
               </Link>
-              <Link to="/add_references" className="link">
+              <Link to="/seller/add_references" className="link">
                 <li className="sidebarListItem">
                   <TopicSharpIcon className="sidebarIcon" />
                   Add Reference
@@ -92,13 +88,13 @@ export default function Sidebar() {
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('topic')} >Manage Topic/Courses</h3>
 
             <ul className="sidebarList">
-              <Link to="/add_topics" className="link">
+              <Link to="/seller/add_topics" className="link">
                 <li className="sidebarListItem">
                   <TokenIcon className="sidebarIcon" />
                   Add Topic
                 </li>
               </Link>
-              <Link to="/topics" className="link">
+              <Link to="/seller/topics" className="link">
                 <li className="sidebarListItem">
                   <TopicSharpIcon className="sidebarIcon" />
                   All Topics
@@ -109,13 +105,13 @@ export default function Sidebar() {
           <div className={`sidebarMenu ${expandedMenu === 'exams' ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('exams')}>Manage Exams</h3>
             <ul className="sidebarList">
-              <Link to="/add_exams" className="link">
+              <Link to="/seller/add_exams" className="link">
                 <li className="sidebarListItem">
                   <TokenIcon className="sidebarIcon" />
                   Add Exam
                 </li>
               </Link>
-              <Link to="/exams" className="link">
+              <Link to="/seller/exams" className="link">
                 <li className="sidebarListItem">
                   <TopicSharpIcon className="sidebarIcon" />
                   All Exams
@@ -141,56 +137,22 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-          {/* <div className={`sidebarMenu ${expandedMenu === 'notifications' ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" onClick={() =>handleMenuClick('notifications')} >Notifications</h3>
-            <ul className="sidebarList">
-              <li className="sidebarListItem">
-                <MailOutline className="sidebarIcon" />
-                Mail
-              </li>
-              <li className="sidebarListItem">
-                <DynamicFeed className="sidebarIcon" />
-                Feedback
-              </li>
-              <li className="sidebarListItem">
-                <ChatBubbleOutline className="sidebarIcon" />
-                Messages
-              </li>
-            </ul>
-          </div> */}
-          {/* <div className={`sidebarMenu ${expandedMenu === 'staff' ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" onClick={() =>handleMenuClick('staff')}>Staff</h3>
-            <ul className="sidebarList">
-              <li className="sidebarListItem">
-                <WorkOutline className="sidebarIcon" />
-                Manage
-              </li>
-              <li className="sidebarListItem">
-                <Timeline className="sidebarIcon" />
-                Analytics
-              </li>
-              <li className="sidebarListItem">
-                <Report className="sidebarIcon" />
-                Reports
-              </li>
-            </ul>
-          </div> */}
           <div className={`sidebarMenu ${expandedMenu === 'blog_w' ? 'expanded' : ''}`}>
             <h3 className="sidebarTitle" onClick={() => handleMenuClick('blog_w')}>Blog Writer</h3>
             <ul className="sidebarList">
-              <Link to="/write_blog" className="link">
+              <Link to="/seller/write_blog" className="link">
                 <li className="sidebarListItem">
                   <WorkOutline className="sidebarIcon" />
                   Write
                 </li>
               </Link>
-              <Link to="/edit_blog" className="link">
+              <Link to="/seller/edit_blog" className="link">
               <li className="sidebarListItem">
                 <Timeline className="sidebarIcon" />
                 Edit
               </li>
               </Link>
-              <Link to="/blog_analytics" className="link">
+              <Link to="/seller/blog_analytics" className="link">
               <li className="sidebarListItem">
                 <Report className="sidebarIcon" />
                 Analytics
@@ -198,48 +160,53 @@ export default function Sidebar() {
               </Link>
             </ul>
           </div>
-        </div>
-      </div>
-    );
-  }
-  else if(role === 3){
-    return (
+       </>
+  );
 
-      <div className="sidebar">
-        <div className="sidebarWrapper">
-          <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
-            <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
-              Education Background</h3>
-            <ul className="sidebarList">
-              <Link to="/educationlevel" className="link">
-                <li className="sidebarListItem">
-                  <School className="sidebarIcon" />
-                  Add Education Level
-                </li>
-              </Link>
-              <Link to="/experience" className="link">
-                  <li className="sidebarListItem">
-                    <AccountBalance className="sidebarIcon" />
-                    Work Expereince
-                  </li>
-              </Link>
-              <Link to="/resume" className="link">
-                <li className="sidebarListItem">
-                  <FaBriefcase className="sidebarIcon" />
-                  Add your Resume
-                </li>
-              </Link>
-              <Link to="/document" className="link">
-                <li className="sidebarListItem">
-                  <Book className="sidebarIcon" />
-                  Add your Document
-                </li>
-              </Link>
-            </ul>
-          </div>
-        </div>
+  const renderEducationSidebar = () => (
+   
+    <>
+      <div className={`sidebarMenu ${isExpanded ? 'expanded' : ''}`}>
+        <h3 className="sidebarTitle" onClick={() => handleMenuClick('dashboard')}>
+          Education Background</h3>
+        <ul className="sidebarList">
+          <Link to="/seller/educationlevel" className="link">
+            <li className="sidebarListItem">
+              <School className="sidebarIcon" />
+              Add Education Level
+            </li>
+          </Link>
+          <Link to="/seller/experience" className="link">
+              <li className="sidebarListItem">
+                <AccountBalance className="sidebarIcon" />
+                Work Expereince
+              </li>
+          </Link>
+          <Link to="/seller/resume" className="link">
+            <li className="sidebarListItem">
+              <FaBriefcase className="sidebarIcon" />
+              Add your Resume
+            </li>
+          </Link>
+          <Link to="/seller/document" className="link">
+            <li className="sidebarListItem">
+              <Book className="sidebarIcon" />
+              Add your Document
+            </li>
+          </Link>
+        </ul>
       </div>
-    );
-  }
+  </>
+  );
+
+  return (
+    <div className="sidebar">
+      <div className="sidebarWrapper">
+        {role === 2 ? renderSellerSidebar() : null}
+        {role === 3 ? renderEducationSidebar() : null}
+      </div>
+    </div>
+  );
+
 
 }
