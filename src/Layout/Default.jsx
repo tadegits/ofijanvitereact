@@ -15,7 +15,7 @@ import BlogList from '../components/Blog/BlogList';
 import SingleBlog from '../components/Blog/SingleBlog';
 import FullBlog from '../components/Blog/FullBlog';
 // import Gezi from '../Seller/pages/EducationLevel/EducationLevel';
-import Seller from '../Seller';
+import Seller from '../Seller'; 
 import Plate from '../components/QuestionPlate/Plate';
 import CoC from '../components/CoC/CoC';
 import axios from 'axios';

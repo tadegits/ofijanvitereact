@@ -137,7 +137,7 @@ const currentPath = window.location.pathname;
           <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
-      
+        <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
         </Routes>
       
     </>

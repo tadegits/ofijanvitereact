@@ -202,8 +202,8 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        {role === 2 ? renderSellerSidebar() : null}
-        {role === 3 ? renderEducationSidebar() : null}
+        {role === 3 ? renderSellerSidebar() : null}
+        {role === 2 ? renderEducationSidebar() : null}
       </div>
     </div>
   );

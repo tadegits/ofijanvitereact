@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./Education.scss";
 import Wrapper from '../../../components/wrapper/Wrapper';
+import API_BASE_URL from '../../../Globals/apiConfig';
 import { json } from 'react-router-dom';
 
 const EducationLevel = () => {
@@ -21,6 +22,7 @@ const EducationLevel = () => {
     const [startMessage, setStartMessage] = useState("");
     const [end_date, setEndDate] = useState("");
     const [endMessage, setEndMessage] = useState("");
+    const [succesMessage, setSuccesMessage] = useState(""); 
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -133,7 +135,7 @@ const EducationLevel = () => {
         }
         else {
             console.log(informs);
-            let result = await fetch("http://127.0.0.1:8000/api/add_education", {
+            let result = await fetch(`${API_BASE_URL}/add_education`, {
                 method: "POST",
                 body: JSON.stringify(informs),
                 headers: {
@@ -143,35 +145,16 @@ const EducationLevel = () => {
             });
             result = await result.json()
             console.log(result);
+            
+                setSuccesMessage("Education level added");
+                setEduLevel("");
+                setAttended("");
+                setDegreeLevel("");
+                setEndDate("");
+                setStartDate("");
+                setGpa("");
+                setUnName("");
         }
-
-
-
-        // console.log(informs);
-        // try {
-        //     const response = await fetch("http://127.0.0.1:8000/api/add_education", {
-        //         method: 'POST',
-        //         body: JSON.stringify(informs),
-        //         headers: {
-        //             "Content-Type": 'application/json',
-        //             "Accept": 'application/json'
-        //         },
-        //     });
-
-        //     if (response.ok) {
-        //         console.log(response)
-        //         console.log('Exam data sent successfully!');
-        //         // Reset the form fields
-        //         setExamName('');
-        //         setDescription('');
-        //         setDuration('');
-        //     } else {
-        //         console.log(response)
-        //         console.log('Failed to send topic data.');
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error);
-        // }
 
     };
 
@@ -192,7 +175,7 @@ const EducationLevel = () => {
                                                 placeholder="Your Acadamic level"
                                                 className="dept"
                                                 required
-                                                // value={eduLevel}
+                                                 value={eduLevel}
                                                 onChange={handleEduLevel} />
                                             <div className="errormessage">{eduLevelMessage}</div>
                                         </div>
@@ -214,7 +197,7 @@ const EducationLevel = () => {
                                             placeholder='Attended year in university'
                                             className="dept"
                                             required
-                                            // value=""
+                                             value={attended}
                                             onChange={handleAttended} />
                                         <div className="errormessage">{attendedMessage}</div>
                                     </div>
@@ -223,7 +206,7 @@ const EducationLevel = () => {
                                         <input type="number"
                                             placeholder='Your GPA from 4.00'
                                             className="dept"
-                                            // value=""
+                                            value={gpa}
                                             onChange={handleGpa}
                                             required />
                                         <div className="errormessage">{gpaMessage}</div>
@@ -235,7 +218,7 @@ const EducationLevel = () => {
                                         <input type="date"
                                             placeholder='Start Date'
                                             className="dept"
-                                            // value=""
+                                            value={start_date}
                                             onChange={handleStart}
                                             required />
                                         <div className="errormessage">{startMessage}</div>
@@ -245,7 +228,7 @@ const EducationLevel = () => {
                                         <input type="date"
                                             placeholder='End Date'
                                             className="dept"
-                                            // value=""
+                                            value={end_date}
                                             onChange={handleEnd}
                                             required />
                                         <div className="errormessage">{endMessage}</div>
@@ -257,7 +240,7 @@ const EducationLevel = () => {
                                         <input type="text"
                                             placeholder='University'
                                             className="dept"
-                                            // value=""
+                                            value={unName}
                                             onChange={handleUnName}
                                             required />
                                         <div className="errormessage">{unNameMessage}</div>
@@ -265,6 +248,7 @@ const EducationLevel = () => {
                                     </div>
                                 </div>
                                 <div className="summit-signup">
+                                    {succesMessage && <div className='successMessage'>{succesMessage}</div>}
                                     <button className='sigbtn' onClick={handleSubmit}>Save</button>
                                 </div>
                             </div>

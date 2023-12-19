@@ -17,7 +17,7 @@ const Plate = () => {
     const [correctAnswer, setCorrectAnswer] = useState('')
     const alphabet = ["A", "B", "C", "D"];
     useEffect(() => {
-        fetch(`https://ofijan.com/api/way_questions/${ofin_id}`)
+        fetch(`https://server.ofijan.com/api/way_questions/${ofin_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
