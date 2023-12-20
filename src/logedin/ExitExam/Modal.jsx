@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './modal.scss';
 
 const Modal = ({ examID, onClose }) => {
@@ -10,12 +10,16 @@ const Modal = ({ examID, onClose }) => {
   const handleStudyMore = () => {
     console.log("Study More");
   };
+  const [isOpen, setIsOpen] = React.useState(true);
 
+  const closeModal = () => {
+    setIsOpen(false);
+    onClose();
+  };
   return (
-    <div className="modal">
+    <div className={`modal ${isOpen ? 'open' : 'closed'}`} role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div className="modal-content">
         <button className="close-btn" onClick={onClose}>Close</button>
-
         <div className="card-container">
           <div className="exam-description">
             <h3>Exam Description</h3>
@@ -27,12 +31,13 @@ const Modal = ({ examID, onClose }) => {
               <h4>Test Myself</h4>
               <p>Take a practice exam to see how well you know the material.</p>
             </div>
-            <Link className="card negative" to={`/ofijan_question_platel/${examID}`}>
-              <div  onClick={handleStudyMore}>
+            <Link to={`/ofijan_question_platel/${examID}`} className="card negative">
+              <div onClick={handleStudyMore}>
                 <h4>Study More</h4>
                 <p>Review the material and learn more before taking the exam.</p>
               </div>
             </Link>
+
 
           </div>
         </div>
