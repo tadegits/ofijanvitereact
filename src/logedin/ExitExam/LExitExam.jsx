@@ -1,25 +1,25 @@
 import '../../components/ExitExam/ExitExam.scss';
 import React from "react";
-
-
 import Wrapper from '../../components/wrapper/Wrapper'
 import Logo from "../../assets/logo.png";
 import { useRef, useState, useEffect } from 'react';
-import { Link, useParams} from 'react-router-dom';
-import API_BASE_URL from '../../Globals/apiConfig';
+import { Link, useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
-
-//import "../../App.css";
-const LExitExam = () => { 
+import API_BASE_URL from '../../Globals/apiConfig';
+import Modal from './Modal';
+import './modal.scss';
+const LExitExam = () => {
   const { deptId, userId } = useLoggedInUser();
-  const url = `https://server.ofijan.com/api/departments`;
+  const url = `${API_BASE_URL}/departments`;
   const [departmentTitle, setDepartmentTitle] = useState('');
   const [did, setDid] = useState('');
   const id = useParams();
   const [data, setData] = useState([]);
   const [price_tag, setPriceTag] = useState('');
   const [exams, setExams] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState('');
+  const [selectedExamId, setSelectedExamId] = useState(null);
   const scollToRef = useRef();
   useEffect(() => {
     fetch(url)
@@ -31,9 +31,9 @@ const LExitExam = () => {
           const foundUser = JSON.parse(loggedInUser);
           setDid(foundUser.user.dept_id);
           if (foundUser.user.dept_id !== null) {
-             setDepartmentTitle(data.title);
+            setDepartmentTitle(data.title);
             console.log('the data', data.title);
-            fetch(`https://server.ofijan.com/api/exams/${foundUser.user.dept_id}`)
+            fetch(`${API_BASE_URL}/exams/${foundUser.user.dept_id}`)
               .then((res) => res.json())
               .then((d) => setExams(d))
               .catch((error) => console.error('Error fetching exams:', error));
@@ -45,10 +45,9 @@ const LExitExam = () => {
   const handleDepartmentChange = async (event) => {
     const selectedDepartmentId = event.target.value;
     setSelectedDepartmentId(selectedDepartmentId);
-
     if (selectedDepartmentId) {
       try {
-        const response = await fetch(`https://ofijan.com/api/exams/${selectedDepartmentId}`);
+        const response = await fetch(`${API_BASE_URL}/exams/${selectedDepartmentId}`);
         if (response.ok) {
           const examsData = await response.json();
           setExams(examsData);
@@ -59,51 +58,48 @@ const LExitExam = () => {
         console.error('Error fetching courses:', error);
       }
     } else {
-      // Handle the case when "All" is selected
       setCourses([]);
     }
   };
+  const openModal = (exam) => {
+    setIsModalOpen(true);
+    setSelectedExamId(exam.id);
+  }
   return (
     <section className='exit_exam_nli'>
       <div className="select_field">
-<p>{departmentTitle}</p>
-
+        <p>{departmentTitle}</p>
       </div>
       <Wrapper className="examsholder">
-        {/* <div className='exitexamhjgjh'>
-
-          <Sidebar /> 
-      
-        </div> */}
-
         {exams ? (exams.map((exam, index) => {
-          return (  
+          return (
             <div key={exams.id} className="exams_card">
               <div className='exams_head'>
+               
                 <img className='__logo' src={Logo} alt='' width={30} height={20} />
                 <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
               </div>
               <div className="underline"></div>
-              {/* <div className="__department">From: {exam.department_id ? exam.department.title : "Unknown "}. Department!</div> */}
-              <table className='exam_table'  border={1}>
+              
+              <table className='exam_table' border={1}>
                 <tr className='table_body'>
                   <td className='categorizer' >Booklet Name: </td>
                   <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
-                 
+
                 </tr>
-                <tr className='table_body'> 
-                <td className='categorizer'>Ofijan Id: </td>
+                <tr className='table_body'>
+                  <td className='categorizer'>Ofijan Id: </td>
                   <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
                   <td className='categorizer'>Prepared By: </td>
                   <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
                 </tr>
                 <tr className='table_body'>
-                <td className='categorizer'>Description </td>
+                  <td className='categorizer'>Description </td>
                   <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
                 </tr>
                 <tr className='table_body'>
                   <td className='categorizer'>Total no of Questions </td>
-                  <td className='info'>{exam.questions_count}</td> 
+                  <td className='info'>{exam.questions_count}</td>
                   <td className='categorizer' colSpan={2}>Topics Covered </td>
                   <td className='info'>12</td>
                 </tr>
@@ -119,9 +115,10 @@ const LExitExam = () => {
                     </ul>
                   </td>
                 </tr>
+                <button onClick={()=> openModal(exam)}>modal</button>
                 <tr className='table_body'>
-                   <td  colSpan={5} className='open-holder'>
-                   <Link  className='button-open' to={`/ofijan_question_platel/${exam.id}`}>
+                  <td colSpan={5} className='open-holder'>
+                    <Link className='button-open' to={`/ofijan_question_platel/${exam.id}`}>
                       Open
                     </Link>
                   </td>
@@ -133,6 +130,9 @@ const LExitExam = () => {
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
         </div>)}
       </Wrapper>
+      {isModalOpen && selectedExamId && ( // Render the modal only if isModalOpen is true and selectedExamId is not null
+        <Modal examID={selectedExamId} /> // Pass the selected exam ID to the Modal component
+      )}
     </section>
   );
 }

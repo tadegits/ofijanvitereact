@@ -1,10 +1,44 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import './modal.scss';
 
-const Modal = () => {
+const Modal = ({ examID, onClose }) => {
+  const handleTestMyself = () => {
+    console.log("Test Myself");
+  };
+
+  const handleStudyMore = () => {
+    console.log("Study More");
+  };
+
   return (
-    <div>
-      what do you want to do!
+    <div className="modal">
+      <div className="modal-content">
+        <button className="close-btn" onClick={onClose}>Close</button>
+
+        <div className="card-container">
+          <div className="exam-description">
+            <h3>Exam Description</h3>
+            <p>Here you can provide a brief description of the exam with details such as exam name, total number of questions, topics covered, etc.</p>
+          </div>
+          <h2>What do you want to do with this exam?</h2>
+          <div className="combined-card">
+            <div className="card positive" onClick={handleTestMyself}>
+              <h4>Test Myself</h4>
+              <p>Take a practice exam to see how well you know the material.</p>
+            </div>
+            <Link className="card negative" to={`/ofijan_question_platel/${examID}`}>
+              <div  onClick={handleStudyMore}>
+                <h4>Study More</h4>
+                <p>Review the material and learn more before taking the exam.</p>
+              </div>
+            </Link>
+
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
-export default Modal
+  );
+};
+
+export default Modal;

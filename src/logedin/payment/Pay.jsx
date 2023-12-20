@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../../Globals/apiConfig';
 import axios from 'axios';
-import ExitExam from '../ExitExam/ExitExam';
+import ExitExam from '../ExitExam/LExitExam';
 
 function Pay({ fname, examId, amount, email, lname}) {
   console.log("sold product", examId);
@@ -12,8 +12,6 @@ function Pay({ fname, examId, amount, email, lname}) {
   const [return_url, setReturnUrl] = useState('');
   const [soldItemId, setSoldItemId] = useState('');
   const [authorization_token, setAuthorisation] = useState('CHASECK_TEST-b9IkCyM7dXIrfxCkgdOb5GV4vGR8TTkJ');
-
-
   const generateRandomString = () => {
     const length = 20;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -23,7 +21,6 @@ function Pay({ fname, examId, amount, email, lname}) {
     }
     return result;
   };
-
   const [randomString, setRandomString] = useState('');
   useEffect(() => {
     const newRandomString = generateRandomString();
@@ -32,10 +29,8 @@ function Pay({ fname, examId, amount, email, lname}) {
     setSoldItemId(examId)
     setReturnUrl(`http://localhost:3000/payment/${newRandomString}/${examId}`);
   }, []);
-  
   const handleSubmit = (e) => {
     e.preventDefault();
- 
   };
   return (
     <div>
