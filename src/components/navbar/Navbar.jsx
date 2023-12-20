@@ -10,20 +10,22 @@ const Navbar = () => {
     const [showNav, setShowNav] = useState(false);
     const [showExams, setShowExams] = useState(false);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [isLoggedIn, setIsLoggedin] = useState(false);
+    const handleMouseEnter = () => {
+        setDropdownVisible(true);
+    };
 
-  const handleMouseEnter = () => {
-    setDropdownVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setDropdownVisible(false);
-  };
+    const handleMouseLeave = () => {
+        setDropdownVisible(false);
+    };
     const loggedInUser = localStorage.getItem("user");
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             const foundUser = JSON.stringify(loggedInUser);
             setUser(foundUser);
+            setIsLoggedin(true);
+
         }
     }, []);
     const handleLogout = () => {
@@ -42,11 +44,14 @@ const Navbar = () => {
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
-                    </li> 
-                    <li   onClick={() => setShowNav(false)}>
+                    </li>
+                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
+                        <Link to="/Exit_Exam">Exit Exam</Link> 
+                    </li>):( <li onClick={() => setShowNav(false)}>
                         <Link to="/ExitExam">Exit Exam</Link> 
-                        </li>
-                        <li onClick={() => setShowNav(false)}>
+                    </li>)}
+                   
+                    <li onClick={() => setShowNav(false)}>
                         <Link to="/CoC">CoC</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
@@ -56,32 +61,49 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/Grade8">Grade 8<sup>th</sup></Link>
                     </li>
-                   
+
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/Grade6">Grade 6<sup>th</sup></Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
                         <a href="/ofijan_blogs">Blog</a>
                     </li>
-                    <li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
-               onClick={handleLogout}
-            >
-              <a href="/Login">Sign in</a> 
-               </li>
+                    {isLoggedIn ?
+
+                        (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+                            onClick={handleLogout}>
+                            Log out
+                        </li>)
+
+                        :
+
+                        (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
+                            onClick={handleLogout}>
+                            <a href="/Login">Sign in</a>
+                        </li>)
+                    }
+
                 </ul>
-                <>
-                    <Link to='/Login' className="button-primary navbarz__btn">
-                        Sign in
-                    </Link>
-                </>
+                {isLoggedIn ?
+                    (<Link to='#' onClick={handleLogout} className="button-primary navbarz__btn">
+                        Log out
+                    </Link>) 
+                    
+                    :
+
+                    (<Link to='/Login' className="button-primary navbarz__btn">
+                            Sign in
+                        </Link>
+                    )}
+
                 <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`}
                     onClick={() => setShowNav(!showNav)}>
                     <FaBars />
                 </div>
             </Wrapper>
-          
+
         </nav>
-        
+
     )
 }
 

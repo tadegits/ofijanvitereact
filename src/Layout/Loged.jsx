@@ -6,7 +6,7 @@ import Grade8 from "../components/Grade8/Grade8"
 import Grade6 from "../components/Grade6/Grade6";
 import ExitExam from "../components/ExitExam/ExitExam"
 import Home from "../components/Home/Home"
-import LExitExam from "../logedin/ExitExam/ExitExam.jsx"
+import LExitExam from "../logedin/ExitExam/LExitExam.jsx"
 import Dashboard from "../components/Dashboard/Dashboard"
 import LoginSection from "../components/loginSection/LoginSection";
 // import Seller from '../components/Seller/Seller';

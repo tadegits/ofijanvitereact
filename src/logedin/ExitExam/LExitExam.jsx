@@ -10,7 +10,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 
 //import "../../App.css";
-const ExitExam = () => {
+const LExitExam = () => { 
   const { deptId, userId } = useLoggedInUser();
   const url = `https://server.ofijan.com/api/departments`;
   const [departmentTitle, setDepartmentTitle] = useState('');
@@ -77,7 +77,7 @@ const ExitExam = () => {
         </div> */}
 
         {exams ? (exams.map((exam, index) => {
-          return (
+          return (  
             <div key={exams.id} className="exams_card">
               <div className='exams_head'>
                 <img className='__logo' src={Logo} alt='' width={30} height={20} />
@@ -136,4 +136,4 @@ const ExitExam = () => {
     </section>
   );
 }
-export default ExitExam
+export default LExitExam

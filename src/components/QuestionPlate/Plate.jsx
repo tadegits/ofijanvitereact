@@ -21,6 +21,7 @@ const Plate = () => {
     const [correctAnswer, setCorrectAnswer] = useState('')
     const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
+    const [role, setRole] = useState('');
 
     useEffect(() => {
         const timerInterval = setInterval(() => {

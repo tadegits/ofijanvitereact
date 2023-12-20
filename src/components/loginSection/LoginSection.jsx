@@ -7,6 +7,8 @@ import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 import animationData from '../../assets/animation_lnk8tp8u.json';
 import logoImg from '../../assets/ofijan_logo.png';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './LoginSection.scss'
 const LoginSection = () => {
     const [email, setEmail] = useState("");
@@ -42,6 +44,9 @@ const LoginSection = () => {
             const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
+                
+                
+  
                 navigate('/');
             }
         } catch (error) {
