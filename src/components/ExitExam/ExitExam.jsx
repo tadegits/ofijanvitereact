@@ -56,6 +56,11 @@ const ExitExam = () => {
       setCourses([]);
     }
   };
+  const [showAll, setShowAll] = useState(false);
+
+  const toggleTopics = () => {
+    setShowAll(!showAll);
+  };
   return (
     <section className='exit_exam_nli'>
       <div className="select_field">
@@ -112,14 +117,22 @@ const ExitExam = () => {
       <td className='info'>12</td>
     </tr>
     <tr className='table_body'>
-      <td className='categorizer'>Topics </td>
-      <td className='' colSpan={4}>
-        <ul>
-          <li>Electromechanics</li>
-          <li>Double Linked List</li>
-          <li>Super Conductor's</li>
-        </ul>
-      </td>
+    <td className='categorizer topics'>Topics </td>
+    <td className='' colSpan={4}>
+      <ul>
+        <li>___</li>
+        <li>___</li>
+        <li>___</li>
+        {showAll && (
+          <>
+            <li>___</li>
+            <li>___</li>
+            <li>___</li>
+          </>
+        )}
+      </ul>
+      <span className="dropdown-icon" onClick={toggleTopics}>{!showAll? (<>▼</>) : (<>▲</>)}</span>
+    </td>
     </tr>
     <tr className='table_body'>
       <td colSpan={5} className='open-holder'>

@@ -221,3 +221,21 @@ th {
     transform: translateX(0);
   }
 }
+.choice_and_answer{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  align-items: center;
+  align-self: center;
+.clear_choice{
+color: rgb(7, 7, 7);
+opacity: 0.4;
+margin-left: 20%;
+}
+.show_answer
+{
+  opacity: 0.4;
+color: rgb(0, 0, 0);
+}
+
+}

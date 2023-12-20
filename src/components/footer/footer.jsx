@@ -15,7 +15,7 @@ const footer = () => {
         <Wrapper>
           <Feedback/>
         <div className='footer__text'>
-            <h3>Learn, Sty & Test Your Study with  <span>Ofijan</span></h3>
+            <h3>Learn, Study & Test Your Study with  <span>Ofijan</span></h3>
         </div>
         <ul className='footer__links'>
             <li><FacebookIcon/></li>

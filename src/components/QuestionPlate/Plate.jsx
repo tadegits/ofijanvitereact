@@ -17,6 +17,7 @@ const Plate = () => {
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
+    const [isLoggedin, setIsLoggedin] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState('')
     const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
@@ -44,6 +45,12 @@ const Plate = () => {
     }, [ofin_id, userId]);
 
     useEffect(() => {
+        const loggedUser = localStorage.getItem('user');
+    if (loggedUser !== null) {
+      setIsLoggedin(true);
+      const userLogged = JSON.parse(loggedUser);
+      setRole(userLogged.user.role_id);
+    }
         if (questionData.length > 0) {
             const selectedOption = questionData[selectedQuestionIndex].options.find((option) => option.selected);
             setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
@@ -51,7 +58,6 @@ const Plate = () => {
     }, [selectedQuestionIndex, questionData]);
     const handleQuestionClick = (index) => {
         setSelectedQuestionIndex(index);
-
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
     const handleOptionClick = (index) => {
@@ -62,9 +68,7 @@ const Plate = () => {
         }));
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
-        //set the correct answer
         setAnswered(true)
-
         if (questionData[selectedQuestionIndex].options[index].correct === '1') {
             setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
         } else {
@@ -149,7 +153,7 @@ const Plate = () => {
             </div> */}
             <div className='plate'>
                 <div className='flag_plate'>
-                    <h5>Question {selectedQuestionIndex + 1}</h5>
+                    <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
                     <p>Answer saved</p>
                     <p>Marked out of 100</p>
                     <p></p>
@@ -158,9 +162,13 @@ const Plate = () => {
                 <div className='question_plate'>
                     <div className="timePlate">
                         <div className="timebox1"></div>
-                        <div className='timebox2'>
+                       {isLoggedin? (<div className='timebox2'>
                             <TimerIcon /> Time left {timeLeft} sec
-                        </div>
+                        </div>) :
+                        (<div className='timebox2'>
+                             <TimerIcon /> Time left 00:00 sec
+                             
+                        </div>)} 
                     </div>
                     <div className="questionplate">
                         {questionData.length > 0 && (
@@ -172,7 +180,6 @@ const Plate = () => {
                                     {questionData[selectedQuestionIndex].options.map((option, index) => {
                                         const isSelected = selectedOptionIndex === index;
                                         const isCorrectAnswer = option.correct === '1';
-
                                         return (
                                             <label
                                                 className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
@@ -192,9 +199,12 @@ const Plate = () => {
                                             </label>
                                         );
                                     })}
-                                    <h5 onClick={handleClearChoiceClick}>Clear Choice</h5>
+                                    <div className='choice_and_answer'>
+                                        <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
+                                        <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5>
+                                    </div>
+                                   
                                 </div>
-
                             </>
                         )}
                     </div>
@@ -202,6 +212,8 @@ const Plate = () => {
                         handlePreviousClick={handlePreviousClick}
                         handleNextClick={handleNextClick}
                         selectedQuestionIndex={selectedQuestionIndex}
+                        isLoggedIn={isLoggedin}
+                        handleSweetAlert={handleSweetAlert}
                     />
                 </div>
                 <div className="answer_plate">

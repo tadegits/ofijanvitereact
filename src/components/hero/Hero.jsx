@@ -14,7 +14,7 @@ import './Hero.scss';
 const Hero = () => {
   const [text, setText] = useState('Study with exams!');
   const [role, setRole] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(false); 
 
   useEffect(() => {
     const interval = setInterval(() => {

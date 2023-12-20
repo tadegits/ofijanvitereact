@@ -93,38 +93,10 @@
                     margin-top: 1.8rem;
 
                 }
-
-                // @include respond(tab-port){
-                //     font-size: 24px;
-                //     font-weight: 700;
-                //     margin-top: 1.8rem;
-
-                // }
             }
         }
 
     }
-
-    // &__form_container {
-    //     width: fit-content;
-    //     margin: 10px -20px 10px 0;
-    //     border-radius: 0.5rem;
-    //     padding-left: 2.5rem;
-    //     background-color: #ffffff;
-
-    //     // @include respond(tab-land){
-    //     //     margin: 10px 0px 10px 0;
-    //     // }
-
-    //     // @include respond(tab-port){
-    //     //     margin: 10px 0px 10px 0;
-    //     // }
-
-    //     @include respond(phone){
-    //         margin: 10px 0px 10px 0;
-    //     }
-
-    // }
 
     &__signup {
         margin: 10px;
@@ -134,13 +106,13 @@
     }
 
     &__form1 {
-        // background-color: rgb(6, 16, 49);
+       
         padding: 0.5rem;
         width: auto;
         margin-bottom: 10px;
 
         .form-contents {
-            // background-color: #5240b9;
+           
             width: 85%;
 
             @include respond(tab-land) {
