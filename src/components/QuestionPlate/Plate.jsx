@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
-import  NavigationButtons from './NavigationButtons';
-import QuestionComponent from './QuestionComponent';
+import NavigationButtons from './NavigationButtons';
 import AnswerBox from './AnswerBox'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import CheckIcon from '@mui/icons-material/Check';
 import TimerIcon from '@mui/icons-material/Timer';
 import API_BASE_URL from '../../Globals/apiConfig';
+import './plate.scss';
 const Plate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
@@ -16,7 +17,9 @@ const Plate = () => {
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
+    const [correctAnswer, setCorrectAnswer] = useState('')
     const [timeLeft, setTimeLeft] = useState(60);
+    const alphabet = ["A", "B", "C", "D"];
 
     useEffect(() => {
         const timerInterval = setInterval(() => {
@@ -159,17 +162,47 @@ const Plate = () => {
                             <TimerIcon /> Time left {timeLeft} sec
                         </div>
                     </div>
-                    <QuestionComponent
-          question={questionData[selectedQuestionIndex]}
-          selectedOptionIndex={selectedOptionIndex}
-          handleOptionClick={handleOptionClick}
-          handleClearChoiceClick={handleClearChoiceClick}
-        />
+                    <div className="questionplate">
+                        {questionData.length > 0 && (
+                            <>
+                                <div className="questionText">
+                                    <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                                </div>
+                                <div className="choicePlate">
+                                    {questionData[selectedQuestionIndex].options.map((option, index) => {
+                                        const isSelected = selectedOptionIndex === index;
+                                        const isCorrectAnswer = option.correct === '1';
+
+                                        return (
+                                            <label
+                                                className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
+                                                key={index}
+                                                onClick={() => handleOptionClick(index)}
+                                            >
+                                                <input
+                                                    type='radio'
+                                                    name={`option_${selectedQuestionIndex}`}
+                                                    value={option.option}
+                                                    checked={isSelected}
+                                                    readOnly
+                                                />
+                                                <span className="alphabet">{alphabet[index]}. </span>
+                                                {option.option}
+                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
+                                            </label>
+                                        );
+                                    })}
+                                    <h5 onClick={handleClearChoiceClick}>Clear Choice</h5>
+                                </div>
+
+                            </>
+                        )}
+                    </div>
                     <NavigationButtons
-          handlePreviousClick={handlePreviousClick}
-          handleNextClick={handleNextClick}
-          selectedQuestionIndex={selectedQuestionIndex}
-        />
+                        handlePreviousClick={handlePreviousClick}
+                        handleNextClick={handleNextClick}
+                        selectedQuestionIndex={selectedQuestionIndex}
+                    />
                 </div>
                 <div className="answer_plate">
           <h5>Exam Navigation</h5>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './plate.scss';
+import './plate.scss'
 const AnswerBox = ({ index, isSelected, isFlagged, isAnswered, handleClick, handleSweetAlert }) => (
   <div
     className={`answer_box_holder ${isSelected ? 'selected' : ''} ${isFlagged ? 'flagged' : ''} ${isAnswered ? 'answered' : ''}`}

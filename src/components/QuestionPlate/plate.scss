@@ -1,5 +1,14 @@
 @import "../../styles/mixin.scss";
-@import "../../styles//colors.scss";
+@import "../../styles/colors.scss";
+
+// Common styles
+$light_gray: #e0e0e0;
+$gray: #636262;
+$dark_gray: #757575;
+$white: #ffffff;
+$milli_gray: rgb(117, 116, 116);
+$light_blue: rgb(186, 230, 230);
+$tade_color: #007bff;
 
 .ofijan_exam_plate {
   width: 100%;
@@ -7,14 +16,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   margin-top: 0vh;
 
-  @include respond(phone) {}
+  @include respond(phone) {
+    // Add responsive styles for phone
+  }
 }
 
 .exam_info_plate {
-
   width: 100%;
   background-color: $milli_gray;
   display: flex;
@@ -24,16 +34,16 @@
   margin: 1em;
 
   .__text {
-    size: 20px;
+    font-size: 20px;
   }
 }
 
 .plate {
   display: grid;
-  grid-template-columns: .5fr 2.5fr 1fr;
+  grid-template-columns: 0.5fr 2.5fr 1fr;
   gap: 0.2rem;
-  background-color: rgb(255, 255, 255);
-  padding: 0px;
+  background-color: $white;
+  padding: 0;
   border-radius: 8px;
 
   @include respond(phone) {
@@ -41,32 +51,32 @@
     flex-direction: column;
   }
 }
-th{
-  background-color: rgb(117, 116, 116);
+
+th {
+  background-color: $milli_gray;
 }
-.basicInfoPlate
-{
+
+.basicInfoPlate {
   width: 100%;
   display: flex;
   justify-content: center;
-  
-
 }
-.basicInfoPlate2
-{
+
+.basicInfoPlate2 {
   width: 75%;
-  table{
+
+  table {
     width: 100%;
   }
-tr{
-  width: 50%;
-}
-td
-{
-  width: 50%;
-}
-}
 
+  tr {
+    width: 50%;
+  }
+
+  td {
+    width: 50%;
+  }
+}
 
 .flag_plate {
   background-color: $milli_gray;
@@ -93,15 +103,14 @@ td
 }
 
 .questionplate {
-  background-color: rgb(186, 230, 230);
-  padding: 0rem;
+  background-color: $light_blue;
+  padding: 0;
   height: max-content;
   display: flex;
   flex-direction: column;
 }
 
 .timePlate {
-
   display: flex;
   justify-content: space-between;
   margin: 5px;
@@ -111,8 +120,6 @@ td
     width: fit-content;
     padding: 2px;
   }
-
-
 }
 
 .questionText {
@@ -129,127 +136,88 @@ td
   display: flex;
   flex-wrap: wrap;
   gap: 0.09rem;
-
-  .answer_box_holder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 29px;
-    background-color: #e0e0e0;
-    margin: 0 1px;
-    border: 1px solid gray;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  .answer_box {
-    width: 30px;
-    display: flex;
-    height: 50%;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 12px;
-  }
 }
 
-.option_box {
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-  gap: 1rem;
-}
-
-.answer_box_holder:nth-child(n+6) .answer_box {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.answer_plate {
+.answer_box_holder {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  width: 30px;
+  height: 29px;
+  background-color: $gray;
+  margin: 0 1px;
+  border: 1px solid $gray;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:nth-child(n + 6) {
+    
+    opacity: 0.5;
+  }
 }
 
-.correct_counter {
-  text-align: center;
-  margin-bottom: 20px;
+.answer_box {
+  width: 30px;
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 .navigation_buttons {
   display: flex;
   justify-content: space-between;
-}
 
-.navigation_buttons button {
-  padding: 10px 20px;
-  border: none;
-  background-color: $tade-color;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 4px;
-  outline: none;
-}
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: $tade-color;
+    color: $white;
+    cursor: pointer;
+    border-radius: 4px;
+    outline: none;
 
-.navigation_buttons button:disabled {
-  background-color: #e0e0e0;
-  color: #757575;
-  cursor: not-allowed;
+    &:disabled {
+      background-color: $light_gray;
+      color: $dark_gray;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .answer_box_holder.selected {
-  border: 2px #636262 solid;
+  border: 2px $gray solid;
 }
 
 .answer_box.answered {
-  background-color: #636262;
+  background-color: $dark_gray;
 }
 
-
-.option_box {
-  
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-// .option_box.selected {
-//   background-color: $tade-color; 
-//   color: white; 
-// }
-
-
-
-.correct_is
-{
+.correct_is {
   opacity: 0;
-}
-.correct_is.answered.hi
-  {
-    //laundary 
-    //cafe
-    // 
+
+  &.answered.hi {
     justify-content: end;
     align-items: end;
     opacity: 1;
   }
+}
 
-
-  .right-icon-animation {
-    display: inline-block;
-    margin-left: 5px;
-    animation: rightIconAnimation 0.5s ease;
+.right-icon-animation {
+  display: inline-block;
+  margin-left: 5px;
+  animation: rightIconAnimation 0.5s ease;
 }
 
 @keyframes rightIconAnimation {
-    0% {
-        opacity: 0;
-        transform: translateX(-5px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
