@@ -141,6 +141,17 @@ td
     cursor: pointer;
     
   }
+  .answer_box_holderl {
+    display: flex;
+    width: 30px;
+    height: 29px;
+    background-color: #e0e0e0;
+    margin: 0 1px;
+    border: 1px solid gray;
+    flex-direction: column;
+    cursor: pointer;
+    
+  }
 
   .answer_box {
     width: 100%;
@@ -161,6 +172,10 @@ td
 }
 
 .answer_box_holder:nth-child(n+6) .answer_box {
+  pointer-events: none;
+  opacity: 1;
+}
+.answer_box_holderl:nth-child(n+6) .answer_box {
   pointer-events: none;
   opacity: 1;
 }
@@ -198,6 +213,9 @@ td
 }
 
 .answer_box_holder.selected {
+  border: 2px #636262 solid;
+}
+.answer_box_holderl.selected {
   border: 2px #636262 solid;
 }
 
@@ -307,4 +325,28 @@ td
   background-color: red;
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
  } 
+
+
+ 
 }
+.answer_box_holderl.flagged::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 12px; 
+  height: 12px; 
+  justify-content: flex-end;
+  background-color: red;
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+.answer_box_holderl.flagged::before {
+
+ .answer_box{
+  content: "";
+  top: 0;
+  left: 0;
+  width: 12px; 
+  height: 5px; 
+  background-color: red;
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+ } }

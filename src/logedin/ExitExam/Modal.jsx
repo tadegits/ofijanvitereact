@@ -27,10 +27,10 @@ const Modal = ({ examID, onClose }) => {
           </div>
           <h2>What do you want to do with this exam?</h2>
           <div className="combined-card">
-            <div className="card positive" onClick={handleTestMyself}>
+          <Link to={`/ofijan_exam_plate/testmode/${examID}`} className="card positive">
               <h4>Test Myself</h4>
               <p>Take a practice exam to see how well you know the material.</p>
-            </div>
+            </Link>
             <Link to={`/ofijan_question_platel/${examID}`} className="card negative">
               <div onClick={handleStudyMore}>
                 <h4>Study More</h4>

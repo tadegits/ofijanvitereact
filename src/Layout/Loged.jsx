@@ -19,7 +19,8 @@ import Sidebar from '../Seller/components/sidebar/Sidebar.jsx';
 import UserList from '../Seller/pages/userList/UserList.jsx';
 import User from '../Seller/pages/user/User.jsx';
 import NewUser from '../Seller/pages/newUser/NewUser.jsx';
-
+import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate.jsx';
+import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate.jsx';
 import Exam from '../Seller/pages/exam/Exam.jsx';
 import AddExam from '../Seller/pages/exam/AddExam.jsx';
 import Topic from '../Seller/pages/topic/Topic.jsx';
@@ -138,6 +139,8 @@ const currentPath = window.location.pathname;
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
+        <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate/>}/>
+        <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate/>}/>
         </Routes>
       
     </>

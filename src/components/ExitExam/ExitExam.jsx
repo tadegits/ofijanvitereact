@@ -79,11 +79,7 @@ const ExitExam = () => {
 
       </div>
       <Wrapper className="examsholder">
-        {/* <div className='exitexamhjgjh'>
 
-          <Sidebar /> 
-      
-        </div> */}
 
         {exams ? (exams.map((exam, index) => {
           return (

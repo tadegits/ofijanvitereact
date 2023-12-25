@@ -115,12 +115,10 @@ const LExitExam = () => {
                     </ul>
                   </td>
                 </tr>
-                <button onClick={()=> openModal(exam)}>modal</button>
+                
                 <tr className='table_body'>
                   <td colSpan={5} className='open-holder'>
-                    <Link className='button-open' to={`/ofijan_question_platel/${exam.id}`}>
-                      Open
-                    </Link>
+                    <button className='button-open' onClick={()=> openModal(exam)}>Open</button>
                   </td>
                 </tr>
               </table>
