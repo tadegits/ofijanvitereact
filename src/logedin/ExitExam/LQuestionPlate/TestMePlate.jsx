@@ -132,6 +132,7 @@ const TestMePlate = () => {
     };
     return (
         <div className='ofijan_exam_plate'>
+            <h1>Test Plate</h1>
             {/* <div className='basicInfoPlate'>
                 <table>
                     <tr>

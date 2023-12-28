@@ -6,8 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../Globals/apiConfig';
-import Modal from './Modal';
-import './modal.scss';
+import WhatModal from './WhatModal';
 const LExitExam = () => {
   const { deptId, userId } = useLoggedInUser();
   const url = `${API_BASE_URL}/departments`;
@@ -65,11 +64,13 @@ const LExitExam = () => {
     setIsModalOpen(true);
     setSelectedExamId(exam.id);
   }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  
+  }
   return (
     <section className='exit_exam_nli'>
-      <div className="select_field">
-        <p>{departmentTitle}</p>
-      </div>
+      
       <Wrapper className="examsholder">
         {exams ? (exams.map((exam, index) => {
           return (
@@ -128,8 +129,8 @@ const LExitExam = () => {
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
         </div>)}
       </Wrapper>
-      {isModalOpen && selectedExamId && ( // Render the modal only if isModalOpen is true and selectedExamId is not null
-        <Modal examID={selectedExamId} /> // Pass the selected exam ID to the Modal component
+      {isModalOpen && selectedExamId && ( 
+        <WhatModal  examID={selectedExamId} onClose={closeModal} /> 
       )}
     </section>
   );

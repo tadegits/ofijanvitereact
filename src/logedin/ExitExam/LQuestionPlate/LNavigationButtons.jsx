@@ -6,7 +6,7 @@ const LNavigationButtons = ({ handlePreviousClick, handleNextClick, selectedQues
       Previous
     </button>
  
-    <><button onClick={handleNextClick} disabled={selectedQuestionIndex === length}>
+    <><button onClick={handleNextClick} disabled={selectedQuestionIndex == length}>
       Next
     </button></>
     

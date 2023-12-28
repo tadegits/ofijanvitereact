@@ -350,3 +350,57 @@ td
   background-color: red;
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
  } }
+ .squestion_plate {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.ofijan_exam_plate_study {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .question_plate_study {
+    background-color: rgb(186, 230, 230);
+    padding: 0.1rem;
+    width: 70%;
+    justify-content: center;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  .navigation_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+  }
+
+  .choice_plate_study {
+    padding-left: 0px;
+    font-size: 14px;
+  }
+
+  .switch {
+    width: max-content;
+    background-color: $tade-color;
+    height: 50px;
+    padding: 10px;
+    color: $tade-yellow;
+    font-weight: bold;
+    border: $tade-yellow solid 1px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    justify-content: flex-end;
+
+    &:hover {
+      background-color: $tade-yellow;
+      color: $tade-color;
+      border: $tade-color solid 1px;
+      transition: 0.1s ease-out;
+    }
+  }
+}

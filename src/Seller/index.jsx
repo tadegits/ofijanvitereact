@@ -9,13 +9,13 @@ export default function index() {
   return (
     <div className="home">
 
-      <h4>Welcome To Ofijan!</h4>
-      {/* <FeaturedInfo />
+      
+      <FeaturedInfo />
       <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
       <div className="homeWidgets">
         <WidgetSm/>
         <WidgetLg/>
-      </div> */}
+      </div>
     </div>
   );
 }

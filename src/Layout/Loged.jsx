@@ -73,12 +73,12 @@ const currentPath = window.location.pathname;
        {currentPath.includes('/seller') ? 
        
        <>
-      <Topbar />
+      
       <div className="containere">
         <div className="side">
          <Sidebar /> 
         </div>
-        <div className="items">
+        <div className="items"><Topbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/seller/write_blog" element={<WriteBlog />} />

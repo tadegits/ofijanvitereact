@@ -5,6 +5,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
+import API_BASE_URL from "../../../Globals/apiConfig";
 import axios from "axios";
 
 export default function Reference() {
@@ -40,7 +41,7 @@ if(loggedInUser)
   const users = JSON.parse(loggedInUser);
 setUserID(users.user.id);
 
-const uri = `http://127.0.0.1:8000/api/all_references/${userID}`;
+const uri = `${API_BASE_URL}/api/all_references/${userID}`;
 console.log(uri)
 axios.get(uri)
       .then(response => {

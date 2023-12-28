@@ -115,6 +115,9 @@
   align-items: flex-end;
   background-color: #ffffff;
   box-shadow: #4CAF50;
+  border: 1px solid #ddd; /* Border color for the card */
+  padding: 20px; /* Padding around the card */
+  margin: 10px; /* Margin between cards */
   .underline
   {
     background-color: $milli_gray;
@@ -161,34 +164,7 @@ font-weight: bold;
   align-items: flex-end;
   justify-content: space-between;
 }
-.exams_head
-{
-  background-color: red;
-}
-.exams_card:hover {
-  border-color: $tade-color;
-  background-color: #01dee600;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  /* Add box shadow on hover */
-  filter: brightness(110%);
-  /* Add glow effect on hover */
 
-}
-
-.__price {
-
-  display: flex;
-  justify-content: end;
-
-  p {
-    color: rgb(255, 255, 255);
-    background-color: #d30f0f;
-    border-radius: 2px;
-    padding: 0.11rem;
-    width: max-content;
-    font-weight: bold;
-  }
-}
 
 .btnpreview {
   background-color: #ffffff00;
@@ -201,38 +177,7 @@ font-weight: bold;
  
 }
 
-.exams_head {
-  width: 100%;
-  font-weight: bold;
-  display: flex;
-  gap: 5rem;
-  background-color: rgb(243, 243, 243);
- .__title
- {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  align-items: center;
-  margin-right: 60px;
- }
- .__logo
- {
-  display: flex;
-  justify-content: center;
-  margin: 5px;
- }
-}
-/* Style for the button */
-.free-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
+
 
 .icon {
   position: absolute;
@@ -241,14 +186,6 @@ font-weight: bold;
   transform: translateY(-50%);
 }
 
-.ope-button {
-  padding: 10px 20px;
-  background-color: $tade-color;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 .hidden-topics {
   display: none;
@@ -256,4 +193,64 @@ font-weight: bold;
 
 .dropdown-icon {
   cursor: pointer;
+}
+.exams_card {
+
+
+  .exams_head {
+    display: flex;
+    align-items: center;
+
+    .__logo {
+      margin-right: 10px; /* Spacing between logo and title */
+    }
+
+    .__title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .underline {
+    border-bottom: 1px solid $tade-color;
+    margin: 5px 0; 
+  }
+
+  .exam_table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .table_body {
+      td {
+        padding: 10px; /* Padding for each cell */
+      }
+
+      .categorizer {
+        font-weight: bold;
+      }
+
+      .info {
+        font-style: italic;
+      }
+    }
+
+    .open-holder {
+      text-align: center;
+      padding-top: 10px; /* Spacing above the "Open" button */
+
+      .button-open {
+        background-color: $tade-color;
+        color: $tade-yellow;
+        padding: 10px 20px; /* Button padding */
+        border: none;
+        border-radius: 5px; /* Button border radius */
+        cursor: pointer;
+        font-size: 16px;
+      &:hover{
+        opacity: 0.7;
+      }
+      }
+
+    }
+  }
 }

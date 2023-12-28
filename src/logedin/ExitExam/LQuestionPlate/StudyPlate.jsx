@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import LNavigationButtons from './LNavigationButtons';
 import LAnswerBox from './LAnswerBox';
@@ -131,51 +131,21 @@ const StudyPlate = () => {
         setQuestionData(updatedQuestionData);
     };
     return (
-        <div className='ofijan_exam_plate'>
-            {/* <div className='basicInfoPlate'>
-                <table>
-                    <tr>
-                        <th>Picture</th>
-                        <th>Basic Information</th>
-                    </tr>
-                    <tr>
-                        <td><img src={Logo} width={10} height={10} alt='profile picture' /></td>
-                        <td className='basicInfoPlate2'>
-                            <tr>
-                                <td>Full Name Million Sime</td>
-                                <td>Institution:  Ofin University</td>
-                            </tr>
-                            <tr><td>Enrolment Type: Regular</td>
-                                <td>University ID O/UR28147/11</td>
-                            </tr>
-                            <tr><td>Exam Center: Ofin University</td>
-                                <td>Department: Computer Science</td>
-                            </tr>
-                        </td>
-                    </tr>
-                </table>
-            </div> */}
-            <div className='plate'>
-                <div className='flag_plate'>
-                    <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
-                    <p>Answer saved</p>
-                    <p>Marked out of 100</p>
-                    <p></p>
-                    <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
-                </div>
-                <div className='question_plate'>
-                    <TimePlate
-                    isLoggedin = {isLoggedin}
-                    timeLeft={timeLeft}
-
-                    />
-                    <div className="questionplate">
+        <div className='ofijan_exam_plate_study'>
+            
+           
+               
+                    <div className="question_plate_study">
+                    <Link to={`/ofijan_exam_plate/studymode/${ofin_id}`} className="switch">
+                         Switch To Test Mode
+                    </Link>
+                       
                         {questionData.length > 0 && (
                             <>
-                                <div className="questionText">
+                                <div className="squestionText">
                                     <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
                                 </div>
-                                <div className="choicePlate">
+                                <div className="choice_plate_study">
                                     {questionData[selectedQuestionIndex].options.map((option, index) => {
                                         const isSelected = selectedOptionIndex === index;
                                         const isCorrectAnswer = option.correct === '1';
@@ -199,41 +169,24 @@ const StudyPlate = () => {
                                         );
                                     })}
                                     <div className='choice_and_answer'>
-                                        <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
-                                        <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5>
-                                    </div>
+                                        <p>Description:</p>
+                                        </div>
                                    
                                 </div>
                             </>
                         )}
                     </div>
+
                     <LNavigationButtons
                         handlePreviousClick={handlePreviousClick}
                         handleNextClick={handleNextClick}
                         selectedQuestionIndex={selectedQuestionIndex}
                        length = {questionData.length-1}
                     />
-                </div>
-                <div className="answer_plate">
-          <h5>Exam Navigation</h5>
-          <div className="answer_plate">
-            {questionData.map((question, index) => (
-              <LAnswerBox
-                key={index}
-                index={index}
-                isSelected={selectedQuestionIndex === index}
-                isFlagged={question.flagged}
-                isAnswered={question.options.some(option => option.selected)}
-                handleClick={handleQuestionClick}
-                handleSweetAlert={handleSweetAlert}
-              />
-            ))}
-          </div>
-        </div>
-
+             
             </div>
-            {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
-        </div>
+           
+       
     );
 };
 export default StudyPlate;

@@ -27,9 +27,16 @@ export default function Sidebar() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState('');
   const { deptId, userId } = useLoggedInUser();
-  const [isExpanded, setIisExpanded] = ('false');
+  const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
+  const toggleMobileNav = () => {
+    setMobileNavOpen(!isMobileNavOpen);
+    setIsExpanded(!isExpanded); 
+    console.log(isMobileNavOpen);
+  };
+  
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     if (loggedInUser) {
@@ -42,6 +49,7 @@ export default function Sidebar() {
 
   const handleMenuClick = (menu) => {
     setExpandedMenu((prevMenu) => (prevMenu === menu ? null : menu));
+    setMobileNavOpen(!isMobileNavOpen);
   };
 
   const renderSellerSidebar = () => (
@@ -200,10 +208,15 @@ export default function Sidebar() {
   );
 
   return (
-    <div className="sidebar2">
-      <div className="sidebarWrapper2">
-        {role === 3 ? renderSellerSidebar() : null}
-        {role === 2 ? renderEducationSidebar() : null}
+    <div className={`sidebar_holder ${isMobileNavOpen ? 'mobile-nav-open': ''}`}>
+      <div className={`sidebar2 ${isMobileNavOpen ? 'mobile-nav-open': ''}`}>
+        <button className="mobile-nav-btn" onClick={toggleMobileNav}>
+          ☰
+        </button>
+        <div className="sidebarWrapper2">
+          {role === 3 ? renderSellerSidebar() : null}
+          {role === 2 ? renderEducationSidebar() : null}
+        </div>
       </div>
     </div>
   );
