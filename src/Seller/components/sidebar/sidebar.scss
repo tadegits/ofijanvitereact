@@ -109,11 +109,9 @@
 }
 }
 .sidebar_holder {
-  // Your existing styles...
 
   &.mobile-nav-open {
-    overflow: hidden; // Hide overflow when mobile navigation is open
+    overflow: hidden; 
   }
 
-  // Other styles...
 }
