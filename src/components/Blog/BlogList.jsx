@@ -13,7 +13,7 @@ const BlogList = ({ blogs }) => {
                         <div className='side_menu_head'>
                             <h6 className='title2'>Related Topics</h6>
                             <ul>
-                                <li>The importance of exit exams</li>
+                                <li>The importance of exit exams2</li>
                                 <li>The purpose of exit exams</li>
                             </ul>
                         </div>
