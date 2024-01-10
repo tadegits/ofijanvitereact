@@ -25,7 +25,7 @@ const BlogList = ({ blogs }) => {
 
 
                         <div>
-                            {blogs.map((blog, index) => (
+                            {blogs && blogs.map((blog, index) => (
                                 <div className='blogs_content_single' key={index}>
                                     <div className="blog_list_div" key={blog.title}>
                                         <h1>{blog.title}</h1>
