@@ -18,6 +18,7 @@ import FullBlog from '../components/Blog/FullBlog';
 import Seller from '../Seller'; 
 import Plate from '../components/QuestionPlate/Plate';
 import CoC from '../components/CoC/CoC';
+import EasyExam from '../components/EasyExam';
 import axios from 'axios';
 const Default = () => {
 
@@ -45,6 +46,7 @@ const Default = () => {
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
+        <Route path="/easyexam" element={<EasyExam/>}/>
         <Route path="/ExitExam" element={<ExitExam />} />
         <Route path="/exit/:id" element={<ExitExam />} />
         <Route path="/Login" element={<LoginSection />} />

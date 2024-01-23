@@ -54,11 +54,11 @@ const Hero = () => {
 
             <Link
               // to={isLoggedin ? (role === 3 ? '/seller' : '/requestseller') : '/Login'}
-              to={isLoggedin ? ('/seller') : '/Login'}
+              to={isLoggedin ? ('/easyexam') : '/Login'}
               state={{ name: 'seller' }}
               className="button-outline"
             >
-              Start Selling Answers!
+              Take Exam Know
             </Link>
           </div>
         </div>

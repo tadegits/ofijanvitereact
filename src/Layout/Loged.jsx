@@ -39,7 +39,7 @@ import BlogAnalytics from "../Seller/pages/blog/Analytics"
 
 import Resume from "../Seller/pages/Resume/Resume";
 import Document from "../Seller/pages/Document/Document";
-
+import EasyExam from '../components/EasyExam';
 import API_BASE_URL from '../Globals/apiConfig.jsx';
 import WriteBlog from '../Seller/pages/blog/write.jsx';
 import axios from 'axios';
@@ -83,6 +83,7 @@ const currentPath = window.location.pathname;
           <Route exact path="/" element={<Home />} />
           <Route exact path="/seller/write_blog" element={<WriteBlog />} />
           <Route path="/seller" element={<Seller />} />
+          
           {/* blogs */}
           <Route exact path="/seller/write_blog" element={<WriteBlog />} />
           <Route exact path="/seller/edit_blog" element={<EditBlog />} />
@@ -126,7 +127,7 @@ const currentPath = window.location.pathname;
           <Route path="/dashboard" element={<Dashboard />} />
        
           <Route path="/" element={<Home />} />
-          
+          <Route path="/easyexam" element={<EasyExam/>}/>
           <Route path="/Grade12" element={<Grade12 />} />
           <Route path="/Grade8" element={<Grade8 />} />
           <Route path="/Grade6" element={<Grade6 />} />
