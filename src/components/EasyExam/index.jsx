@@ -1,6 +1,8 @@
 import Wrapper from '../wrapper/Wrapper'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import API_BASE_URL from '../../Globals/apiConfig';
+import axios from 'axios';
 import './easyexam.scss';
 const index= () => {
   const [examID, setExamID] = useState('');
@@ -12,9 +14,8 @@ const index= () => {
   const handleSearch = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/transcripts/search/${itemNumber}`); 
+      const response = await axios.get(`${API_BASE_URL}/transcripts/search/${examID}`); 
       setSearchResults(response.data.transcripts);
-      openSearchResultsModal();
     } catch (error) {
       console.error('Error fetching search results:', error);
       setErrors({ ...errors, server: 'Error fetching search results' });
