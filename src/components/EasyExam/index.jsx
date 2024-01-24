@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import API_BASE_URL from '../../Globals/apiConfig';
 import axios from 'axios';
+import ExamCard from '../ExamCard';
 import './easyexam.scss';
 const index= () => {
   const [examID, setExamID] = useState('');
@@ -14,8 +15,9 @@ const index= () => {
   const handleSearch = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/transcripts/search/${examID}`); 
-      setSearchResults(response.data.transcripts);
+      const response = await axios.get(`${API_BASE_URL}/exams/search/${examID}`); 
+      setSearchResults(response.data.exams);
+      
     } catch (error) {
       console.error('Error fetching search results:', error);
       setErrors({ ...errors, server: 'Error fetching search results' });
@@ -23,6 +25,7 @@ const index= () => {
       setLoading(false);
     }
   };
+  console.log(searchResults);
   return <section className='easyExam' >
     <Wrapper className='easy_exam_wrapper' >
       <div className='easy_exam_input_holder'>
@@ -41,7 +44,9 @@ const index= () => {
           {loading ? 'Searching...' : 'Search'}
         </button>
       </div>
+      
     </Wrapper>
+    <ExamCard exams={searchResults}/>
   </section>
 }
 
