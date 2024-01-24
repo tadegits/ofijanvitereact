@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, Button, Modal, Input } from 'antd';
 import Wrapper from '../wrapper/Wrapper';
 import Logo from '../../assets/ofijan_logo.png';
 import '../ExitExam/ExitExam.scss';
 import '../../App.css';
+import API_BASE_URL from '../../Globals/apiConfig';
 
 const { Meta } = Card;
 
 const Index = ({ exams }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [password, setPassword] = useState('');
+    const [exam_password, setPassword] = useState('');
+    const [isPasswordIncorrect, setIsPasswordIncorrect] = useState(false);
     const [examId, setExamId] = useState(null);
-
+const navigate  = useNavigate();
     const showModal = (id) => {
         setIsModalVisible(true);
         setExamId(id);
@@ -20,14 +22,15 @@ const Index = ({ exams }) => {
 
     const handleOk = async () => {
         try {
-            const response = await checkExamPassword(examId, password);
+            const response = await checkExamPassword(examId, exam_password);
 
             if (response && response.success) {
                 // Password is correct
-                console.log('Password is correct! Exam ID:', examId);
+                navigate(`/ofijan_question_plate/${exams.id}`); 
                 setIsModalVisible(false);
             } else {
                 // Password is incorrect
+                setIsPasswordIncorrect(true);
                 console.log('Password is incorrect!');
                 // Handle incorrect password scenario (e.g., show an error message)
             }
@@ -38,22 +41,22 @@ const Index = ({ exams }) => {
 
     const handleCancel = () => {
         setIsModalVisible(false);
+        setIsPasswordIncorrect(false);
     };
 
     const checkExamPassword = async (id, enteredPassword) => {
         try {
-            const response = await fetch(`your_api_endpoint/check-password/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/exams/check-password/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ password: enteredPassword }),
+                body: JSON.stringify({ exam_password: enteredPassword }),
             });
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
-            }
-
+            }     
             return response.json();
         } catch (error) {
             console.error('Error checking exam password:', error);
@@ -67,39 +70,39 @@ const Index = ({ exams }) => {
     } else {
         return (
             <Wrapper className="examsholder">
-                {exams.map((exam) => (
+               
                     <Card
-                        key={exam.id}
+                        key={exams.id}
                         className="exams_card"
                         cover={<img className='__logo' alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
                         actions={[
-                            <Button type="primary" onClick={() => showModal(exam.id)}>
+                            <Button type="primary" onClick={() => showModal(exams.id)}>
                                 Open
                             </Button>
                         ]}
                     >
                         <Meta
-                            title={exam.exam_name ? exam.exam_name : 'No Name'}
-                            description={exam.description ? exam.description : 'No Description!'}
+                            title={exams.exam_name ? exams.exam_name : 'No Name'}
+                            description={exams.description ? exams.description : 'No Description!'}
                         />
                         <div className="underline"></div>
                         <p>
-                            <b>Booklet Name:</b> {exam.exam_name}
+                            <b>Booklet Name:</b> {exams.exam_name}
                         </p>
                         <p>
-                            <b>Ofijan Id:</b> OF{exam.id}{exam.id}IN
+                            <b>Ofijan Id:</b> OF{exams.id}{exams.id}IN
                         </p>
                         <p>
                             <b>Prepared By:</b> Gaki Serocho
                         </p>
                         <p>
-                            <b>Total no of Questions:</b> {exam.questions_count}
+                            <b>Total no of Questions:</b> {exams.questions_count}
                         </p>
                         <p>
                             <b>Topics Covered:</b> 12
                         </p>
                     </Card>
-                ))}
+                
 
                 <Modal
                     title="Enter Exam Password"
@@ -108,11 +111,16 @@ const Index = ({ exams }) => {
                     onCancel={handleCancel}
                 >
                     <Input
-                        type="password"
+                        type="text"
                         placeholder="Enter password"
-                        value={password}
+                        value={exam_password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                      {isPasswordIncorrect && (
+                    <p style={{ color: 'red', marginTop: '10px' }}>
+                        Incorrect password. Please try again.
+                    </p>
+                )}
                 </Modal>
             </Wrapper>
         );

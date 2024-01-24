@@ -14,6 +14,9 @@ import { Link } from 'react-router-dom';
 import Questions from '../Questions/Questions';
 import { Routes, Route, useParams } from "react-router-dom";
 import { DynamicItem, Sidebar, dummyData } from "../../components";
+import { Card, Button, Collapse } from 'antd';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+
 import API_BASE_URL from '../../Globals/apiConfig';
 import "../../App.css";
 const ExitExam = () => {
@@ -32,8 +35,6 @@ const ExitExam = () => {
     fetch(url2)
       .then((res) => res.json())
       .then((d) => setExams(d))
-
-
   }, [])
   const handleDepartmentChange = async (event) => {
     const selectedDepartmentId = event.target.value;
@@ -139,7 +140,6 @@ const ExitExam = () => {
     </tr>
   </tbody>
 </table>
-
             </div>
           )
         })) : (<div className='exams_card'>
