@@ -103,7 +103,7 @@ const Index = ({ exams }) => {
 
                 <Modal
                     title="Enter Exam Password"
-                    visible={isModalVisible}
+                    open={isModalVisible}
                     onOk={handleOk}
                     onCancel={handleCancel}
                 >
