@@ -27,7 +27,7 @@ const index = () => {
     }
   };
 
-  console.log(searchResults);
+  console.log('sent exams', searchResults);
 
   return (
     <section className='easyExam'>
