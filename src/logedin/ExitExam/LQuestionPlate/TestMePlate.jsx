@@ -20,7 +20,7 @@ const TestMePlate = () => {
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState('')
-    const [testStarted, setTestStarted] = useState('false');
+    const [testStarted, setTestStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState('');
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
@@ -33,23 +33,22 @@ const TestMePlate = () => {
         return () => clearInterval(timerInterval);
     }, []);
 
+    // useEffect(() => {
+    //     if (timeLeft === 0) {
+    //        // setTimeLeft(0); 
+    //     }
+    // }, [timeLeft]);
     useEffect(() => {
-        if (timeLeft === 0) {
-           // setTimeLeft(0); 
+        if (testStarted && timeLeft > 0) {
+            fetch(`${API_BASE_URL}/way_questions/${ofin_id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setQuestionData(data);
+                    setTimeLeft(data[10].exam.exam_duration);
+                })
+                .catch((err) => console.log(err));
         }
-    }, [timeLeft]);
-    useEffect(() => {
-        if(testStarted)
-        {
-        fetch(`${API_BASE_URL}/way_questions/${ofin_id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setQuestionData(data);
-              setTimeLeft(data[10].exam.exam_duration);
-            })
-            .catch((err) => console.log(err));
-        }
-    }, [ofin_id, userId, testStarted]);
+    }, [ofin_id, userId, testStarted, timeLeft]);
 
 const handleStartClick = () =>{
     setTestStarted(true)
