@@ -26,7 +26,7 @@ const navigate  = useNavigate();
 
             if (response && response.success) {
                 // Password is correct
-                navigate(`/ofijan_question_plate/${exams.id}`); 
+                navigate(`/easy_exam_plate/${exams.id}`); 
                 setIsModalVisible(false);
             } else {
                 // Password is incorrect

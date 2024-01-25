@@ -36,7 +36,7 @@ import Experience from "../Seller/pages/Experience/Experience";
 
 import EditBlog from "../Seller/pages/blog/Edit";
 import BlogAnalytics from "../Seller/pages/blog/Analytics"
-
+import EasyExamPlate from '../components/EasyExam/EasyExamPlate.jsx';
 import Resume from "../Seller/pages/Resume/Resume";
 import Document from "../Seller/pages/Document/Document";
 import EasyExam from '../components/EasyExam';
@@ -128,6 +128,7 @@ const currentPath = window.location.pathname;
        
           <Route path="/" element={<Home />} />
           <Route path="/easyexam" element={<EasyExam/>}/>
+          <Route path="/easy_exam_plate/:ofin_id" element={<EasyExamPlate/>}/>
           <Route path="/Grade12" element={<Grade12 />} />
           <Route path="/Grade8" element={<Grade8 />} />
           <Route path="/Grade6" element={<Grade6 />} />

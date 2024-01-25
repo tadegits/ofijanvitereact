@@ -22,7 +22,6 @@ const Plate = () => {
     const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
-
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
