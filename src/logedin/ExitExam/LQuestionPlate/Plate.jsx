@@ -5,6 +5,8 @@ import './plate.scss';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import API_BASE_URL from '../../../Globals/apiConfig';
+import ExamDetails from './ExamDetails';
+import Study from './Study';
 import CheckIcon from '@mui/icons-material/Check';
 const Plate = () => {
     const { ofin_id } = useParams();
@@ -103,211 +105,33 @@ const Plate = () => {
     };
     return (
         <div className='ofijan_exam_plate'>
-            {/* <div className='basicInfoPlate'>
-                <table>
-                    <tr>
-                        <th>Picture</th>
-                        <th>Basic Information</th>
-                    </tr>
-                    <tr>
-                        <td><img src={Logo} width={10} height={10} alt='profile picture' /></td>
-                        <td className='basicInfoPlate2'>
-                            <tr>
-                                <td>Full Name Million Sime</td>
-                                <td>Institution:  Ofin University</td>
-                            </tr>
-                            <tr><td>Enrolment Type: Regular</td>
-                                <td>University ID O/UR28147/11</td>
-                            </tr>
-                            <tr><td>Exam Center: Ofin University</td>
-                                <td>Department: Computer Science</td>
-                            </tr>
-                        </td>
-                    </tr>
-                </table>
-            </div> */}
-            <StepLine currentStep={currentStep} onStepClick={handleStepClick} />
-            {currentStep === 1 && (
-                <>
-                <h5>Exam Name: </h5>
-                <h5>Exam Name: </h5>
-                
-                </>
-            )}
-            {currentStep === 2 && (
-                <div className='plate'>
-                    <div className='flag_plate'>
-                        <h5>Question {selectedQuestionIndex + 1}</h5>
-                        <p>Answer saved</p>
-                        <p>Marked out of 100</p>
-                        <p></p>
-                        <p><a href='#'>Flag Question</a></p>
-                    </div>
-                    <div className='question_plate'>
-                        <div className="timePlate">
-                            <div className="timebox1"></div>
-                            <div className="timebox2">Time left 20 min</div>
-                        </div>
-                        <div className="questionplate">
-                            {questionData.length > 0 && (
-                                <>
-                                    <div className="questionText">
-                                        <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
-                                    </div>
-                                    <div className="choicePlate">
-                                        {questionData[selectedQuestionIndex].options.map((option, index) => {
-                                            const isSelected = selectedOptionIndex === index;
-                                            const isCorrectAnswer = option.correct === '1';
+        <StepLine currentStep={currentStep} onStepClick={handleStepClick} />
 
-                                            return (
-                                                <label
-                                                    className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
-                                                    key={index}
-                                                    onClick={() => handleOptionClick(index)}
-                                                >
-                                                    <input
-                                                        type='radio'
-                                                        name={`option_${selectedQuestionIndex}`}
-                                                        value={option.option}
-                                                        checked={isSelected}
-                                                        readOnly
-                                                    />
-                                                    <span className="alphabet">{alphabet[index]}. </span>
+        {currentStep === 1 && <ExamDetails />}
 
-                                                    {option.option}
-                                                    {/* <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span> */}
-                                                </label>
-                                            );
-                                        })}
-                                        <h5>Clear Choice</h5>
-                                    </div>
+        {currentStep === 2 && (
+            <Study
+                questionData={questionData}
+                selectedQuestionIndex={selectedQuestionIndex}
+                handleOptionClick={handleOptionClick}
+                handlePreviousClick={handlePreviousClick}
+                handleNextClick={handleNextClick}
+            />
+        )}
 
-                                </>
-                            )}
-                        </div>  <div className='navigation_buttons'>
-                            <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
-                                Previous
-                            </button>
-                            <button onClick={handleNextClick} disabled={selectedQuestionIndex === questionData.length - 1}>
-                                Next
-                            </button>
-                        </div>
-                    </div>
-                    <div className='answer_plate'>
-                        <h5>Exam Navigation</h5>
-                        <div className='answer_plate'>
-                            {questionData.map((question, index) => (
-                                <>
-                                    <div
-                                        className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-                                        key={index}
-                                        onClick={() => handleQuestionClick(index)
-                                        }
-                                    >
-                                        <div className='answer_box'>{index + 1}</div>
-                                        <div
-                                            className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-                                            key={index}
-                                            onClick={() => handleQuestionClick(index)
-                                            }
-                                        >
-                                        </div>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
-                    </div>
+        {currentStep === 3 && (
+            <Study
+                questionData={questionData}
+                selectedQuestionIndex={selectedQuestionIndex}
+                handleOptionClick={handleOptionClick}
+                handlePreviousClick={handlePreviousClick}
+                handleNextClick={handleNextClick}
+            />
+        )}
 
-                </div>)
-            }
-            {currentStep === 3 && (
-                <div className='plate'>
-                <div className='flag_plate'>
-                    <h5>Question {selectedQuestionIndex + 1}</h5>
-                    <p>Answer saved</p>
-                    <p>Marked out of 100</p>
-                    <p></p>
-                    <p><a href='#'>Flag Question</a></p>
-                </div>
-                <div className='question_plate'>
-                    <div className="timePlate">
-                        
-                    </div>
-                    <div className="questionplate">
-                        {questionData.length > 0 && (
-                            <>
-                                <div className="questionText">
-                                    <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
-                                </div>
-                                <div className="choicePlate">
-                                    {questionData[selectedQuestionIndex].options.map((option, index) => {
-                                        const isSelected = selectedOptionIndex === index;
-                                        const isCorrectAnswer = option.correct === '1';
-
-                                        return (
-                                            <label
-                                                className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
-                                                key={index}
-                                                onClick={() => handleOptionClick(index)}
-                                            >
-                                                <input
-                                                    type='radio'
-                                                    name={`option_${selectedQuestionIndex}`}
-                                                    value={option.option}
-                                                    checked={isSelected}
-                                                    readOnly
-                                                />
-                                                <span className="alphabet">{alphabet[index]}. </span>
-
-                                                {option.option}
-                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
-                                            </label>
-                                        );
-                                    })}
-                                    <h5>Clear Choice</h5>
-                                </div>
-
-                            </>
-                        )}
-                    </div>  <div className='navigation_buttons'>
-                        <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
-                            Previous
-                        </button>
-                        <button onClick={handleNextClick} disabled={selectedQuestionIndex === questionData.length - 1}>
-                            Next
-                        </button>
-                    </div>
-                </div>
-                <div className='answer_plate'>
-                    <h5>Exam Navigation</h5>
-                    <div className='answer_plate'>
-                        {questionData.map((question, index) => (
-                            <>
-                                <div
-                                    className={`answer_box_holder ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-                                    key={index}
-                                    onClick={() => handleQuestionClick(index)
-                                    }
-                                >
-                                    <div className='answer_box'>{index + 1}</div>
-                                    <div
-                                        className={`answer_box ${selectedQuestionIndex === index ? 'selected' : ''} ${question.options.some(option => option.selected) ? 'answered' : ''}`}
-                                        key={index}
-                                        onClick={() => handleQuestionClick(index)
-                                        }
-                                    >
-                                    </div>
-                                </div>
-                            </>
-                        ))}
-                    </div>
-                </div>
-
-            </div>)
-            }
-            {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
-        </div>
-    );
+        {/* Additional content */}
+    </div>
+);
 };
 
 export default Plate;
