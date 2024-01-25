@@ -20,6 +20,7 @@ const TestMePlate = () => {
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState('')
+    const [testStarted, setTestStarted] = useState('false');
     const [timeLeft, setTimeLeft] = useState('');
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
@@ -38,6 +39,8 @@ const TestMePlate = () => {
         }
     }, [timeLeft]);
     useEffect(() => {
+        if(testStarted)
+        {
         fetch(`${API_BASE_URL}/way_questions/${ofin_id}`)
             .then((res) => res.json())
             .then((data) => {
@@ -45,8 +48,12 @@ const TestMePlate = () => {
               setTimeLeft(data[10].exam.exam_duration);
             })
             .catch((err) => console.log(err));
-         
-    }, [ofin_id, userId]);
+        }
+    }, [ofin_id, userId, testStarted]);
+
+const handleStartClick = () =>{
+    setTestStarted(true)
+}
 
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
@@ -132,7 +139,12 @@ const TestMePlate = () => {
     };
     return (
         <div className='ofijan_exam_plate'>
-            <h1>Test Plate</h1>
+            <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
+            {!testStarted && (
+                <div>
+                    <button onClick={handleStartClick}>Start Test</button>
+                </div>
+            )}
             {/* <div className='basicInfoPlate'>
                 <table>
                     <tr>
@@ -156,6 +168,7 @@ const TestMePlate = () => {
                     </tr>
                 </table>
             </div> */}
+               {testStarted && (
             <div className='plate'>
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
@@ -182,7 +195,7 @@ const TestMePlate = () => {
                                         const isCorrectAnswer = option.correct === '1';
                                         return (
                                             <label
-                                                className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
+                                                className={`option_box ${isSelected ? 'selected' : ''} `}
                                                 key={index}
                                                 onClick={() => handleOptionClick(index)}
                                             >
@@ -195,13 +208,13 @@ const TestMePlate = () => {
                                                 />
                                                 <span className="alphabet">{alphabet[index]}. </span>
                                                 {option.option}
-                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
+                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ></span>
                                             </label>
                                         );
                                     })}
                                     <div className='choice_and_answer'>
                                         <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
-                                        <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5>
+                                        {/* <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5> */}
                                     </div>
                                    
                                 </div>
@@ -233,6 +246,7 @@ const TestMePlate = () => {
         </div>
 
             </div>
+               )}
             {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
     );
