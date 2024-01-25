@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
@@ -19,7 +20,7 @@ const TestMePlate = () => {
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [testStarted, setTestStarted] = useState(false);
-    const [timeLeft, setTimeLeft] = useState('');
+    const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
@@ -43,22 +44,30 @@ const TestMePlate = () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/way_questions/${ofin_id}`);
                 setQuestionData(response.data);
-                setInitialTime(10);
-                setTimeLeft(10);
+                console.log(response.data)
+                const examDurationInMinutes = response.data[1].exam.exam_duration;
+                const examDurationInSeconds = examDurationInMinutes * 60;
+    
+                setInitialTime(examDurationInSeconds);
+                setTimeLeft(examDurationInSeconds);
             } catch (error) {
                 console.error('Error fetching question data:', error);
             }
         };
-
+ 
         if (testStarted && timeLeft > 0 && !initialTime) {
-            fetchQuestionData();
+          fetchQuestionData(); 
         }
     }, [ofin_id, userId, testStarted, timeLeft, initialTime]);
 
     const handleStartClick = () => {
         setTestStarted(true);
     };
-
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    };
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
     if (loggedUser !== null) {
@@ -172,7 +181,7 @@ const TestMePlate = () => {
                     </tr>
                 </table>
             </div> */}
-               {testStarted && (
+            {testStarted && 
             <div className='plate'>
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
@@ -249,8 +258,7 @@ const TestMePlate = () => {
           </div>
         </div>
 
-            </div>
-               )}
+            </div>}
             {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
     );
