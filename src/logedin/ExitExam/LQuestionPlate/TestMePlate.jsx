@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
@@ -6,53 +5,59 @@ import LNavigationButtons from './LNavigationButtons';
 import LAnswerBox from './LAnswerBox';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import CheckIcon from '@mui/icons-material/Check';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
+
 const TestMePlate = () => {
     const { ofin_id } = useParams();
-    const { deptId, userId } = useLoggedInUser();
+    const { userId } = useLoggedInUser();
     const [answered, setAnswered] = useState(false);
     const [questionData, setQuestionData] = useState([]);
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [isLoggedin, setIsLoggedin] = useState(false);
-    const [correctAnswer, setCorrectAnswer] = useState('')
     const [testStarted, setTestStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState('');
+    const [initialTime, setInitialTime] = useState(null);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
 
     useEffect(() => {
-        const timerInterval = setInterval(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
-        }, 2000);
+        let timerInterval;
 
-        return () => clearInterval(timerInterval);
-    }, []);
-
-    // useEffect(() => {
-    //     if (timeLeft === 0) {
-    //        // setTimeLeft(0); 
-    //     }
-    // }, [timeLeft]);
-    useEffect(() => {
         if (testStarted && timeLeft > 0) {
-            fetch(`${API_BASE_URL}/way_questions/${ofin_id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setQuestionData(data);
-                    setTimeLeft(data[10].exam.exam_duration);
-                })
-                .catch((err) => console.log(err));
+            timerInterval = setInterval(() => {
+                setTimeLeft((prevTime) => prevTime - 1);
+            }, 1000);
         }
-    }, [ofin_id, userId, testStarted, timeLeft]);
 
-const handleStartClick = () =>{
-    setTestStarted(true)
-}
+        return () => {
+            clearInterval(timerInterval);
+        };
+    }, [testStarted, timeLeft]);
+
+    useEffect(() => {
+        const fetchQuestionData = async () => {
+            try {
+                const response = await axios.get(`${API_BASE_URL}/way_questions/${ofin_id}`);
+                setQuestionData(response.data);
+                setInitialTime(10);
+                setTimeLeft(10);
+            } catch (error) {
+                console.error('Error fetching question data:', error);
+            }
+        };
+
+        if (testStarted && timeLeft > 0 && !initialTime) {
+            fetchQuestionData();
+        }
+    }, [ofin_id, userId, testStarted, timeLeft, initialTime]);
+
+    const handleStartClick = () => {
+        setTestStarted(true);
+    };
 
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
