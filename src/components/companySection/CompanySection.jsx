@@ -14,7 +14,7 @@ import Bg from '../../assets/question.gif'
 
 const CompanySection = () => {
   return <section className="company">
-    <Wrapper>
+    <Wrapper >
       <hr></hr>
       <h3>Pay easly with all banks in Ethiopia</h3>
       <p>Powered by Chapa Payment API</p>

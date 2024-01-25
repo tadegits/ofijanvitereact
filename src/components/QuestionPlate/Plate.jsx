@@ -128,29 +128,7 @@ const Plate = () => {
     };
     return (
         <div className='ofijan_exam_plate'>
-            {/* <div className='basicInfoPlate'>
-                <table>
-                    <tr>
-                        <th>Picture</th>
-                        <th>Basic Information</th>
-                    </tr>
-                    <tr>
-                        <td><img src={Logo} width={10} height={10} alt='profile picture' /></td>
-                        <td className='basicInfoPlate2'>
-                            <tr>
-                                <td>Full Name Million Sime</td>
-                                <td>Institution:  Ofin University</td>
-                            </tr>
-                            <tr><td>Enrolment Type: Regular</td>
-                                <td>University ID O/UR28147/11</td>
-                            </tr>
-                            <tr><td>Exam Center: Ofin University</td>
-                                <td>Department: Computer Science</td>
-                            </tr>
-                        </td>
-                    </tr>
-                </table>
-            </div> */}
+            {/* <p>This is for sample not loged in user</p> */}
             <div className='plate'>
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
@@ -195,7 +173,7 @@ const Plate = () => {
                                                 />
                                                 <span className="alphabet">{alphabet[index]}. </span>
                                                 {option.option}
-                                                <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
+                                                {/* <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span> */}
                                             </label>
                                         );
                                     })}

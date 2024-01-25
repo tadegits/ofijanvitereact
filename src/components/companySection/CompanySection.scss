@@ -2,26 +2,25 @@
 @import '../../styles/colors.scss';
 
 .company {
-    background: $tade_color;
-    position: relative;
-    padding-block: 1rem;
-    margin: 1rem;
-    margin-top: 3rem;
-    border-radius: 1rem;
-
+   
+    padding-block: 0rem;
     h2 {
        
         text-align: center;
+       
     }
 
     h3, p{
         color: #aaa;
         display: flex;
         justify-content: center;
+        margin: 20px;
+        
     }
     h4{
         display: flex;
         justify-content: center;
+        
     }
 
     &__companies {
@@ -33,6 +32,12 @@
         margin-block: 1rem;
         gap: 4rem;
         flex-wrap: wrap;
+        background: $tade_color;
+        position: relative;
+        padding-block: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        border-radius: 1rem;
         
         img {
             opacity: 0.5;

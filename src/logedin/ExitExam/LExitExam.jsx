@@ -7,7 +7,9 @@ import { Link, useParams } from 'react-router-dom';
 import useLoggedInUser from '../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../Globals/apiConfig';
 import WhatModal from './WhatModal';
+import { Card, Button, Modal, Input } from 'antd';
 const LExitExam = () => {
+  const { Meta } = Card;
   const { deptId, userId } = useLoggedInUser();
   const url = `${API_BASE_URL}/departments`;
   const [departmentTitle, setDepartmentTitle] = useState('');
@@ -74,56 +76,89 @@ const LExitExam = () => {
       <Wrapper className="examsholder">
         {exams ? (exams.map((exam, index) => {
           return (
-            <div key={exams.id} className="exams_card">
-              <div className='exams_head'>
+            // <div key={exams.id} className="exams_card">
+            //   <div className='exams_head'>
                
-                <img className='__logo' src={Logo} alt='' width={30} height={20} />
-                <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
-              </div>
-              <div className="underline"></div>
+            //     <img className='__logo' src={Logo} alt='' width={30} height={20} />
+            //     <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
+            //   </div>
+            //   <div className="underline"></div>
               
-              <table className='exam_table' border={1}>
-                <tr className='table_body'>
-                  <td className='categorizer' >Booklet Name: </td>
-                  <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
+            //   <table className='exam_table' border={1}>
+            //     <tr className='table_body'>
+            //       <td className='categorizer' >Booklet Name: </td>
+            //       <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
 
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Ofijan Id: </td>
-                  <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
-                  <td className='categorizer'>Prepared By: </td>
-                  <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Description </td>
-                  <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Total no of Questions </td>
-                  <td className='info'>{exam.questions_count}</td>
-                  <td className='categorizer' colSpan={2}>Topics Covered </td>
-                  <td className='info'>12</td>
-                </tr>
-                <tr className='table_body'>
-                  <td className='categorizer'>Topics </td>
-                  <td className='' colSpan={4}>
-                    <ul>
-                      <li>
-                        Electromechanics
-                      </li>
-                      <li>Double Linked List</li>
-                      <li>Super Conductor's</li>
-                    </ul>
-                  </td>
-                </tr>
+            //     </tr>
+            //     <tr className='table_body'>
+            //       <td className='categorizer'>Ofijan Id: </td>
+            //       <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
+            //       <td className='categorizer'>Prepared By: </td>
+            //       <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
+            //     </tr>
+            //     <tr className='table_body'>
+            //       <td className='categorizer'>Description </td>
+            //       <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
+            //     </tr>
+            //     <tr className='table_body'>
+            //       <td className='categorizer'>Total no of Questions </td>
+            //       <td className='info'>{exam.questions_count}</td>
+            //       <td className='categorizer' colSpan={2}>Topics Covered </td>
+            //       <td className='info'>12</td>
+            //     </tr>
+            //     <tr className='table_body'>
+            //       <td className='categorizer'>Topics </td>
+            //       <td className='' colSpan={4}>
+            //         <ul>
+            //           <li>
+            //             Electromechanics
+            //           </li>
+            //           <li>Double Linked List</li>
+            //           <li>Super Conductor's</li>
+            //         </ul>
+            //       </td>
+            //     </tr>
                 
-                <tr className='table_body'>
-                  <td colSpan={5} className='open-holder'>
-                    <button className='button-open' onClick={()=> openModal(exam)}>Open</button>
-                  </td>
-                </tr>
-              </table>
-            </div>
+            //     <tr className='table_body'>
+            //       <td colSpan={5} className='open-holder'>
+            //         <button className='button-open' onClick={()=> openModal(exam)}>Open</button>
+            //       </td>
+            //     </tr>
+            //   </table>
+              
+
+            // </div>
+            <Card
+                        key={exams.id}
+                        className="exams_card"
+                        cover={<img className='__logo' alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
+                        actions={[
+                          
+                    <Button className='button-open' onClick={()=> openModal(exam)}>Open</Button>
+                  
+                        ]}
+                    >
+                        <Meta
+                            title={exam.exam_name ? exam.exam_name : 'No Name'}
+                            description={exam.description ? exam.description : 'No Description!'}
+                        />
+                        <div className="underline"></div>
+                        <p>
+                            <b>Booklet Name:</b> {exam.exam_name}
+                        </p>
+                        <p>
+                            <b>Ofijan Id:</b> OF{exam.id}{exam.id}IN
+                        </p>
+                        <p>
+                            <b>Prepared By:</b> Gaki Serocho
+                        </p>
+                        <p>
+                            <b>Total no of Questions:</b> {exam.questions_count}
+                        </p>
+                        <p>
+                            <b>Topics Covered:</b> 12
+                        </p>
+                    </Card>
           )
         })) : (<div className='exams_card'>
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>

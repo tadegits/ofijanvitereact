@@ -1,6 +1,6 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
-import Logo from "../../assets/ofijan_logo.png";
+import Logo from "../../assets/withmoto.png";
 import { FaBars } from "react-icons/fa";
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import { useEffect, useState, } from "react";
@@ -51,7 +51,7 @@ const Navbar = () => {
                         <Link to="/ExitExam">Exit Exam</Link> 
                     </li>)}
                    
-                    <li onClick={() => setShowNav(false)}>
+                    {/* <li onClick={() => setShowNav(false)}>
                         <Link to="/CoC">CoC</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
@@ -64,7 +64,12 @@ const Navbar = () => {
 
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/Grade6">Grade 6<sup>th</sup></Link>
-                    </li>
+                    </li> */}
+                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
+                        <a href="/easyexam">Exclusive</a>
+                    </li>):
+                    (<></>)}
+
                     <li onClick={() => setShowNav(false)}>
                         <a href="/ofijan_blogs">Blog</a>
                     </li>
@@ -79,7 +84,7 @@ const Navbar = () => {
 
                         (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
                             onClick={handleLogout}>
-                            <a href="/Login">Sign in</a>
+                            <a href="/Login">Get Started</a>
                         </li>)
                     }
 

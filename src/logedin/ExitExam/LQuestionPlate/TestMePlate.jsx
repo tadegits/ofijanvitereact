@@ -22,6 +22,7 @@ const TestMePlate = () => {
     const [testStarted, setTestStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
+    
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
 
@@ -101,7 +102,7 @@ const TestMePlate = () => {
         const selectedQuestion = questionData[selectedQuestionIndex];
         const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
         axios.post(`${API_BASE_URL}/selected-answers`, {
-            user_id: 1,
+            user_id: userId,
             question_id: selectedQuestion,
             option_id: selectedOptionID,
         })
@@ -158,29 +159,6 @@ const TestMePlate = () => {
                     <button onClick={handleStartClick}>Start Test</button>
                 </div>
             )}
-            {/* <div className='basicInfoPlate'>
-                <table>
-                    <tr>
-                        <th>Picture</th>
-                        <th>Basic Information</th>
-                    </tr>
-                    <tr>
-                        <td><img src={Logo} width={10} height={10} alt='profile picture' /></td>
-                        <td className='basicInfoPlate2'>
-                            <tr>
-                                <td>Full Name Million Sime</td>
-                                <td>Institution:  Ofin University</td>
-                            </tr>
-                            <tr><td>Enrolment Type: Regular</td>
-                                <td>University ID O/UR28147/11</td>
-                            </tr>
-                            <tr><td>Exam Center: Ofin University</td>
-                                <td>Department: Computer Science</td>
-                            </tr>
-                        </td>
-                    </tr>
-                </table>
-            </div> */}
             {testStarted && 
             <div className='plate'>
                 <div className='flag_plate'>
@@ -192,9 +170,8 @@ const TestMePlate = () => {
                 </div>
                 <div className='question_plate'>
                     <TimePlate
-                    isLoggedin = {isLoggedin}
-                    timeLeft={timeLeft}
-
+                     isLoggedin={isLoggedin}
+                     timeLeft={formatTime(timeLeft)}
                     />
                     <div className="questionplate">
                         {questionData.length > 0 && (
