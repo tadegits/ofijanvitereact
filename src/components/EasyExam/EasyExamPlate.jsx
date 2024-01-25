@@ -1,11 +1,11 @@
 import React from 'react'
-import Plate from '../../logedin/ExitExam/LQuestionPlate/Plate'
+import TestMePlate from '../../logedin/ExitExam/LQuestionPlate/TestMePlate'
 const EasyExamPlate = () => {
   return (
     <div>
-      <Plate/>
+      <TestMePlate/>
     </div>
-  )
+  ) 
 }
 
 export default EasyExamPlate

@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import ExamDetails from './ExamDetails';
 import Study from './Study';
+import Test from './Test';
 import CheckIcon from '@mui/icons-material/Check';
 const Plate = () => {
     const { ofin_id } = useParams();
@@ -110,12 +111,14 @@ const Plate = () => {
         {currentStep === 1 && <ExamDetails />}
 
         {currentStep === 2 && (
-            <Study
+            <Test
                 questionData={questionData}
                 selectedQuestionIndex={selectedQuestionIndex}
                 handleOptionClick={handleOptionClick}
                 handlePreviousClick={handlePreviousClick}
                 handleNextClick={handleNextClick}
+                handleQuestionClick={handleQuestionClick}
+                selectedOptionIndex = {selectedOptionIndex}
             />
         )}
 
