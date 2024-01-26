@@ -5,9 +5,9 @@
   background-color: #ffffff;
   padding: 15px;
   width: 100%;
-  box-shadow: 0 2px 4pxrgba(216, 7, 7, 0.699);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.089);
   position: fixed;
   @include respond(phone) {
     padding-block: 15px;

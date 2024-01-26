@@ -1,9 +1,9 @@
 @import "../../styles/mixin.scss";
 
  .hero{
-    padding-block: 2rem;
+    padding-block: 7rem;
  background-color: rgb(255, 255, 255);
-
+margin-top: 0px;
     &__container {
         display: grid;
         align-items: flex-start;
