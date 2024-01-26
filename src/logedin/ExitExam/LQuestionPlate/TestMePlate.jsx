@@ -82,7 +82,7 @@ const TestMePlate = () => {
         }
     }, [selectedQuestionIndex, questionData]);
     const handleQuestionClick = (index) => {
-        setSelectedQuestionIndex(index);
+        setSelectedQuestionIndex(index);   //hi
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
     const handleOptionClick = (index) => {
