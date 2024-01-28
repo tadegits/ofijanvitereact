@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import LNavbar from '../logedin/navbar/LNavbar'
+import Navbar from '../components/navbar/Navbar.jsx';
 import Footer from '../components/footer/footer';
 import Grade12 from "../components/Grade12/Grade12";
 import Grade8 from "../components/Grade8/Grade8"
@@ -67,7 +67,7 @@ const currentPath = window.location.pathname;
   return ( 
     <>
        
-       {currentPath.includes('/seller') ?  null: <LNavbar /> } 
+       {currentPath.includes('/seller') ?  null: <Navbar /> } 
 
 
        {currentPath.includes('/seller') ? 

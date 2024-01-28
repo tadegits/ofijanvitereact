@@ -4,6 +4,7 @@ import Logo from '../../assets/logo.png';
 import { Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
+import ExamCardList from './ExamCard';
 
 const ExitExam = () => {
   const { Meta } = Card;
@@ -13,7 +14,16 @@ const ExitExam = () => {
   const [exams, setExams] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(6);
   const [loading, setLoading] = useState(true);
-
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [role, setRole] = useState('');
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('user');
+    if (loggedUser !== null) {
+      setIsLoggedin(true);
+      const userLogged = JSON.parse(loggedUser);
+      setRole(userLogged.user.role_id); 
+    }
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -107,14 +117,24 @@ return (
           ))}
         </select>
       </div>
+      <Button>
+            <Link
+              to={isLoggedin ? ('/easyexam') : '/Login'}
+              state={{ name: 'seller' }}
+            >
+              Take Exam now!
+            </Link>
+            </Button>
     </div>
 
     <Wrapper className='examsholder'>
+
+      
       {loading && <p>Loading...</p>}
 
       {!loading &&
         (exams.length ? (
-          exams.map((exam, index) => <ExamCard key={exam.id} exam={exam} />)
+          exams.map((exam, index) => <ExamCardList key={exam.id} exams={exams} />)
         ) : (
           <div className='exams_card'>
             <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>

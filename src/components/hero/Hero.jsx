@@ -58,7 +58,7 @@ const Hero = () => {
               state={{ name: 'seller' }}
               className="button-outline"
             >
-              Take Exam Know
+              Take Exam now
             </Link>
           </div>
         </div>
