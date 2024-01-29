@@ -7,7 +7,8 @@ import Loged from "./Layout/Loged";
 import Seller from "./Seller"
 import NetworkStatus from "./network/NetworkStatus";
 import Footer from './components/footer/footer';
-
+import Navbar from "./components/navbar/Navbar";
+import LNavbar from "./logedin/navbar/LNavbar";
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 function App() {
   const [user, setUser] = useState("");
@@ -28,6 +29,7 @@ function App() {
     if (role === 2 || role === 3) {
       return (
         <>
+          <LNavbar />
           <Loged />
           <Footer />
         </>
@@ -38,6 +40,7 @@ function App() {
   else {
     return (
       <>
+        <Navbar />
         <Default />
         <Footer />
       </>

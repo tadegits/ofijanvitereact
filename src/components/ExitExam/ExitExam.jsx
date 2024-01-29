@@ -1,7 +1,8 @@
+// ExitExam.jsx
 import React, { useState, useEffect } from 'react';
 import Wrapper from '../wrapper/Wrapper';
 import Logo from '../../assets/logo.png';
-import { Card, Button } from 'antd';
+import { Card, Button, Modal, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import ExamCardList from './ExamCard';
@@ -16,14 +17,17 @@ const ExitExam = () => {
   const [loading, setLoading] = useState(true);
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [role, setRole] = useState('');
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id); 
+      setRole(userLogged.user.role_id);
     }
   }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,6 +54,7 @@ const ExitExam = () => {
 
     return () => clearTimeout(loadingTimeout);
   }, []);
+
   const handleDepartmentChange = async (event) => {
     const selectedDepartmentId = event.target.value;
     setSelectedDepartmentId(selectedDepartmentId);
@@ -67,82 +72,79 @@ const ExitExam = () => {
         console.error('Error fetching courses:', error);
       }
     } else {
-      // Handle the case when "All" is selected
-      setCourses([]);
+      setExams([]);
     }
   };
-  const [showAll, setShowAll] = useState(false);
 
-  const toggleTopics = () => {
-    setShowAll(!showAll);
-  };
-const NO_NAME = 'No Name';
-const NO_DESCRIPTION = 'No Description';
+  const NO_NAME = 'No Name';
+  const NO_DESCRIPTION = 'No Description';
 
-const ExamCard = ({ exam }) => {
-  const { id, exam_name, description, questions_count } = exam;
+  const ExamCard = ({ exam }) => {
+    const { id, exam_name, description, questions_count } = exam;
 
-  return (
-     <Card
+    return (
+      <Card
         key={id}
-        className="exams_card"
         cover={<img className='__logo' alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
         actions={[
-           <Link className='button-open' to={`/ofijan_question_plate/${id}`}>
-              Open
-           </Link>
+          <Link className='button-open' to={`/ofijan_question_plate/${id}`}>
+            Open
+          </Link>
         ]}
-     >
+      >
         <Meta
-           title={exam_name || NO_NAME}
-           description={description || NO_DESCRIPTION}
-           no_of_question={questions_count || "0"}
-           ofijan_id={`OF${id}${id}IN` || "-"}
+          title={exam_name || NO_NAME}
+          description={description || NO_DESCRIPTION}
+          no_of_question={questions_count || "0"}
+          ofijan_id={`OF${id}${id}IN` || "-"}
         />
-        {/* ... other card details ... */}
-     </Card>
-  );
-};
-return (
-  <section className='exit_exam_nli'>
-    <div className='select_field'>
-      <p>Select Your field of study</p>
-      <div className='input_holder'>
-        <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
-          <option value=''>All</option>
-          {data.map((data) => (
-            <option key={data.id} value={data.id}>
-              {data.title}
-            </option>
-          ))}
-        </select>
-      </div>
-      <Button>
-            <Link
-              to={isLoggedin ? ('/easyexam') : '/Login'}
-              state={{ name: 'seller' }}
-            >
+      </Card>
+    );
+  };
+
+  return (
+    <section className='exit_exam_nli'>
+      <div className='select_field'>
+        <p>Select Your field of study</p>
+        <div className='input_holder'>
+          <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
+            <option value=''>All</option>
+            {data.map((data) => (
+              <option key={data.id} value={data.id}>
+                {data.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        {isLoggedin ? (
+          <Button>
+            <Link to='/easyexam'>
               Take Exam now!
             </Link>
-            </Button>
-    </div>
-
-    <Wrapper className='examsholder'>
-
-      
-      {loading && <p>Loading...</p>}
-
-      {!loading &&
-        (exams.length ? (
-          exams.map((exam, index) => <ExamCardList key={exam.id} exams={exams} />)
+          </Button>
         ) : (
-          <div className='exams_card'>
-            <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
-          </div>
-        ))}
-    </Wrapper>
-  </section>
-);
+          <Button>
+            <Link to='/Login' >
+              Take Exam now!
+            </Link>
+          </Button>
+        )}
+      </div>
+
+      <Wrapper className='examsholder'>
+        {loading && <p>Loading...</p>}
+
+        {!loading &&
+          (exams.length ? (
+           <ExamCardList  exams={exams} />
+          ) : (
+            <div className='exams_card'>
+              <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
+            </div>
+          ))}
+      </Wrapper>
+    </section>
+  );
 };
 
 export default ExitExam;

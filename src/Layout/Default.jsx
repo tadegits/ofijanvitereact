@@ -39,7 +39,7 @@ const Default = () => {
   return (
     <>
 
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CoC" element={<CoC/>} />

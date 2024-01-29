@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Hero from "../hero/Hero"
 import CounterUpPage from "../counter/CounterUpPage"
 import CompanySection from "../companySection/CompanySection"
@@ -8,10 +8,24 @@ import Footer from "../footer/footer"
 import Plans from "../PlanSection/PlanSection";
 import Insraw from "../insraw/insraw"
 import Testimonals from '../Testimonals/Testimonals'
-
+import Navbar from '../navbar/Navbar'
+import LNavbar from '../../logedin/navbar/LNavbar'
 const Home = () => {
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const roleUser = JSON.parse(loggedInUser);
+      const foundUser = JSON.stringify(loggedInUser);
+      setUser(foundUser);
+      setRole(parseInt(roleUser.user.role_id))
+    }
+  }, []);
+  
   return (
     <>
+
       <Hero/>
       
       
