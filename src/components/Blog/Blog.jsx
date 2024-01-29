@@ -9,6 +9,7 @@ import BlogActions from './BlogActions';
 import Wrapper from '../wrapper/Wrapper';
 import CategoryDiv from './CategoryDiv';
 import {useNavigate } from 'react-router-dom';
+import BlogLandingPage from './BlogLandingPage';
 
 const Blog = () => {
   const [blogData, setBlogData] = useState([]);
@@ -43,6 +44,9 @@ const Blog = () => {
     return (
       <>
         <div className='blogs_content_single'>
+
+
+
           <div className='imageSpace'>
             <img height={'100%'} width={'100%'} src={'https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg'}
             />
