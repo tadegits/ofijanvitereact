@@ -28,8 +28,7 @@ function App() {
   if (user) {
     if (role === 2 || role === 3) {
       return (
-        <>
-          <LNavbar />
+        <>  
           <Loged />
           <Footer />
         </>
@@ -40,7 +39,6 @@ function App() {
   else {
     return (
       <>
-        <Navbar />
         <Default />
         <Footer />
       </>

@@ -11,7 +11,7 @@ import Img4 from '../../assets/sun2.png';
 
 import './Hero.scss';
 
-const Hero = () => {
+const Hero = () => { 
   const [text, setText] = useState('Study with exams!');
   const [role, setRole] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false); 

@@ -13,6 +13,7 @@ import LNavbar from '../../logedin/navbar/LNavbar'
 const Home = () => {
   const [user, setUser] = useState("");
   const [role, setRole] = useState("");
+  const [isLoggedin, setIsLoggedin] = useState(false); 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -25,7 +26,6 @@ const Home = () => {
   
   return (
     <>
-
       <Hero/>
       
       
