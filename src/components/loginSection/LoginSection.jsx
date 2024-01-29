@@ -57,17 +57,17 @@ const LoginSection = () => {
         <section className="login">
             <Wrapper>
                 <div className="login__container">
-                    <div className="login__image_holder">
+                    {/* <div className="login__image_holder">
                         <Lottie animationData={animationData} className='img-1' />
                     </div>
-                    <div className="login__form_container">
+                    <div className="login__form_container"> */}
                         <div className="login__image_holder2">
                             <div className="logtitle">
                                 {/* <img src={logoImg} className='img-2' alt="Ofijan Logo" /> */}
-                                <h1>Ofijan</h1>
+                                
                             </div>
                             <div className="login__header">
-                                <p className='infos'>Continue your study to increase your achivement.</p>
+                                {/* <p className='infos'>Continue your study to increase your achivement.</p> */}
                             </div>
                             <hr />
                         </div>
@@ -86,7 +86,7 @@ const LoginSection = () => {
                                     <h5>Register as new user</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>
                                 </div>
                             </div>
-                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
             </Wrapper>

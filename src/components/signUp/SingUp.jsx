@@ -181,17 +181,18 @@ const LoginSection = () => {
         <section className="login">
             <Wrapper>
                 <div className="login__container">
-                    <div className="login__image_holder">
-                        <div>
+                    <div className="login__form_container1">
+                        {/* <div>
                             <Lottie animationData={Img1} className='img-1' />
-                        </div>
+                        </div> */}
+                        <div className="signupregistered">Create your Ofijan Account</div>
                     </div>
                     <div className="login__form_container1">
                         <div className="login__image_holder2">
                            
                             <div className="login__header">
-                                <div className="signupregistered">Create your Ofijan Account</div>
-                                <p className='infos'>Continue your study to increase your achivement.</p>
+                                
+                                {/* <p className='infos'>Continue your study to increase your achivement.</p> */}
                             </div>
                             <hr></hr>
                         </div>
