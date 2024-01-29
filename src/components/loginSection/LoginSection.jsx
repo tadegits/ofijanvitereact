@@ -43,9 +43,6 @@ const LoginSection = () => {
             const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
-                
-                
-  
                 navigate('/');
                 window.location.reload();
             }
