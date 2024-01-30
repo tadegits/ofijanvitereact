@@ -1,42 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+// Variables SCSS para fuentes
+$title-font: 'Montserrat', sans-serif;
+$body-font: 'Merriweather', serif;
+
 .blog-list-container {
-    .blog-card {
-      .blog-image {
-        max-height: 200px;
-        object-fit: cover;
-      }
-      .blog__category {
-        font-size: 12px;
-        color: #888;
-      }
-      .author__info {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-        .author__photo {
-          border-radius: 50%;
-          margin-right: 10px;
-        }
-        .author__details {
-          display: flex;
-          flex-direction: column;
-          .author__name {
-            font-weight: bold;
-          }
-          .author__role {
-            font-size: 12px;
-            color: #888;
-          }
-        }
-      }
-      .blog__body {
-        margin-top: 10px;
-        color: #333;
-      }
-      .read-more-link {
-        display: block;
-        margin-top: 10px;
-        color: #1890ff;
-      }
+  padding: 20px;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  .blog-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
   }
+
+  .blog-image {
+    max-width: 100%;
+    height: auto;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .blog__category {
+    font-style: italic;
+    color: #888;
+  }
+
+  .author__info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+    .author__photo {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .author__details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author__name {
+      font-weight: bold;
+    }
+
+    .author__role {
+      color: #888;
+    }
+  }
+
+  .blog__body {
+    margin-top: 10px;
+  }
+
+  .read-more-link {
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+    color: #1890ff;
+    transition: color 0.3s ease;
+
+    &:hover {
+      text-decoration: underline;
+      color: #40a9ff;
+    }
+  }
+}
+
+// YourComponentName.scss
+
+.blog-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px; // Adjust as needed
+}
+
+.blog-card {
+  width: 100%;
+  margin: 8px; // Adjust as needed
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px; // Adjust as needed
+  object-fit: cover;
+}
+
+.blog-category {
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.author__photo {
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.author-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.author-role {
+  color: #666;
+  font-size: 12px;
+}
+
+.blog-body {
+  margin-top: 16px;
+  color: #333;
+}
+
+.read-more-link {
+  display: block;
+  margin-top: 16px;
+  color: #1890ff;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.read-more-link:hover {
+  color: #40a9ff;
+}
+
+.blog-body-container{
+  display: flex;
+  gap: 2rem;
+}
+h6{
+  font-size: 16px;
+}
+.blog__detail {
+  padding: 10px;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  gap: 3rem;
+}
+
+.first__row {
+  width: 25%;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
   
+}
+
+.middle__row {
+  width: 65%;
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+}
+
+.last__row {
+  width: 15%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  .ant-descriptions {
+      flex-direction: column;
+
+      .ant-descriptions-item {
+          display: flex;
+          flex-direction: column;
+      }
+  }
+}
+
+
+.card-content {
+  font-family: 'Arial', sans-serif;
+  p {
+    text-align: justify; 
+    margin-bottom: 10px; 
+    font-size: 16px;
+  }
+  .imageSpace {
+    margin-top: 20px;
+  } 
+  .blog-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+}
