@@ -30,10 +30,10 @@ const Home = () => {
       
       
      {/* <CounterUpPage/> */}
-      <FeaturesSection/>
-      <CompanySection/> 
+      {/* <FeaturesSection/> */}
+      {/* <CompanySection/>  */}
       {/* <SignUpSection/>  */}
-      <Testimonals/>
+      {/* <Testimonals/> */}
   
    
     </>

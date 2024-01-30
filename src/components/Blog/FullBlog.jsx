@@ -82,7 +82,7 @@ const FullBlog = ({ blogs }) => {
                 <div className="second__row">
                   <Card
                     title={blog.title} style={{ width: 600 }}
-                    cover={<img alt="blog cover" src={blog.imageUrl} />}
+                    cover={<img alt="blog cover" src={"https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg"} />}
                     className="card-content"
                   >
                     <p>Category: <Tag color="blue">{blog.category}</Tag></p>
