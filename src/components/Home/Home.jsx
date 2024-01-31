@@ -23,21 +23,15 @@ const Home = () => {
       setRole(parseInt(roleUser.user.role_id))
     }
   }, []);
-  
   return (
     <>
-      <Hero/>
-      
-      
+      <Hero/>     
      {/* <CounterUpPage/> */}
       {/* <FeaturesSection/> */}
       {/* <CompanySection/>  */}
       {/* <SignUpSection/>  */}
-      {/* <Testimonals/> */}
-  
-   
+      {/* <Testimonals/> */}   
     </>
   )
 }
-
 export default Home
