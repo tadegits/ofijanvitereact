@@ -82,13 +82,13 @@
 .examsholder {
   display: flex;
   width: 100%;
-  
+  margin-top: 20px;
   height: max-content;
+
   min-height: 400px;
   background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
- 
-  justify-content: space-evenly
+  justify-content: center;
 }
 
 .exams_card {

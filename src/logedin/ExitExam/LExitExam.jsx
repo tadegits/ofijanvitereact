@@ -8,6 +8,7 @@ import useLoggedInUser from '../../Globals/useLoggedInUser';
 import API_BASE_URL from '../../Globals/apiConfig';
 import WhatModal from './WhatModal';
 import { Card, Button, Modal, Input } from 'antd';
+import ExitExam from '../../components/ExitExam/ExitExam';
 const LExitExam = () => {
   const { Meta } = Card;
   const { deptId, userId } = useLoggedInUser();
@@ -73,61 +74,9 @@ const LExitExam = () => {
   return (
     <section className='exit_exam_nli'>
       
-      <Wrapper className="examsholder">
-        {exams ? (exams.map((exam, index) => {
+      {/* <Wrapper className="examsholder">
+        {Array.isArray(exams) && exams.length > 0 ? ((exams.map((exam, index) => {
           return (
-            // <div key={exams.id} className="exams_card">
-            //   <div className='exams_head'>
-               
-            //     <img className='__logo' src={Logo} alt='' width={30} height={20} />
-            //     <div className="__title"> {exam.exam_name ? exam.exam_name : "No Name"}</div>
-            //   </div>
-            //   <div className="underline"></div>
-              
-            //   <table className='exam_table' border={1}>
-            //     <tr className='table_body'>
-            //       <td className='categorizer' >Booklet Name: </td>
-            //       <td className='info' colSpan={4}><b>{exam.exam_name}</b></td>
-
-            //     </tr>
-            //     <tr className='table_body'>
-            //       <td className='categorizer'>Ofijan Id: </td>
-            //       <td className='info'><b>OF{exam.id}{exam.id}IN</b></td>
-            //       <td className='categorizer'>Prepared By: </td>
-            //       <td className='info' colSpan={2}><b>Gaki Serocho</b></td>
-            //     </tr>
-            //     <tr className='table_body'>
-            //       <td className='categorizer'>Description </td>
-            //       <td className='info' colSpan={4}>{exam.description ? exam.description : "No Description!"}</td>
-            //     </tr>
-            //     <tr className='table_body'>
-            //       <td className='categorizer'>Total no of Questions </td>
-            //       <td className='info'>{exam.questions_count}</td>
-            //       <td className='categorizer' colSpan={2}>Topics Covered </td>
-            //       <td className='info'>12</td>
-            //     </tr>
-            //     <tr className='table_body'>
-            //       <td className='categorizer'>Topics </td>
-            //       <td className='' colSpan={4}>
-            //         <ul>
-            //           <li>
-            //             Electromechanics
-            //           </li>
-            //           <li>Double Linked List</li>
-            //           <li>Super Conductor's</li>
-            //         </ul>
-            //       </td>
-            //     </tr>
-                
-            //     <tr className='table_body'>
-            //       <td colSpan={5} className='open-holder'>
-            //         <button className='button-open' onClick={()=> openModal(exam)}>Open</button>
-            //       </td>
-            //     </tr>
-            //   </table>
-              
-
-            // </div>
             <Card
                         key={exams.id}
                         className="exams_card"
@@ -160,10 +109,14 @@ const LExitExam = () => {
                         </p>
                     </Card>
           )
-        })) : (<div className='exams_card'>
+        }))) : (<div className='exams_card'>
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
         </div>)}
-      </Wrapper>
+Other Exams
+        
+      </Wrapper> */}
+      
+      <ExitExam/>
       {isModalOpen && selectedExamId && ( 
         <WhatModal  examID={selectedExamId} onClose={closeModal} /> 
       )}

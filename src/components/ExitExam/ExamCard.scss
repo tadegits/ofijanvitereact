@@ -1,43 +1,60 @@
 // ExitExam.scss
 
 $primary-color: #1890ff; // Define primary color
-
+.exam_card1{
+  width: 350px;
+  margin: 5px;
+  
+}
+.cards__holder{
+  display: flex;
+  
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cards__list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;background-color: #a9a9aa2f;
+  justify-content: space-between;
+}
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  margin: -8px; // Adjust based on your preference
+  margin: -8px; 
 }
 
 .exam-card {
   width: 100%;
-  margin: 8px; // Adjust based on your preference
+  margin: 8px; 
   box-sizing: border-box;
 
   .ant-card-head {
-    background-color: $primary-color; // Use primary color for the header background
-    color: #fff; // Header text color
+    background-color: $primary-color; 
+    color: #fff; 
   }
 
   .ant-card-body {
-    padding: 16px; // Body padding
+    padding: 16px; 
   }
 
   p {
-    margin-bottom: 12px; // Bottom margin for paragraphs
+    margin-bottom: 12px; 
   }
 
   .ant-tag {
-    margin-right: 8px; // Right margin for tags
+    margin-right: 8px; 
   }
 
   .ant-space {
-    margin-top: 12px; // Top margin for action links
+    margin-top: 12px; 
   }
 
-  .button-open {
-    color: $primary-color; // Set link color to primary color
+  .button_open {
+    color: $primary-color; 
     &:hover {
-      color: darken($primary-color, 10%); // Darken link color on hover
+      color: darken($primary-color, 10%); 
     }
   }
 }
