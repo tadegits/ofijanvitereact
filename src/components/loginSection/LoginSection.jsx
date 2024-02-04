@@ -9,12 +9,21 @@ import animationData from '../../assets/animation_lnk8tp8u.json';
 import logoImg from '../../assets/ofijan_logo.png';
 import 'react-toastify/dist/ReactToastify.css';
 import './LoginSection.scss'
+import GoogleLoginButton from './GoogleLoginButton';
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-   
+    const handleGoogleLoginSuccess = (profile) => {
+        console.log('Successful login:', profile);
+        
+      };
+    
+      const handleGoogleLoginFailure = () => {
+        console.log('Login failed');
+     
+      };
 
     useEffect(() => {
         const logedUser = localStorage.getItem("user");
@@ -80,7 +89,8 @@ const LoginSection = () => {
                                     {/* <p>Forgot your password ?</p> */}
                                 </div>
                                 <div className="summit-login">
-                                    <button className='logbtn' onClick={handleSubmit}> Log In</button>
+                                    <button className='logbtn' onClick={handleSubmit}> Log me In</button>
+                                    <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure}/>
                                 </div>
                                 <div className="summit-signup">
                                     <h5>Register as new user</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>

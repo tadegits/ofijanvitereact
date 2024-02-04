@@ -2,16 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from '../wrapper/Wrapper';
 import Logo from '../../assets/logo.png';
-import { Card, Button, Modal, Input } from 'antd';
+import { Card, Button, Modal, Input, Select }  from 'antd';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import ExamCardList from './ExamCard';
 
 const ExitExam = () => {
+  const { Option } = Select;
   const { Meta } = Card;
   const url = `${API_BASE_URL}/departments`;
   const url2 = `${API_BASE_URL}/way_exams`;
   const [data, setData] = useState([]);
+  const [allExams, setAllExams] = useState([]);
   const [exams, setExams] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(6);
   const [loading, setLoading] = useState(true);
@@ -38,6 +40,7 @@ const ExitExam = () => {
 
         setData(data1);
         setExams(data2);
+        setAllExams(data2);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -59,9 +62,10 @@ const ExitExam = () => {
     const selectedDepartmentId = event.target.value;
     setSelectedDepartmentId(selectedDepartmentId);
 
+
     if (selectedDepartmentId) {
       try {
-        const response = await fetch(`${API_BASE_URL}/exams/${selectedDepartmentId}`);
+        const response = await fetch(`${API_BASE_URL}/examsfront/${selectedDepartmentId}`);
         if (response.ok) {
           const examsData = await response.json();
           setExams(examsData);
@@ -72,10 +76,10 @@ const ExitExam = () => {
         console.error('Error fetching courses:', error);
       }
     } else {
-      setExams([]);
+      setExams(allExams);
     }
   };
-
+console.log('id', selectedDepartmentId);
   const NO_NAME = 'No Name';
   const NO_DESCRIPTION = 'No Description';
 
@@ -123,7 +127,7 @@ const ExitExam = () => {
             </Link>
           </Button>
         ) : (
-          <Button>
+          <Button type='primary'>
             <Link to='/Login' >
               Take Exam now!
             </Link>

@@ -103,8 +103,8 @@ const TestMePlate = () => {
         const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
         axios.post(`${API_BASE_URL}/selected-answers`, {
             user_id: userId,
-            question_id: selectedQuestion,
-            option_id: selectedOptionID,
+            question_id: selectedQuestion.id,
+            option_id: selectedOptionID.id,
         })
             .then(response => {
             })

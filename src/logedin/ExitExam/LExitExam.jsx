@@ -9,6 +9,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 import WhatModal from './WhatModal';
 import { Card, Button, Modal, Input } from 'antd';
 import ExitExam from '../../components/ExitExam/ExitExam';
+import ExamCardList from '../../components/ExitExam/ExamCard';
 const LExitExam = () => {
   const { Meta } = Card;
   const { deptId, userId } = useLoggedInUser();
@@ -19,6 +20,7 @@ const LExitExam = () => {
   const [data, setData] = useState([]);
   const [price_tag, setPriceTag] = useState('');
   const [exams, setExams] = useState([]);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState('');
   const [selectedExamId, setSelectedExamId] = useState(null);
@@ -29,13 +31,13 @@ const LExitExam = () => {
       .then((d) => {
         setData(d);
         const loggedInUser = localStorage.getItem('user');
-        if (loggedInUser) {
+        if (loggedInUser) { 
           const foundUser = JSON.parse(loggedInUser);
           setDid(foundUser.user.dept_id);
           if (foundUser.user.dept_id !== null) {
             setDepartmentTitle(data.title);
             console.log('the data', data.title);
-            fetch(`${API_BASE_URL}/exams/${foundUser.user.dept_id}`)
+            fetch(`${API_BASE_URL}/examsfront/${foundUser.user.dept_id}`)
               .then((res) => res.json())
               .then((d) => setExams(d))
               .catch((error) => console.error('Error fetching exams:', error));
@@ -49,7 +51,7 @@ const LExitExam = () => {
     setSelectedDepartmentId(selectedDepartmentId);
     if (selectedDepartmentId) {
       try {
-        const response = await fetch(`${API_BASE_URL}/exams/${selectedDepartmentId}`);
+        const response = await fetch(`${API_BASE_URL}/examsfront/${selectedDepartmentId}`);
         if (response.ok) {
           const examsData = await response.json();
           setExams(examsData);
@@ -74,8 +76,16 @@ const LExitExam = () => {
   return (
     <section className='exit_exam_nli'>
       
-      {/* <Wrapper className="examsholder">
-        {Array.isArray(exams) && exams.length > 0 ? ((exams.map((exam, index) => {
+      <Wrapper className="examsholder">
+      
+          {exams.length ? (
+           <ExamCardList  exams={exams} />
+          ) : (
+            <div className='exams_card'>
+              <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
+            </div>
+          )}
+        {/* {Array.isArray(exams) && exams.length > 0 ? ((exams.map((exam, index) => {
           return (
             <Card
                         key={exams.id}
@@ -111,10 +121,10 @@ const LExitExam = () => {
           )
         }))) : (<div className='exams_card'>
           <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
-        </div>)}
+        </div>)} */}
 Other Exams
         
-      </Wrapper> */}
+      </Wrapper>
       
       <ExitExam/>
       {isModalOpen && selectedExamId && ( 

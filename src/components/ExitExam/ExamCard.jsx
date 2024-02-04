@@ -1,41 +1,56 @@
-import React from 'react';
-import { Card, Button, Tag, Space, Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { Card, Button, Space } from 'antd';
 import './ExamCard.scss';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
-const ExamCard = ({ exam }) => {
+import WhatModal from '../../logedin/ExitExam/WhatModal';
+
+const ExamCard = ({ exam, openModal }) => {
   const { id, exam_name, department } = exam;
 
   return (
-    <Card 
-    className='exam_card1'
-    title={exam_name} 
-    key={id}
-       actions={[
-           <Button><Link className='button-open' to={`/ofijan_question_plate/${id}`}>
-              Open
-           </Link>
-           </Button>
-        ]}
-    style={{ marginBottom: 16 }}>
+    <Card
+      className='exam_card1'
+      title={exam_name}
+      key={id}
+      actions={[
+        <Button className='button-open' onClick={() => openModal(exam)}>
+          Open
+        </Button>,
+      ]}
+      style={{ marginBottom: 16 }}
+    >
       <p>
         <strong>Department:</strong> {department ? department.title : 'N/A'}
       </p>
-      <Space>
-     
-      </Space>
+      <Space></Space>
     </Card>
   );
 };
 
 const ExamCardList = ({ exams }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedExamId, setSelectedExamId] = useState(null);
+
+  const openModal = (exam) => {
+    setIsModalOpen(true);
+    setSelectedExamId(exam.id);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedExamId(null);
+  };
+
   return (
     <div className='cards__list'>
-      {exams.map(exam => (
+      {exams.map((exam) => (
         <div span={8} key={exam.id}>
-          <ExamCard exam={exam} />
+          <ExamCard exam={exam} openModal={openModal} />
         </div>
       ))}
+      {isModalOpen && selectedExamId && (
+        <WhatModal examID={selectedExamId} onClose={closeModal} />
+      )}
     </div>
   );
 };

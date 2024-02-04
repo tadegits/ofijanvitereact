@@ -4,20 +4,28 @@ $primary-color: #1890ff; // Define primary color
 .exam_card1{
   width: 350px;
   margin: 5px;
-  
+  border-radius: 8px;
+  border: solid #00000025 1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  min-width: 400px;
+  width: 90%;
+  padding: 30px;
+  transition: transform 0.3s ease;
 }
 .cards__holder{
   display: flex;
   
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  
 }
 .cards__list{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;background-color: #a9a9aa2f;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .card-container {
   display: flex;
