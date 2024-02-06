@@ -49,58 +49,58 @@
 
     }
 
-    &__image_holder2{
-        margin: 10px;
+    // &__image_holder2{
+    //     margin: 10px;
 
-        .logtitle {
-            display: flex;
-            align-content: center;
-            // background-color: aquamarine;
+    //     .logtitle {
+    //         display: flex;
+    //         align-content: center;
+    //         // background-color: aquamarine;
 
-            img {
-                width: 10%;
-                height: 10%;
-                margin: 2rem 0 1rem;
+    //         img {
+    //             width: 10%;
+    //             height: 10%;
+    //             margin: 2rem 0 1rem;
 
-                @include respond(phone){
-                    width: 11%;
-                    width: 11%;
-                }
+    //             @include respond(phone){
+    //                 width: 11%;
+    //                 width: 11%;
+    //             }
 
-                @include respond(tab-land){
-                    width: 11%;
-                    width: 11%;
-                }
+    //             @include respond(tab-land){
+    //                 width: 11%;
+    //                 width: 11%;
+    //             }
 
-                @include respond(tab-port){
-                    width: 11%;
-                    width: 11%;
-                }
-            }
+    //             @include respond(tab-port){
+    //                 width: 11%;
+    //                 width: 11%;
+    //             }
+    //         }
 
-            h1 {
-                margin-left: 1rem;
-                margin-top: 2.1rem;
-                font-size: 33px;
-                font-weight: 700;
+    //         h1 {
+    //             margin-left: 1rem;
+    //             margin-top: 2.1rem;
+    //             font-size: 33px;
+    //             font-weight: 700;
 
-                @include respond(phone){
-                    font-size: 200%;
-                    font-weight: 700;
+    //             @include respond(phone){
+    //                 font-size: 200%;
+    //                 font-weight: 700;
 
-                }
+    //             }
 
-                @include respond(tab-land){
-                    font-size: 200%;
-                    font-weight: 700;
-                    margin-top: 1.8rem;
+    //             @include respond(tab-land){
+    //                 font-size: 200%;
+    //                 font-weight: 700;
+    //                 margin-top: 1.8rem;
 
-                }
+    //             }
 
-            }
-        }
+    //         }
+    //     }
 
-    }
+    // }
 
     .form2{
         // background-color: rgb(6, 16, 49);
@@ -110,7 +110,7 @@
 
         .form-contents1{
             // background-color: #b8b7be;
-            width: 85%;
+            // width: 85%;
 
             @include respond(tab-land){
                 width: 100%;
@@ -124,17 +124,17 @@
                 width: 100%;
             }
 
-            .names, .dept_pho {
-                // background-color: aqua;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
-                gap: 1rem;
+            // .names, .dept_pho {
+            //     // background-color: aqua;
+            //     display: grid;
+            //     grid-template-columns: 1fr 1fr;
+            //     width: 100%;
+            //     gap: 1rem;
 
-                @include respond(phone){
-                    display: block;
-                }
-            }
+            //     @include respond(phone){
+            //         display: block;
+            //     }
+            // }
 
             label{
                 font-size: small;
