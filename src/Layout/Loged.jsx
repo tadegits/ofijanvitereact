@@ -45,7 +45,6 @@ import WriteBlog from '../Seller/pages/blog/write.jsx';
 import axios from 'axios';
 import Topbar from '../Seller/components/topbar/Topbar.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
-import ExamsForMe from '../logedin/ExitExam/ExamsForMe.jsx';
 import '../Seller/App.css';
 import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
 const Loged = () => {
