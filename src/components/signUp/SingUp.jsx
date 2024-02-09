@@ -162,14 +162,14 @@ const LoginSection = () => {
                 let status = result.status;
 
                 if (status === "success") {
-                    navigate("/Login", {state:{registered:{respresult}}})
+                    navigate("/Login", { state: { registered: { respresult } } })
                 }
                 else {
                     setMessage(respresult)
                     setRegistered("User not registered");
-                  
+
                 }
-   
+
 
             }
             else {
@@ -181,21 +181,22 @@ const LoginSection = () => {
         <section className="login">
             <Wrapper>
                 <div className="login__container">
-                    <div className="login__form_container1">
+                    {/* <div className="login__form_container1">
                         {/* <div>
                             <Lottie animationData={Img1} className='img-1' />
-                        </div> */}
+                        </div> 
                         <div className="signupregistered">Create your Ofijan Account</div>
-                    </div>
+                    </div> */}
                     <div className="login__form_container1">
-                        <div className="login__image_holder2">
+                        {/* <div className="login__image_holder2">
                            
                             <div className="login__header">
                                 
-                                {/* <p className='infos'>Continue your study to increase your achivement.</p> */}
+                                {/* <p className='infos'>Continue your study to increase your achivement.</p> 
                             </div>
                             <hr></hr>
-                        </div>
+                        </div> */}
+                        <div className="login__signupregistered">Create your Ofijan Account</div>
                         <div className="form2">
 
                             <div className="form-contents1">
@@ -211,28 +212,30 @@ const LoginSection = () => {
                                         <div className="errormessage">{lnmessage}</div>
                                     </div>
 
-                                </div>
-                                <div className="dept_pho">
                                     <div className="emails">
                                         <label>E_mail</label>
                                         <input type="text" placeholder='Email' className="email" onBlur={checkEmail} required />
                                         <div className="errormessage">{message}</div>
                                     </div>
+
+                                </div>
+                                <div className="dept_pho">
                                     <div className="phones">
                                         <label>Phone Number</label>
                                         <input type="tell" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
                                         <div className="errormessage">{phonemessage}</div>
                                     </div>
-                                </div>
-                                <div className="department">
-                                    <label>Department</label>
-                                    <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
-                                        <option value="1"></option>
-                                        {data.map(data => (
-                                            <option key={data.id} value={data.id} selected>{data.title}</option>
-                                        ))}
-                                    </select>
-                                    <div className="errormessage">{deptMessage}</div>
+
+                                    <div className="department">
+                                        <label>Department</label>
+                                        <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
+                                            <option value="1"></option>
+                                            {data.map(data => (
+                                                <option key={data.id} value={data.id} selected>{data.title}</option>
+                                            ))}
+                                        </select>
+                                        <div className="errormessage">{deptMessage}</div>
+                                    </div>
                                 </div>
                                 <label>Password</label>
                                 <input type="password" placeholder='Password' className="pass" onBlur={checkPassword} required />

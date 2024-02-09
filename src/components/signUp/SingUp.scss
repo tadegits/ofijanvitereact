@@ -6,23 +6,26 @@
     border-top-left-radius: 0.5rem;
     background-color: #ffffff;
 
-    &__header{
+    &__header {
         align-items: center;
         width: fit-content;
         // background-color: aquamarine;
         margin-top: 0px;
 
-        .signupregistered {
-            margin-top: 0.5rem;
-            font-size: 24px;
-            font-weight: 700;
-            // font-size: 30px;
-        }
-
         p.infos {
             margin-top: 10px;
         }
 
+    }
+    &__signupregistered {
+        // background-color: aqua;
+        display: flex;
+        margin-top: 0.5rem;
+        font-size: 20px;
+        font-weight: 700;
+        margin-inline: auto;
+        justify-content: center;
+        align-items: center;
     }
 
     &__container {
@@ -31,23 +34,23 @@
         gap: 1rem;
     }
 
-    &__image_holder{
+    &__image_holder {
         background-color: #b8b7be;
         border-radius: 0.5rem;
         margin: 0.5rem;
         margin-left: 0;
 
-        @include respond(phone){
+        @include respond(phone) {
             display: none;
         }
 
-        @include respond(tab-port){
+        @include respond(tab-port) {
             display: none;
         }
 
     }
 
-    &__image_holder2{
+    &__Sing_up_image_holder2 {
         margin: 10px;
 
         .logtitle {
@@ -60,17 +63,17 @@
                 height: 10%;
                 margin: 2rem 0 1rem;
 
-                @include respond(phone){
+                @include respond(phone) {
                     width: 11%;
                     width: 11%;
                 }
 
-                @include respond(tab-land){
+                @include respond(tab-land) {
                     width: 11%;
                     width: 11%;
                 }
 
-                @include respond(tab-port){
+                @include respond(tab-port) {
                     width: 11%;
                     width: 11%;
                 }
@@ -82,13 +85,13 @@
                 font-size: 33px;
                 font-weight: 700;
 
-                @include respond(phone){
+                @include respond(phone) {
                     font-size: 200%;
                     font-weight: 700;
 
                 }
 
-                @include respond(tab-land){
+                @include respond(tab-land) {
                     font-size: 200%;
                     font-weight: 700;
                     margin-top: 1.8rem;
@@ -100,46 +103,57 @@
 
     }
 
-    .form2{
-        // background-color: rgb(6, 16, 49);
+    .form2 {
+        // background-color: blue;
         padding: 0.5rem;
         width: auto;
         margin-bottom: 10px;
 
-        .form-contents1{
-            // background-color: #b8b7be;
-            width: 85%;
+        .form-contents1 {
+            // background-color: aqua;
+            margin: 10px;
+            width: 60%;
+            margin-inline: auto;
+            align-content: center;
+            align-items: center;
 
-            @include respond(tab-land){
+            @include respond(tab-land) {
                 width: 100%;
             }
 
-            @include respond(tab-port){
+            @include respond(tab-port) {
                 width: 100%;
             }
 
-            @include respond(phone){
+            @include respond(phone) {
                 width: 100%;
             }
 
-            .names, .dept_pho {
+            .names,
+            .dept_pho {
                 // background-color: aqua;
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
                 width: 100%;
                 gap: 1rem;
 
-                @include respond(phone){
+                @include respond(phone) {
                     display: block;
                 }
             }
 
-            label{
+            label {
                 font-size: small;
                 font-weight: 600;
             }
 
-            .fname, .lname, .email, .phone, .dept, .pass, .copass {
+            .fname,
+            .lname,
+            .email,
+            .phone,
+            .dept,
+            .pass,
+            .copass {
                 width: 100%;
                 padding: 1rem;
                 margin-top: 8px;
@@ -149,10 +163,10 @@
                 border-radius: 0.2rem;
                 box-sizing: border-box;
 
-                &:focus{
+                &:focus {
                     border: 3px solid #594fb6;
                 }
-                
+
             }
 
             .errormessage {
@@ -179,8 +193,8 @@
                     opacity: 1;
                 }
             }
-            
-            .summit-signuplog{
+
+            .summit-signuplog {
                 // background-color: #594fb6;
                 display: flex;
                 width: fit-content;
@@ -214,5 +228,5 @@
                 }
             }
         }
-        }
+    }
 }
