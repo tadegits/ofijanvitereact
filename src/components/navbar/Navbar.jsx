@@ -75,9 +75,12 @@ const Navbar = () => {
                     </li>):
                     (<></>)}
 
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/ofijan_blogs">2015 Exit Exam</Link> 
+<li onClick={() => setShowNav(false)}>
+                        <Link to="/2015_exit_pdfs">2015 Exit Exam</Link> 
                     </li>
+                    {/* <li onClick={() => setShowNav(false)}>
+                        <Link to="/ofijan_blogs">2015 Exit Exam</Link> 
+                    </li> */}
                     {isLoggedIn ?
 
                         (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}

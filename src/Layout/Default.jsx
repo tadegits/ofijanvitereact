@@ -20,6 +20,8 @@ import Plate from '../components/QuestionPlate/Plate';
 import CoC from '../components/CoC/CoC';
 import EasyExam from '../components/EasyExam';
 import axios from 'axios';
+import Pdf from '../components/Pdf';
+import DisplayPdf from '../components/Pdf/DisplayPdf';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -51,6 +53,8 @@ const Default = () => {
         <Route path="/exit/:id" element={<ExitExam />} />
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/2015_exit_pdfs" element={<Pdf />} />
+        <Route path="/display-pdf/:id" component={DisplayPdf} /> 
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
