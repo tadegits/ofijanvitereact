@@ -11,48 +11,48 @@ import { Document, Page } from 'react-pdf';
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const pdfData = location.state.pdfData;
-    const [pdfUrl, setPdfUrl] = useState([]);
-
     const [pdfFile, setPdfFile] = useState(null);
-
+  
     useEffect(() => {
-        if (pdfData) {
-           // setPdfUrl = `${API_BASE_URL}/pdfs/${pdfData.filename}`;
-            fetch(`${API_BASE_URL}/pdfs/${pdfData.filename}`)
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => {
-                    setPdfFile(new Uint8Array(arrayBuffer));
-                })
-                .catch(error => {
-                    console.error('Error fetching PDF:', error);
-                });
-        }
-    }, [pdfFile]);
-    
-console.log('hy', pdfFile);
+      if (pdfData) {
+        fetch(`${API_BASE_URL}/pdfs/${pdfData.filename}`)
+          .then(response => response.arrayBuffer())
+          .then(arrayBuffer => {
+            setPdfFile(new Uint8Array(arrayBuffer));
+          })
+          .catch(error => {
+            console.error('Error fetching PDF:', error);
+          });
+      }
+    }, [pdfData]);
+  
     if (!pdfData) {
-        return null;
+      return null;
     }
+  
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
-
+  
     GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
-
+  
     return (
-        <div className="modal-overlay">
-            <div className="modal">
-                <h2>view</h2>
-                <button className="close-button" onClick={onClose}>
-                    &times;
-                </button>
-                <Document file={pdfFile}>
-        <Page pageNumber={1} />
-      </Document>
-                 <Viewer fileUrl={pdfFile} plugins={[defaultLayoutPluginInstance]} /> 
-
-            </div>
+      <div className="modal-overlay">
+        <div className="modal">
+          <h2>View</h2>
+          <button className="close-button" onClick={onClose}>
+            &times;
+          </button>
+          {pdfFile && (
+            <>
+              <Document file={pdfData}>
+                <Page pageNumber={1} />
+              </Document>
+              <Viewer fileUrl={pdfFile} plugins={[defaultLayoutPluginInstance]} />
+            </>
+          )}
         </div>
+      </div>
     );
-};
+  };
 
 DisplayPdf.propTypes = {
     onClose: PropTypes.func.isRequired,
