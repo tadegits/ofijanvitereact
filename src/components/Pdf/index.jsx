@@ -25,7 +25,7 @@ const Index = () => {
                 <Col xs={24} sm={12} md={8} key={index}>
                   <Link to={`/display-pdf/${index}`} state={{ pdfData: pdf }}> {/* Pass pdfData to DisplayPdf component */}
                     <Card hoverable className="blog-card">
-                      <Image src={fetchDepartmentImage(pdf.department.title)} className="blog-image" />
+                      <Image src="https://cdn.vox-cdn.com/thumbor/uB241sgBJdoC-0ThViBxai10qP4=/0x0:800x600/1200x800/filters:focal(336x236:464x364)/cdn.vox-cdn.com/uploads/chorus_image/image/59620595/csm_holography_cyan_eaea795162.0.0.0.0.jpg" className="blog-image" />
                       <Card.Meta
                         description={
                           <div>
