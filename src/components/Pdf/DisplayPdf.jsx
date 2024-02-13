@@ -11,12 +11,13 @@ import { Document, Page } from 'react-pdf';
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const pdfData = location.state.pdfData;
-    const [pdfUrl, setPdfUrl] = useState('');
+    const [pdfUrl, setPdfUrl] = useState([]);
 
     const [pdfFile, setPdfFile] = useState(null);
 
     useEffect(() => {
         if (pdfData) {
+           // setPdfUrl = `${API_BASE_URL}/pdfs/${pdfData.filename}`;
             fetch(`${API_BASE_URL}/pdfs/${pdfData.filename}`)
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => {
@@ -26,8 +27,9 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                     console.error('Error fetching PDF:', error);
                 });
         }
-    }, [pdfData]);
-
+    }, [pdfFile]);
+    
+console.log('hy', pdfFile);
     if (!pdfData) {
         return null;
     }
@@ -42,10 +44,10 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                 <button className="close-button" onClick={onClose}>
                     &times;
                 </button>
-                <Document file={pdfData}>
+                <Document file={pdfFile}>
         <Page pageNumber={1} />
       </Document>
-                {/* <Viewer file={pdfFile} plugins={[defaultLayoutPluginInstance]} /> */}
+                 <Viewer fileUrl={pdfFile} plugins={[defaultLayoutPluginInstance]} /> 
 
             </div>
         </div>
