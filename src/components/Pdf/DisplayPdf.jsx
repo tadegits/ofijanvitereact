@@ -7,18 +7,20 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { GlobalWorkerOptions } from 'pdfjs-dist/build/pdf';
 import PropTypes from 'prop-types';
 import API_BASE_URL from '../../Globals/apiConfig';
-
+import { Document, Page } from 'react-pdf';
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const pdfData = location.state.pdfData;
     const [pdfUrl, setPdfUrl] = useState('');
 
+    const [pdfFile, setPdfFile] = useState(null);
+
     useEffect(() => {
         if (pdfData) {
             fetch(`${API_BASE_URL}/pdfs/${pdfData.filename}`)
-                .then(response => response.blob())
-                .then(blob => {
-                    setPdfUrl(URL.createObjectURL(blob));
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    setPdfFile(new Uint8Array(arrayBuffer));
                 })
                 .catch(error => {
                     console.error('Error fetching PDF:', error);
@@ -40,8 +42,10 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                 <button className="close-button" onClick={onClose}>
                     &times;
                 </button>
-
-                <Viewer fileUrl={pdfUrl} plugins={[defaultLayoutPluginInstance]} />
+                <Document file={pdfData}>
+        <Page pageNumber={1} />
+      </Document>
+                {/* <Viewer file={pdfFile} plugins={[defaultLayoutPluginInstance]} /> */}
 
             </div>
         </div>
