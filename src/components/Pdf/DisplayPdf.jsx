@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Viewer } from '@react-pdf-viewer/core';
-import { DefaultLayoutPlugin, defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { GlobalWorkerOptions } from 'pdfjs-dist/build/pdf';
@@ -15,7 +15,7 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
 
     useEffect(() => {
         if (pdfData) {
-            fetch(`${API_BASE_URL}/pdfs/${pdfData.name}`)
+            fetch(`${API_BASE_URL}/pdfs/${pdfData.filename}`)
                 .then(response => response.blob())
                 .then(blob => {
                     setPdfUrl(URL.createObjectURL(blob));
