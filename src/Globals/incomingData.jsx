@@ -35,14 +35,14 @@ const fetchDepartmentByCollege = async (college_id) => {
 };
 
 export { fetchDepartmentByCollege };
-const fetchColleges = async (college_id) => {
+const fetchCollegesWithDepartment = async (college_id) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/colleges`);
-    return response.data.colleges;
+    const response = await axios.get(`${API_BASE_URL2}/collegewithdepartment`);
+    return response.data;
   } catch (error) {
     console.error('Error fetching colleges:', error);
     return [];
   }
 };
 
-export { fetchColleges };
+export { fetchCollegesWithDepartment};
