@@ -6,11 +6,13 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { GlobalWorkerOptions } from 'pdfjs-dist/build/pdf';
 import PropTypes from 'prop-types';
+import { Card, Spin, Row, Col } from 'antd';
 import API_BASE_URL from '../../Globals/apiConfig';
-import { Document, Page } from 'react-pdf';
 import { useParams } from 'react-router-dom';
-import { Spin } from 'antd';
-
+import TopicsCard from '../Blog/Topics/TopicsCard';
+import './pdf.scss'
+import SampleExams from './SampleExams';
+import BluePrintCard from './BluePrintCard';
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const pdfData = location.state.pdfData;
@@ -18,47 +20,62 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
     const [pdfUrl, setPdfUrl] = useState('');
     const [loading, setLoading] = useState(true); // Loading state
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-      if (pdfData) {
-        const url = `${API_BASE_URL}/pdfs/${id}`;
-        setPdfUrl(url);
-        fetch(url)
-          .then(response => response.arrayBuffer())
-          .then(arrayBuffer => {
-            setPdfFile(new Uint8Array(arrayBuffer));
-            setLoading(false); // Set loading to false after PDF is fetched
-          })
-          .catch(error => {
-            console.error('Error fetching PDF:', error);
-          });
-      }
+        if (pdfData) {
+            const url = `${API_BASE_URL}/pdfs/${id}`;
+            setPdfUrl(url);
+            fetch(url)
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    setPdfFile(new Uint8Array(arrayBuffer));
+                    setLoading(false); // Set loading to false after PDF is fetched
+                })
+                .catch(error => {
+                    console.error('Error fetching PDF:', error);
+                });
+        }
     }, [pdfData]);
 
     if (!pdfData) {
-      return <div>No PDF data available</div>;
+        return <div>No PDF data available</div>;
     }
 
-    const defaultLayoutPluginInstance = defaultLayoutPlugin({
-        sidebarTabs: defaultLayoutPlugin.WrappedSidebarTabs.withoutDownload,
-    });
+    const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
     return (
-      <div className="modal-overlay">
-        <div className="modal">
-          <h2>View</h2>
-          {loading ? ( 
-            <Spin size="large" />
-          ) : (
-            <>
-              <Viewer fileUrl={pdfFile} plugins={[defaultLayoutPluginInstance]} />
-            </>
-          )}
-        </div>
-      </div>
+        <Card 
+        title={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
+        className="display-pdf-container">
+            <Row gutter={24}>
+                <Col span={5}>
+                    <BluePrintCard />
+                </Col>
+                <Col span={14}>
+                    <Card >
+                        <div className="pdf-viewer-container">
+                            <div className="modal-overlay">
+                                <div className="modal">
+                                    {loading ? ( // Show Spin if loading is true
+                                        <Spin size="large" />
+                                    ) : (
+                                        <>
+                                            <Viewer fileUrl={pdfFile}  />
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </Col>
+                <Col span={5}>
+                  <SampleExams/>
+                </Col>
+            </Row>
+        </Card>
     );
 };
 

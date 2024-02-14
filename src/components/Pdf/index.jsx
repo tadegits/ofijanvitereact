@@ -3,12 +3,12 @@ import { Layout, Card, Image, Row, Col } from 'antd';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { fetchPdfs } from '../../Globals/incomingData';
 const { Content } = Layout;
-
+import { Card, Spin, Row, Col } from 'antd';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
 
   useEffect(() => {
-    const getPdfs = async () => {
+    const getPdfs = async () => { 
       const fetchedPdfs = await fetchPdfs();
       setPdfData(fetchedPdfs.pdfs);
     };
