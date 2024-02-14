@@ -21,7 +21,7 @@ const Index = () => {
 
   return (
     <Wrapper className='pdfs'>
-    <Card 
+    <div
     className="display-pdf-container">
         <Row gutter={24}>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
@@ -53,7 +53,7 @@ const Index = () => {
               <SampleExams />
             </Col>
           </Row>
-    </Card>
+    </div>
     </Wrapper>
   );
 };
