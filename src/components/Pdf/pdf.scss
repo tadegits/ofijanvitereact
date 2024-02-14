@@ -24,3 +24,41 @@ ant-collapse-content-box {
     color: #ff6600; /* Change bullet point color */
     font-weight: bold; /* Make the bullet point bold */
   }
+  $mobile-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$large-desktop-breakpoint: 1200px;
+
+.Row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -12px; // Adjust according to your gutter value
+  margin-right: -12px; // Adjust according to your gutter value
+
+  .Col {
+    padding-left: 12px; // Adjust according to your gutter value
+    padding-right: 12px; // Adjust according to your gutter value
+
+    // Adjust column width at different breakpoints
+    @media (max-width: $mobile-breakpoint) {
+      flex: 0 0 100%; // Full width on mobile
+      max-width: 100%;
+    }
+
+    @media (min-width: $tablet-breakpoint) {
+      flex: 0 0 50%; // Half width on tablets
+      max-width: 50%;
+    }
+
+    @media (min-width: $desktop-breakpoint) {
+      flex: 0 0 33.333333%; // One-third width on desktops
+      max-width: 33.333333%;
+    }
+
+    @media (min-width: $large-desktop-breakpoint) {
+      flex: 0 0 20%; // One-fifth width on large desktops
+      max-width: 20%;
+    }
+  }
+}
+

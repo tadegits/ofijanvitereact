@@ -13,6 +13,7 @@ import TopicsCard from '../Blog/Topics/TopicsCard';
 import './pdf.scss'
 import SampleExams from './SampleExams';
 import BluePrintCard from './BluePrintCard';
+
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const pdfData = location.state.pdfData;
@@ -51,10 +52,10 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
         title={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
         className="display-pdf-container">
             <Row gutter={24}>
-                <Col span={5}>
+                <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                     <BluePrintCard />
                 </Col>
-                <Col span={14}>
+                <Col xs={24} sm={24} md={24} lg={14} xl={14}>
                     <Card >
                         <div className="pdf-viewer-container">
                             <div className="modal-overlay">
@@ -71,8 +72,8 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                         </div>
                     </Card>
                 </Col>
-                <Col span={5}>
-                  <SampleExams/>
+                <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                    <SampleExams/>
                 </Col>
             </Row>
         </Card>
