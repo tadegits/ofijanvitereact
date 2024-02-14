@@ -3,7 +3,9 @@ import { Layout, Card, Image, Row, Col } from 'antd';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { fetchPdfs } from '../../Globals/incomingData';
 const { Content } = Layout;
-import { Card, Spin, Row, Col } from 'antd';
+import BluePrintCard from './BluePrintCard';
+import {  Spin} from 'antd';
+import SampleExams from './SampleExams';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
 
@@ -16,10 +18,15 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="blog-list-container">
-      <Card title="Exams">
-        <div className="blog-body-container">
-          <Row gutter={[16, 16]} className="blog-row">
+    <Card 
+    title={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
+    className="display-pdf-container">
+        <Row gutter={24}>
+            <Col span={5}>
+                <BluePrintCard />
+            </Col>
+            <Col span={14}>
+            <Row gutter={[16, 16]} className="blog-row">
             {pdfData &&
               pdfData.map((pdf, index) => (
                 <Col xs={24} sm={12} md={8} key={index}>
@@ -37,10 +44,13 @@ const Index = () => {
                   </Link>
                 </Col>
               ))}
+              </Row>
+              </Col>
+              <Col span={5}>
+                <SampleExams />
+            </Col>
           </Row>
-        </div>
-      </Card>
-    </div>
+          </Card>
   );
 };
 
