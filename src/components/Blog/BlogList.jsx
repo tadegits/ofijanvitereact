@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Card, Image, Row, Col } from 'antd';
 import './BlogList.scss';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.png'; 
 import BlogLandingPage from './BlogLandingPage';
 import TopicsCard from './Topics/TopicsCard';
 
