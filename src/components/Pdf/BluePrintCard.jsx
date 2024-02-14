@@ -1,12 +1,18 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Card, Avatar, Descriptions,  Collapse} from 'antd';
 import './pdf.scss';
 import {fetchDepartments ,} from './../../Globals/incomingData'
 import { fetchColleges , fetchDepartmentByCollege } from './../../Globals/api';
 const { Panel } = Collapse;
+const [collegesWithDepartment, setCollegeWithDepartment] = useState([]); 
 
-useEffect([] => )
-
+useEffect(() => {
+  const getCollegeWithDepartment = async () => {
+    const fetchedColleges = await fetchDepartmentByCollege();
+    setCollegeWithDepartment(fetchedColleges);
+  };
+  getCollegeWithDepartment();
+}, []);
 
 
 const BluePrintCard = () => {
