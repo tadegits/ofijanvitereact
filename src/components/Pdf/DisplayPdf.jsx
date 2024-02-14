@@ -40,7 +40,9 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
       return <div>No PDF data available</div>;
     }
 
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+    const defaultLayoutPluginInstance = defaultLayoutPlugin({
+        sidebarTabs: defaultLayoutPlugin.WrappedSidebarTabs.withoutDownload,
+    });
 
     GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
@@ -48,13 +50,10 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
       <div className="modal-overlay">
         <div className="modal">
           <h2>View</h2>
-          {loading ? ( // Show Spin if loading is true
+          {loading ? ( 
             <Spin size="large" />
           ) : (
             <>
-              {/* <Document file={pdfFile}>
-                <Page pageNumber={1} />
-              </Document> */}
               <Viewer fileUrl={pdfFile} plugins={[defaultLayoutPluginInstance]} />
             </>
           )}
