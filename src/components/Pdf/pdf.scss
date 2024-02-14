@@ -1,28 +1,35 @@
-h1{
+.pdfs{
+  h1{
     font-size: 1.8rem;
     font-weight: lighter;
     letter-spacing: 0.1rem;
+    
 }
+h3{
+  font-size:1em;
+}
+}
+
 ant-collapse-content-box {
-    padding: 10px; /* Add padding to the subtopics */
+    padding: 10px; 
   }
   
   .ant-collapse-content-box ul {
-    list-style-type: none; /* Remove bullet points from the subtopics */
+    list-style-type: none; 
     padding: 0;
   }
   
   .ant-collapse-content-box li {
-    margin-bottom: 5px; /* Add spacing between subtopics */
-    color: #555; /* Change text color */
-    font-size: 14px; /* Adjust font size */
+    margin-bottom: 5px; 
+    color: #555; 
+    font-size: 14px; 
   }
   
   .ant-collapse-content-box li:before {
-    content: "▹"; /* Add a custom bullet point */
-    margin-right: 5px; /* Add spacing between bullet point and subtopic */
-    color: #ff6600; /* Change bullet point color */
-    font-weight: bold; /* Make the bullet point bold */
+    content: "▹"; 
+    margin-right: 5px; 
+    color: #ff6600; 
+    font-weight: bold; 
   }
   $mobile-breakpoint: 576px;
 $tablet-breakpoint: 768px;
@@ -32,31 +39,31 @@ $large-desktop-breakpoint: 1200px;
 .Row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -12px; // Adjust according to your gutter value
-  margin-right: -12px; // Adjust according to your gutter value
+  margin-left: 0px; 
+  margin-right: 0px; 
 
   .Col {
-    padding-left: 12px; // Adjust according to your gutter value
-    padding-right: 12px; // Adjust according to your gutter value
+    padding-left: 12px; 
+    padding-right: 12px; 
 
-    // Adjust column width at different breakpoints
+    
     @media (max-width: $mobile-breakpoint) {
-      flex: 0 0 100%; // Full width on mobile
+      flex: 0 0 100%; 
       max-width: 100%;
     }
 
     @media (min-width: $tablet-breakpoint) {
-      flex: 0 0 50%; // Half width on tablets
+      flex: 0 0 50%; 
       max-width: 50%;
     }
 
     @media (min-width: $desktop-breakpoint) {
-      flex: 0 0 33.333333%; // One-third width on desktops
+      flex: 0 0 33.333333%;
       max-width: 33.333333%;
     }
 
     @media (min-width: $large-desktop-breakpoint) {
-      flex: 0 0 20%; // One-fifth width on large desktops
+      flex: 0 0 20%; 
       max-width: 20%;
     }
   }

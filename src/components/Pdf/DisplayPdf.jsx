@@ -13,6 +13,7 @@ import TopicsCard from '../Blog/Topics/TopicsCard';
 import './pdf.scss'
 import SampleExams from './SampleExams';
 import BluePrintCard from './BluePrintCard';
+import Wrapper from '../wrapper/Wrapper';
 
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
@@ -48,8 +49,9 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
     GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
     return (
+        <Wrapper className='pdfs'>
         <Card 
-        title={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
+        extra={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
         className="display-pdf-container">
             <Row gutter={24}>
                 <Col xs={24} sm={24} md={24} lg={5} xl={5}>
@@ -77,6 +79,7 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                 </Col>
             </Row>
         </Card>
+        </Wrapper>
     );
 };
 
