@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { Card, Avatar, Descriptions,  Collapse} from 'antd';
 import './pdf.scss';
-import {fetchDepartments ,} from './../../Globals/incomingData'
-import { fetchColleges , fetchCollegesWithDepartment } from './../../Globals/api';
+import { fetchCollegesWithDepartment } from './../../Globals/incomingData'
+import {  } from './../../Globals/api';
 const { Panel } = Collapse;
+
+const BluePrintCard = () => {
 const [collegesWithDepartment, setCollegeWithDepartment] = useState([]); 
 
 useEffect(() => {
@@ -14,20 +16,19 @@ useEffect(() => {
   getCollegeWithDepartment();
 }, []);
 
-
-const BluePrintCard = () => {
-
+console.log('collegoch', collegesWithDepartment);
   return (
-    <div>
-{collegesWithDepartment.map((college)=>{
-  <Card title={<h2>{college.college_name}</h2>}>
-
-     
-    </Card>
-})}
-    
-
-    </div>
+    <Collapse accordion>
+    {collegesWithDepartment.map((college, index) => (
+      <Panel header={college.college_name} key={index}>
+        <ul>
+          {college.departments.map((department, subIndex) => (
+            <li key={subIndex}>{department.name}</li>
+          ))}
+        </ul>
+      </Panel>
+    ))}
+  </Collapse>
   )
 }
 
