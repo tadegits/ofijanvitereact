@@ -196,7 +196,7 @@ const LoginSection = () => {
                             </div>
                             <hr></hr>
                         </div> */}
-                        <div className="login__signupregistered">Create your Ofijan Account</div>
+                        <div className="login__signupregistered">Create  Account</div>
                         <div className="form2">
 
                             <div className="form-contents1">

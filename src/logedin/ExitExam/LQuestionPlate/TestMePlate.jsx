@@ -155,8 +155,8 @@ const TestMePlate = () => {
         <div className='ofijan_exam_plate'>
             <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
             {!testStarted && (
-                <div>
-                    <button onClick={handleStartClick}>Start Test</button>
+                <div className="strt">
+                    <button className='butnstart' onClick={handleStartClick}>Start Test</button>
                 </div>
             )}
             {testStarted && 

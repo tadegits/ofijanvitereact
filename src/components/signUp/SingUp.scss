@@ -145,8 +145,17 @@
             label {
                 font-size: small;
                 font-weight: 600;
+              
             }
-
+            @media screen and (max-width: 767px) {
+                label{
+                    margin-left: 20px;
+                   
+                    
+               
+                }
+              
+              }
             .fname,
             .lname,
             .email,
@@ -162,12 +171,27 @@
                 border: 3px solid #ccc;
                 border-radius: 0.2rem;
                 box-sizing: border-box;
+                
 
                 &:focus {
                     border: 3px solid #594fb6;
                 }
 
             }
+
+            @media screen and (max-width: 767px) {
+             
+            .fname,
+            .lname,
+            .email,
+            .phone,
+            .dept,
+            .pass,
+            .copass {
+                width: 100%;
+                margin-right: 20px;
+            }
+              }
 
             .errormessage {
                 font-size: 0.8rem;

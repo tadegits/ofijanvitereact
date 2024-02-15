@@ -96,7 +96,7 @@ const LoginSection = () => {
                                     <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure} />
                                 </div>
                                 <div className="summit-signup">
-                                    <h5>Register as new user</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>
+                                    <h5>Register</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>
                                 </div>
                             </div>
                         </div>

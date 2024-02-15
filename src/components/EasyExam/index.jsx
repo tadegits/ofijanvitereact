@@ -36,7 +36,7 @@ const index = () => {
           <input
             type="text"
             className='searchExam'
-            placeholder="Type item number here"
+            placeholder="Type exam id here"
             value={examID}
             onChange={(e) => setExamID(e.target.value)}
           />
