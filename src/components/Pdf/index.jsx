@@ -8,6 +8,8 @@ import { Spin } from 'antd';
 import SampleExams from './SampleExams';
 import Wrapper from'./../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
+import ImageGallery from './ImageGallery';
+import ImageSlider from './ImageSlider';
 
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
@@ -51,6 +53,8 @@ const Index = () => {
                     </Col>
                   ))}
               </Row>
+              {/* <ImageGallery/>
+              <ImageSlider/> */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
               <BluePrintCard/>

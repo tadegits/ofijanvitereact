@@ -23,7 +23,7 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
     const [loading, setLoading] = useState(true); // Loading state
 
     const { id } = useParams();
-
+// genet
     useEffect(() => {
         if (pdfData) {
             const url = `${API_BASE_URL}/pdfs/${id}`;
