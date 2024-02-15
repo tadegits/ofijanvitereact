@@ -53,8 +53,8 @@ const Index = () => {
                     </Col>
                   ))}
               </Row>
-              {/* <ImageGallery/>
-              <ImageSlider/> */}
+              <ImageGallery/> 
+              {/* <ImageSlider/>  */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
               <BluePrintCard/>
