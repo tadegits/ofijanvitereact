@@ -7,9 +7,11 @@ import BluePrintCard from './BluePrintCard';
 import { Spin } from 'antd';
 import SampleExams from './SampleExams';
 import Wrapper from'./../wrapper/Wrapper';
+import CollegeDepartment from '../Faculty/CollegeDepartment';
 
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
 
   useEffect(() => {
     const getPdfs = async () => { 
@@ -19,19 +21,20 @@ const Index = () => {
     getPdfs();
   }, []);
 
+  // Filter PDFs based on selected department
+  const filteredPdfs = selectedDepartment ? pdfData.filter(pdf => pdf.department.title === selectedDepartment) : pdfData;
+
   return (
     <Wrapper className='pdfs'>
-    <Card 
-    className="display-pdf-container">
+    <div className="display-pdf-container">
         <Row gutter={24}>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                <BluePrintCard />
+                <CollegeDepartment onSelectDepartment={setSelectedDepartment} />
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
-              <h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>
+              <h1>{selectedDepartment ? `${selectedDepartment} 2015 Ethiopian Exit Exam Questions pdf` : ''}</h1>
               <Row gutter={[16, 16]} className="blog-row">
-                {pdfData &&
-                  pdfData.map((pdf, index) => (
+                {filteredPdfs.map((pdf, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
                       <Link to={`/display-pdf/${pdf.name}`} state={{ pdfData: pdf }}>
                         <Card hoverable className="blog-card">
@@ -50,10 +53,10 @@ const Index = () => {
               </Row>
             </Col>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-              <SampleExams />
+              <BluePrintCard/>
             </Col>
           </Row>
-    </Card>
+    </div>
     </Wrapper>
   );
 };

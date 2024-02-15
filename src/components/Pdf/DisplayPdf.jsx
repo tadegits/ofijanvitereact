@@ -50,35 +50,27 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
 
     return (
         <Wrapper className='pdfs'>
-        <Card 
-        extra={<h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>}
-        className="display-pdf-container">
-            <Row gutter={24}>
-                <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                    <BluePrintCard />
-                </Col>
-                <Col xs={24} sm={24} md={24} lg={14} xl={14}>
-                    <Card >
-                        <div className="pdf-viewer-container">
-                            <div className="modal-overlay">
-                                <div className="modal">
-                                    {loading ? ( // Show Spin if loading is true
-                                        <Spin size="large" />
-                                    ) : (
-                                        <>
-                                            <Viewer fileUrl={pdfFile}  />
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                    <SampleExams/>
-                </Col>
-            </Row>
-        </Card>
+            <div
+                className="display-pdf-container">
+                <h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>
+                <Row gutter={24}>
+                    <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                        <BluePrintCard />
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
+                        {loading ? ( // Show Spin if loading is true
+                            <Spin size="large" />
+                        ) : (
+                            <>
+                                <Viewer fileUrl={pdfFile} />
+                            </>
+                        )}
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                        <SampleExams />
+                    </Col>
+                </Row>
+            </div>
         </Wrapper>
     );
 };
