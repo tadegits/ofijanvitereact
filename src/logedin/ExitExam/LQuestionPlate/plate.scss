@@ -407,3 +407,43 @@ td
 .ofijanTestPlateHeader{
   opacity: 0.1;
 }
+.strt{
+ 
+ margin-bottom: 20%;
+
+  
+}
+@media screen and (max-width: 767px) {
+  .strt {
+    margin-bottom: 40%;
+  }
+
+}
+
+.butnstart{
+font-size: xx-large;
+border: solid black ;
+
+@media screen and (max-width: 767px) {
+  .butnstart {
+    font-size:large;
+    border: solid black ;
+  }
+
+}
+justify-content: center;
+cursor:pointer;
+animation: blink-animation 1s steps(5, start) infinite;
+-webkit-animation: blink-animation 1s steps(5, start) infinite;
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+}

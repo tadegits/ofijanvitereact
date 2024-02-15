@@ -105,7 +105,14 @@
   align-items: flex-end;
   background-color: #ffffff;
   box-shadow: #4CAF50;
- 
+
+ @media screen and (max-width: 767px) {
+  .exams_card {
+    width: 100%; // Set width to 100% for smartphones
+    display: block; // Display as block on smartphones
+    box-sizing: border-box; // Include padding and border in the width
+  }
+}
   .underline
   {
     background-color: $milli_gray;
