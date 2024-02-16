@@ -16,7 +16,7 @@ const ExitExam = () => {
   const [allExams, setAllExams] = useState([]);
   const [exams, setExams] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(6);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [role, setRole] = useState('');
   const [showAll, setShowAll] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Spin, Image, Carousel } from 'antd';
+import { Button, Spin, Image } from 'antd';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 
@@ -15,15 +15,13 @@ const ImageGallery = () => {
       try {
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/fetchimages`);
-        const fileNames = response.data; // Assuming the API returns filenames
-
-        // Handle potential array-like structures if received instead of string array
+        const fileNames = response.data; 
         const urls = Array.isArray(fileNames)
           ? fileNames.map((fileName) => `${API_BASE_URL}/images/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
 
         setImageUrls(urls);
-        setCurrentImageIndex(0); // Reset index on new data
+        setCurrentImageIndex(0); 
       } catch (error) {
         setError(error);
         console.error('Error fetching image URLs:', error);
@@ -42,16 +40,12 @@ const ImageGallery = () => {
       try {
         setLoading(true);
         const url = imageUrls[currentImageIndex];
-
-        // Request headers specific to image loading (optional)
         const response = await axios.get(url, {
-          responseType: 'blob', // Ensure binary data
+          responseType: 'blob',
           headers: {
-            'Accept': 'image/*', // Accept any image type
+            'Accept': 'image/*', 
           },
         });
-
-        // Create URL from response data for consistent image source
         const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
         const imageSrc = URL.createObjectURL(imageBlob);
 
@@ -75,14 +69,6 @@ const ImageGallery = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + imageUrls.length) % imageUrls.length);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'ArrowLeft') {
-      handlePrevImage();
-    } else if (e.key === 'ArrowRight') {
-      handleNextImage();
-    }
-  };
-
   if (loading) {
     return <Spin size="large" />;
   }
@@ -92,20 +78,15 @@ const ImageGallery = () => {
   }
 
   return (
-    <div onKeyDown={handleKeyPress} tabIndex="0"> {/* Enable keyboard events */}
-      <Carousel>
-        {imageUrls.map((url, index) => (
-          <div key={index}>
-            <div style={{ textAlign: 'center' }}>
-              <Image
-                src={url}
-                alt="Downloaded Image"
-                style={{ maxWidth: '100%', maxHeight: '80vh' }}
-              />
-            </div>
-          </div>
-        ))}
-      </Carousel>
+    <div>
+      
+      <div style={{ textAlign: 'center' }}>
+        <Image
+          src={imageData}
+          alt="Downloaded Image"
+          style={{ maxWidth: '100%', maxHeight: '80vh' }}
+        />
+      </div>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
         <Button onClick={handlePrevImage} style={{ marginRight: '8px' }}>
           Previous
@@ -117,3 +98,6 @@ const ImageGallery = () => {
 };
 
 export default ImageGallery;
+
+
+
