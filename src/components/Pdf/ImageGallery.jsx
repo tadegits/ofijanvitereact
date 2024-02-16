@@ -3,7 +3,7 @@ import { Button, Spin, Image } from 'antd';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 
-const ImageGallery = () => {
+const ImageGallery = ({id}) => {
   const [imageUrls, setImageUrls] = useState([]); // Track full image URLs
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -14,10 +14,10 @@ const ImageGallery = () => {
     const fetchImageUrls = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${API_BASE_URL}/fetchimages`);
+        const response = await axios.get(`${API_BASE_URL}/fetchimages/${id}`);
         const fileNames = response.data; 
         const urls = Array.isArray(fileNames)
-          ? fileNames.map((fileName) => `${API_BASE_URL}/images/${fileName}`)
+          ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
 
         setImageUrls(urls);

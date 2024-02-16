@@ -15,11 +15,10 @@ import SampleExams from './SampleExams';
 import BluePrintCard from './BluePrintCard';
 import Wrapper from '../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
-import ImageGallery from './ImageGallery';
 
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
-    const depts = location.state.data;
+    const pdfData = location.state.pdfData;
     const [pdfFile, setPdfFile] = useState(null);
     const [pdfUrl, setPdfUrl] = useState('');
     const [loading, setLoading] = useState(true); 
@@ -27,46 +26,24 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
 
     const { id } = useParams();
 // genet
-    // useEffect(() => {
-    //     if (pdfData) {
-    //         const url = `${API_BASE_URL}/pdfs/${id}`;
-    //         setPdfUrl(url);
-    //         fetch(url)
-    //             .then(response => response.arrayBuffer())
-    //             .then(arrayBuffer => {
-    //                 setPdfFile(new Uint8Array(arrayBuffer));
-    //                 setLoading(false); // Set loading to false after PDF is fetched
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error fetching PDF:', error);
-    //             });
-    //     }
-    // }, [pdfData]);
+    useEffect(() => {
+        if (pdfData) {
+            const url = `${API_BASE_URL}/pdfs/${id}`;
+            setPdfUrl(url);
+            fetch(url)
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    setPdfFile(new Uint8Array(arrayBuffer));
+                    setLoading(false); // Set loading to false after PDF is fetched
+                })
+                .catch(error => {
+                    console.error('Error fetching PDF:', error);
+                });
+        }
+    }, [pdfData]);
 
-    if (depts) {
-        return  <Wrapper className='pdfs'>
-        <div className="display-pdf-container">
-        
-                
-            <Row gutter={24}>
-                
-                    <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                        {/**/}
-                        
-                        <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> 
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-                             <h1>{depts ? depts.title : ''} 2015 Ethiopian Exit Exam Questions</h1> 
-                             <ImageGallery id={id}/>
-                             <SampleExams id={id} />  
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                         <BluePrintCard /> 
-                    </Col>
-                </Row>
-            
-            </div>
-        </Wrapper>;
+    if (!pdfData) {
+        return <div>No PDF data available</div>;
     }
 
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -78,7 +55,7 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
             <div
                 className="display-pdf-container">
                 <h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>
-                {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
+                <CollegeDepartment onSelectDepartment={setSelectedDepartment} />
                 <Row gutter={24}>
                     <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                         <BluePrintCard />

@@ -14,6 +14,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [loading, setLoading]= useState([]);
   const [data, setData] = useState([]);
   const url = `${API_BASE_URL}/departments`;
   useEffect(() => {
@@ -31,6 +32,7 @@ const Index = () => {
     };
     fetchDept();
   }, []);
+//   const filteredDepts = selectedDepartment ? data.filter(data => data.id === selectedDepartment) : data;
 
   return (
     <Wrapper className='pdfs'>
@@ -59,7 +61,7 @@ const Index = () => {
                     </Col>
                   ))}
               </Row>
-              <ImageGallery/> 
+              {/* <ImageGallery/>  */}
               {/* <ImageSlider/>  */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
