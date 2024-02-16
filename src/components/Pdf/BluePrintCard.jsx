@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
-import { Link } from 'react-router-dom';
 import './pdf.scss';
 import API_BASE_URL from '../../Globals/apiConfig';
 
@@ -32,9 +31,13 @@ const BluePrintCard = () => {
           <p>Loading...</p>
         ) : bluePrintData.length ? (
           bluePrintData.map((bp, index) => (
-            <Link to={`/display-pdf/${bp}`} state={{ pdfs: bp }}>
+            <a 
+              href={`${API_BASE_URL}/blueprints/${bp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <p key={index}>{bp}</p>
-            </Link> 
+            </a> 
           ))
         ) : (
           <p>No blueprint data available</p>
@@ -43,4 +46,5 @@ const BluePrintCard = () => {
     </div>
   );
 };
+
 export default BluePrintCard;

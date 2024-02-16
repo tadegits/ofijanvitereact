@@ -20,7 +20,6 @@ import ImageGallery from './ImageGallery';
 const DisplayPdf = ({ onClose, formData, studentName }) => {
     const location = useLocation();
     const depts = location.state.data;
-    const pdfData = location.state.pdfs;
     const [pdfFile, setPdfFile] = useState(null);
     const [pdfUrl, setPdfUrl] = useState('');
     const [loading, setLoading] = useState(true); 
@@ -28,21 +27,21 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
 
     const { id } = useParams();
 // genet
-    useEffect(() => {
-        if (pdfData) {
-            const url = `${API_BASE_URL}/pdfs/${id}`;
-            setPdfUrl(url);
-            fetch(url)
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => {
-                    setPdfFile(new Uint8Array(arrayBuffer));
-                    setLoading(false); // Set loading to false after PDF is fetched
-                })
-                .catch(error => {
-                    console.error('Error fetching PDF:', error);
-                });
-        }
-    }, [pdfData]);
+    // useEffect(() => {
+    //     if (pdfData) {
+    //         const url = `${API_BASE_URL}/pdfs/${id}`;
+    //         setPdfUrl(url);
+    //         fetch(url)
+    //             .then(response => response.arrayBuffer())
+    //             .then(arrayBuffer => {
+    //                 setPdfFile(new Uint8Array(arrayBuffer));
+    //                 setLoading(false); // Set loading to false after PDF is fetched
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching PDF:', error);
+    //             });
+    //     }
+    // }, [pdfData]);
 
     if (depts) {
         return  <Wrapper className='pdfs'>
