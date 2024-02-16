@@ -46,13 +46,8 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
     if (depts) {
         return  <Wrapper className='pdfs'>
         <div className="display-pdf-container">
-        
-                
             <Row gutter={24}>
-                
                     <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                        {/**/}
-                        
                         <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> 
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
@@ -64,7 +59,6 @@ const DisplayPdf = ({ onClose, formData, studentName }) => {
                          <BluePrintCard /> 
                     </Col>
                 </Row>
-            
             </div>
         </Wrapper>;
     }
