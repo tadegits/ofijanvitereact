@@ -37,7 +37,7 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                 <CollegeDepartment onSelectDepartment={setSelectedDepartment} />
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
-              <h1>{selectedDepartment ? `${selectedDepartment} 2015 Ethiopian Exit Exam Questions pdf` : ''}</h1>
+              <h1>2015 Ethiopian Exit Exam Questions pdf</h1>
               <Row gutter={[16, 16]} className="blog-row">
                 {filteredDepts.map((dept, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>

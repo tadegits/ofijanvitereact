@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Collapse } from 'antd';
 import { fetchCollegesWithDepartment } from './../../Globals/incomingData';
-
 const { Panel } = Collapse;
-
 const CollegeDepartment = ({ onSelectDepartment }) => {
     const [collegesWithDepartment, setCollegeWithDepartment] = useState([]); 
-
     useEffect(() => {
       const getCollegeWithDepartment = async () => {
         const fetchedColleges = await fetchCollegesWithDepartment();
@@ -18,7 +15,6 @@ const CollegeDepartment = ({ onSelectDepartment }) => {
     const handleDepartmentClick = (department) => {
         onSelectDepartment(department);
     };
-
     return (
       <Collapse accordion>
         {collegesWithDepartment.map((college, index) => (
@@ -35,5 +31,4 @@ const CollegeDepartment = ({ onSelectDepartment }) => {
       </Collapse>
     );
 };
-
 export default CollegeDepartment;
