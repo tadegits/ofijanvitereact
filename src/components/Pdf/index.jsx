@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Card, Image, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import { fetchDepartments, fetchPdfs } from '../../Globals/incomingData';
 const { Content } = Layout;
 import BluePrintCard from './BluePrintCard';
-import { Spin } from 'antd';
-import SampleExams from './SampleExams';
 import Wrapper from'./../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
-import ImageGallery from './ImageGallery';
-import ImageSlider from './ImageSlider';
 import API_BASE_URL from '../../Globals/apiConfig';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
@@ -32,7 +27,7 @@ const Index = () => {
     };
     fetchDept();
   }, []);
-//   const filteredDepts = selectedDepartment ? data.filter(data => data.id === selectedDepartment) : data;
+const filteredDepts = selectedDepartment ? data.filter(data => data.id === selectedDepartment) : data;
 
   return (
     <Wrapper className='pdfs'>
@@ -44,9 +39,9 @@ const Index = () => {
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
               <h1>{selectedDepartment ? `${selectedDepartment} 2015 Ethiopian Exit Exam Questions pdf` : ''}</h1>
               <Row gutter={[16, 16]} className="blog-row">
-                {data.map((dept, index) => (
+                {filteredDepts.map((dept, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
-                      <Link to={`/display-pdf/${dept.id}`} state={{ data: dept }}>
+                      <Link to={`/display-exam/${dept.id}`} state={{ data: dept }}>
                         <Card hoverable className="blog-card">
                           <Image src="https://cdn.vox-cdn.com/thumbor/uB241sgBJdoC-0ThViBxai10qP4=/0x0:800x600/1200x800/filters:focal(336x236:464x364)/cdn.vox-cdn.com/uploads/chorus_image/image/59620595/csm_holography_cyan_eaea795162.0.0.0.0.jpg" className="blog-image" />
                           <Card.Meta

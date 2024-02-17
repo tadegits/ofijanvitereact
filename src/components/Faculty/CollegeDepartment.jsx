@@ -25,7 +25,7 @@ const CollegeDepartment = ({ onSelectDepartment }) => {
           <Panel header={college.college_name} key={index}>
             <ul>
               {college.departments.map((department, subIndex) => (
-                <li key={subIndex} onClick={() => handleDepartmentClick(department.name)}>
+                <li key={subIndex} onClick={() => handleDepartmentClick(department.id)}>
                     {department.name}
                 </li>
               ))}
