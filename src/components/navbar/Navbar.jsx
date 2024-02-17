@@ -43,7 +43,7 @@ const Navbar = () => {
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     {isLoggedIn? (<li onClick={() => setShowNav(false)}>
-                        <Link to="/your exams">For you</Link> 
+                        {/* <Link to="/your exams">For you</Link>  */}
                     </li>):( <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link> 
                     </li>)}

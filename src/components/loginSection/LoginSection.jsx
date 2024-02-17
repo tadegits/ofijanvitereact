@@ -55,7 +55,7 @@ const LoginSection = () => {
             console.log(response.data);
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
-                navigate('/');
+                navigate('/Exit_Exam');
                 window.location.reload();
             }
         } catch (error) {
@@ -69,20 +69,7 @@ const LoginSection = () => {
         <section className="login">
             <Wrapper>
                 <div className="login__container">
-                    {/* <div className="login__image_holder">
-                        <Lottie animationData={animationData} className='img-1' />
-                    </div>
-                    <div className="login__form_container"> */}
                     <div className="login__image_holder2">
-                        {/* <div className="logtitle">
-                            {/* <img src={logoImg} className='img-2' alt="Ofijan Logo" /> 
-
-                        </div> */}
-                        {/* <div className="login__header">
-                            {/* <p className='infos'>Continue your study to increase your achivement.</p> 
-                        </div>
-                        <hr /> */}
-                        {/* </div> */}
                         <div className="login__form1">
                             <div className="form-contents">
                                 {error && <div className="error-message">{error}</div>}

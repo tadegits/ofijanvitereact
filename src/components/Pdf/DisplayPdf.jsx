@@ -17,7 +17,7 @@ import Wrapper from '../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 import ImageGallery from './ImageGallery';
 
-const DisplayPdf = ({ onClose, formData, studentName }) => {
+const DisplayPdf = () => {
     const location = useLocation();
     const depts = location.state.data;
     const [pdfFile, setPdfFile] = useState(null);

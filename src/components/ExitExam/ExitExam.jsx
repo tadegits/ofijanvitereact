@@ -1,4 +1,3 @@
-// ExitExam.jsx
 import React, { useState, useEffect } from 'react';
 import Wrapper from '../wrapper/Wrapper';
 import Logo from '../../assets/logo.png';

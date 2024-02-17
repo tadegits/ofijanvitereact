@@ -16,7 +16,7 @@ import BluePrintCard from './BluePrintCard';
 import Wrapper from '../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 
-const DisplayBluePrint = ({ onClose, formData, studentName }) => { 
+const DisplayBluePrint = () => { 
     const location = useLocation();
     const pdfData = location.state.bluedata;
     const [pdfFile, setPdfFile] = useState(null);
