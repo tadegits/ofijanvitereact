@@ -9,7 +9,6 @@ import Swal from 'sweetalert2';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
-
 const TestMePlate = () => {
     const { ofin_id } = useParams();
     const { userId } = useLoggedInUser();
@@ -22,13 +21,10 @@ const TestMePlate = () => {
     const [testStarted, setTestStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
-    
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
-
     useEffect(() => {
         let timerInterval;
-
         if (testStarted && timeLeft > 0) {
             timerInterval = setInterval(() => {
                 setTimeLeft((prevTime) => prevTime - 1);
@@ -45,10 +41,8 @@ const TestMePlate = () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/way_questions/${ofin_id}`);
                 setQuestionData(response.data);
-                console.log(response.data)
                 const examDurationInMinutes = response.data[1].exam.exam_duration;
                 const examDurationInSeconds = examDurationInMinutes * 60;
-    
                 setInitialTime(examDurationInSeconds);
                 setTimeLeft(examDurationInSeconds);
             } catch (error) {
@@ -82,7 +76,7 @@ const TestMePlate = () => {
         }
     }, [selectedQuestionIndex, questionData]);
     const handleQuestionClick = (index) => {
-        setSelectedQuestionIndex(index);   //hi
+        setSelectedQuestionIndex(index);   
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
     const handleOptionClick = (index) => {
@@ -93,24 +87,41 @@ const TestMePlate = () => {
         }));
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
-        setAnswered(true)
-        if (questionData[selectedQuestionIndex].options[index].correct === '1') {
+        setAnswered(true);
+    
+        // Save selected option to local storage
+        const selectedQuestion = questionData[selectedQuestionIndex];
+        const selectedOption = updatedQuestionData[selectedQuestionIndex].options[index];
+        localStorage.setItem(
+            `${userId}_${selectedQuestion.id}`,
+            JSON.stringify({
+                userId: userId,
+                questionId: selectedQuestion.id,
+                optionId: selectedOption.id,
+                examId: selectedQuestion.exam_id,
+                correct: selectedOption.correct === '1'
+            })
+        );
+    
+        if (selectedOption.correct === '1') {
             setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
         } else {
             setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
         }
-        const selectedQuestion = questionData[selectedQuestionIndex];
-        const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
-        axios.post(`${API_BASE_URL}/selected-answers`, {
-            user_id: userId,
-            question_id: selectedQuestion.id,
-            option_id: selectedOptionID.id,
-        })
-            .then(response => {
-            })
-            .catch(error => {
-            });
+    
+        // axios.post(`${API_BASE_URL}/selected-answers`, {
+        //     user_id: userId,
+        //     question_id: selectedQuestion.id,
+        //     option_id: selectedOption.id,
+        // })
+        // .then(response => {
+        //     // Handle response if needed
+        // })
+        // .catch(error => {
+        //     // Handle error if needed
+        // });
     };
+    
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length) {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
@@ -151,6 +162,30 @@ const TestMePlate = () => {
         updatedQuestionData[index].flagged = !updatedQuestionData[index].flagged;
         setQuestionData(updatedQuestionData);
     };
+    const sendLocalStorageData = () => {
+        const localStorageData = Object.keys(localStorage).map(key => {
+            const data = JSON.parse(localStorage.getItem(key));
+        // localStorage.removeItem(key); 
+        console.log('data', data);
+            return data;
+        });
+    
+        axios.post(`${API_BASE_URL}/selected_answers`, localStorageData)
+            .then(response => {
+            })
+            .catch(error => {
+
+            });
+    };
+    
+    const handleTimeUp = () => {
+        sendLocalStorageData();
+    };
+    
+    const handleFinishAttempt = () => {
+        sendLocalStorageData();
+    };
+   
     return (
         <div className='ofijan_exam_plate'>
             <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
@@ -159,8 +194,11 @@ const TestMePlate = () => {
                     <button className='butnstart' onClick={handleStartClick}>Start Test</button>
                 </div>
             )}
+            
             {testStarted && 
+            
             <div className='plate'>
+                
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
                     <p>Answer saved</p>
@@ -205,6 +243,7 @@ const TestMePlate = () => {
                                     <div className='choice_and_answer'>
                                         <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
                                         {/* <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5> */}
+                                        <button className='butart' onClick={sendLocalStorageData}>Sed lflsa</button>
                                     </div>
                                    
                                 </div>
