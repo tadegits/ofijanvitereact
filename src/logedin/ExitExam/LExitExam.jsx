@@ -74,9 +74,7 @@ const LExitExam = () => {
   
   }
   return (
-    <section className='exit_exam_nli'>
-      
-      <Wrapper className="examsholder">
+    <div>
       
           {exams.length ? (
            <ExamCardList  exams={exams} />
@@ -94,8 +92,7 @@ const LExitExam = () => {
       {isModalOpen && selectedExamId && ( 
         <WhatModal  examID={selectedExamId} onClose={closeModal} /> 
       )}  
-      </Wrapper>
-    </section>
+      </div>
   );
 }
 export default LExitExam

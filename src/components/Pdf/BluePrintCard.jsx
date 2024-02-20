@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'antd';
+import { Card, List, Typography } from 'antd';
 // import './pdf.scss';
 import './BluePrintCard.scss';
 import API_BASE_URL from '../../Globals/apiConfig';
@@ -27,25 +27,23 @@ const BluePrintCard = () => {
 
   console.log('blueprint', bluePrintData);
   return (
-     
-      <Card title={<h2>Blue Print</h2>} >
-        {loading ? (
-          <p>Loading...</p>
-        ) : bluePrintData.length ? (
-          bluePrintData.map((bp, index) => (
-            <Link key={index} to={`/display-pdf/${bp}`}state={{ bluedata: bp }}>
-             <ul>
-              <li className='blueprint__list'>
-              <h1 key={index}>{bp}</h1>
-              </li>
-              </ul>
-            </Link> 
-          ))
-        ) : (
-          <p>No blueprint data available</p>
-        )}
-      </Card>
-
+    <Card title={<h2>Blueprint for Ethiopian National Exit Examination </h2>}>
+    {loading ? (
+      <p>Fetching blueprint data...</p>
+    ) : bluePrintData.length ? (
+      <ul>
+        {bluePrintData.map((bp, index) => (
+          <li key={index} className="blueprint__list">
+            <Link to={`/display-pdf/${bp}`} state={{ bluedata: bp }}>
+              <h1>{bp}</h1>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No blueprint data available</p>
+    )}
+  </Card>
   );
 };
 
