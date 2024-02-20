@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import WhatModal from '../../logedin/ExitExam/WhatModal';
 
 const ExamCard = ({ exam, openModal }) => {
-  const { id, exam_name, department } = exam;
-
-  return (
+  const { id, exam_name, department, questions_count, teacher_id } = exam;
+console.log('data', exam)
+  if(questions_count>20)
+{
+   return (
     <Card
       className='exam_card1'
       title={exam_name}
@@ -20,11 +22,13 @@ const ExamCard = ({ exam, openModal }) => {
       style={{ marginBottom: 16 }}
     >
       <p>
-        <strong>Department:</strong> {department ? department.title : 'N/A'}
-      </p>
+      <strong>Number of Questions:</strong> {questions_count}
+</p>
       <Space></Space>
     </Card>
   );
+}
+ 
 };
 
 const ExamCardList = ({ exams }) => {
@@ -46,6 +50,7 @@ const ExamCardList = ({ exams }) => {
       {exams.map((exam) => (
         <div span={8} key={exam.id}>
           <ExamCard exam={exam} openModal={openModal} />
+          
         </div>
       ))}
       {isModalOpen && selectedExamId && (

@@ -34,7 +34,7 @@ const LExitExam = () => {
         if (loggedInUser) { 
           const foundUser = JSON.parse(loggedInUser);
           setDid(foundUser.user.dept_id);
-          if (foundUser.user.dept_id !== null) {
+          if (foundUser.user.dept_id !== null) { 
             setDepartmentTitle(data.title);
             console.log('the data', data.title);
             fetch(`${API_BASE_URL}/examsfront/${foundUser.user.dept_id}`)
@@ -85,51 +85,16 @@ const LExitExam = () => {
               <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
             </div>
           )}
-        {/* {Array.isArray(exams) && exams.length > 0 ? ((exams.map((exam, index) => {
-          return (
-            <Card
-                        key={exams.id}
-                        className="exams_card"
-                        cover={<img className='__logo' alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
-                        actions={[
-                          
-                    <Button className='button-open' onClick={()=> openModal(exam)}>Open</Button>
-                  
-                        ]}
-                    >
-                        <Meta
-                            title={exam.exam_name ? exam.exam_name : 'No Name'}
-                            description={exam.description ? exam.description : 'No Description!'}
-                        />
-                        <div className="underline"></div>
-                        <p>
-                            <b>Booklet Name:</b> {exam.exam_name}
-                        </p>
-                        <p>
-                            <b>Ofijan Id:</b> OF{exam.id}{exam.id}IN
-                        </p>
-                        <p>
-                            <b>Prepared By:</b> Gaki Serocho
-                        </p>
-                        <p>
-                            <b>Total no of Questions:</b> {exam.questions_count}
-                        </p>
-                        <p>
-                            <b>Topics Covered:</b> 12
-                        </p>
-                    </Card>
-          )
-        }))) : (<div className='exams_card'>
-          <p>We have no exams for your department. <li>Click Here</li> If you wan't to get notified!</p>
-        </div>)} */}
-Other Exams
         
-      </Wrapper>
+
+        
+    
       
       <ExitExam/>
       {isModalOpen && selectedExamId && ( 
         <WhatModal  examID={selectedExamId} onClose={closeModal} /> 
-      )}
+      )}  
+      </Wrapper>
     </section>
   );
 }
