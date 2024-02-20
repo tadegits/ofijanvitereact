@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
-import './pdf.scss';
+// import './pdf.scss';
+import './BluePrintCard.scss';
 import API_BASE_URL from '../../Globals/apiConfig';
 import { Link } from 'react-router-dom';
+import Wrapper from '../wrapper/Wrapper';
+import './../hero/Hero.scss';
 const BluePrintCard = () => {
   const [bluePrintData, setBluePrintData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,16 +28,16 @@ const BluePrintCard = () => {
 
   console.log('blueprint', bluePrintData);
   return (
-    <div>
-      <Card title={<h2>Blue Print</h2>}>
+     
+      <Card title={<h2>Blue Print</h2>} >
         {loading ? (
           <p>Loading...</p>
         ) : bluePrintData.length ? (
           bluePrintData.map((bp, index) => (
-            <Link to={`/display-pdf/${bp}`}state={{ bluedata: bp }}>
+            <Link key={index} to={`/display-pdf/${bp}`}state={{ bluedata: bp }}>
              <ul>
-              <li>
-              <p key={index}>{bp}</p>
+              <li className=''>
+              <h1 key={index}>{bp}</h1>
               </li>
               </ul>
             </Link> 
@@ -43,7 +46,7 @@ const BluePrintCard = () => {
           <p>No blueprint data available</p>
         )}
       </Card>
-    </div>
+
   );
 };
 

@@ -6,6 +6,7 @@ import BluePrintCard from './BluePrintCard';
 import Wrapper from'./../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 import API_BASE_URL from '../../Globals/apiConfig';
+import './pdf.scss';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -37,13 +38,13 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                 <CollegeDepartment onSelectDepartment={setSelectedDepartment} />
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
-              <h1>2015 Ethiopian Exit Exam Questions pdf</h1>
+              <h1>2015 Ethiopian Exit Exam Questions</h1>
               <Row gutter={[16, 16]} className="blog-row">
                 {filteredDepts.map((dept, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
-                      <Link to={`/display-exam/${dept.id}`} state={{ data: dept }}>
+                      <Link to={`/model-exam/${dept.title}`} state={{ data: dept }}>
                         <Card hoverable className="blog-card">
-                          <Image src="https://cdn.vox-cdn.com/thumbor/uB241sgBJdoC-0ThViBxai10qP4=/0x0:800x600/1200x800/filters:focal(336x236:464x364)/cdn.vox-cdn.com/uploads/chorus_image/image/59620595/csm_holography_cyan_eaea795162.0.0.0.0.jpg" className="blog-image" />
+                          <Image src="https://st5.depositphotos.com/70183936/64352/v/450/depositphotos_643528630-stock-illustration-book-creative-icons-desig.jpg" className="blog-image" />
                           <Card.Meta
                             description={
                               <div>

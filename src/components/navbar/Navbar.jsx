@@ -78,6 +78,9 @@ const Navbar = () => {
 <li onClick={() => setShowNav(false)}>
                         <Link to="/2015_exit_pdfs">2015 Exit Exam</Link> 
                     </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/blueprint">Blue Print</Link> 
+                    </li>
                     {/* <li onClick={() => setShowNav(false)}>
                         <Link to="/ofijan_blogs">2015 Exit Exam</Link> 
                     </li> */}

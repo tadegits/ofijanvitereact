@@ -23,6 +23,7 @@ import axios from 'axios';
 import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
+import  BluePrint  from '../components/Pdf/BluePrint';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -55,8 +56,9 @@ const Default = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/2015_exit_pdfs" element={<Pdf />} />
-        <Route path="/display-exam/:id" element={<DisplayPdf/>} /> 
-        <Route path="/display-pdf/:id" element={<DisplayBluePrint/>} /> 
+        <Route path="/model-exam/:id" element={<DisplayPdf/>} /> 
+        <Route path="/display-pdf/:id" element={<DisplayBluePrint/>} />
+        <Route path="/blueprint" element={<BluePrint/>}/> 
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>

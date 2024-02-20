@@ -48,6 +48,7 @@ import Topbar from '../Seller/components/topbar/Topbar.jsx';
 import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf.jsx';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
+import  BluePrint  from '../components/Pdf/BluePrint.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import '../Seller/App.css';
 import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
@@ -140,8 +141,9 @@ const currentPath = window.location.pathname;
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
           <Route path="/2015_exit_pdfs" element={<Pdf />} />
-        <Route path="/display-exam/:id" element={<DisplayPdf/>} /> 
+        <Route path="/model-exam/:id" element={<DisplayPdf/>} /> 
         <Route path="/display-pdf/:id" element={<DisplayBluePrint/>} /> 
+        <Route path="/blueprint" element={<BluePrint/>}/> 
           <Route exact path='/ofijan_question_platel/:ofin_id' element={<Plate/>}/>
           <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />

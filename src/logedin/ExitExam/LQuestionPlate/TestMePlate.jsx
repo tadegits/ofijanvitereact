@@ -163,20 +163,32 @@ const TestMePlate = () => {
         setQuestionData(updatedQuestionData);
     };
     const sendLocalStorageData = () => {
-        const localStorageData = Object.keys(localStorage).map(key => {
-            const data = JSON.parse(localStorage.getItem(key));
-        // localStorage.removeItem(key); 
-        console.log('data', data);
-            return data;
-        });
-    
-        axios.post(`${API_BASE_URL}/selected_answers`, localStorageData)
-            .then(response => {
-            })
-            .catch(error => {
-
-            });
+        try {
+            const localStorageData = Object.keys(localStorage).map(key => {
+                const data = localStorage.getItem(key);
+                console.log('data', localStorage);
+                try {
+                    return JSON.parse(data);
+                } catch (error) {
+                    console.error('Error parsing localStorage data:', error);
+                    return null; 
+                }
+            }).filter(data => data !== null); 
+            
+            axios.post(`${API_BASE_URL}/selected_answers`, localStorageData)
+                .then(response => {
+                    console.log('Data sent successfully');
+                })
+                .catch(error => {
+               
+                    console.error('Error sending data:', error);
+                });
+        } catch (error) {
+            console.error('Error retrieving localStorage data:', error);
+        }
     };
+    
+    
     
     const handleTimeUp = () => {
         sendLocalStorageData();
