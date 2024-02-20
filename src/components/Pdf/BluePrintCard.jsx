@@ -5,7 +5,6 @@ import './BluePrintCard.scss';
 import API_BASE_URL from '../../Globals/apiConfig';
 import { Link } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
-import './../hero/Hero.scss';
 const BluePrintCard = () => {
   const [bluePrintData, setBluePrintData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +35,7 @@ const BluePrintCard = () => {
           bluePrintData.map((bp, index) => (
             <Link key={index} to={`/display-pdf/${bp}`}state={{ bluedata: bp }}>
              <ul>
-              <li className=''>
+              <li className='blueprint__list'>
               <h1 key={index}>{bp}</h1>
               </li>
               </ul>

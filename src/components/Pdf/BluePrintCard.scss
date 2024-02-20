@@ -3,7 +3,21 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  
+  .blueprint__list{
+    h1{
+        font-size: 1.1em;
+        font-weight: normal;
+        font-style: normal;
+        letter-spacing: 0.1em;
+        &:hover{
+            color: rgb(6, 50, 80);
+        }
+        &:active
+        {
+            color: green;
+        }
+    }
+  }
   .card {
     width: 300px;
     margin: 20px;
