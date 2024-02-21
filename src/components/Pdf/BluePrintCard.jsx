@@ -35,7 +35,7 @@ const BluePrintCard = () => {
         {bluePrintData.map((bp, index) => (
           <li key={index} className="blueprint__list">
             <Link to={`/display-pdf/${bp}`} state={{ bluedata: bp }}>
-              <h1>{bp}</h1>
+              <h2>{bp}</h2>
             </Link>
           </li>
         ))}
