@@ -58,7 +58,7 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                 </Button>
                 </Link>
               </Card><p>..</p>
-                <CollegeDepartment onSelectDepartment={setSelectedDepartment} />
+                {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
               <h1>2015 Ethiopian Exit Exam Questions</h1>
