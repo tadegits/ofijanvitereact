@@ -5,13 +5,14 @@
   }
   .blueprint__list{
     h2{
-        font-size: 1.2em;
-        font-weight: bold;
+        font-size: 1em;
+        font-weight:normal;
         font-style: bold;
         letter-spacing: 0.1em;
         color: black;
         &:hover{
             color: rgb(6, 50, 80);
+            font-weight: bolder;
         }
         &:active
         {

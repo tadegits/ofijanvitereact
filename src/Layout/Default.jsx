@@ -56,7 +56,7 @@ const Default = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/2015_exit_pdfs" element={<Pdf />} />
-        <Route path="/model-exam/:id" element={<DisplayPdf/>} /> 
+        <Route path="/model-exam/:id/1" element={<DisplayPdf/>} /> 
         <Route path="/display-pdf/:id" element={<DisplayBluePrint/>} />
         <Route path="/blueprint" element={<BluePrint/>}/> 
         <Route path="/dashboard" element={<Dashboard />} />

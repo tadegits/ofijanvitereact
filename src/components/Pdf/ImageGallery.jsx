@@ -83,7 +83,7 @@ const ImageGallery = ({id}) => {
       <div style={{ textAlign: 'center' }}>
         <Image
           src={imageData}
-          alt="Downloaded Image"
+          alt="Image not found"
           style={{ maxWidth: '100%', maxHeight: '80vh' }}
         />
       </div>

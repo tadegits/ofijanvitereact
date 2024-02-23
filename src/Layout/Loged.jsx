@@ -141,7 +141,7 @@ const currentPath = window.location.pathname;
           <Route path="/Login" element={<LoginSection />} />
           <Route path="/Exit_Exam" element={<LExitExam />} />
           <Route path="/2015_exit_pdfs" element={<Pdf />} />
-        <Route path="/model-exam/:id" element={<DisplayPdf/>} /> 
+        <Route path="/model-exam/:id/1" element={<DisplayPdf/>} /> 
         <Route path="/display-pdf/:id" element={<DisplayBluePrint/>} /> 
         <Route path="/blueprint" element={<BluePrint/>}/> 
           <Route exact path='/ofijan_question_platel/:ofin_id' element={<Plate/>}/>
