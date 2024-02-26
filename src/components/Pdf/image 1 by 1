@@ -3,27 +3,25 @@ import { Button, Spin, Image } from 'antd';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 
-const ImageGallery = ({ id }) => {
+const ImageGallery = ({id}) => {
   const [imageUrls, setImageUrls] = useState([]); // Track full image URLs
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [imageData, setImageData] = useState(null);
   const [error, setError] = useState(null); // Add error state
-  const imagesPerPage = 10;
-  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/fetchimages/${id}`);
-        const fileNames = response.data;
+        const fileNames = response.data; 
         const urls = Array.isArray(fileNames)
           ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
 
         setImageUrls(urls);
-        setCurrentImageIndex(0);
+        setCurrentImageIndex(0); 
       } catch (error) {
         setError(error);
         console.error('Error fetching image URLs:', error);
@@ -45,7 +43,7 @@ const ImageGallery = ({ id }) => {
         const response = await axios.get(url, {
           responseType: 'blob',
           headers: {
-            'Accept': 'image/*',
+            'Accept': 'image/*', 
           },
         });
         const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
@@ -63,18 +61,13 @@ const ImageGallery = ({ id }) => {
     fetchImage();
   }, [currentImageIndex, imageUrls]);
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
   };
 
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + imageUrls.length) % imageUrls.length);
   };
-
-  const startIndex = (currentPage - 1) * imagesPerPage;
-  const endIndex = startIndex + imagesPerPage;
-
-  const imagesToDisplay = imageUrls.slice(startIndex, endIndex);
 
   if (loading) {
     return <Spin size="large" />;
@@ -86,31 +79,25 @@ const ImageGallery = ({ id }) => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
-        <Button onClick={handlePrevPage} style={{ marginRight: '8px' }} disabled={currentPage === 1}>
-          Previous Page
-        </Button>
-        <Button onClick={handleNextPage} disabled={endIndex >= imageUrls.length}>
-          Next Page
-        </Button>
-      </div>
+      
       <div style={{ textAlign: 'center' }}>
-        {imagesToDisplay.map((imageUrl, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
-            <Image src={imageUrl} alt="Image not found" style={{ maxWidth: '100%', maxHeight: '300px' }} />
-          </div>
-        ))}
+        <Image
+          src={imageData}
+          alt="Image not found"
+          style={{ maxWidth: '100%', maxHeight: '80vh' }}
+        />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
-        <Button onClick={handlePrevPage} style={{ marginRight: '8px' }} disabled={currentPage === 1}>
-          Previous Page
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+        <Button onClick={handlePrevImage} style={{ marginRight: '8px' }}>
+          Previous
         </Button>
-        <Button onClick={handleNextPage} disabled={endIndex >= imageUrls.length}>
-          Next Page
-        </Button>
+        <Button onClick={handleNextImage}>Next</Button>
       </div>
     </div>
   );
 };
 
 export default ImageGallery;
+
+
+

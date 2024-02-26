@@ -24,6 +24,7 @@ import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
 import  BluePrint  from '../components/Pdf/BluePrint';
+import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -62,6 +63,7 @@ const Default = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
+        <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate/>}/>
         <Route path="/seller" element={<Seller />} />
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}
