@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
+import './answerPlate.scss';
 
 const TestMePlate = () => {
     const { ofin_id } = useParams();
@@ -232,8 +233,7 @@ const TestMePlate = () => {
                                         })}
                                         <div className='choice_and_answer'>
                                             <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
-                                            <button className='butart' onClick={sendExamDataToAPI}>Submit Exam</button>
-                                        </div>
+                                          </div>
 
                                     </div>
                                 </>
@@ -242,6 +242,7 @@ const TestMePlate = () => {
                         <LNavigationButtons
                             handlePreviousClick={handlePreviousClick}
                             handleNextClick={handleNextClick}
+                            handleFinishAttempt= {sendExamDataToAPI}
                             selectedQuestionIndex={selectedQuestionIndex}
                             length={questionData.length - 1}
                         />

@@ -1,6 +1,6 @@
 import React from 'react';
 import './plate.scss';
-const LNavigationButtons = ({ handlePreviousClick, handleNextClick, selectedQuestionIndex, length }) => (
+const LNavigationButtons = ({ handlePreviousClick, handleFinishAttempt, handleNextClick, selectedQuestionIndex, length }) => (
   <div className="navigation_buttons">
     <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
       Previous
@@ -16,7 +16,7 @@ const LNavigationButtons = ({ handlePreviousClick, handleNextClick, selectedQues
     
     ( 
     
-    <button onClick={handleNextClick} disabled={selectedQuestionIndex!=length}>finish Attempt</button>
+    <button onClick={handleFinishAttempt} disabled={selectedQuestionIndex!=length}>Finish Attempt</button>
     
     )}
       
