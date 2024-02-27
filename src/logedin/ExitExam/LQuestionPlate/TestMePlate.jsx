@@ -282,7 +282,7 @@ const TestMePlate = () => {
                 handleClick={handleQuestionClick}
                 handleSweetAlert={handleSweetAlert}
               />
-            ))}
+            ))}bhgfg
           </div>
         </div>
 
