@@ -1,21 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import quizReducer from "./reducer";
+// store.js
 
-const persistConfig = {
-  key: "root",
-  storage,
-};
+import { createStore } from 'redux';
+import rootReducer from './reducer';
 
-const persistedReducer = persistReducer(persistConfig, quizReducer);
+const store = createStore(rootReducer);
 
-const store = configureStore({
-  reducer: {
-    user: persistedReducer,
-  },
-});
-
-const persistor = persistStore(store);
-
-export { store, persistor };
+export default store;

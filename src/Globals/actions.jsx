@@ -23,7 +23,6 @@ export const fetchQuizFailure = (error) => {
   };
 };
 
-// Action creator for submitting an answer
 export const submitAnswer = (questionId, selectedOptionId, examId) => {
   return {
     type: actionTypes.SUBMIT_ANSWER,
