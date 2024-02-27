@@ -6,9 +6,21 @@ const LNavigationButtons = ({ handlePreviousClick, handleNextClick, selectedQues
       Previous
     </button>
  
-    <><button onClick={handleNextClick} disabled={selectedQuestionIndex == length}>
+    <>
+    {selectedQuestionIndex!=length? (<button onClick={handleNextClick} disabled={selectedQuestionIndex == length}>
       Next
-    </button></>
+    </button>
+    )
+    
+    :
+    
+    ( 
+    
+    <button onClick={handleNextClick} disabled={selectedQuestionIndex!=length}>finish Attempt</button>
+    
+    )}
+      
+   </>
     
   </div>
 );
