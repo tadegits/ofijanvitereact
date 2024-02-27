@@ -63,8 +63,8 @@ const Default = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
-        <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate/>}/>
-        <Route path="/seller" element={<Seller />} />
+        <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<Plate/>}/>
+        <Route path="/seller" element={<Seller />} /> 
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}
         {/* <Route exact path="/ofijan_blogs" element={<Blog />} />

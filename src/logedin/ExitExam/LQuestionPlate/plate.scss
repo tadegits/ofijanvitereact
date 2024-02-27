@@ -132,10 +132,10 @@ td
 
   .answer_box_holder {
     display: flex;
-    width: 30px;
-    height: 29px;
+    width: 32px;
+    height: 45px;
     background-color: #e0e0e0;
-    margin: 0 1px;
+    margin: 0 0px;
     border: 1px solid gray;
     flex-direction: column;
     cursor: pointer;
@@ -143,8 +143,8 @@ td
   }
   .answer_box_holderl {
     display: flex;
-    width: 30px;
-    height: 29px;
+    width: 32px;
+    height: 45px;
     background-color: #e0e0e0;
     margin: 0 1px;
     border: 1px solid gray;
@@ -160,7 +160,8 @@ td
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: bolder;
   }
 }
 

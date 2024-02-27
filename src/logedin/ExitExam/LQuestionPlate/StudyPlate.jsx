@@ -136,7 +136,7 @@ const StudyPlate = () => {
            
                
                     <div className="question_plate_study">
-                    <Link to={`/ofijan_exam_plate/studymode/${ofin_id}`} className="switch">
+                    <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className="switch">
                          Switch To Test Mode
                     </Link>
                        

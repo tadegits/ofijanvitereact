@@ -7,6 +7,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
+import ConfirmationModal from './confirmationModal';
 import '../LQuestionPlate/plate.scss';
 import './answerPlate.scss';
 
@@ -18,6 +19,7 @@ const TestMePlate = () => {
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [testStarted, setTestStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(1);

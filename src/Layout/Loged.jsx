@@ -44,6 +44,7 @@ import API_BASE_URL from '../Globals/apiConfig.jsx';
 import WriteBlog from '../Seller/pages/blog/write.jsx';
 import axios from 'axios';
 import Topbar from '../Seller/components/topbar/Topbar.jsx';
+import Result from '../components/Result'
 
 import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf.jsx';
