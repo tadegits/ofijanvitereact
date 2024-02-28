@@ -459,6 +459,7 @@ animation: blink-animation 1s steps(5, start) infinite;
   background-color: rgb(255, 255, 255);
   padding: 0px;
   border-radius: 8px;
+  height: 90vh;
 
   @include respond(phone) {
     display: flex;

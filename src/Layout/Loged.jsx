@@ -151,6 +151,7 @@ const currentPath = location.pathname;
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate/>}/>
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate/>}/>
+        <Route exatc path='/my_results' element={<Result/>}/>
         </Routes> 
       
     </>

@@ -28,6 +28,43 @@ const TestMePlate = () => {
     const [showModal, setShowModal] = useState(false);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
+    useEffect(() => {
+        // Load state from localStorage if available
+        const storedState = JSON.parse(localStorage.getItem('testMePlateState'));
+        if (storedState) {
+            setAnswered(storedState.answered);
+            setQuestionData(storedState.questionData);
+            setSelectedQuestionIndex(storedState.selectedQuestionIndex);
+            setSelectedOptionIndex(storedState.selectedOptionIndex);
+            setCorrectAnswersCounter(storedState.correctAnswersCounter);
+            setShowConfirmationModal(storedState.showConfirmationModal);
+            setIsLoggedin(storedState.isLoggedin);
+            setTestStarted(storedState.testStarted);
+            setTimeLeft(storedState.timeLeft);
+            setInitialTime(storedState.initialTime);
+            setShowModal(storedState.showModal);
+            setRole(storedState.role);
+        }
+    }, []);
+
+    // Save state to localStorage whenever it changes
+    useEffect(() => {
+        const stateToStore = {
+            answered,
+            questionData,
+            selectedQuestionIndex,
+            selectedOptionIndex,
+            correctAnswersCounter,
+            showConfirmationModal,
+            isLoggedin,
+            testStarted,
+            timeLeft,
+            initialTime,
+            showModal,
+            role
+        };
+        localStorage.setItem('testMePlateState', JSON.stringify(stateToStore));
+    }, [answered, questionData, selectedQuestionIndex, selectedOptionIndex, correctAnswersCounter, showConfirmationModal, isLoggedin, testStarted, timeLeft, initialTime, showModal, role]);
 
     useEffect(() => {
         let timerInterval;
@@ -204,7 +241,6 @@ const TestMePlate = () => {
                             <div className="wmodal-content">
                                 <Button type='default' onClick={handleBackButtonClick}>Back</Button>
                                 <div className='wplate'>
-                                
                                     <div className='flag_plate'>
                                         <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
                                         <p>Answer saved</p>
