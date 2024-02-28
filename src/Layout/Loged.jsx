@@ -68,12 +68,11 @@ useEffect(() => {
       console.error('Error fetching data:', error);
     });
 }, [postUri]);
-const currentPath = window.location.pathname;
+const currentPath = location.pathname;
   return ( 
     <>
        
        {currentPath.includes('/seller') ?  null: <Navbar /> } 
-
 
        {currentPath.includes('/seller') ? 
        
