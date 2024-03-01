@@ -53,9 +53,13 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
                     </li>
-                    <li onClick={() => setShowNav(false)}>
+                    
+                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
                         <Link to="/Exit_Exam">All Exams</Link>
-                    </li>
+                    </li>):(<li onClick={() => setShowNav(false)}>
+                        <Link to="/ExitExam">All Exams</Link>
+                    </li>)
+                    }
                     {isLoggedIn &&
                         <li onClick={() => setShowNav(false)}>
                             <a href="/easyexam">Take Exam</a>
