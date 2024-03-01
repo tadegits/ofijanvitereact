@@ -20,7 +20,7 @@ const BlogList = ({ blogs }) => {
         blogs.map((blog, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
             <Card hoverable className="blog-card">
-              <Image src={'https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg'} className="blog-image" />
+              <Image src={blog.image} className="blog-image" />
               <Card.Meta
                 
                 description={

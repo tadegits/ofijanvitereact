@@ -17,7 +17,7 @@ const footer = () => {
         <div className='footer__text'>
             <h3>Learn, Study & Test Your Study with  <span>Ofijan</span></h3>
         </div>
-        <ul className='footer__links'>
+        {/* <ul className='footer__links'>
             <li><FacebookIcon/></li>
             <li><TelegramIcon/></li>
             <li><TwitterIcon/></li>
@@ -30,7 +30,7 @@ const footer = () => {
             <li>Careers</li>
             <li>privacy policy</li>
             <li>FAQS</li>
-        </ul>
+        </ul> */}
     </Wrapper>
     </section>
   )
