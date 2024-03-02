@@ -426,31 +426,13 @@ td
 }
 
 .butnstart{
-font-size: xx-large;
-border: solid black ;
-
-@media screen and (max-width: 767px) {
-  .butnstart {
-    font-size:large;
-    border: solid black ;
-  }
-
-}
-justify-content: center;
-cursor:pointer;
-animation: blink-animation 1s steps(5, start) infinite;
--webkit-animation: blink-animation 1s steps(5, start) infinite;
-@keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-
+padding:15px 155px 15px 155px;
+border-radius: 15px;
+font-weight: bolder;
+font-size: 1.1em;
+border-style: outline;
+color: white;
+background-color: $tade-color;
 }
 .wplate {
   display: grid;

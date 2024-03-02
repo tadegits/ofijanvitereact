@@ -20,21 +20,21 @@ const BlogList = ({ blogs }) => {
         blogs.map((blog, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
             <Card hoverable className="blog-card">
-              <Image src={blog.image} className="blog-image" />
+              {/* <Image src={blog.image} className="blog-image" /> */}
               <Card.Meta
                 
                 description={
                   <div>
                     <h6 className="author-name">{blog.title}</h6>
-                    <p className="blog-category">Published in: {blog.categories}</p>
-                    {/* <div className="author-info">
+                    <article className="blog-category">Published in: {blog.categories}</article>
+                    <div className="author-info">
                       <img src={Logo} width={10} height={10} className="author__photo" />
                       <div className="author-details">
                         <p className="author-name">Mr.{blog.author}</p>
                         <p className="author-role">Writer</p>
                       </div>
-                    </div> */}
-                    {/* <p dangerouslySetInnerHTML={{ __html: blog.body.slice(0, 100) }} className="blog-body" /> */}
+                    </div>
+                    <p dangerouslySetInnerHTML={{ __html: blog.body.slice(0, 100) }} className="blog-body" />
                     
                   </div>
                 }

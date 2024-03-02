@@ -3,33 +3,44 @@ import { Table, message } from 'antd';
 import API_BASE_URL from '../../Globals/apiConfig';
 import axios from 'axios';
 
-const index = () => {
+const Index = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
-        // Fetch exams and results for the logged-in user
-        fetchResultsForLoggedInUser();
-    }, []); // Run this effect only once on component mount
+        const loggedUser = localStorage.getItem('user');
+        if (loggedUser !== null) {
+          const userLogged = JSON.parse(loggedUser);
+          fetchResultsForUser(userLogged.user.id);
+        }
+        
+    }, []); 
 
-    const fetchResultsForLoggedInUser = () => {
+    const fetchResultsForUser = (id) => {
         setLoading(true);
-        axios.get(`${API_BASE_URL}/fetch-user-exams`)
+        const userId = id;
+        axios.post(`${API_BASE_URL}/fetch-correct-answers`, { user_id: userId })
             .then(response => {
-                setResults(response.data.exams);
+                if (response.data.message) {
+                    setErrorMessage(response.data.message);
+                    setResults([]); // Clear previous results
+                } else {
+                    setResults(response.data.exams);
+                }
                 setLoading(false);
             })
             .catch(error => {
                 console.error('Error:', error);
                 setLoading(false);
-                message.error('An error occurred while fetching results');
+                // message.error('An error occurred while fetching results');
             });
     };
 
     const columns = [
         {
             title: 'Exam Name',
-            dataIndex: 'name',
+            dataIndex: 'exam_name',
             key: 'name',
         },
         {
@@ -42,13 +53,16 @@ const index = () => {
     return (
         <div>
             <h1>Exam Results</h1>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <Table dataSource={results} columns={columns} pagination={false} />
+            {errorMessage && <p>{errorMessage}</p>}
+            {!errorMessage && (
+                loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <Table dataSource={results} columns={columns} pagination={false} />
+                )
             )}
         </div>
     );
 };
 
-export default index;
+export default Index;

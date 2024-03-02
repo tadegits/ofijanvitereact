@@ -23,14 +23,14 @@ const footer = () => {
             <li><TwitterIcon/></li>
             <li><LinkedInIcon/></li>
             <li><YouTubeIcon/></li>
-        </ul>
-        <ul className='footer__links'>
-            <li>Services</li>
-            <li>Pricing</li>
-            <li>Careers</li>
-            <li>privacy policy</li>
-            <li>FAQS</li>
         </ul> */}
+        <ul className='footer__links'>
+            {/* <li>Services</li>
+            <li>Pricing</li>
+            <li>Careers</li> */}
+            <li><a href='/privacy'>privacy policy</a></li>
+            {/* <li>FAQS</li> */}
+        </ul>
     </Wrapper>
     </section>
   )

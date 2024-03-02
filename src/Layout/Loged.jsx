@@ -53,6 +53,7 @@ import BluePrint from '../components/Pdf/BluePrint.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
 import '../Seller/App.css';
 import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
+import Privacy from '../components/Privacy';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -121,6 +122,7 @@ const Loged = () => {
         </>
         : null}
       <Routes>
+        <Route path='/privacy' element={<Privacy/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/easyexam" element={<EasyExam />} />
@@ -143,7 +145,7 @@ const Loged = () => {
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate />} />
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
-        <Route exact path='/my_results' element={<Result />} />
+        <Route exact path='/my_results' element={<Result/>} />
       </Routes>
     </>
   )

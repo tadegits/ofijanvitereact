@@ -25,6 +25,7 @@ import DisplayPdf from '../components/Pdf/DisplayPdf';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
 import  BluePrint  from '../components/Pdf/BluePrint';
 import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
+import Privacy from '../components/Privacy';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -46,6 +47,7 @@ const Default = () => {
 
       <Navbar />
       <Routes>
+      <Route path="/privacy" element={<Privacy/>} />
         <Route path="/" element={<Home />} />
         <Route path="/CoC" element={<CoC/>} />
         <Route path="/Grade12" element={<Grade12 />} />

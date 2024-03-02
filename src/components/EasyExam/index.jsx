@@ -30,9 +30,13 @@ const index = () => {
   console.log('sent exams', searchResults);
 
   return (
-    <section className='easyExam'>
+    <section className='easyExam'>   
+    
       <Wrapper className='easy_exam_wrapper'>
+        <p>Search Exam By The Id You get from your teacher. and Add the password</p>
+        <p>E.x exam Id 116  password: 123456</p>
         <div className='easy_exam_input_holder'>
+       
           <input
             type="text"
             className='searchExam'

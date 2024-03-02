@@ -1,44 +1,53 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import axios from 'axios';
+import { Modal, Button } from 'antd';
 
-const ConfirmationModal = ({ isOpen, onClose, examData }) => {
-  const handleOutsideClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+const ConfirmationModal = ({ data, onClose }) => {
+    const { answeredQuestionsCount, totalQuestionsCount, answeredQuestions } = data;
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  };
+    const handleSendExamData = () => {
+        const examData = answeredQuestions.map(question => ({
+            userId: question.userId,
+            questionId: question.id,
+            optionId: question.options.find(option => option.selected)?.id,
+            examId: question.exam_id,
+            correct: question.options.find(option => option.selected)?.correct === '1'
+        }));
 
-  return (
-    <>
-      {isOpen &&
-        ReactDOM.createPortal(
-          <div className="modal-overlay" onClick={handleOutsideClick}>
-            <div className="modal" onKeyDown={handleKeyDown} tabIndex="0">
-              <button className="modal-close-btn" onClick={onClose}>
-                &times;
-              </button>
-              <h2>Confirmation Page</h2>
-              <p>Please review your answers before submitting:</p>
-              <ul>
-                {examData.map((data, index) => (
-                  <li key={data.questionId}>
-                    Question {index + 1}: {data.answer}
-                  </li>
+        axios.post(`${API_BASE_URL}/selected_answers`, examData)
+            .then(response => {
+                console.log('Exam data sent successfully');
+            })
+            .catch(error => {
+                console.error('Error sending exam data:', error);
+            });
+    };
+
+    return (
+        <Modal
+            title="Confirmation"
+            visible={true}
+            onCancel={onClose}
+            footer={[
+                <Button key="cancel" onClick={onClose}>Cancel</Button>,
+                <Button key="submit" type="primary" onClick={handleSendExamData}>Submit</Button>,
+            ]}
+        >
+            <p>Are you sure you want to submit?</p>
+            <p>Total Questions: {totalQuestionsCount}</p>
+            <p>Answered Questions: {answeredQuestionsCount}</p>
+            <p>Answers:</p>
+            <ul>
+                {answeredQuestions.map((question, index) => (
+                    <li key={index}>
+                        <p>Question {index + 1}:</p>
+                        <p dangerouslySetInnerHTML={{ __html: question.question_text }} />
+                        <p>Selected Answer: {question.options.find(option => option.selected)?.option}</p>
+                    </li>
                 ))}
-              </ul>
-              <button onClick={onClose}>Close</button>
-            </div>
-          </div>,
-          document.body
-        )}
-    </>
-  );
+            </ul>
+        </Modal>
+    );
 };
 
 export default ConfirmationModal;

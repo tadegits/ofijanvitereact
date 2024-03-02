@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './BlogList.scss';
 import BlogActions from './BlogActions';
 import axios from 'axios';
@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Button, Row, Col, Divider, Avatar, Tag, Typography } from 'antd';
 import { LeftCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
+
 const FullBlog = ({ blogs }) => {
   const { category, title } = useParams();
   const [views, setViews] = useState(0);
   const [blog, setBlog] = useState(null);
-  const [shareUrl, setShareUrl] = useState('');
   const { Title, Text } = Typography;
+
   useEffect(() => {
     const fetchBlog = () => {
       const foundBlog = blogs.find((blog) => blog.categories === category && blog.title === title);
@@ -65,6 +66,9 @@ const FullBlog = ({ blogs }) => {
   if (!blog) {
     return <div>Blog not found</div>;
   }
+  if (!blog) {
+    return <div>Blog not found</div>;
+  }
 
   return (
     <div className="blog-list-container">
@@ -81,25 +85,23 @@ const FullBlog = ({ blogs }) => {
                 </div>
                 <div className="second__row">
                   <Card
-                    title={blog.title} style={{ width: 600 }}
-                    cover={<img alt="blog cover" src={"https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg"} />}
+                    style={{ width: 800 }}
                     className="card-content"
                   >
+                    <h3>{blog.title}</h3>
                     <p>Category: <Tag color="blue">{blog.category}</Tag></p>
                     <div className='author-info'>
-                      <Avatar size={32} src={blog.author.avatar} />
+                      {/* <Avatar size={32} src={blog.author.avatar} /> */}
                       <Text strong>{blog.author.name}</Text>
                     </div>
-                    <div className='imageSpace'>
-                      <img alt="blog content" src={blog.contentImageUrl} style={{ width: '100%' }} />
-                    </div>
-                    <Title level={4}>Summary</Title>
-                    <p>{blog.summary}</p>
-                    <Title level={4}>Content</Title>
-                    <p dangerouslySetInnerHTML={{ __html: blog.body }} />
+                    {/* <img alt="blog content" src={blog.contentImageUrl} style={{ width: '100%' }} /> */}
+                    {/* <Title level={4}>Summary</Title> */}
+                    {/* <p>{blog.summary}</p> */}
+                    {/* <Title level={4}>Content</Title> */}
+                    <article><p dangerouslySetInnerHTML={{ __html: blog.body }} /></article> 
                     <Divider />
                     <div className='blog-actions'>
-                      <Button icon={<EyeOutlined />} onClick={handleViewCount}>{blog.views} Views</Button>
+                      <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} Views</Button>
                       <BlogActions blog={blog} />
                     </div>
                     <Divider />
@@ -118,9 +120,12 @@ const FullBlog = ({ blogs }) => {
           </Col>
         </Row>
       </Card>
-
+      {/* Add meta tags for SEO */}
+      <meta charSet="UTF-8" />
+      <title>{blog.title}</title>
+      <meta name="description" content={blog.summary} />
+      <link rel="canonical" href={`https://yourwebsite.com/${blog.category}/${blog.title}`} />
     </div>
-
   );
 };
 

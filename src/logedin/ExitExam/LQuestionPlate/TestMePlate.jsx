@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import { Button } from 'antd';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
-import ConfirmationModal from './confirmationModal';
 import '../LQuestionPlate/plate.scss';
 import './answerPlate.scss';
 
@@ -26,6 +25,7 @@ const TestMePlate = () => {
     const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
     useEffect(() => {
@@ -196,7 +196,7 @@ const TestMePlate = () => {
         const examData = questionData.map(question => {
             const selectedOption = question.options.find(option => option.selected);
             return {
-                userId: 1,
+                userId: userId,
                 questionId: question.id,
                 optionId: selectedOption ? selectedOption.id : null,
                 examId: question.exam_id,
@@ -206,6 +206,7 @@ const TestMePlate = () => {
         axios.post(`${API_BASE_URL}/selected_answers`, examData)
             .then(response => {
                 console.log('Exam data sent successfully');
+                
             })
             .catch(error => {
                 console.error('Error sending exam data:', error);
@@ -224,6 +225,8 @@ const TestMePlate = () => {
         setShowModal(false);
         setTestStarted(false);
     };
+
+    
 
     return (
         <div className='ofijan_exam_plate'>
