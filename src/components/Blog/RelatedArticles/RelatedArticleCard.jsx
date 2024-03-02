@@ -1,24 +1,29 @@
-import React from 'react'
-import { Card, Button, Row, Col, Divider, Avatar, Tag, Typography } from 'antd';
+import React from 'react';
+import { Card, Button, Typography } from 'antd';
 import './RelatedArticlesCard.scss';
+import { Link } from 'react-router-dom';
 
+const { Title, Paragraph } = Typography;
 
 const RelatedArticlesCard = ({ blogs, categories }) => {
-    const { Title, Text } = Typography;
-    const filteredBlogs = categories ? blogs.filter(blogs => blogs.categories === categories) : blogs;
-  
+    const filteredBlogs = categories ? blogs.filter(blog => blog.categories === categories) : blogs;
+
     return (
-        <div>
-            <Title level={4}>Related Articles</Title>
-            {blogs.map((relatedBlog) => (
-                <Card style={{ width: 300 }} key={relatedBlog.id} title={relatedBlog.title}>
-                    <p>{relatedBlog.summary}</p>
-                    <Button type="link" onClick={() => handleRelatedBlogClick(relatedBlog.id)}>Read more</Button>
+        <div className="related-articles-card">
+            <Card title={<h6>Related Articles</h6>}>
+                <Title level={3}></Title>
+            <div className="related-articles-list">
+                {filteredBlogs.map(relatedBlog => (
+                    <div style={{ width:200 }}> <h5>{relatedBlog.title}</h5><Paragraph>{relatedBlog.summary}</Paragraph>
+                    <Link to={`/blog/${relatedBlog.categories}/${relatedBlog.title}/full`} className="read-more-link">Read More</Link>
+                </div>
+                  
+                ))}
+                </div>
                 </Card>
-            ))}
+            </div>
+        
+    );
+};
 
-        </div>
-    )
-}
-
-export default RelatedArticlesCard
+export default RelatedArticlesCard;
