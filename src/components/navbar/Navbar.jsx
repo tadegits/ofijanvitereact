@@ -1,6 +1,6 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
-import Logo from "../../assets/withmoto.png";
+import Logo from "../../assets/logo.png";
 import { FaBars } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Avatar } from 'antd';
@@ -47,7 +47,11 @@ const Navbar = () => {
         <nav className="navbarz">
             <Wrapper className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
-                    <img src={Logo} alt="Logo" />
+                    <img  src={Logo} alt="Logo" />
+                    <div className="logo__moto">
+                        <h1>OFIJAN </h1>
+                        <p>Test Your limit!</p>
+                        </div> 
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>

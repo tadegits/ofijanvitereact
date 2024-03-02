@@ -1,17 +1,17 @@
 @import "../../styles/mixin.scss";
-
+@import "../../styles/colors.scss";
 .footer{
   
     background-color: #ffffff;
     padding-block: 1rem;
-    color: #594fb6;
+    color: $tade-color;
     width: 100%;
     left: 0;
     right: 0;
     bottom: 0;
 
     h3{
-        color: #594fb6;
+        color: $tade-color;
         font-size: large;
     }
     &__text{
@@ -57,3 +57,32 @@ li{
 }
 
 }
+.about-us-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    h1 {
+      color: $tade-color;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+  
+    h2 {
+      color: $tade-color;
+      font-size: 24px;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+  
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+  
+    .main-color {
+      color: $tade-color;
+    }
+  }
+  

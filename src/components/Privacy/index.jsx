@@ -51,11 +51,11 @@ const Index = () => {
             </Paragraph>
 
             <Paragraph>
-                By using Ofijan exam selling platform, you agree to the terms outlined in this Privacy Policy. If you have any questions or concerns about our privacy practices, please contact us at <a href="mailto:contact@email.com">contact@email.com</a>.
+                By using Ofijan exam selling platform, you agree to the terms outlined in this Privacy Policy. If you have any questions or concerns about our privacy practices, please contact us at <a href="mailto:simemillion@gmail.com">simemillion@gmail.com</a>.
             </Paragraph>
 
             <Paragraph>
-                Last updated: [date]
+                Last updated: 3/02/2024
             </Paragraph>
 
             <Paragraph>

@@ -54,6 +54,7 @@ import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from '
 import '../Seller/App.css';
 import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
 import Privacy from '../components/Privacy';
+import AboutUs from '../components/footer/AboutUs.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -123,6 +124,7 @@ const Loged = () => {
         : null}
       <Routes>
         <Route path='/privacy' element={<Privacy/>} />
+         <Route path='/about-us' element={<AboutUs/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/easyexam" element={<EasyExam />} />
