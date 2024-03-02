@@ -3,8 +3,10 @@ import { Card, Button, Row, Col, Divider, Avatar, Tag, Typography } from 'antd';
 import './RelatedArticlesCard.scss';
 
 
-const RelatedArticlesCard = ({ blogs }) => {
+const RelatedArticlesCard = ({ blogs, categories }) => {
     const { Title, Text } = Typography;
+    const filteredBlogs = categories ? blogs.filter(blogs => blogs.categories === categories) : blogs;
+  
     return (
         <div>
             <Title level={4}>Related Articles</Title>

@@ -71,9 +71,9 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/blueprint">Blue Print</Link>
                     </li>
-                    {/* <li onClick={() => setShowNav(false)}>
+                    <li onClick={() => setShowNav(false)}>
                         <Link to="/ofijan_blogs">Blog</Link>
-                    </li> */}
+                    </li>
                     {isLoggedIn && <li onClick={() => setShowNav(false)}>
                         <Link to="/my_results">My Result</Link>
                     </li> }

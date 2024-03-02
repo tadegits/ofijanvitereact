@@ -13,6 +13,17 @@ const fetchPdfs = async () => {
   }
 };
 export { fetchPdfs };
+const fetchBlogCategories = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/getCategories`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching departments:', error);
+    return [];
+  }
+};
+
+export { fetchBlogCategories };
 const fetchDepartments = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL2}/departments`);

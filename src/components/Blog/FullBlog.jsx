@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Button, Row, Col, Divider, Avatar, Tag, Typography } from 'antd';
 import { LeftCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
+import BlogCategories from './BlogCategories';
 
 const FullBlog = ({ blogs }) => {
   const { category, title } = useParams();
@@ -63,9 +64,7 @@ const FullBlog = ({ blogs }) => {
   const goBack = () => {
     navigate(-1);
   };
-  if (!blog) {
-    return <div>Blog not found</div>;
-  }
+
   if (!blog) {
     return <div>Blog not found</div>;
   }
@@ -81,7 +80,8 @@ const FullBlog = ({ blogs }) => {
                   <Button className='back__button' onClick={goBack}>
                     <LeftCircleOutlined /> Back
                   </Button>
-                  <TopicsCard />
+                  <BlogCategories/>
+                  {/* <TopicsCard /> */}
                 </div>
                 <div className="second__row">
                   <Card
@@ -89,7 +89,7 @@ const FullBlog = ({ blogs }) => {
                     className="card-content"
                   >
                     <h3>{blog.title}</h3>
-                    <p>Category: <Tag color="blue">{blog.category}</Tag></p>
+                    <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
                     <div className='author-info'>
                       {/* <Avatar size={32} src={blog.author.avatar} /> */}
                       <Text strong>{blog.author.name}</Text>
@@ -128,5 +128,4 @@ const FullBlog = ({ blogs }) => {
     </div>
   );
 };
-
 export default FullBlog;
