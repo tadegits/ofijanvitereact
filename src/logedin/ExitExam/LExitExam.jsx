@@ -54,14 +54,14 @@ const LExitExam = () => {
     <div>
      
         <>
-          <Wrapper>
+          {/* <Wrapper>
             {exams.length ? (
               <ExamCardList exams={exams} openModal={openModal} />
             ) : (
              
                 <p>We have no exams for your department.</p>
             )}
-          </Wrapper>
+          </Wrapper> */}
           <ExitExam />
           {isModalOpen && selectedExamId && ( 
             <WhatModal examID={selectedExamId} onClose={closeModal} /> 

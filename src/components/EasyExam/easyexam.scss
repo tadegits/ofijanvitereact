@@ -1,33 +1,46 @@
 @import '../../styles/mixin.scss';
 @import '../../styles//colors.scss';
-.easyExam{
-height: 70vh;
-padding-block: 2rem;
+
+.easyExam {
+    height: 70vh;
+    padding-block: 2rem;
 }
-.easy_exam_wrapper{
+
+.easy_exam_wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-.easy_exam_input_holder{
+.ofijan__info{
+    p{
+        color: $tade-color;
+        font-style: bold;
+    }
+}
+.easy_exam_input_holder {
 
     display: flex;
+    
     justify-content: center;
     width: 50%;
-align-self: center;
-border-radius: 30px;
-border: 1px solid $tade_color;
-align-items: center;
-padding-left: 20px;
+    align-self: center;
+    border-radius: 30px;
+    border: 1px solid $tade_color;
+    align-items: center;
+    padding-left: 20px;
 }
-.searchExam{
+
+.searchExam {
     width: 90%;
     padding: 15px;
 }
-.searchExamBtn{
+
+.searchExamBtn {
     height: 100%;
     border: 1px $tade_color solid;
     padding: 15px;
-    border-radius: 0px 20px 20px 0 ;
+    border-radius: 0px 20px 20px 0;
     background-color: $tade_color;
     color: white;
 }

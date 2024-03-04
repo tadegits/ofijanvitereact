@@ -108,7 +108,7 @@ console.log('id', selectedDepartmentId);
   return (
     <section className='exit_exam_nli'>
       <div className='select_field'>
-        <p>Select Your field off study</p>
+        <p>Select Your field of study</p>
         <div className='input_holder'>
           <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
             <option value=''>All</option>

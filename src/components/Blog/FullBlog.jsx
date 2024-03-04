@@ -18,10 +18,12 @@ const FullBlog = ({ blogs }) => {
 
   useEffect(() => {
     const fetchBlog = () => {
-      const foundBlog = blogs.find((blog) => blog.categories === category && blog.title === title);
-      setBlog(foundBlog);
+      if (blogs && category && title) {
+        const foundBlog = blogs.find((blog) => blog.categories === category && blog.title === title);
+        setBlog(foundBlog);
+      }
     };
-
+  
     fetchBlog();
   }, [blogs, category, title]);
 
@@ -54,36 +56,32 @@ const FullBlog = ({ blogs }) => {
   }, [blog, views]);
 
   const handleViewCount = () => {
-    // Handle view count action if needed
   };
 
   const navigateBack = () => {
-    window.history.back(); // Navigate back using browser history
+    window.history.back(); 
   };
 
   if (!blog) {
-    return <div>Blog not found</div>;
+    return <div>Loading...</div>;
   }
 
-  // Filter related articles by category
   const relatedArticles = blogs.filter((item) => item.categories === blog.categories && item.title !== blog.title);
 
   return (
     <div className="blog-list-container">
-      <Card title="Ofijan Blogs">
+      <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
+        <Button className='back__button' >
+                    <LeftCircleOutlined /> Back
+                  </Button></a>}>
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-            <div className='blog-body-container'>
+            <div className='blog-body-container'> 
               <div className="blog__detail">
-                <div className="first__row">
-                  <a href='/ofijan_blogs'><Button className='back__button' >
-                    <LeftCircleOutlined /> Back
-                  </Button></a>
-                  {/* <BlogCategories /> */}
-                </div>
-                <div className="second__row">
-                  <Card style={{ width: 800 }} className="card-content">
-                    <h3>{blog.title}</h3>
+                
+                <div className="second___row">
+                  <Card  className="card-content">
+                    <h1>{blog.title}</h1>
                     <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
                     <div className='author-info'>
                       <Text strong>{blog.author.name}</Text>

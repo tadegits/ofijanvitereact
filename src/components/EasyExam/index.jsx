@@ -32,7 +32,7 @@ const index = () => {
   return (
     <section className='easyExam'>   
     
-      <Wrapper className='easy_exam_wrapper'>
+      <Wrapper className='easy_exam_wrapper ofijan__info'>
         <p>Search Exam By The Id You get from your teacher. and Add the password</p>
         <p>E.x exam Id 116  password: 123456</p>
         <div className='easy_exam_input_holder'>

@@ -13,17 +13,28 @@ console.log('data', exam)
     <Card
       className='exam_card1'
       title={exam_name}
-      key={id}
+      extra={<p>
+        <strong>{questions_count} Questions:</strong> 
+  </p>}
+      key={id} 
       actions={[
-        <Button className='button-open' onClick={() => openModal(exam)}>
-          Open
-        </Button>,
+        // <Button className='button-open' onClick={() => openModal(exam)}>
+        //   Open
+        // </Button>,
+        <Link to={`/ofijan_exam_plate/testmode/${id}`} >
+             <Button className='button-open'>
+           Open
+         </Button>
+            </Link>
       ]}
       style={{ marginBottom: 16 }}
     >
       <p>
-      <strong>Number of Questions:</strong> {questions_count}
+      {department? <><strong>Department:</strong> {department.title}</> : ''}
 </p>
+<hr></hr>
+      
+
       <Space></Space>
     </Card>
   );
