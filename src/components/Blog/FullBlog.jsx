@@ -94,7 +94,6 @@ const location  = useLocation();
           <Col xs={24} sm={24} md={18} lg={18} xl={18}>
             <div className='blog-body-container'> 
               <div className="blog__detail">
-                
                 <div className="second___row">
                   <Card  className="card-content">
                     <h1>{blog.title}<div>&#x1F389;</div></h1>
