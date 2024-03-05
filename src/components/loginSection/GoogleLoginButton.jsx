@@ -1,16 +1,20 @@
 // GoogleLoginButton.js
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
 
 const GoogleLoginButton = ({ onSuccess, onFailure }) => {
+  const navigate = useNavigate();
   const clientId = '608370973698-jdvtf455mf89iojv7lfvvgof0ef1vsqq.apps.googleusercontent.com';
 
   const responseGoogle = (response) => {
     if (response.profileObj) {
-      // Handle successful login
+      localStorage.setItem('user', JSON.stringify(response.data));
+                navigate('/Exit_Exam');
+                window.location.reload();
       onSuccess(response.profileObj);
     } else {
-      // Handle unsuccessful login
+      console.log('failed', response.profileObj);
       onFailure();
     }
   };

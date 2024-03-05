@@ -55,6 +55,7 @@ import '../Seller/App.css';
 import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs.jsx';
+import TermsOfService from '../components/footer/TermsOfService.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -125,6 +126,7 @@ const Loged = () => {
       <Routes>
         <Route path='/privacy' element={<Privacy/>} />
          <Route path='/about-us' element={<AboutUs/>}/>
+         <Route path='/termsofservice' element={<TermsOfService/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/easyexam" element={<EasyExam />} />

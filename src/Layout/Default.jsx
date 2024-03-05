@@ -50,6 +50,7 @@ const Default = () => {
       <Routes>
       <Route path="/privacy" element={<Privacy/>} />
       <Route path='/about-us' element={<AboutUs/>}/>
+      <Route path='/termsofservice' element={<TermsOfService/>}/>
         <Route path="/" element={<Home />} />
         <Route path="/CoC" element={<CoC/>} />
         <Route path="/Grade12" element={<Grade12 />} />

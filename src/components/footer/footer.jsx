@@ -27,9 +27,9 @@ const footer = () => {
             <li><YouTubeIcon/></li>
         </ul> */}
         <ul className='footer__links'>
-            {/* <li>Services</li>
-            <li>Pricing</li>*/}
+            {/* <li>Services</li>*/}
             <li><a href='/about-us'>About Us</a></li> 
+            <li><a href='/termsofservice'>Terms Of Service</a></li>
             <li><a href='/privacy'>privacy policy</a></li>
             {/* <li>FAQS</li> */}
         </ul>
