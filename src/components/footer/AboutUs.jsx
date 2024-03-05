@@ -24,7 +24,6 @@ const AboutUs = () => {
         <Paragraph>
           Welcome to Ofijan, your premier destination for cutting-edge software solutions and services. At Ofijan, we pride ourselves on utilizing the latest technologies, including Laravel, React, Odoo CRM, Firebase, and more, to deliver top-notch software products tailored to your needs.
         </Paragraph>
-
         <section className="service-section">
           <Title level={2}>Our Services</Title>
           <List
@@ -43,7 +42,6 @@ const AboutUs = () => {
             )}
           />
         </section>
-
         <section className="team-section">
           <Title level={2}>Our Team</Title>
           <List
@@ -65,7 +63,6 @@ const AboutUs = () => {
             )}
           />
         </section>
-
         <section className="technologies-section">
           <Title level={2}>Technologies We Use</Title>
           <div className="technologies-grid">

@@ -8,6 +8,8 @@ import { Card, Button, Row, Col, Divider, Tag, Typography } from 'antd';
 import { LeftCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
 import BlogCategories from './BlogCategories';
+import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
 
 const { Text } = Typography;
 
@@ -15,7 +17,7 @@ const FullBlog = ({ blogs }) => {
   const { category, title } = useParams();
   const [views, setViews] = useState(0);
   const [blog, setBlog] = useState(null);
-
+const location  = useLocation();
   useEffect(() => {
     const fetchBlog = () => {
       if (blogs && category && title) {
@@ -54,7 +56,13 @@ const FullBlog = ({ blogs }) => {
         });
     }
   }, [blog, views]);
-
+  const trimText = (text) => {
+    const words = text.split(' ');
+    if (words.length > 100) {
+      return words.slice(0, 100).join(' ') + '...';
+    }
+    return text;
+  };
   const handleViewCount = () => {
   };
 
@@ -70,6 +78,14 @@ const FullBlog = ({ blogs }) => {
 
   return (
     <div className="blog-list-container">
+      <Helmet>
+        <title>{blog.title}</title>
+        <meta name="description" content={trimText(blog.body)} />
+        <meta property="og:title" content={blog.title} />
+        <meta property="og:description" content={blog.title} />
+        <meta property="og:image" content="../../" />
+        <meta property="og:url" content={location.pathname} />
+      </Helmet>
       <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
         <Button className='back__button' >
                     <LeftCircleOutlined /> Back
@@ -112,7 +128,8 @@ const FullBlog = ({ blogs }) => {
       <meta charSet="UTF-8" />
       <title>{blog.title}</title>
       <meta name="description" content={blog.summary} />
-      <link rel="canonical" href={`https://ofijan.com/${blog.category}/${blog.title}/full`} />
+      <link rel="canonical" href={location.pathname} />
+      <a href={location.pathname}>Read more</a>
     </div>
   );
 };
