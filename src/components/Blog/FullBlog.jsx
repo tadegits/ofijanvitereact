@@ -97,7 +97,7 @@ const location  = useLocation();
                 
                 <div className="second___row">
                   <Card  className="card-content">
-                    <h1>{blog.title}</h1>
+                    <h1>{blog.title}<div>&#x1F389;</div></h1>
                     <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
                     <div className='author-info'>
                       <Text strong>{blog.author.name}</Text>
