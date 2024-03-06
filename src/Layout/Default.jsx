@@ -27,6 +27,7 @@ import  BluePrint  from '../components/Pdf/BluePrint';
 import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs';
+import TermsOfService from '../components/footer/TermsOfService';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
