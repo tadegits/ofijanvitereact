@@ -52,3 +52,60 @@ margin-top: 0px;
     }
     
  }
+ .hero {
+    padding-block: 2rem;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0px;
+  
+    &__container {
+      display: grid;
+      align-items: flex-start;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+    }
+  
+    &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .hero__text-container {
+      animation: slide-up 1s ease forwards;
+      opacity: 0;
+    }
+  
+    .hero__text-container h1 {
+      margin-bottom: 1rem;
+    }
+  
+    .hero__btn-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+  
+    .button-primary.rotating {
+      animation: rotate 2s linear infinite;
+    }
+  
+    @keyframes slide-up {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  

@@ -11,10 +11,10 @@ import Img4 from '../../assets/sun2.png';
 
 import './Hero.scss';
 
-const Hero = () => { 
+const Hero = () => {
   const [text, setText] = useState('A Place to confirm Your Study');
   const [role, setRole] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false); 
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,23 +38,24 @@ const Hero = () => {
     <section className="hero">
       <Wrapper className="hero__container">
         <div className="hero__left">
-          <h1>{text}</h1>
-          <p>
-            Revolutionize Your Exam Preparation with Our Cutting-Edge Exam Selling Website. Unleash your
-            potential with our comprehensive collection of exam resources, meticulously crafted to meet your
-            specific needs.
-          </p>
+          <div className="hero__text-container">
+            <h1>{text}</h1>
+            <p>
+              Revolutionize Your Exam Preparation with Our Cutting-Edge Exam Selling Website. Unleash your
+              potential with our comprehensive collection of exam resources, meticulously crafted to meet your
+              specific needs.
+            </p>
+          </div>
 
           <div className="hero__btn-container">
             {!isLoggedin && (
-              <Link to="/signup" className="button-primary">
+              <Link to="/signup" className="button-primary ">
                 Join Us
               </Link>
             )}
 
             <Link
-              // to={isLoggedin ? (role === 3 ? '/seller' : '/requestseller') : '/Login'}
-              to={isLoggedin ? ('/easyexam') : '/Login'}
+              to={isLoggedin ? '/easyexam' : '/Login'}
               state={{ name: 'seller' }}
               className="button-outline"
             >

@@ -26,7 +26,7 @@ const BlogList = ({ blogs }) => {
               <Col xs={24} sm={12} md={8} key={index}> 
                 <Link to={`/blog/${blog.categories}/${blog.title}/full`}>
                   <Card hoverable className="blog-card">
-                    <Card.Meta
+                    <Card.Meta 
                       description={
                         <div>
                           <h6 className="author-name">{blog.title}</h6>
