@@ -101,8 +101,7 @@ const location  = useLocation();
                     <div className='author-info'>
                       <Text strong>{blog.author.name}</Text>
                     </div>
-                    <article><p dangerouslySetInnerHTML={{ __html: blog.body }} /></article>
-                    <Divider />
+                    <article className='blogme__body' dangerouslySetInnerHTML={{ __html:blog.body }}></article><Divider />
                     <div className='blog-actions'>
                       <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
                       <BlogActions blog={blog} />
