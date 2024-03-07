@@ -3,18 +3,41 @@ import { Link } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
 import anim from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
-
-import Img1 from '../../assets/education1.png';
-import Img2 from '../../assets/education2.png';
-import Img3 from '../../assets/sun1.png';
-import Img4 from '../../assets/sun2.png';
+import API_BASE_URL from '../../Globals/apiConfig';
 
 import './Hero.scss';
+import DepartmentList from '../Department/DepartmentList';
+import ExitExam from '../ExitExam/ExitExam';
 
 const Hero = () => {
   const [text, setText] = useState('A Place to confirm Your Study');
   const [role, setRole] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false);
+  const url = `${API_BASE_URL}/departments`;
+  const [loading, setLoading] = useState(true); 
+  const [deptData, setDeptData] =  useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response1 = await fetch(url);
+        const data = await response1.json();
+        console.log('the data', data);
+        setDeptData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Make sure to set loading to false in case of error too
+      }
+    };
+  
+    fetchData(); // Call fetchData function here, outside the async function
+  
+    const loadingTimeout = setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  
+    return () => clearTimeout(loadingTimeout);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,35 +64,37 @@ const Hero = () => {
           <div className="hero__text-container">
             <h1>{text}</h1>
             <p>
-              Revolutionize Your Exam Preparation with Our Cutting-Edge Exam Selling Website. Unleash your
-              potential with our comprehensive collection of exam resources, meticulously crafted to meet your
-              specific needs.
+              We have gathered more than 4000+ Exit Exam Questions For You!
             </p>
           </div>
 
           <div className="hero__btn-container">
             {!isLoggedin && (
-              <Link to="/signup" className="button-primary ">
-                Join Us
+              <Link to="/ExitExam" className="button-outline ">
+                Select Your Field Of Study
               </Link>
             )}
 
-            <Link
+            {/* <Link
               to={isLoggedin ? '/easyexam' : '/Login'}
               state={{ name: 'seller' }}
               className="button-outline"
             >
               Take Exam now
-            </Link>
+            </Link> */}
           </div>
         </div>
 
         <div className="hero__right">
           <div>
+            
             <Lottie animationData={anim} className="img-1" />
           </div>
         </div>
       </Wrapper>
+      <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div>
+      <ExitExam/>
+      <DepartmentList departments={deptData}/>
     </section>
   );
 };
