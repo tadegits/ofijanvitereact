@@ -36,7 +36,7 @@
 
   .img-1 {
     width: 80%;
-    height: 40%;
+    height: 400px;
   }
 
   .img-2 {
@@ -59,18 +59,13 @@
   padding-block: 2rem;
   background-color: rgb(255, 255, 255);
   margin-top: 0px;
-
-
-
   .hero__text-container {
     animation: slide-up 1s ease forwards;
     opacity: 0;
   }
-
   .hero__text-container h1 {
     margin-bottom: 1rem;
   }
-
   .hero__btn-container {
     display: flex;
     align-items: center;
@@ -102,5 +97,7 @@
   }
 }
 .hero__depts{
-  margin: 20px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
 }

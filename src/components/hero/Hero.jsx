@@ -86,15 +86,12 @@ const Hero = () => {
         </div>
 
         <div className="hero__right">
-          <div>
-            
             <Lottie animationData={anim} className="img-1" />
-          </div>
         </div>
       </Wrapper>
-      <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div>
-      <ExitExam/>
-      <DepartmentList departments={deptData}/>
+      {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
+      {/* <ExitExam/> */}
+      {/* <DepartmentList departments={deptData}/> */}
     </section>
   );
 };

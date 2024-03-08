@@ -139,6 +139,8 @@ const Loged = () => {
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/2015_exit_pdfs" element={<Pdf />} />
+        <Route path="/model-exam" element={<Pdf />} />
+        <Route path="/2015MosheExitExam" element={<Pdf />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-pdf/:id" element={<DisplayBluePrint />} />
         <Route path="/blueprint" element={<BluePrint />} />

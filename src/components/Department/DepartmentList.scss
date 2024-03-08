@@ -10,7 +10,12 @@
     height: 300px;
     overflow-y: scroll;
     background-color: $tade-color;
-
+@include respond(phone){
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+}
     .department-card {
         border-radius: 8px;
         box-shadow: 0 2px 4px $tade-color;
@@ -22,21 +27,22 @@
         background-color: rgb(255, 255, 255);
         justify-content: center;
         padding: 5px;
-
         p {
             font-weight: bold;
             color: $tade-color;
             align-items: center;
             text-justify: distribute-all-lines;
         }
-
-        .ant-card-head {
-            font-weight: bold;
-        }
-
-        p {
-            margin-bottom: 10px;
-        }
+@include respond(phone)
+{
+    height: 150px;
+    width: 200px;
+    min-width: 150px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+        
     }
 
     @media (max-width: 768px) {

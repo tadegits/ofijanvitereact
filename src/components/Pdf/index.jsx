@@ -7,6 +7,7 @@ import Wrapper from'./../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 import API_BASE_URL from '../../Globals/apiConfig';
 import './pdf.scss';
+import AdvertisementCard from '../Add/AdvertisementCard';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -50,14 +51,10 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
     <Wrapper className='pdfs'>
     <div className="display-pdf-container">
         <Row gutter={24}>
-            <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-            <Card>
-                <Link to="../blueprint">
-                  <Button>
-                        View blue print
-                </Button>
-                </Link>
-              </Card><p>..</p>
+            <Col xs={34} sm={34} md={34} lg={10} xl={6}>
+            <AdvertisementCard/>
+              
+              
                 {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14}>
@@ -66,11 +63,12 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                 {imagePath.map((image, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
                       <Link to={`/model-exam/${image}/1`} state={{ data: image }}>
-                        <Card hoverable className="blog-card">
-                          <Image src="https://st5.depositphotos.com/70183936/64352/v/450/depositphotos_643528630-stock-illustration-book-creative-icons-desig.jpg" className="blog-image" />
+                        <Card hoverable className="blog-card" style={{ width:300, height:300 }}>
+                          <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6g_jGGMzjjP9G6jrAhg3CfsMdg3gxeuwC5Q&usqp=CAU" className="blog-image" />
                           <Card.Meta
                             description={
                               <div>
+                                <div>Exam &#x1F4DA;</div>
                                 <h6 className="author-name">{image ? image : ''}</h6>
                               </div>
                             }
@@ -82,9 +80,19 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
               </Row>
               {/* <ImageGallery/>  */}
               {/* <ImageSlider/>  */}
+              <Card>
+             
+              </Card>
             </Col>
             <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-              
+               
+               <Card>
+                <Link to="../blueprint">
+                  <Button>
+                        View blue print
+                </Button>
+                </Link>
+              </Card>
               {/* <BluePrintCard/> */}
             </Col>
           </Row>
