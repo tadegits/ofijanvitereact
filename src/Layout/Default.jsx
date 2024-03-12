@@ -28,6 +28,7 @@ import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs';
 import TermsOfService from '../components/footer/TermsOfService';
+import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -74,6 +75,7 @@ const Default = () => {
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate/>}/>
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<Plate/>}/>
+        <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
         <Route path="/seller" element={<Seller />} /> 
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}

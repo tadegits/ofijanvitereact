@@ -10,6 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
+import './studyplate.scss';
 const StudyPlate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
@@ -136,9 +137,9 @@ const StudyPlate = () => {
            
                
                     <div className="question_plate_study">
-                    <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className="switch">
+                    {/* <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className="switch">
                          Switch To Test Mode
-                    </Link>
+                    </Link> */}
                        
                         {questionData.length > 0 && (
                             <>
@@ -161,16 +162,18 @@ const StudyPlate = () => {
                                                     value={option.option}
                                                     checked={isSelected}
                                                     readOnly
-                                                />
+                                                /> 
                                                 <span className="alphabet">{alphabet[index]}. </span>
                                                 {option.option}
                                                 <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
                                             </label>
                                         );
                                     })}
-                                    <div className='choice_and_answer'>
-                                        <p>Description:</p>
-                                        </div>
+                                    <div className='sdescription'>
+                                {questionData[selectedQuestionIndex].options.some(option => option.selected) &&
+                                    <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].answer_description }} />
+                                }
+                            </div>
                                    
                                 </div>
                             </>
