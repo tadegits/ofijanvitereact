@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './plate.scss';
+import './studyplate.scss'
 import './confirmationModal.scss';
 import { useNavigate } from 'react-router-dom';
 

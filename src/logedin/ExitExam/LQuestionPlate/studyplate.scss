@@ -1,26 +1,95 @@
 @import "../../../styles/mixin.scss";
-.ofijan_exam_plate_study{
-    background-color: rgb(255, 255, 255);
-    .question_plate_study{
-        background-color: azure;
-        padding: 15px;
-        .squestionText{
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.studyplate {
+    display: flex;
+    margin: 25px;
+    padding: 0px;
+    align-items: start;
+@include respond(phone){
+    flex-direction: column;
+}
+
+    .sflag_plate {
+        width: 15%;
+        display: flex;
+        gap: 0.3rem;
+        flex-direction: column;
+    @include respond(phone)
+    {
+        flex-direction: row;
+        width: 100%;
+    }
+    }
+
+    .sanswer_plate {
+        width: 25%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        @include respond(phone)
+        {
+            width: 100%;
+        }
+    }
+
+    .sofijan_exam_plate_study {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        min-height: 70vh;
+        width: 60%;
+        flex-direction: column;
+        margin: 1%;
+
+        .squestion_plate_study {
+            background-color: azure;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 4px;
+
+            .squestionText {
                 width: 100%;
                 font-size: 18px;
                 font-family: Arial, sans-serif;
                 color: #333333;
                 justify-content: center;
                 border: 1px solid rgba(0, 0, 0, 0.048);
-                padding: 4px;
-              background-color: white;
+                padding: 9px;
+                font-weight: normal;
+
                 @include respond(phone) {
-                  padding: 0%;
+                    padding: 0%;
                 }
+            }
+
+            .sdescription {
+                background-color: white;
+                border: 1px solid gray;
+                padding: 5px;
+                font-weight: 500;
+                color: black;
+                
+            }
+
+            @include respond(phone) {
+                margin: 10px;
+                padding: 10px;
+            }
         }
-        .sdescription{
-            background-color: white;
-            border: 1px solid gray;
-            padding: 5px;
+
+        @include respond(phone) {
+            margin: 0;
+            width: 100%;
         }
+
     }
+}
+
+.navigation_buttons {
+    justify-content: space-between;
+    width: 100%;
 }

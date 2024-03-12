@@ -1,0 +1,11 @@
+@import '../../styles/mixin.scss';
+.adCard{
+    img{
+        height: 120px;
+        width: 80px;
+        @include respond(phone)
+        {
+            width: 100px;
+        }
+    }
+}

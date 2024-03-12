@@ -18,14 +18,21 @@ console.log('data', exam)
   </p>}
       key={id} 
       actions={[
-        // <Button className='button-open' onClick={() => openModal(exam)}>
-        //   Open
-        // </Button>,
-        <Link to={`/ofijan_exam_plate/testmode/${id}`} >
-             <Button className='button-open'>
-           Open
-         </Button>
-            </Link>
+        <Button className='button-open' onClick={() => openModal(exam)}>
+          Open
+        </Button>,
+//         <Link to={`/ofijan_exam_plate/testmode/${id}`} >
+//              <Button className='button-open'>
+//            Open
+//          </Button>
+//             </Link>ofijan_exam_plate/studymode
+
+//  <Link to={`/ofijan_exam_plate/studymode/${id}`} >
+//              <Button className='button-open'>
+//            Open
+//          </Button>
+//             </Link> 
+
       ]}
       style={{ marginBottom: 16 }}
     >
