@@ -1,9 +1,10 @@
 @import "../../styles/mixin.scss";
+@import "../../styles/colors.scss";
 
 .signup 
 {
     margin-block: 3rem;
-    background-color: #110d34;
+    background-color: $tade_color;
     height: 30rem;
     overflow: hidden;
 

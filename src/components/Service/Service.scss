@@ -1,0 +1,38 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/colors.scss';
+
+.service__holder {
+    h1 {
+        font-size: 46px;
+    }
+
+    ul {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        @include respond(phone)
+       {
+        flex-direction: column;
+       }
+    }
+
+    .service__list {
+        width: 100%;
+        padding: 10px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+
+        h1 {
+            font-size: 20px;
+            letter-spacing: 0.01em;
+        }
+    }
+
+    li {
+        list-style: none;
+    }
+}

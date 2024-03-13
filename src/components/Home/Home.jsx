@@ -8,6 +8,7 @@ import Footer from "../footer/footer"
 import Plans from "../PlanSection/PlanSection";
 import Insraw from "../insraw/insraw"
 import Testimonals from '../Testimonals/Testimonals'
+import Service from '../Service/Service'
 import Navbar from '../navbar/Navbar'
 import LNavbar from '../../logedin/navbar/LNavbar'
 const Home = () => {
@@ -25,12 +26,14 @@ const Home = () => {
   }, []);
   return (
     <>
-      <Hero/>     
+      <Hero/>
+      <Service/>     
      {/* <CounterUpPage/> */}
-      {/* <FeaturesSection/> */}
+     
+      <FeaturesSection/>
       {/* <CompanySection/>  */}
-      {/* <SignUpSection/>  */}
-      {/* <Testimonals/> */}   
+      <SignUpSection/> 
+      <Testimonals/>   
     </>
   )
 }

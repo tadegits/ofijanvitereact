@@ -91,7 +91,7 @@ const Hero = () => {
       </Wrapper>
       {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
       {/* <ExitExam/> */}
-      {/* <DepartmentList departments={deptData}/> */}
+       {/* <DepartmentList departments={deptData}/>  */}
     </section>
   );
 };
