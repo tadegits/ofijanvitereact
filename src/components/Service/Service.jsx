@@ -36,7 +36,7 @@ const Service = () => {
             </div>
           </Link>
 
-          <Link to={'./2015_exit_pdfs'} className='service__link'>
+          <Link to={'./ExitExam'} className='service__link'>
             <div className='service__card'>
               <div className='service__content '>
               <p>📝</p>

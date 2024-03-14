@@ -80,7 +80,7 @@ const LoginSection = () => {
                                 </div>
                                 <div className="summit-login">
                                     <button className='logbtn' onClick={handleSubmit}> Log In</button>
-                                    <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure} />
+                                    {/* <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure} /> */}
                                 </div>
                                 <div className="summit-signup">
                                     <h5>Register</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>

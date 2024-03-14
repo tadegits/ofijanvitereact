@@ -2,7 +2,7 @@ import "./SignUpSection.scss";
 import Wrapper from "../wrapper/Wrapper";
 import React from 'react';
 import SignUp from '../../assets/signup.png'
-
+import LoginSection from '../loginSection/LoginSection'
 export default function SignUpSection() {
   return (
     <section className="signup">
@@ -17,15 +17,7 @@ export default function SignUpSection() {
         Simple registration will customise your preference! You will have better experinace with ofijan. 
         we are waiting for you with all our best questions to practise with.
     </p>
-    <form>
-        <input 
-        type="email"
-        placeholder="Enter your Email"
-        className="Email"/>
-        <input type="submit"
-        value="submit"
-        className="button-primary"/>
-    </form>
+   <LoginSection/>
 </div>
 </Wrapper>
     </section>
