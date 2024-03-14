@@ -2,37 +2,65 @@
 @import '../../styles/colors.scss';
 
 .service__holder {
-    h1 {
-        font-size: 46px;
-    }
-
-    ul {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        @include respond(phone)
-       {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .service__title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .service__cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    @include respond(phone){
         flex-direction: column;
-       }
+        margin: 5px;
+        gap: 1rem;
     }
-
-    .service__list {
-        width: 100%;
-        padding: 10px;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-       
-
-        h1 {
-            font-size: 20px;
-            letter-spacing: 0.01em;
-        }
+  }
+  
+  .service__link {
+    text-decoration: none;
+  }
+  
+  
+  .service__content {
+    padding: 10px; 
+    height: 140px;
+    width: 1005;
+    border: 1px solid gray;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    margin: 1px;
+    max-width: 400px;
+    button{
+        border: 1px solid $tade_color;
+        background-color: white;
     }
-
-    li {
-        list-style: none;
-    }
-}
+  }
+  .content_black{
+    border-radius: 10px;
+    background-color: $tade_color;
+    color: white;
+    justify-content: space-between;
+    opacity: 0.9;
+    
+  }
+  .service__heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .service__button {
+    width:40%;
+    height: 25px;
+    border-radius: 15px;
+    float: inline-end;
+    align-items: end
+  }
+  
+  

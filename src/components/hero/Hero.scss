@@ -1,104 +1,62 @@
 @import "../../styles/mixin.scss";
 
 .hero {
-  padding-block: 2rem;
-  background-color: rgb(255, 255, 255);
-  margin-top: 0px;
+    padding-block: 2rem;
+    background-color: rgb(255, 255, 255);
 
-  &__container {
-    display: grid;
-    align-items: flex-start;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
+    &__container {
+        display: flex;
+        align-items: flex-start;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
 
-    @include respond(tab-port) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__btn-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-  }
-
-  &__right {
-    position: relative;
-
-    @include respond(tab-port) {
-      width: 70%;
-      margin-inline: auto;
-      display: none;
-    }
-  }
-
-  .img-1 {
-    width: 80%;
-    height: 400px;
-  }
-
-  .img-2 {
-    width: 35%;
-    position: absolute;
-    bottom: 0;
-    right: -20px;
-  }
-
-  .img-3 {
-    width: 50%;
-    position: absolute;
-    bottom: -20px;
-    left: -30px;
-  }
-
-}
-
-.hero {
-  padding-block: 2rem;
-  background-color: rgb(255, 255, 255);
-  margin-top: 0px;
-  .hero__text-container {
-    animation: slide-up 1s ease forwards;
-    opacity: 0;
-  }
-  .hero__text-container h1 {
-    margin-bottom: 1rem;
-    font-size: 40px;
-  }
-  .hero__btn-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-  }
-
-  .button-primary.rotating {
-    animation: rotate 2s linear infinite;
-  }
-
-  @keyframes slide-up {
-    0% {
-      transform: translateY(50px);
-      opacity: 0;
+        @include respond(tab-port) {
+            grid-template-columns: 1fr;
+        }
+        @include respond(phone) {
+            flex-direction: column-reverse;
+            gap: 0rem;
+            h1{
+              font-size: 2.5rem;
+              text-align: center;
+            }
+        }
     }
 
-    100% {
-      transform: translateY(0);
-      opacity: 1;
+    &__btn-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 3rem;
     }
-  }
 
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
+    &__right {
+
+        @include respond(tab-port) {
+            width: 70%;
+            margin-inline: auto;
+            position: relative;
+            align-items: start;
+        }
+        @include respond(phone){
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
     }
-  }
-}
-.hero__depts{
-  margin: 0px;
-  display: flex;
-  justify-content: center;
+
+    .animation {
+        width: 80%;
+        height: 40%;
+        position: relative;
+        top: 0;
+        @include respond(phone){
+          height: 150px;
+          margin: 0;
+          padding: 0;
+        }
+    }
 }

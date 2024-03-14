@@ -10,7 +10,7 @@ import DepartmentList from '../Department/DepartmentList';
 import ExitExam from '../ExitExam/ExitExam';
 
 const Hero = () => {
-  const [text, setText] = useState('A Place to confirm Your Study');
+  const [text, setText] = useState('A Place to Confirm Your Study');
   const [role, setRole] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
@@ -42,7 +42,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       // Change the text after 20 seconds
-      setText('A Place to confirm Your Study');
+      setText('A Place to Confirm Your Study');
     }, 20000);
 
     return () => clearInterval(interval);
@@ -86,7 +86,7 @@ const Hero = () => {
         </div>
 
         <div className="hero__right">
-            <Lottie animationData={anim} className="img-1" />
+            <Lottie animationData={anim} className="animation" />
         </div>
       </Wrapper>
       {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
