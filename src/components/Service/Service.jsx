@@ -41,7 +41,9 @@ const Service = () => {
               <div className='service__content '>
               <p>📝</p>
                 <h2 className='service__heading'>Answers for 2015 Ethiopian Exit Exam Questions in Study mode</h2>
+                <Tooltip title="Show Me Answers">
                 <button className='service__button' type='primary'>Visit</button>
+                </Tooltip>
               </div>
             </div>
           </Link>
