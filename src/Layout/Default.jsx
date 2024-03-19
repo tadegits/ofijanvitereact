@@ -5,6 +5,7 @@ import Grade12 from "../components/Grade12/Grade12";
 import Grade8 from "../components/Grade8/Grade8"
 import Grade6 from "../components/Grade6/Grade6";
 import ExitExam from "../components/ExitExam/ExitExam"
+import LExitExam from '../logedin/ExitExam/LExitExam';
 import Home from "../components/Home/Home"
 import Dashboard from "../components/Dashboard/Dashboard"
 import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
@@ -60,6 +61,7 @@ const Default = () => {
         <Route path="/Grade6" element={<Grade6 />} />
         <Route path="/easyexam" element={<EasyExam/>}/>
         <Route path="/ExitExam" element={<ExitExam />} />
+        <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/exit/:id" element={<ExitExam />} />
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/signup" element={<SignUp />} />

@@ -1,10 +1,12 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 .navbarz {
   background-color: #ffffff;
-  padding: 15px;
+  padding: 5px;
   width: 100%;
+  position: fixed;
+  z-index: 100;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
   border-bottom: 1px solid rgba(0, 0, 0, 0.089);
@@ -23,13 +25,15 @@
   flex-direction: row;
   gap: 1em;
     h1{
-      font-size: 25px;
+      font-size: 35px;
       margin: 0;
       padding: 0;
       letter-spacing: 0.1em;
+      font-family: 'Quicksand', sans-serif;
     }
 .logo__moto{
   display: flex;
+  justify-content: center;
   flex-direction: column;
   margin: 0;
   padding: 0;

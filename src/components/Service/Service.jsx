@@ -10,10 +10,10 @@ const Service = () => {
   return (
     <Wrapper>
       <div className='service__holder'>
-        <h1 className='service__title'>Our Services</h1>
+        {/* <h1 className='service__title'>Our Services</h1> */}
         <div className='service__cards'>
         <Link to={'./2015_exit_pdfs'} className='service__link'>
-            <div className='service__card'>
+            <div className='service__card '>
               <div className='service__content'>
               <p>📝</p>
                 <h2 className='service__heading'>Images of 2015 Ethiopian Exit Exam Questions</h2>
@@ -48,7 +48,7 @@ const Service = () => {
             </div>
           </Link>
 
-          <Link to={'./2015_exit_pdfs'} className='service__link'>
+          {/* <Link to={'./2015_exit_pdfs'} className='service__link'>
             <div className='service__card'>
               <div className='service__content content_black'>
               <p>📝</p>
@@ -56,7 +56,7 @@ const Service = () => {
                 <button className='service__button' type='primary'>Visit</button>
               </div>
             </div>
-          </Link>
+          </Link> */}
           <Link to={'./2015_exit_pdfs'} className='service__link'>
             <div className='service__card'>
               <div className='service__content '>

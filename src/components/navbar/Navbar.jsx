@@ -50,7 +50,7 @@ const Navbar = () => {
                     <img  src={Logo} alt="Logo" />
                     <div className="logo__moto">
                         <h1>OFIJAN </h1>
-                        <p>Test Your limit!</p>
+                        {/* <p>Test Your limit!</p> */}
                         </div> 
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>

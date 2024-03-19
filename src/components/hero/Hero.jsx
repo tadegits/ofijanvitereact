@@ -11,7 +11,7 @@ import ExitExam from '../ExitExam/ExitExam';
 import Service from '../Service/Service'
 
 const Hero = () => {
-  const [text, setText] = useState('A Place to Confirm Your Study');
+  const [text, setText] = useState('Test Your Limit');
   const [role, setRole] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
@@ -71,7 +71,7 @@ const Hero = () => {
 
           <div className="hero__btn-container">
             {!isLoggedin && (
-              <Link to="/ExitExam" className="button-outline ">
+              <Link to="/ExitExam" className="button-outline btn_hero ">
                 Select Your Field Of Study
               </Link>
             )}
