@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <>
       <Hero/>
-      <Service/>     
+      {/* <Service/>      */}
      {/* <CounterUpPage/> */}
      
       <FeaturesSection/>

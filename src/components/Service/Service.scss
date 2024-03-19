@@ -1,9 +1,17 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
+
+
+
 
 .service__holder {
     max-width: 100%;
     margin: 0 auto;
+    h1{
+      font-family: 'Quicksand', sans-serif;
+      font-size: 32px;
+    }
   }
   
   .service__title {

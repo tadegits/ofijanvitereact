@@ -8,6 +8,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 import './Hero.scss';
 import DepartmentList from '../Department/DepartmentList';
 import ExitExam from '../ExitExam/ExitExam';
+import Service from '../Service/Service'
 
 const Hero = () => {
   const [text, setText] = useState('A Place to Confirm Your Study');
@@ -88,7 +89,9 @@ const Hero = () => {
         <div className="hero__right">
             <Lottie animationData={anim} className="animation" />
         </div>
+        
       </Wrapper>
+      <Service/>
       {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
       {/* <ExitExam/> */}
        {/* <DepartmentList departments={deptData}/>  */}
