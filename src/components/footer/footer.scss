@@ -1,5 +1,6 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
+
 .footer{
   
     background-color: #ffffff;
@@ -83,6 +84,40 @@ li{
   
     .main-color {
       color: $tade-color;
+    }
+  }
+  .about-us-container{
+    padding: 0;
+    padding: 3rem;
+    padding-top: 5rem;
+  }
+  .terms {
+    background-color: #f2f2f2; /* Set your desired background color */
+    padding: 45px 0; /* Adjust padding as needed */
+    
+    .terms__container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 30px; /* Adjust padding as needed */
+
+      
+      .terms__title {
+        color: #333; /* Set your desired title color */
+        margin-bottom: 20px; /* Adjust margin as needed */
+      }
+      
+      .terms__paragraph {
+        color: #666; /* Set your desired paragraph text color */
+        margin-bottom: 15px; /* Adjust margin as needed */
+        
+        .terms__link {
+          color: #007bff; /* Set your desired link color */
+          
+          &:hover {
+            text-decoration: underline; /* Add underline on hover */
+          }
+        }
+      }
     }
   }
   

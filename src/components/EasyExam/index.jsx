@@ -4,6 +4,7 @@ import { useState } from 'react';
 import API_BASE_URL from '../../Globals/apiConfig';
 import axios from 'axios';
 import ExamCard from '../ExamCard';
+import { Helmet } from 'react-helmet';
 import './easyexam.scss';
 const index = () => {
   const [examID, setExamID] = useState('');
@@ -31,7 +32,11 @@ const index = () => {
 
   return (
     <section className='easyExam'>   
-    
+    <Helmet>
+                <meta property="og:title" content="EASY_EXAM" />
+                <meta property="og:image" content="withmoto.png" />
+                <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
+            </Helmet>
       <Wrapper className='easy_exam_wrapper ofijan__info'>
         <p>Search Exam By The Id You get from your teacher. and Add the password</p>
         <p>E.x exam Id 116  password: 123456</p>

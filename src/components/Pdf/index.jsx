@@ -7,6 +7,7 @@ import Wrapper from'./../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 import API_BASE_URL from '../../Globals/apiConfig';
 import './pdf.scss';
+import { Helmet } from 'react-helmet';
 import AdvertisementCard from '../Add/AdvertisementCard';
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
@@ -49,6 +50,11 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
 
   return (
     <section className='pdf_section'>
+      <Helmet>
+                <meta property="og:title" content="2015EXITQUESTIONS" />
+                <meta property="og:image" content="withmoto.png" />
+                <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+            </Helmet>
     <Wrapper className='pdfs'>
     <div className="display-pdf-container">
         <Row gutter={24}>

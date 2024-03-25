@@ -8,7 +8,6 @@ import { UserOutlined } from '@ant-design/icons';
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
-
     const [user, setUser] = useState(null);
     const [showNav, setShowNav] = useState(false);
     const isLoggedIn = !!user;
@@ -47,23 +46,17 @@ const Navbar = () => {
         <nav className="navbarz">
             <Wrapper className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
-                    {/* <img  src={Logo} alt="Logo" /> */}
                     <div className="logo__moto">
                         <h1>OFIJAN </h1>
-                        {/* <p>Test Your limit!</p> */}
-                        </div> 
+                    </div>
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
                     </li>
-                    
-                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
-                        <Link to="/Exit_Exam">All Exams</Link>
-                    </li>):(<li onClick={() => setShowNav(false)}>
-                        <Link to="/ExitExam">All Exams</Link>
-                    </li>)
-                    }
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to={isLoggedIn ? "/Exit_Exam" : "/ExitExam"}>All Exams</Link>
+                    </li>
                     {isLoggedIn &&
                         <li onClick={() => setShowNav(false)}>
                             <a href="/easyexam">Take Exam</a>
@@ -78,15 +71,15 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="/ofijan_blogs">Blog</Link>
                     </li>
-                    {isLoggedIn && <li onClick={() => setShowNav(false)}>
-                        <Link to="/my_results">My Result</Link>
-                    </li> }
-                    
+                    {isLoggedIn &&
+                        <li onClick={() => setShowNav(false)}>
+                            <Link to="/my_results">My Result</Link>
+                        </li>
+                    }
                     <li onClick={() => setShowNav(false)}>
                         <Link to="#">                              </Link>
                     </li>
                     {isLoggedIn &&
-                    
                         <li>
                             <Dropdown overlay={menu} trigger={['click']}>
                                 <Avatar icon={<UserOutlined />} />
@@ -104,7 +97,7 @@ const Navbar = () => {
                 </div>
             </Wrapper>
         </nav>
-    )
+    );
 }
 
 export default Navbar;

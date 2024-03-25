@@ -9,10 +9,10 @@
     padding: 0;
     padding-top: 2rem;
     // background-color: $tade-color;
-    background-image: linear-gradient(to left, yellow, $tade-color);
+    background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
     @include respond(phone)
     {
-        background-image: linear-gradient($tade-color, yellow ); 
+        background-image: linear-gradient($tade-color, rgb(255, 255, 255) ); 
     }
 
     &__container {
@@ -23,7 +23,7 @@
         h1 {
             font-family: 'Quicksand', sans-serif;
             font-size:4.8rem;
-            color: yellow;
+            color: rgb(255, 255, 255);
             margin-top: 25px;
         }
         p{

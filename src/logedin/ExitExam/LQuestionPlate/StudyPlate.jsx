@@ -11,6 +11,7 @@ import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
 import './studyplate.scss';
+import { Helmet } from 'react-helmet';
 import Wrapper from '../../../components/wrapper/Wrapper';
 import AdvertisementCard from '../../../components/Add/AdvertisementCard';
 const StudyPlate = () => {
@@ -135,6 +136,11 @@ const StudyPlate = () => {
     };
     return (
         <section className='exam'>
+            <Helmet>
+                <meta property="og:title" content="STUDY_PLATE" />
+                <meta property="og:image" content="withmoto.png" />
+                <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
+            </Helmet>
             <Wrapper className='exam__section'>
 
            

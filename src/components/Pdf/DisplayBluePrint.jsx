@@ -51,11 +51,11 @@ const DisplayBluePrint = () => {
     GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
     return (
-        <Wrapper className='pdfs'>
-            <div
-                className="display-pdf-container">
-                
-                <Row gutter={24}>
+        
+        <section className='pdfs'>
+            <Wrapper className="display-pdf-container">
+                <div className='pdf__section_viewer'>
+                        <Row gutter={24}>
                     {/* <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                      <CollegeDepartment onSelectDepartment={setSelectedDepartment} />   
                     </Col> */}
@@ -72,8 +72,9 @@ const DisplayBluePrint = () => {
                         <BluePrintCard />
                     </Col>
                 </Row>
-            </div>
-        </Wrapper>
+                </div>
+            </Wrapper>
+        </section>
     );
 };
 

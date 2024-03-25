@@ -67,7 +67,7 @@ const LoginSection = () => {
 
     return (
         <section className="login">
-            <Wrapper>
+            <Wrapper className='login__section'>
                 <div className="login__container">
                     <div className="login__image_holder2">
                         <div className="login__form1">

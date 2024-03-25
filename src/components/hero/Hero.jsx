@@ -60,11 +60,14 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <title>Home</title>
-      <meta property="og:title" content="OFIJAN" />
+      <Helmet>
+         <title>Home</title>
+      <meta property="og:title" content="home" />
       <meta property="og:description" content="Ofijan: Your Ultimate Online Exam Bank for Ethiopia's National Exit Exams!" />
       <meta property="og:image" content="withmoto.png" />
       <meta property="og:url" content="https://ofijan.com" />
+      </Helmet>
+     
       <Wrapper className="hero__container">
         <div className="hero__left">
           <div className="hero__text-container">

@@ -17,6 +17,7 @@ import Wrapper from '../wrapper/Wrapper';
 import CollegeDepartment from '../Faculty/CollegeDepartment';
 import ImageGallery from './ImageGallery';
 import AdvertisementCard from '../Add/AdvertisementCard';
+import { Helmet } from 'react-helmet';
 
 const DisplayPdf = () => {
     const location = useLocation();
@@ -45,8 +46,15 @@ const DisplayPdf = () => {
     // }, [pdfData]);
 
  
-        return  <Wrapper className='pdfs'>
-        <div className="display-pdf-container">
+        return  <section className='pdfs'>
+            <Wrapper className='pdf__section'>
+            <Helmet>
+            <meta property="og:title" content={`2015EXIT_${id}`} />
+                <meta property="og:image" content="withmoto.png" />
+                <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+            </Helmet>
+        <div className="display-pdf-container pdf__section">
+        <Wrapper className='pdf__section_viewer'>
             <Row gutter={24}>
                     <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                         <AdvertisementCard/>
@@ -61,8 +69,10 @@ const DisplayPdf = () => {
                          <BluePrintCard /> 
                     </Col>
                 </Row>
+                </Wrapper>
             </div>
         </Wrapper>;
+            </section>
     }
 
     // return (

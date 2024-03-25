@@ -5,9 +5,15 @@ import Wrapper from '../wrapper/Wrapper';
 import { Link } from 'react-router-dom';
 import { Layout, Card, Image, Row, Col, Button } from 'antd';
 import { Margin } from '@mui/icons-material';
+import { Helmet } from 'react-helmet';
 const BluePrint = () => {
   return (
     <section className='pdf_section'>
+      <Helmet>
+            <meta property="og:title" content="blue print" />
+                <meta property="og:image" content="withmoto.png" />
+                <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+            </Helmet>
 <Wrapper className='pdfs'>
     <div className="display-pdf-container">
     <Row gutter={24} className=''>

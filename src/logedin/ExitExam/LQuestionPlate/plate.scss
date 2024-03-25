@@ -1,6 +1,36 @@
 @import "../../../styles/mixin.scss";
 @import "../../../styles/colors.scss";
 
+.tobpar__info{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  
+}
+.test__section{
+  padding: 0;
+  padding-top: 2rem;
+ 
+}
+.topbar{
+  padding: 0.1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  align-items: end;
+  align-content: end;
+  border-radius: 0px 0px 40px 15px;
+  padding-right: 20px;
+  height: max-content;
+  @include respond(phone)
+  {
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    padding: 0;
+    height: max-content;
+  }
+}
 .ofijan_exam_plate {
   width: 100%;
   padding: 0;
