@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import CheckIcon from '@mui/icons-material/Check';
 import TimerIcon from '@mui/icons-material/Timer';
 import API_BASE_URL from '../../Globals/apiConfig';
+import Wrapper from '../wrapper/Wrapper';
 import './plate.scss';
 const Plate = () => {
     const { ofin_id } = useParams();
@@ -127,6 +128,10 @@ const Plate = () => {
         setQuestionData(updatedQuestionData);
     };
     return (
+        <section className='exam'>
+            <Wrapper className='exam__section'>
+
+           
         <div className='ofijan_exam_plate'>
             {/* <p>This is for sample not loged in user</p> */}
             <div className='plate'>
@@ -215,10 +220,11 @@ const Plate = () => {
                         ))}
                     </div>
                 </div>
-
             </div>
             {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
+        </Wrapper>
+        </section>
     );
 };
 

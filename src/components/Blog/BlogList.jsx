@@ -4,19 +4,24 @@ import './BlogList.scss';
 import Logo from '../../assets/logo.png'; 
 import BlogCategories from './BlogCategories';
 import { Link } from 'react-router-dom';
+import Wrapper from '../wrapper/Wrapper';
 const { Content } = Layout;
 
 const BlogList = ({ blogs }) => {
   const [selectedCategory, setSelectedCategory] = useState();
   const [error, setError] = useState(null);
-
   if (!Array.isArray(blogs) || blogs.length === 0) {
     return <div>Loading...</div>;
   }
-
   const filteredBlogs = selectedCategory ? blogs.filter(blog => blog.categories === selectedCategory) : blogs;
-
   return (
+    <section className='blog'>
+      <title>Blog</title>
+      <meta property="og:title" content="Blog" />
+      <meta property="og:description" content="Ofijan Blogs" />
+      <meta property="og:image" content="withmoto.png" />
+      <meta property="og:url" content="https://ofijan.com/ofijan_blogs" />
+      <Wrapper className='blog__section'>
     <div className="blog-list-container">
       <Card title="Ofijan Blogs">
         <div className='blog-body-container'>
@@ -51,6 +56,8 @@ const BlogList = ({ blogs }) => {
         </div> 
       </Card>
     </div>
+    </Wrapper>
+    </section>
   );
 };
 

@@ -11,6 +11,7 @@ import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import '../LQuestionPlate/plate.scss';
 import './studyplate.scss';
+import Wrapper from '../../../components/wrapper/Wrapper';
 import AdvertisementCard from '../../../components/Add/AdvertisementCard';
 const StudyPlate = () => {
     const { ofin_id } = useParams();
@@ -133,6 +134,10 @@ const StudyPlate = () => {
         setQuestionData(updatedQuestionData);
     };
     return (
+        <section className='exam'>
+            <Wrapper className='exam__section'>
+
+           
         <div className='studyplate'>
             <div className='sflag_plate'>
             <AdvertisementCard/><AdvertisementCard/>
@@ -214,7 +219,8 @@ const StudyPlate = () => {
                 </div>
             </div>
         </div>
-
+        </Wrapper>
+        </section>
 
     );
 };

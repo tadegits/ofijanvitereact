@@ -255,7 +255,7 @@ const TestMePlate = () => {
                                         <TimePlate
                                             isLoggedin={isLoggedin}
                                             timeLeft={formatTime(timeLeft)}
-                                        />
+                                        /> 
                                         <div className="questionplate">
                                             {questionData.length > 0 && (
                                                 <>

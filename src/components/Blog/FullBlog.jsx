@@ -78,7 +78,7 @@ const FullBlog = ({ blogs }) => {
 
   return (
     <section className='blog'>
-      <Wrapper className='blog__container'>
+      <Wrapper className='blog__section'>
         <div className="blog-list-container">
           <Helmet>
             <title>{blog.title}</title>

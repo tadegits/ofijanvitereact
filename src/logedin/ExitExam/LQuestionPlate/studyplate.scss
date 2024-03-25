@@ -4,11 +4,19 @@ body {
     padding: 0;
     margin: 0;
 }
+.exam{
+
+.__section{
+    padding: 0;
+    padding-top: 2rem;
+}
+}
 
 .studyplate {
     display: flex;
     margin: 25px;
     padding: 0px;
+    padding-top: 2rem;
     align-items: start;
 @include respond(phone){
     flex-direction: column;
