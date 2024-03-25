@@ -15,8 +15,8 @@ const Hero = () => {
   const [role, setRole] = useState('');
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
-  const [loading, setLoading] = useState(true); 
-  const [deptData, setDeptData] =  useState([]);
+  const [loading, setLoading] = useState(true);
+  const [deptData, setDeptData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,13 +30,13 @@ const Hero = () => {
         setLoading(false); // Make sure to set loading to false in case of error too
       }
     };
-  
+
     fetchData(); // Call fetchData function here, outside the async function
-  
+
     const loadingTimeout = setTimeout(() => {
       setLoading(false);
     }, 10000);
-  
+
     return () => clearTimeout(loadingTimeout);
   }, []);
 
@@ -60,7 +60,11 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      
+      <title>Home</title>
+      <meta property="og:title" content="OFIJAN" />
+      <meta property="og:description" content="Ofijan: Your Ultimate Online Exam Bank for Ethiopia's National Exit Exams!" />
+      <meta property="og:image" content="withmoto.png" />
+      <meta property="og:url" content="https://ofijan.com" />
       <Wrapper className="hero__container">
         <div className="hero__left">
           <div className="hero__text-container">
@@ -88,14 +92,14 @@ const Hero = () => {
         </div>
 
         <div className="hero__right">
-            <Lottie animationData={anim} className="animation" />
+          <Lottie animationData={anim} className="animation" />
         </div>
-        
+
       </Wrapper>
-      <Service/>
+      <Service />
       {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
       {/* <ExitExam/> */}
-       {/* <DepartmentList departments={deptData}/>  */}
+      {/* <DepartmentList departments={deptData}/>  */}
     </section>
   );
 };

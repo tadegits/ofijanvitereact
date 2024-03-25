@@ -65,10 +65,10 @@ const Blog = () => {
   };
 
   return (
-
+  <section className='blog'>
+<Wrapper className='blog__section'>
     <div className='blog__section'>
        <div className='blogs_side'> 
-      
        </div>
       <div className='blogs_content'>
          {/* <CategoryDiv/> */}
@@ -130,6 +130,8 @@ const Blog = () => {
         </div>
       </div>
     </div>
+    </Wrapper>
+  </section>
   );
 };
 
