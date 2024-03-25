@@ -46,15 +46,16 @@ const DisplayPdf = () => {
     // }, [pdfData]);
 
  
-        return  <section className='pdfs'>
-            <Wrapper className='pdf__section'>
-            <Helmet>
+        return  <section className='pdfs'> 
+        <Helmet>
             <meta property="og:title" content={`2015EXIT_${id}`} />
                 <meta property="og:image" content="withmoto.png" />
                 <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
             </Helmet>
-        <div className="display-pdf-container pdf__section">
-        <Wrapper className='pdf__section_viewer'>
+            <Wrapper className='pdf_section'>
+                
+           
+        <div className="display-pdf-container">
             <Row gutter={24}>
                     <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                         <AdvertisementCard/>
@@ -69,7 +70,6 @@ const DisplayPdf = () => {
                          <BluePrintCard /> 
                     </Col>
                 </Row>
-                </Wrapper>
             </div>
         </Wrapper>;
             </section>
