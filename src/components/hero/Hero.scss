@@ -8,8 +8,8 @@
     
     padding: 0;
     padding-top: 2rem;
-    background-color: $tade-color;
-    // background-image: linear-gradient(to left, yellow, $tade-color);
+    // background-color: $tade-color;
+    background-image: linear-gradient(to left, yellow, $tade-color);
     @include respond(phone)
     {
         background-image: linear-gradient($tade-color, yellow ); 

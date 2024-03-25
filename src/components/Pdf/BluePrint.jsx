@@ -7,6 +7,7 @@ import { Layout, Card, Image, Row, Col, Button } from 'antd';
 import { Margin } from '@mui/icons-material';
 const BluePrint = () => {
   return (
+    <section className='pdf_section'>
 <Wrapper className='pdfs'>
     <div className="display-pdf-container">
     <Row gutter={24} className=''>
@@ -31,6 +32,7 @@ const BluePrint = () => {
     </Col>
   </Row></div>
   </Wrapper>
+  </section>
   )
 }
 

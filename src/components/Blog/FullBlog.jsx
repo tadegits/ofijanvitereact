@@ -10,14 +10,14 @@ import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
 import BlogCategories from './BlogCategories';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
-
+import Wrapper from '../wrapper/Wrapper';
 const { Text } = Typography;
 
 const FullBlog = ({ blogs }) => {
   const { category, title } = useParams();
   const [views, setViews] = useState(0);
   const [blog, setBlog] = useState(null);
-const location  = useLocation();
+  const location = useLocation();
   useEffect(() => {
     const fetchBlog = () => {
       if (blogs && category && title) {
@@ -25,7 +25,7 @@ const location  = useLocation();
         setBlog(foundBlog);
       }
     };
-  
+
     fetchBlog();
   }, [blogs, category, title]);
 
@@ -67,7 +67,7 @@ const location  = useLocation();
   };
 
   const navigateBack = () => {
-    window.history.back(); 
+    window.history.back();
   };
 
   if (!blog) {
@@ -77,58 +77,62 @@ const location  = useLocation();
   const relatedArticles = blogs.filter((item) => item.categories === blog.categories && item.title !== blog.title);
 
   return (
-    <div className="blog-list-container">
-      <Helmet>
-        <title>{blog.title}</title>
-        <meta name="description" content={trimText(blog.body)} />
-        <meta property="og:title" content={blog.title} />
-        <meta property="og:description" content={blog.title} />
-        <meta property="og:image" content="../../" />
-        <meta property="og:url" content={location.pathname} />
-      </Helmet>
-      <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
-        <Button className='back__button' >
-                    <LeftCircleOutlined /> Back
-                  </Button></a>}>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-            <div className='blog-body-container'> 
-              <div className="blog__detail">
-                <div className="second___row">
-                  <Card  className="card-content">
-                    <h1>{blog.title}<div>&#x1F389;</div></h1>
-                    <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
-                    <div className='author-info'>
-                      <Text strong>{blog.author.name}</Text>
+    <section className='blog'>
+      <Wrapper className='blog__container'>
+        <div className="blog-list-container">
+          <Helmet>
+            <title>{blog.title}</title>
+            <meta name="description" content={trimText(blog.body)} />
+            <meta property="og:title" content={blog.title} />
+            <meta property="og:description" content={blog.title} />
+            <meta property="og:image" content="../../" />
+            <meta property="og:url" content={location.pathname} />
+          </Helmet>
+          <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
+            <Button className='back__button' >
+              <LeftCircleOutlined /> Back
+            </Button></a>}>
+            <Row gutter={[16, 16]}>
+              <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+                <div className='blog-body-container'>
+                  <div className="blog__detail">
+                    <div className="second___row">
+                      <Card className="card-content">
+                        <h1>{blog.title}<div>&#x1F389;</div></h1>
+                        <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
+                        <div className='author-info'>
+                          <Text strong>{blog.author.name}</Text>
+                        </div>
+                        <article className='blogme__body' dangerouslySetInnerHTML={{ __html: blog.body }}></article><Divider />
+                        <div className='blog-actions'>
+                          <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
+                          <BlogActions blog={blog} />
+                        </div>
+                        <Divider />
+                      </Card>
                     </div>
-                    <article className='blogme__body' dangerouslySetInnerHTML={{ __html:blog.body }}></article><Divider />
-                    <div className='blog-actions'>
-                      <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
-                      <BlogActions blog={blog} />
+                    <div className="third__row">
+                      <RelatedArticlesCard blogs={relatedArticles} />
                     </div>
-                    <Divider />
-                  </Card>
+                  </div>
                 </div>
-                <div className="third__row">
-                  <RelatedArticlesCard blogs={relatedArticles} />
+              </Col>
+              <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+                <div className='blogs_side'>
+                  {/* Side content, e.g., recent posts, popular tags, etc. */}
                 </div>
-              </div>
-            </div>
-          </Col>
-          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
-            <div className='blogs_side'>
-              {/* Side content, e.g., recent posts, popular tags, etc. */}
-            </div>
-          </Col>
-        </Row>
-      </Card>
-      {/* Add meta tags for SEO */}
-      <meta charSet="UTF-8" />
-      <title>{blog.title}</title>
-      <meta name="description" content={blog.summary} />
-      <link rel="canonical" href={location.pathname} />
-      <a href={location.pathname}>Read more</a>
-    </div>
+              </Col>
+            </Row>
+          </Card>
+          {/* Add meta tags for SEO */}
+          <meta charSet="UTF-8" />
+          <title>{blog.title}</title>
+          <meta name="description" content={blog.summary} />
+          <link rel="canonical" href={location.pathname} />
+          <a href={location.pathname}>Read more</a>
+        </div>
+      </Wrapper>
+    </section>
   );
 };
 

@@ -1,7 +1,28 @@
 @import "../../styles/mixin.scss";
 @import "../../styles//colors.scss";
 
+.exitexam{
+  padding: 0;
+  padding-top: 4rem;
+}
+.exitexam__container{
+  display: flex;
+  flex-direction: column;
 
+  @include respond(tab-port) {
+      grid-template-columns: 1fr;
+  }
+
+  @include respond(phone) {
+      flex-direction: column-reverse;
+      gap: 0rem;
+
+      h1 {
+          font-size: 2.5rem;
+          text-align: center;
+      }
+  }
+}
 
 .main-content {
   margin-left: 250px;
@@ -245,7 +266,7 @@ font-weight: bold;
         opacity: 0.7;
       }
       }
-
+ 
     }
   }
 }

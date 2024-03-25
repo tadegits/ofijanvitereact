@@ -106,7 +106,9 @@ console.log('id', selectedDepartmentId);
   };
 
   return (
-    <section className='exit_exam_nli'>
+    
+    <section className='exitexam'>
+      <Wrapper className='exitexam__container'>
       <div className='select_field'>
         <p>Select Your field of study</p>
         <div className='input_holder'>
@@ -146,7 +148,9 @@ console.log('id', selectedDepartmentId);
             </div>
           ))}
       </Wrapper>
-    </section>
+</Wrapper>   
+ </section>
+    
   );
 };
 

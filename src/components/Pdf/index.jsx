@@ -48,6 +48,7 @@ const Index = () => {
 const filteredDepts = selectedDepartment ? data.filter(data => data.id === selectedDepartment) : data;
 
   return (
+    <section className='pdf_section'>
     <Wrapper className='pdfs'>
     <div className="display-pdf-container">
         <Row gutter={24}>
@@ -98,6 +99,7 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
           </Row>
     </div>
     </Wrapper>
+    </section>
   );
 };
 

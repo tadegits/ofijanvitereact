@@ -4,7 +4,7 @@ import Wrapper from '../wrapper/Wrapper';
 import anim from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
 import API_BASE_URL from '../../Globals/apiConfig';
-
+import { Helmet } from 'react-helmet';
 import './Hero.scss';
 import DepartmentList from '../Department/DepartmentList';
 import ExitExam from '../ExitExam/ExitExam';
@@ -60,6 +60,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
+      
       <Wrapper className="hero__container">
         <div className="hero__left">
           <div className="hero__text-container">

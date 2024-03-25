@@ -47,7 +47,7 @@ const Navbar = () => {
         <nav className="navbarz">
             <Wrapper className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
-                    <img  src={Logo} alt="Logo" />
+                    {/* <img  src={Logo} alt="Logo" /> */}
                     <div className="logo__moto">
                         <h1>OFIJAN </h1>
                         {/* <p>Test Your limit!</p> */}
