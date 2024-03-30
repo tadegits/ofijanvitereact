@@ -8,13 +8,21 @@
     flex-direction: column;
     align-items: center;
     padding: 0;
-    padding-top: 3rem;
+    padding-top: 4rem;
     background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
+    @include respond(phone)
+    {
+        padding-top: 5rem;
+    }
 }
 .ofijan__info{
-    p{
-        color: $tade-color;
+    .search{
+        color: $tade-yellow;
+        font-weight: bolder;
         font-style: bold;
+        padding: 5px;
+        background-color: rgba(35, 10, 77, 0.452);
+        border-radius: 10px;
     }
 }
 .easy_exam_input_holder {
@@ -27,15 +35,22 @@
     align-items: center;
     padding-left: 20px;
     background-color: white;
+    margin-top: 1rem;
 }
 .searchExam {
     width: 90%;
-    padding: 15px;
+    padding: 5px;
+    outline: none;
+    border: 0px;
+    
 }
 .searchExamBtn {
     height: 100%;
     border: 1px $tade_color solid;
     padding: 15px;
+    width: 120px;
+    font-size: 12px;
+    font-weight: bold;
     border-radius: 0px 20px 20px 0;
     background-color: $tade_color;
     color: white;
@@ -55,6 +70,7 @@
     .for__card{
         background-color: $tade-color;
         color: white;
+        min-width: 30%;
         p{
             color: white;
             font-size: 16px;

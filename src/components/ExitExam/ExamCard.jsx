@@ -11,15 +11,14 @@ const ExamCard = ({ exam, openModal }) => {
     return (
       <Card
         className='exam_card1'
-        title={exam_name}
-        extra={<p>
-          <strong>{questions_count} Questions:</strong>
-        </p>}
+        title={department ? <><strong>{department.title}</strong> </> : ''}
+      
+        extra={<Button  onClick={() => openModal(exam)}>
+            Open
+          </Button>}
         key={id}
         actions={[
-          <Button className='button-open' onClick={() => openModal(exam)}>
-            Open
-          </Button>,
+          ,
           //         <Link to={`/ofijan_exam_plate/testmode/${id}`} >
           //              <Button className='button-open'>
           //            Open
@@ -36,7 +35,10 @@ const ExamCard = ({ exam, openModal }) => {
         style={{ marginBottom: 16 }}
       >
         <p>
-          {department ? <><strong>Department:</strong> {department.title}</> : ''}
+        {exam_name}
+        </p>
+        <p>
+          <strong>{questions_count} Questions:</strong>
         </p>
         <hr></hr>
 

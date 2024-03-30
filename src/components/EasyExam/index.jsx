@@ -41,8 +41,7 @@ const index = () => {
       <Wrapper className='easy_exam_wrapper ofijan__info'>
 
         
-        <p>Search Exam By The Id You get from your teacher. and Add the password</p>
-        <p>E.x exam Id 116  password: 123456</p>
+        <p className='search'>Search for the exam using the ID provided by your teacher and enter the corresponding password. For example, if the exam ID is 116, the password is 123456.</p>
         <div className='easy_exam_input_holder'>
 
           <input
@@ -59,11 +58,11 @@ const index = () => {
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
-          
+           
         </div>
         <ExamCard exams={searchResults} />
         <div className='ofijan__for__cards'>
-  <Card className='for__card' title="Ofijan For Class Test">
+        <Card className='for__card' title="Ofijan For Class Test">
           <p>
             Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
             <ul>
@@ -75,24 +74,24 @@ const index = () => {
         </Card>
         <Card className='for__card' title="Ofijan For Self Test">
           <p>
-            Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
-            <ul>
-              <li>Teachers exam correction time</li>
-              <li>Unecesary paper wastage</li>
-              <li>Mistakes in exam correction</li>
+          Ofijan's platform streamlines practice quizzes and mock exams, saving time and enhancing subject understanding.            <ul>
+              <li>Enhanced self-assessment capabilities</li>
+              <li>Improved exam readiness</li>
+              <li>Increased retention of course material</li>
             </ul>
           </p>
         </Card>
         <Card className='for__card' title="Ofijan For Self Test">
           <p>
-            Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
-            <ul>
-              <li>Teachers exam correction time</li>
-              <li>Unecesary paper wastage</li>
-              <li>Mistakes in exam correction</li>
+          Ofijan offers personalized exams with adaptive testing for focused improvement and tailored feedback, optimizing study efforts for better learning outcomes.
+          <ul>
+              <li>Customized exam preparation</li>
+              <li>Targeted feedback for improvement</li>
+              <li>Enhanced study efficiency</li>
             </ul>
           </p>
         </Card>
+
 </div>
       </Wrapper>
       
