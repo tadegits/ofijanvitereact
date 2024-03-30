@@ -10,10 +10,10 @@ const AdvertisementCard = () => {
     <Link to="https://www.youtube.com/@kgg-Tech">
       <Card className='adCard'
       
-      cover={<img alt="Advertisement" src="../../kggtech.jpg" />}
+      cover={<img alt="Advertisement" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg--ugmfWctSYJTWCH2EyxSNnQmWX8HB759XkRyicLNw&s" />}
     >
       <Card.Meta
-        title="Kgg-Tech"
+        title="Madda Walabu University"
         description="Good Luck on Your Exit Exam Preparation."
       />
     </Card>

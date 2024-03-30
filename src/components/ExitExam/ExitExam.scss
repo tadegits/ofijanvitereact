@@ -1,26 +1,30 @@
 @import "../../styles/mixin.scss";
 @import "../../styles//colors.scss";
 
-.exitexam{
+.exitexam {
   padding: 0;
   padding-top: 4rem;
+  background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
-.exitexam__container{
+
+.exitexam__container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @include respond(tab-port) {
-      grid-template-columns: 1fr;
+    width: 100%;
   }
 
   @include respond(phone) {
-      flex-direction: column-reverse;
-      gap: 0rem;
+    width: 100%;
+    background-color: $tade-color;
 
-      h1 {
-          font-size: 2.5rem;
-          text-align: center;
-      }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
   }
 }
 
@@ -37,63 +41,12 @@
   margin-left: -250px;
 }
 
-.select_field {
-  width: 60%;
-  height: 150px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 12px;
-  align-items: center;
-  gap: 2rem;
-
-  @include respond(phone) {
-    flex-direction: column;
-    gap: 0.1rem;
-  }
 
 
-
-  .input_holder {
-
-    height: 30%;
-    gap: 0.1rem;
-    display: flex;
-    border: solid 1px $tade-color;
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-
-    p {
-      font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
-      width: 50%;
-      height: 50%;
-      font-size: 1rem;
-      align-items: center;
-    }
-
-    select {
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      background-color: #fff;
-      font-size: 16px;
-      color: $tade-color;
-      outline: none;
-    }
-
-    option {
-      width: 100%;
-      background-color: #fff;
-      color: $tade-color
-    }
-  }
+.exit_exam_nli {
+  padding-block: 0rem;
 }
-.exit_exam_nli{
-    padding-block: 0rem;
-}
+
 .exit_exam_page {
   width: 100%;
   height: 700px;
@@ -127,54 +80,59 @@
   background-color: #ffffff;
   box-shadow: #4CAF50;
 
- @media screen and (max-width: 767px) {
-  .exams_card {
-    width: 100%; // Set width to 100% for smartphones
-    display: block; // Display as block on smartphones
-    box-sizing: border-box; // Include padding and border in the width
+  @media screen and (max-width: 767px) {
+    .exams_card {
+      width: 100%; // Set width to 100% for smartphones
+      display: block; // Display as block on smartphones
+      box-sizing: border-box; // Include padding and border in the width
+    }
   }
-}
-  .underline
-  {
+
+  .underline {
     background-color: $milli_gray;
   }
 }
-.exam_table
-{
+
+.exam_table {
   padding: 15px;
   width: 100%;
-  li{
+
+  li {
     list-style: square;
   }
-  tr{
+
+  tr {
     border: 0px solid $milli_gray;
   }
-  .categorizer{
+
+  .categorizer {
     width: 35%;
-   font-weight: bold;
+    font-weight: bold;
   }
-  .info
-  {
+
+  .info {
     width: 15%;
   }
-  td{
+
+  td {
 
     border: 0rem double $milli_gray;
   }
 }
 
-.button-open
-{
-color: $tade-color;
-width: 100%;
-padding: 2px;
-display: flex;
-justify-content: center;
-font-weight: bold;
-&:hover{
-  color: #594fb6d8
+.button-open {
+  color: $tade-color;
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+
+  &:hover {
+    color: #594fb6d8
+  }
 }
-}
+
 .exams_card .__buttons {
   display: flex;
   align-items: flex-end;
@@ -190,7 +148,7 @@ font-weight: bold;
   color: $tade-color;
   text-decoration: underline;
   font-family: Georgia, 'Times New Roman', Times, serif;
- 
+
 }
 
 
@@ -210,6 +168,7 @@ font-weight: bold;
 .dropdown-icon {
   cursor: pointer;
 }
+
 .exams_card {
 
 
@@ -218,7 +177,8 @@ font-weight: bold;
     align-items: center;
 
     .__logo {
-      margin-right: 10px; /* Spacing between logo and title */
+      margin-right: 10px;
+      /* Spacing between logo and title */
     }
 
     .__title {
@@ -229,7 +189,7 @@ font-weight: bold;
 
   .underline {
     border-bottom: 1px solid $tade-color;
-    margin: 5px 0; 
+    margin: 5px 0;
   }
 
   .exam_table {
@@ -238,7 +198,8 @@ font-weight: bold;
 
     .table_body {
       td {
-        padding: 10px; /* Padding for each cell */
+        padding: 10px;
+        /* Padding for each cell */
       }
 
       .categorizer {
@@ -252,21 +213,108 @@ font-weight: bold;
 
     .open-holder {
       text-align: center;
-      padding-top: 10px; /* Spacing above the "Open" button */
+      padding-top: 10px;
+      /* Spacing above the "Open" button */
 
       .button-open {
         background-color: $tade-color;
         color: $tade-yellow;
-        padding: 10px 20px; /* Button padding */
+        padding: 10px 20px;
+        /* Button padding */
         border: none;
-        border-radius: 5px; /* Button border radius */
+        border-radius: 5px;
+        /* Button border radius */
         cursor: pointer;
         font-size: 16px;
-      &:hover{
-        opacity: 0.7;
+
+        &:hover {
+          opacity: 0.7;
+        }
       }
-      }
- 
+
     }
   }
+}
+
+.exams__holder {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+
+}
+
+.select_field {
+  width: 100%;
+  background-color: #4caf4f00;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  color: white;
+  align-items: center;
+  padding: 1rem;
+  height: 170px;
+
+  @include respond(phone) {
+    color: yellow;
+  }
+
+  .input_holder {
+    height: 30%;
+    gap: 0.1rem;
+    display: flex;
+    border: solid 1px $tade-color;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    p {
+      font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+      width: 50%;
+      height: 50%;
+      font-size: 1rem;
+      align-items: center;
+
+    }
+
+    select {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 16px;
+      color: $tade-color;
+      outline: none;
+    }
+
+    option {
+      width: 100%;
+      background-color: #fff;
+      color: $tade-color
+    }
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+@keyframes loding {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loding {
+  width: 50px;
+  height: 50px;
+  border: 5px solid $tade-yellow;
+  border-top: 5px solid $tade-color;
+  border-radius: 50%;
+  animation: loading 5s linear infinite;
 }

@@ -1,10 +1,6 @@
 @import '../../styles/mixin.scss';
 @import '../../styles//colors.scss';
-
-.easyExam {
-    height: 70vh;
-    padding-block: 2rem;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .easy_exam_wrapper {
     display: flex;
@@ -13,6 +9,7 @@
     align-items: center;
     padding: 0;
     padding-top: 3rem;
+    background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
 .ofijan__info{
     p{
@@ -21,9 +18,7 @@
     }
 }
 .easy_exam_input_holder {
-
     display: flex;
-    
     justify-content: center;
     width: 50%;
     align-self: center;
@@ -31,13 +26,12 @@
     border: 1px solid $tade_color;
     align-items: center;
     padding-left: 20px;
+    background-color: white;
 }
-
 .searchExam {
     width: 90%;
     padding: 15px;
 }
-
 .searchExamBtn {
     height: 100%;
     border: 1px $tade_color solid;
@@ -45,4 +39,25 @@
     border-radius: 0px 20px 20px 0;
     background-color: $tade_color;
     color: white;
+}
+.ofijan__for__cards{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    gap: 2rem;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    @include respond(phone)
+    {
+        flex-direction: column;
+    }
+    .for__card{
+        background-color: $tade-color;
+        color: white;
+        p{
+            color: white;
+            font-size: 16px;
+        }
+    }
 }

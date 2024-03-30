@@ -6,6 +6,7 @@ import axios from 'axios';
 import ExamCard from '../ExamCard';
 import { Helmet } from 'react-helmet';
 import './easyexam.scss';
+import { Card } from 'antd';
 const index = () => {
   const [examID, setExamID] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -31,17 +32,19 @@ const index = () => {
   console.log('sent exams', searchResults);
 
   return (
-    <section className='easyExam'>   
-    <Helmet>
-                <meta property="og:title" content="EASY_EXAM" />
-                <meta property="og:image" content="withmoto.png" />
-                <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
-            </Helmet>
+    <section className='easyExam'>
+      <Helmet>
+        <meta property="og:title" content="EASY_EXAM" />
+        <meta property="og:image" content="withmoto.png" />
+        <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
+      </Helmet>
       <Wrapper className='easy_exam_wrapper ofijan__info'>
+
+        
         <p>Search Exam By The Id You get from your teacher. and Add the password</p>
         <p>E.x exam Id 116  password: 123456</p>
         <div className='easy_exam_input_holder'>
-       
+
           <input
             type="text"
             className='searchExam'
@@ -56,9 +59,43 @@ const index = () => {
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
+          
         </div>
+        <ExamCard exams={searchResults} />
+        <div className='ofijan__for__cards'>
+  <Card className='for__card' title="Ofijan For Class Test">
+          <p>
+            Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
+            <ul>
+              <li>Teachers exam correction time</li>
+              <li>Unecesary paper wastage</li>
+              <li>Mistakes in exam correction</li>
+            </ul>
+          </p>
+        </Card>
+        <Card className='for__card' title="Ofijan For Self Test">
+          <p>
+            Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
+            <ul>
+              <li>Teachers exam correction time</li>
+              <li>Unecesary paper wastage</li>
+              <li>Mistakes in exam correction</li>
+            </ul>
+          </p>
+        </Card>
+        <Card className='for__card' title="Ofijan For Self Test">
+          <p>
+            Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
+            <ul>
+              <li>Teachers exam correction time</li>
+              <li>Unecesary paper wastage</li>
+              <li>Mistakes in exam correction</li>
+            </ul>
+          </p>
+        </Card>
+</div>
       </Wrapper>
-      <ExamCard exams={searchResults} />
+      
     </section>
   );
 };

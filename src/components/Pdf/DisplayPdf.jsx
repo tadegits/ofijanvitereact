@@ -26,7 +26,6 @@ const DisplayPdf = () => {
     const [pdfUrl, setPdfUrl] = useState('');
     const [loading, setLoading] = useState(true); 
     const [selectedDepartment, setSelectedDepartment] = useState(null);
-
     const { id } = useParams();
 // genet
     // useEffect(() => {
@@ -44,11 +43,9 @@ const DisplayPdf = () => {
     //             });
     //     }
     // }, [pdfData]);
-
- 
         return  <section className='pdfs'> 
         <Helmet>
-            <meta property="og:title" content={`2015EXIT_${id}`} />
+            <meta property="og:title" content="display pdf" />
                 <meta property="og:image" content="withmoto.png" />
                 <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
             </Helmet>
@@ -101,8 +98,6 @@ const DisplayPdf = () => {
     //         </div>
     //     </Wrapper>
     // );
-
-
 DisplayPdf.propTypes = {
     onClose: PropTypes.func.isRequired,
     formData: PropTypes.object,

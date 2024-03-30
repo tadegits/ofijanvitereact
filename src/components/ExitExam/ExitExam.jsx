@@ -5,7 +5,7 @@ import { Card, Button, Modal, Input, Select }  from 'antd';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import ExamCardList from './ExamCard';
-
+import './ExitExam.scss';
 const ExitExam = () => {
   const { Option } = Select;
   const { Meta } = Card;
@@ -110,7 +110,7 @@ console.log('id', selectedDepartmentId);
     <section className='exitexam'>
       <Wrapper className='exitexam__container'>
       <div className='select_field'>
-        <p>Select Your field of study</p>
+        <div><p>Select Your field of study</p></div>
         <div className='input_holder'>
           <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
             <option value=''>All</option>
@@ -121,7 +121,7 @@ console.log('id', selectedDepartmentId);
             ))}
           </select>
         </div>
-        {isLoggedin ? (
+        {/* {isLoggedin ? (
           <Button>
             <Link to='/easyexam'>
               Take Exam now!
@@ -133,11 +133,11 @@ console.log('id', selectedDepartmentId);
               Take Exam now!
             </Link>
           </Button>
-        )}
+        )} */}
       </div>
 
-      <Wrapper className='examsholder'>
-        {loading && <p>Loading...</p>}
+      <div className='exams__holder'>
+        {loading && <p className='loding'></p>}
 
         {!loading &&
           (exams.length ? (
@@ -147,7 +147,7 @@ console.log('id', selectedDepartmentId);
               <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
             </div>
           ))}
-      </Wrapper>
+      </div>
 </Wrapper>   
  </section>
     
