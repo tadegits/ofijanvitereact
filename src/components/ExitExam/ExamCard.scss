@@ -1,7 +1,8 @@
 @import '../../../src//styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 $primary-color: #1890ff; 
 .exam_card1{
-  width: 250px;
+  width: 250px; 
   border-radius: 8px;
   border: solid #00000025 1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -10,6 +11,7 @@ $primary-color: #1890ff;
   padding-bottom: 30px;
   padding-top: 30px;
   transition: transform 0.3s ease;
+  font-family: "poppins";
 }
 .cardsholder{
   display: flex;
@@ -25,6 +27,7 @@ $primary-color: #1890ff;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+  
 }
 .card-container {
   display: flex;

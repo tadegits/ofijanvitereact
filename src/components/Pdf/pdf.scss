@@ -1,13 +1,38 @@
+@import '../../styles/colors.scss';
 .pdf_section{
   padding: 0;
   padding-top: 4rem;
- 
+  background-color: white;
+  //background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
 .pdf__section_viewer
 {
   padding: 0;
 }
+.pdf-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 60px;
+}
+.pdf__viewer{
+  margin-top: 1rem;
+  margin: 0.2rem;
+ h1{
+   margin-left: 2rem;
+ }
+ 
+}
+.pdf__col{  
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
 .pdfs{
+  
 padding: 0;
   gap: 2rem;
   h1{

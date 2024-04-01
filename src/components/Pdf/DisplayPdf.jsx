@@ -59,7 +59,7 @@ const DisplayPdf = () => {
                         {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} />  */}
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-                             <h1>{depts ? depts.title : ''} 2015 Ethiopian Exit Exam Questions</h1> 
+                             <h1>{depts ? depts.title : ''} 2015 Ethiopian Exit Exam Questios</h1> 
                              <ImageGallery id={id}/>
                              {/* <SampleExams id={id} />   */}
                     </Col>

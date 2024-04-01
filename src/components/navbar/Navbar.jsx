@@ -1,7 +1,7 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
-import { FaBars } from "react-icons/fa";
+import { FaBars , FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -79,19 +79,27 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="#">                              </Link>
                     </li>
+                 
                     {isLoggedIn &&
                         <li>
                             <Dropdown overlay={menu} trigger={['click']}>
                                 <Avatar icon={<UserOutlined />} />
                             </Dropdown>
                         </li>
-                    }
+                    }   
+                    <li>
+                        
+                        <div className={`navbarz__menubar ${showNav ? "tade-color" : ""}`} onClick={() => setShowNav(!showNav)}>
+                    <FaTimes/>
+                </div>
+                        </li>
                 </ul>
                 {!isLoggedIn &&
                     <Link to='/Login' className="button-primary navbarz__btn">
                         Sign in
                     </Link>
                 }
+                
                 <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`} onClick={() => setShowNav(!showNav)}>
                     <FaBars />
                 </div>

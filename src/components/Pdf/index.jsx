@@ -64,13 +64,13 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
               
                 {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
             </Col>
-            <Col xs={24} sm={24} md={24} lg={14} xl={14}>
+            <Col className="pdf__col" xs={24} sm={24} md={24} lg={14} xl={14}>
               <h1>2015 Ethiopian Exit Exam Questions</h1>
-              <Row gutter={[16, 16]} className="blog-row">
+              <Row gutter={[16, 16]} className="pdf-row">
                 {imagePath.map((image, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
                       <Link to={`/model-exam/${image}/1`} state={{ data: image }}>
-                        <Card hoverable className="blog-card" style={{ width:300, height:300 }}>
+                        <Card hoverable className="blog-card pdf__card" style={{ width:300, height:300 }}>
                           <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6g_jGGMzjjP9G6jrAhg3CfsMdg3gxeuwC5Q&usqp=CAU" className="blog-image" />
                           <Card.Meta
                             description={

@@ -39,11 +39,8 @@ const index = () => {
         <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
       </Helmet>
       <Wrapper className='easy_exam_wrapper ofijan__info'>
-
-        
         <p className='search'>Search for the exam using the ID provided by your teacher and enter the corresponding password. For example, if the exam ID is 116, the password is 123456.</p>
         <div className='easy_exam_input_holder'>
-
           <input
             type="text"
             className='searchExam'
@@ -58,11 +55,10 @@ const index = () => {
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
-           
         </div>
         <ExamCard exams={searchResults} />
         <div className='ofijan__for__cards'>
-        <Card className='for__card' title="Ofijan For Class Test">
+        <Card className='for__card' title={<h5>Ofijan For Class Assesment</h5>}>
           <p>
             Ofijan enables you to take mid-exam and final exam tests, making it a valuable resource for promoting efficient E-learning and reducing
             <ul>
@@ -72,7 +68,7 @@ const index = () => {
             </ul>
           </p>
         </Card>
-        <Card className='for__card' title="Ofijan For Self Test">
+        <Card className='for__card' title={<h5>Ofijan For Self Test</h5>}>
           <p>
           Ofijan's platform streamlines practice quizzes and mock exams, saving time and enhancing subject understanding.            <ul>
               <li>Enhanced self-assessment capabilities</li>
@@ -81,7 +77,7 @@ const index = () => {
             </ul>
           </p>
         </Card>
-        <Card className='for__card' title="Ofijan For Self Test">
+        <Card className='for__card' title={<h5>Ofijan For Study</h5>}>
           <p>
           Ofijan offers personalized exams with adaptive testing for focused improvement and tailored feedback, optimizing study efforts for better learning outcomes.
           <ul>

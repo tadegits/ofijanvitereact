@@ -137,7 +137,7 @@ console.log('id', selectedDepartmentId);
       </div>
 
       <div className='exams__holder'>
-        {loading && <p className='loding'></p>}
+        {loading && <p className='loading'></p>}
 
         {!loading &&
           (exams.length ? (
