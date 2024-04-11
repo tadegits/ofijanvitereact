@@ -10,6 +10,7 @@ import logoImg from '../../assets/ofijan_logo.png';
 import 'react-toastify/dist/ReactToastify.css';
 import './LoginSection.scss'
 import GoogleLoginButton from './GoogleLoginButton';
+import GoogleLoginFirebase from './GoogleLoginFirebase';
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -80,7 +81,8 @@ const LoginSection = () => {
                                 </div>
                                 <div className="summit-login">
                                     <button className='logbtn' onClick={handleSubmit}> Log In</button>
-                                    {/* <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure} /> */}
+                                    <GoogleLoginButton/>
+                               {/* <GoogleLoginFirebase/> */}
                                 </div>
                                 <div className="summit-signup">
                                     <h5>Register</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>
