@@ -15,7 +15,7 @@ const LoginSection = () => {
     const [fname, setFname] = useState("");
     const [fnmessage, setFnMessage] = useState("");
     const [lname, setLname] = useState("");
-    const [lnmessage, setLnMessage] = useState("");
+    const [lnmessage, setLnMessage] = useState(""); 
     const [password, setPassword] = useState("");
     const [pasmessage, setPasMessage] = useState("");
     const [confpassword, setConfPassword] = useState("");

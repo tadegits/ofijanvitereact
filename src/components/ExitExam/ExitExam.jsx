@@ -25,7 +25,7 @@ const ExitExam = () => {
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id);
+      // setRole(userLogged.user.role_id);
     }
   }, []);
 
