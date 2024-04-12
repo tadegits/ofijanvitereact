@@ -24,10 +24,10 @@ const DisplayPdf = () => {
     const depts = location.state?.data;
     const [pdfFile, setPdfFile] = useState(null);
     const [pdfUrl, setPdfUrl] = useState('');
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const [selectedDepartment, setSelectedDepartment] = useState(null);
     const { id } = useParams();
-// genet
+    // genet
     // useEffect(() => {
     //     if (pdfData) {
     //         const url = `${API_BASE_URL}/pdfs/${id}`;
@@ -43,61 +43,61 @@ const DisplayPdf = () => {
     //             });
     //     }
     // }, [pdfData]);
-        return  <section className='pdfs'> 
+    return <section className='pdfs'>
         <Helmet>
             <meta property="og:title" content="display pdf" />
-                <meta property="og:image" content="withmoto.png" />
-                <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
-            </Helmet>
-            <Wrapper className='pdf_section'>
-                
-           
-        <div className="display-pdf-container">
-            <Row gutter={24}>
+            <meta property="og:image" content="withmoto.png" />
+            <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+        </Helmet>
+        <Wrapper className='pdf_section'>
+
+
+            <div className="display-pdf-container">
+                <Row gutter={24}>
                     <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                        <AdvertisementCard/>
+                        <AdvertisementCard />
                         {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} />  */}
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-                             <h1>{depts ? depts.title : ''} 2015 Ethiopian Exit Exam Questios</h1> 
-                             <ImageGallery id={id}/>
-                             {/* <SampleExams id={id} />   */}
+                        <h1>{depts ? depts.title : ''} 2015 Ethiopian Exit Exam Questios</h1>
+                        <ImageGallery id={id} />
+                        {/* <SampleExams id={id} />   */}
                     </Col>
-                    <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                         <BluePrintCard /> 
-                    </Col>
+                    {/* <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                        <BluePrintCard />
+                    </Col> */}
                 </Row>
             </div>
         </Wrapper>;
-            </section>
-    }
+    </section>
+}
 
-    // return (
-    //     <Wrapper className='pdfs'>
-    //         <div
-    //             className="display-pdf-container">
-    //             <h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>
-    //             {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
-    //             <Row gutter={24}>
-    //                 <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-    //                     <BluePrintCard />
-    //                 </Col>
-    //                 <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-    //                     {loading ? ( // Show Spin if loading is true
-    //                         <Spin size="large" />
-    //                     ) : (
-    //                         <>
-    //                             <Viewer fileUrl={pdfFile} />
-    //                         </>
-    //                     )}
-    //                 </Col>
-    //                 <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-    //                     <SampleExams />
-    //                 </Col>
-    //             </Row>
-    //         </div>
-    //     </Wrapper>
-    // );
+// return (
+//     <Wrapper className='pdfs'>
+//         <div
+//             className="display-pdf-container">
+//             <h1>{pdfData.department ? pdfData.department.title : ''} 2015 Ethiopian Exit Exam Questions pdf</h1>
+//             {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
+//             <Row gutter={24}>
+//                 <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+//                     <BluePrintCard />
+//                 </Col>
+//                 <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
+//                     {loading ? ( // Show Spin if loading is true
+//                         <Spin size="large" />
+//                     ) : (
+//                         <>
+//                             <Viewer fileUrl={pdfFile} />
+//                         </>
+//                     )}
+//                 </Col>
+//                 <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+//                     <SampleExams />
+//                 </Col>
+//             </Row>
+//         </div>
+//     </Wrapper>
+// );
 DisplayPdf.propTypes = {
     onClose: PropTypes.func.isRequired,
     formData: PropTypes.object,

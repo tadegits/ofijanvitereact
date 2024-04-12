@@ -68,6 +68,7 @@ const Default = () => {
         <Route path="/2015_exit_pdfs" element={<Pdf />} />
         <Route path="/model-exam" element={<Pdf />} />
         <Route path="/2015MosheExitExam" element={<Pdf />} />
+        <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf/>} /> 
         <Route path="/display-exam/:id/1" element={<DisplayPdf/>} /> 
         <Route path="/display-exam/:id" element={<DisplayBluePrint/>} />

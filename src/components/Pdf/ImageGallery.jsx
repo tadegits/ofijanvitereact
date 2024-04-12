@@ -9,7 +9,7 @@ const ImageGallery = ({ id }) => {
   const [loading, setLoading] = useState(true);
   const [imageData, setImageData] = useState(null);
   const [error, setError] = useState(null); // Add error state
-  const imagesPerPage = 10;
+  const imagesPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

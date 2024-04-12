@@ -69,7 +69,7 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
               <Row gutter={[16, 16]} className="pdf-row">
                 {imagePath.map((image, index) => (
                     <Col xs={24} sm={12} md={8} key={index}>
-                      <Link to={`/model-exam/${image}/1`} state={{ data: image }}>
+                      <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
                         <Card hoverable className="blog-card pdf__card" style={{ width:300, height:300 }}>
                           <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6g_jGGMzjjP9G6jrAhg3CfsMdg3gxeuwC5Q&usqp=CAU" className="blog-image" />
                           <Card.Meta

@@ -5,10 +5,12 @@
     border-top-right-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
     background-color: #ffffff;
-.__section{
-    padding: 0;
-    padding-top: 2rem;
-}
+
+    .__section {
+        padding: 0;
+        padding-top: 2rem;
+    }
+
     &__header {
         align-items: center;
         width: fit-content;
@@ -36,16 +38,17 @@
         grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
         gap: 1rem;
     }
+
     @media screen and (max-width: 767px) {
         &__container {
             justify-content: right;
             display: grid;
             margin-left: 10px;
             width: 100%;
-       
+
         }
-      
-      }
+
+    }
 
     &__image_holder {
         background-color: #b8b7be;
@@ -70,7 +73,7 @@
         margin-inline: auto;
         align-content: center;
         align-items: center;
-        
+
 
         .logtitle {
             display: flex;
@@ -129,13 +132,13 @@
     }
 
     &__form1 {
-       
+
         padding: 0.5rem;
         width: auto;
         margin-bottom: 10px;
 
         .form-contents {
-           
+
             width: 100%;
 
             @include respond(tab-land) {
@@ -167,16 +170,18 @@
             }
 
         }
+
         @media screen and (max-width: 767px) {
+
             .email,
             .pass {
-            width: 180px;
-            display: flex;
-            justify-content: flex-start;
-           
+                width: 180px;
+                display: flex;
+                justify-content: flex-start;
+
             }
-          
-          }
+
+        }
 
         .summit-forget {
             width: 100%;
@@ -223,16 +228,17 @@
             }
         }
 
-    @media screen and (max-width: 767px) {
-            .logbtn{
+        @media screen and (max-width: 767px) {
+            .logbtn {
                 width: 100%;
-                display: inline-block;              
+                display: inline-block;
                 margin-left: 30px;
 
-           
+
             }
-          
-          }
+
+        }
+
         .summit-signup {
             display: flex;
             width: fit-content;
@@ -248,15 +254,17 @@
                 font-weight: 700;
                 margin: 0;
             }
+
             @media screen and (max-width: 767px) {
-                h5{
+                h5 {
                     width: 100%;
                     font-size: large;
                     display: inline;
-               
+
                 }
-              
-              }
+
+            }
+
             .singup {
                 background-color: #fff;
                 font-size: 0.8rem;
@@ -274,19 +282,56 @@
             }
 
         }
+
         @media screen and (max-width: 767px) {
-            .singup{
+            .singup {
                 width: 100%;
                 display: inline;
                 font-size: x-large;
-           
+
             }
-          
-          }
+
+        }
 
 
         .button-primary {
             cursor: pointer;
+        }
+    }
+}
+
+.login__form1 {
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    height: 70vh;
+    display: flex;
+
+    @include respond(phone) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .form-contents {
+        display: flex;
+        flex-direction: column;
+        .email{
+            width: 100%;
+        }
+        .pass{
+            width: 100%;
+        }
+        .summit-login{
+            margin: 0;
+            padding: 0;
+            .logbtn{
+                margin: 0;
+                padding: 0;
+                height: 50px;
+            }
         }
     }
 }
