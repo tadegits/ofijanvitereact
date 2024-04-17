@@ -13,7 +13,6 @@ import Navbar from '../navbar/Navbar'
 import LNavbar from '../../logedin/navbar/LNavbar'
 const Home = () => {
   const [user, setUser] = useState("");
-  const [role, setRole] = useState("");
   const [isLoggedin, setIsLoggedin] = useState(false); 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -21,7 +20,7 @@ const Home = () => {
       const roleUser = JSON.parse(loggedInUser);
       const foundUser = JSON.stringify(loggedInUser);
       setUser(foundUser);
-      setRole(parseInt(roleUser.user.role_id))
+     
     }
   }, []);
   return (

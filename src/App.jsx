@@ -1,30 +1,26 @@
-
-
-import { useEffect, useState, } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'; 
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
-import Seller from "./Seller"
-import NetworkStatus from "./network/NetworkStatus";
 import Footer from './components/footer/footer';
-import Navbar from "./components/navbar/Navbar";
-import LNavbar from "./logedin/navbar/LNavbar";
+import { selectUser } from "./features/userSlice";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
+
 function App() {
-  const [user, setUser] = useState("");
-  const [role, setRole] = useState("");
+  const [user, setUser] = useState(""); // Consider removing this state if not used elsewhere
+  const isLoggedIn = useSelector(selectUser);
   const navigate = useNavigate();
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const roleUser = JSON.parse(loggedInUser);
-      const foundUser = JSON.stringify(loggedInUser);
-      setUser(foundUser);
-      setRole(parseInt(roleUser.user.role_id))
+      setUser(roleUser); // Update the state with the user object
     }
   }, []);
+
   const firebaseConfig = {
     apiKey: "AIzaSyApf7vMHzF0F8XdCS-OdnA43GAk-BAItG0",
     authDomain: "ofijan-exams.firebaseapp.com",
@@ -36,26 +32,22 @@ function App() {
   };
   const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-  console.log(role)
-  if (user) {
-    if (role === 2 || role === 3) {
-      return (
-        <>  
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <>
           <Loged />
           <Footer />
         </>
-      )
-    }
-
-  }
-  else {
-    return (
-      <>
-        <Default />
-        <Footer />
-      </>
-    )
-  }
-
+      ) : (
+        <>
+          <Default />
+          <Footer />
+        </>
+      )}
+    </>
+  );
 }
-export default App
+
+export default App;

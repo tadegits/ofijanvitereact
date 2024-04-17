@@ -4,15 +4,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
 import { Divider } from "antd";
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectRedirectUrl} from "../../features/userSlice";
 import './LoginSection.scss'
+import GoogleLoginButton from './GoogleLoginButton';
 
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // State for password visibility
+    const [showPassword, setShowPassword] = useState(false); 
+    const redirectUrl = useSelector(selectRedirectUrl);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const logedUser = localStorage.getItem("user");
         if (logedUser !== null) {
@@ -45,7 +49,17 @@ const LoginSection = () => {
             console.log(response.data);
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
-                navigate('/Exit_Exam');
+                dispatch(
+                    login({
+                      email: email,
+                      password: password,
+                      loggedIn: true,
+                    }));
+                    if (redirectUrl) {
+                        navigate(redirectUrl); 
+                      } else {
+                        navigate("/Exit_Exam");
+                      }
             }
         } catch (error) {
             if (error.response && error.response.status === 422) {
@@ -70,21 +84,25 @@ const LoginSection = () => {
                                     onChange={handlePasswordChange}
                                     className="pass"
                                 />
-                                <button
+                                {/* <button
                                     type="button"
                                     onClick={togglePasswordVisibility}
                                     className="password-toggle"
                                 >
                                     {showPassword ? 'Hide' : 'Show'}
-                                </button>
+                                </button> */}
                             </div>
                             <div className="summit-login">
                                 <button className='logbtn' onClick={handleSubmit}> Log In</button>
-                            </div>
-                            <Divider><p>Don't Have Account?</p></Divider>
-                            <div className="summit-signup">
+                            </div> 
+                            <GoogleLoginButton/>
+
+                            
+                            <Divider><p>Don't Have Account? <div className="summit-signup">
                                 <Link to={'/signup'}><input type='submit' value="Register" className='singup' /></Link>
-                            </div>
+                            </div></p></Divider>
+                           
+                            
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import ExamCard from '../ExamCard';
 import { Helmet } from 'react-helmet';
 import './easyexam.scss';
 import { Card } from 'antd';
-const index = () => {
+const Index = () => {
   const [examID, setExamID] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ const index = () => {
     <section className='easyExam'>
       <Helmet>
         <meta property="og:title" content="EASY_EXAM" />
-        <meta property="og:image" content="withmoto.png" />
+        <meta property="og:image" content="./withmoto.png" />
         <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
       </Helmet>
       <Wrapper className='easy_exam_wrapper ofijan__info'>
@@ -95,4 +95,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

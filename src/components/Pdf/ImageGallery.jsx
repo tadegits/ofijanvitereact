@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Button, Spin, Image } from 'antd';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
-
+import { selectUser, selectRedirectUrl, setRedirectUrl } from "../../features/userSlice";
+import { useDispatch, useSelector} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const ImageGallery = ({ id }) => {
-  const [imageUrls, setImageUrls] = useState([]); // Track full image URLs
+  const [imageUrls, setImageUrls] = useState([]); 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [imageData, setImageData] = useState(null);
-  const [error, setError] = useState(null); // Add error state
+  const [error, setError] = useState(null); 
   const imagesPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-
+  const isLoggedIn = useSelector(selectUser);
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const redirectUrl = useSelector(selectRedirectUrl);
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
@@ -64,13 +70,33 @@ const ImageGallery = ({ id }) => {
   }, [currentImageIndex, imageUrls]);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+if(!isLoggedIn)
+{
+  console.log('logedin', isLoggedIn)
+handleSweetAlert();
+}
+else{
+  setCurrentPage((prevPage) => prevPage + 1);
+}
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
-
+  const handleSweetAlert = () => {
+    Swal.fire({
+        text: 'Login to get the rest of the questions!',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Login Now',
+    }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(setRedirectUrl(window.location.pathname));
+          window.location.href = '/Login';
+          navigate('/Login');
+        }
+    });
+};
   const startIndex = (currentPage - 1) * imagesPerPage;
   const endIndex = startIndex + imagesPerPage;
 

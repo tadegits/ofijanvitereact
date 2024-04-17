@@ -141,7 +141,7 @@ const LoginSection = () => {
         }
         else if (password === "") {
             setPasMessage("Password required");
-        }
+        } 
         else if (confpassword === "") {
             setConfMessage("Confirm password required");
         }

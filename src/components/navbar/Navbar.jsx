@@ -1,17 +1,23 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
 import Logo from "../../assets/logo.png";
-import { FaBars , FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { Menu, Dropdown, Avatar } from 'antd';
+import { Menu, Dropdown, Avatar, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUser, logout } from '../../features/userSlice'
 const Navbar = () => {
+
+
     const [user, setUser] = useState(null);
     const [showNav, setShowNav] = useState(false);
-    const isLoggedIn = !!user;
-
+    const isLoggedIn = useSelector(selectUser)
+    const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     useEffect(() => {
         const loggedInUser = JSON.parse(localStorage.getItem("user"));
         if (loggedInUser) {
@@ -20,9 +26,21 @@ const Navbar = () => {
     }, []);
 
     const handleLogout = () => {
+
+        setLogoutModalVisible(true);
+    };
+
+    const handleConfirmLogout = (e) => {
+        setLogoutModalVisible(false);
+        e.preventDefault();
         localStorage.removeItem("user");
         setUser(null);
-        window.location.href = '/';
+        dispatch(logout());
+        navigate('/')
+    };
+
+    const handleCancelLogout = () => {
+        setLogoutModalVisible(false);
     };
 
     const menu = (
@@ -38,6 +56,7 @@ const Navbar = () => {
                 <Menu.Item key="get-started">
                     <Link to="/Login">Get Started</Link>
                 </Menu.Item>
+
             )}
         </Menu>
     );
@@ -79,30 +98,50 @@ const Navbar = () => {
                     <li onClick={() => setShowNav(false)}>
                         <Link to="#">                              </Link>
                     </li>
-                 
+
                     {isLoggedIn &&
                         <li>
                             <Dropdown overlay={menu} trigger={['click']}>
                                 <Avatar icon={<UserOutlined />} />
                             </Dropdown>
                         </li>
-                    }   
+                    }
                     <li>
-                        
+
+
+                        {!isLoggedIn && <div className={`button-sig ${showNav ? "tade-color" : ""}`} onClick={() => setShowNav(!showNav)}>
+                            <Link to='/Login' className="button-outline">
+                                Sign in
+                            </Link>
+                        </div>}
+
+                    </li>
+                    <li>
+
+
                         <div className={`navbarz__menubar ${showNav ? "tade-color" : ""}`} onClick={() => setShowNav(!showNav)}>
-                    <FaTimes/>
-                </div>
-                        </li>
+                            <FaTimes />
+                        </div>
+
+                    </li>
                 </ul>
                 {!isLoggedIn &&
                     <Link to='/Login' className="button-primary navbarz__btn">
                         Sign in
                     </Link>
                 }
-                
+
                 <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`} onClick={() => setShowNav(!showNav)}>
                     <FaBars />
                 </div>
+                <Modal
+                    title="Confirm Logout"
+                    open={logoutModalVisible}
+                    onOk={handleConfirmLogout}
+                    onCancel={handleCancelLogout}
+                >
+                    <p>Are you sure you want to logout?</p>
+                </Modal>
             </Wrapper>
         </nav>
     );

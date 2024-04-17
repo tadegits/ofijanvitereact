@@ -3,15 +3,17 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectRedirectUrl } from "../../features/userSlice";
 function GoogleLoginButton() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState("");
+  const redirectUrl = useSelector(selectRedirectUrl);
 
   async function signUp(fname, lname, email, phone, dept, password) {
     let crinfo = { fname, lname, email, phone, dept, password };
-
     try {
       let result = await fetch(`${API_BASE_URL}/registeruser`, {
         method: "POST",
@@ -43,34 +45,38 @@ function GoogleLoginButton() {
   }
 
   return (
+    <div className="googlelogin">
     <GoogleLogin
       onSuccess={(credentialResponse) => {
         const credentialResponseDecoded = jwtDecode(
           credentialResponse.credential
         );
-
-        // Dummy data for sign up
         const { given_name, family_name, email } = credentialResponseDecoded;
         const dummyPhone = "1234567890";
-        const dummyDept = "Dummy Department";
+        const dummyDept = "DD";
         const dummyPassword = "dummyPassword123";
-
-        // Call signUp function with dummy data
         signUp(given_name, family_name, email, dummyPhone, dummyDept, dummyPassword);
          credentialResponseDecoded.dept_id = 1;
          credentialResponseDecoded.role_id = 1;
-         localStorage.setItem('user', JSON.stringify(credentialResponseDecoded));
-        navigate('/Exit_Exam');
-        //  console.log(credentialResponseDecoded);
-        //  const loggedInUser = localStorage.getItem('user');
-        //  const users = JSON.parse(loggedInUser);
-        //  console.log(users);
-        window.location.reload();
+        //  localStorage.setItem('user', JSON.stringify(credentialResponseDecoded));
+                dispatch(
+                    login({
+                      email: email,
+                      password: "dummyPassword",
+                      loggedIn: true,
+                    }));
+                    if (redirectUrl) {
+                      navigate(redirectUrl); 
+                    } else {
+                      navigate("/Exit_Exam");
+                    }
+               
       }}
       onError={() => {
         console.log("login failed");
       }}
     />
+    </div>
   );
 }
 

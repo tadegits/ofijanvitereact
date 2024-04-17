@@ -54,7 +54,7 @@ const Hero = () => {
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id);
+     
     }
   }, []);
 
