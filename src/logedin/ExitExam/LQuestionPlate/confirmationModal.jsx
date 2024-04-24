@@ -7,13 +7,13 @@ const ConfirmationModal = ({ data, onClose }) => {
 
     const handleSendExamData = () => {
         const examData = answeredQuestions.map(question => ({
-            userId: question.userId,
+            userId: question.teacher_id,
             questionId: question.id,
             optionId: question.options.find(option => option.selected)?.id,
             examId: question.exam_id,
             correct: question.options.find(option => option.selected)?.correct === '1'
         }));
-
+console.log(question);
         axios.post(`${API_BASE_URL}/selected_answers`, examData)
             .then(response => {
                 console.log('Exam data sent successfully');

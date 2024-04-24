@@ -53,7 +53,7 @@ const Index = () => {
     ];
 
     return (
-        <section classname='result'>
+        <section className='result'>
             <Wrapper className='result__section'>
                 <div>
                     <h1>Exam Results</h1>

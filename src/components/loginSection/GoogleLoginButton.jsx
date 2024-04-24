@@ -5,13 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, selectRedirectUrl } from "../../features/userSlice";
+import axios from 'axios';
 function GoogleLoginButton() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState("");
   const redirectUrl = useSelector(selectRedirectUrl);
-
+const [password, setPassword] = useState("dummyPassword123");
   async function signUp(fname, lname, email, phone, dept, password) {
     let crinfo = { fname, lname, email, phone, dept, password };
     try {
@@ -46,8 +47,9 @@ function GoogleLoginButton() {
 
   return (
     <div className="googlelogin">
-    <GoogleLogin
-      onSuccess={(credentialResponse) => {
+  <GoogleLogin
+    onSuccess={async (credentialResponse) => {
+      try {
         const credentialResponseDecoded = jwtDecode(
           credentialResponse.credential
         );
@@ -56,27 +58,39 @@ function GoogleLoginButton() {
         const dummyDept = "DD";
         const dummyPassword = "dummyPassword123";
         signUp(given_name, family_name, email, dummyPhone, dummyDept, dummyPassword);
-         credentialResponseDecoded.dept_id = 1;
-         credentialResponseDecoded.role_id = 1;
+        credentialResponseDecoded.dept_id = 1;
+        credentialResponseDecoded.role_id = 1;
         //  localStorage.setItem('user', JSON.stringify(credentialResponseDecoded));
-                dispatch(
-                    login({
-                      email: email,
-                      password: "dummyPassword",
-                      loggedIn: true,
-                    }));
-                    if (redirectUrl) {
-                      navigate(redirectUrl); 
-                    } else {
-                      navigate("/Exit_Exam");
-                    }
-               
-      }}
-      onError={() => {
-        console.log("login failed");
-      }}
-    />
-    </div>
+        
+        const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
+        console.log(response.data);
+        if (response.data) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+          dispatch(
+            login({
+              email: email,
+              password: dummyPassword,
+              loggedIn: true,
+            })
+          );
+          if (redirectUrl) {
+            navigate(redirectUrl); 
+          } else {
+            navigate("/Exit_Exam");
+          }
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          // setError("Incorrect username or password");
+        }
+      }
+    }}
+    onError={() => {
+      console.log("login failed");
+    }}
+  />
+</div>
+
   );
 }
 

@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, logout } from '../../features/userSlice'
 const Navbar = () => {
 
-
+    const my_user = useSelector(selectUser);
+    
     const [user, setUser] = useState(null);
     const [showNav, setShowNav] = useState(false);
     const isLoggedIn = useSelector(selectUser)
@@ -24,7 +25,7 @@ const Navbar = () => {
             setUser(loggedInUser);
         }
     }, []);
-
+console.log(user);
     const handleLogout = () => {
 
         setLogoutModalVisible(true);
