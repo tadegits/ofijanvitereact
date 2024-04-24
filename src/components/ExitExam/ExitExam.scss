@@ -55,11 +55,11 @@
 .examsholder {
   display: flex;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
+  padding-top: 20px;
   height: max-content;
-
+border-radius: 20px;
   min-height: 400px;
-  background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -78,6 +78,7 @@
   align-items: flex-end;
   background-color: #ffffff;
   box-shadow: #4CAF50;
+  border-radius: 10px;
 
   @media screen and (max-width: 767px) {
     .exams_card {

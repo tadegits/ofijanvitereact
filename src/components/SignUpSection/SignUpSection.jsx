@@ -3,6 +3,7 @@ import Wrapper from "../wrapper/Wrapper";
 import React from 'react';
 import SignUp from '../../assets/signup.png'
 import LoginSection from '../loginSection/LoginSection'
+import GoogleLoginButton from "../loginSection/GoogleLoginButton";
 export default function SignUpSection() {
   return (
     <section className="signup">
@@ -17,7 +18,7 @@ export default function SignUpSection() {
         Simple registration will customise your preference! You will have better experinace with ofijan. 
         we are waiting for you with all our best questions to practise with.
     </p>
-   <LoginSection/>
+  <GoogleLoginButton/>
 </div>
 </Wrapper>
     </section>

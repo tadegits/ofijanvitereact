@@ -46,7 +46,7 @@ const Index = () => {
             key: 'name',
         },
         {
-            title: 'Correct Answers',
+            title: 'Total correct answer',
             dataIndex: 'correct_count',
             key: 'correct_count',
         }

@@ -29,7 +29,7 @@ const TestMePlate = () => {
     const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
+    const [attemptedMessage, setAttemptedMessage] = useState('');
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
     useEffect(() => {
@@ -101,7 +101,7 @@ const TestMePlate = () => {
             fetchQuestionData();
         }
     }, [ofin_id, userId, testStarted, timeLeft, initialTime]);
-
+console.log('question', questionData);
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
@@ -115,22 +115,33 @@ const TestMePlate = () => {
         }
     }, [selectedQuestionIndex, questionData]);
 
-    const handleStartClick = () => {
-        setTestStarted(true);
-        setShowModal(true);
+    const handleStartClick = async () => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/check-user-exam`, { userId, examId: ofin_id });
+            if (response.data.message === 'Yes') {
+                console.log('checker1', response.data.message)
+                setAttemptedMessage("You have already taken this exam!");
+                setTestStarted(false);
+                setShowModal(false);
+            }
+            else {
+                console.log('checker2', response.data.message)
+                setTestStarted(true);
+                setShowModal(true);
+            }
+        } catch (error) {
+            console.log('Error checking exam result', error);
+        }
     };
-
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
-
     const handleQuestionClick = (index) => {
         setSelectedQuestionIndex(index);
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
-
     const handleOptionClick = (index) => {
         const updatedQuestionData = [...questionData];
         updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map((option, i) => ({
@@ -140,7 +151,6 @@ const TestMePlate = () => {
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
         setAnswered(true);
-
         // Save selected option to local storage
         const selectedQuestion = questionData[selectedQuestionIndex];
         const selectedOption = updatedQuestionData[selectedQuestionIndex].options[index];
@@ -150,14 +160,12 @@ const TestMePlate = () => {
             setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
         }
     };
-
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length) {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
             setSelectedOptionIndex(null);
         }
     };
-
     const handlePreviousClick = () => {
         if (selectedQuestionIndex > 0) {
             setSelectedQuestionIndex((prevIndex) => prevIndex - 1);
@@ -245,7 +253,9 @@ const TestMePlate = () => {
                     <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
                     {!testStarted && (
                         <div className="strt">
-                            <button className='butnstart' onClick={handleStartClick}>Start Test</button>
+                            <p>{attemptedMessage? attemptedMessage:""}</p>
+                            <button className='butnstart' onClick={handleStartClick}>START TEST</button>
+                            
                         </div>
                     )}
 

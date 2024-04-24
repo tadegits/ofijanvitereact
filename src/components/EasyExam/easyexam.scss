@@ -7,6 +7,7 @@
 
 .easy_exam_wrapper {
     display: flex;
+    margin:0px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -59,6 +60,7 @@
     color: white;
 }
 .ofijan__for__cards{
+    margin-top: 10px;
     width: 100%;
     justify-content: space-between;
     display: flex;

@@ -229,7 +229,7 @@ const LoginSection = () => {
                                     <div className="department">
                                         <label>Department</label>
                                         <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
-                                            <option value="1"></option>
+                                            <option value="200"></option>
                                             {data.map(data => (
                                                 <option key={data.id} value={data.id} selected>{data.title}</option>
                                             ))}

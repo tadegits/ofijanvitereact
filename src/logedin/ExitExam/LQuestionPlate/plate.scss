@@ -10,6 +10,7 @@
 .test__section{
   padding: 0;
   padding-top: 2rem;
+
  
 }
 .topbar{
@@ -34,14 +35,12 @@
 .ofijan_exam_plate {
   width: 100%;
   padding: 0;
-  padding-top: 2rem;
+  padding-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin-top: 0vh;
-
   @include respond(phone) {
     padding: 4px;
   }
@@ -485,10 +484,21 @@ th {
 }
 
 .strt {
-
   margin-bottom: 20%;
-
-
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  p{
+    color: red;
+    align-items: center;
+    margin-bottom: 5px;
+    font-weight: bolder;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -502,10 +512,12 @@ th {
   padding: 15px;
   border-radius: 15px;
   font-weight: bolder;
-  font-size: 0.7em;
+  font-size: 0.9em;
   border-style: outline;
   color: white;
   background-color: $tade-color;
+  letter-spacing: 1px;
+  width: 100%;
 
 }
 
