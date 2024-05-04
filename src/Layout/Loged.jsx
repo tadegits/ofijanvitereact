@@ -30,6 +30,7 @@ import Plate from '../logedin/ExitExam/LQuestionPlate/Plate.jsx';
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs.jsx';
 import TermsOfService from '../components/footer/TermsOfService.jsx';
+import ExamResults from '../components/ExitExam/ExamResult.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -58,6 +59,7 @@ const Loged = () => {
         <Route path="/" element={<Home />} />
         <Route path="/easyexam" element={<EasyExam />} />
         <Route path="/easy_exam_plate/:ofin_id" element={<EasyExamPlate />} />
+        <Route path="/examresults/:id" element={<ExamResults />} />
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />

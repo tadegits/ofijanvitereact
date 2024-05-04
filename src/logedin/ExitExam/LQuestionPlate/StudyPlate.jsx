@@ -26,6 +26,7 @@ const StudyPlate = () => {
     const [correctAnswer, setCorrectAnswer] = useState('')
     const [timeLeft, setTimeLeft] = useState('');
     const alphabet = ["A", "B", "C", "D"];
+    const [examType, setExamType] = useState('');
     const [role, setRole] = useState('');
 
     useEffect(() => {
@@ -46,6 +47,7 @@ const StudyPlate = () => {
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
+                setExamType(data[10].exam.exam_type);
                 setTimeLeft(data[10].exam.exam_duration);
             })
             .catch((err) => console.log(err));
@@ -149,7 +151,8 @@ const StudyPlate = () => {
             <AdvertisementCard/><AdvertisementCard/>
 
             </div>
-            <div className='sofijan_exam_plate_study'>
+            {examType == null? 
+           <><div className='sofijan_exam_plate_study'>
 
 
 
@@ -164,7 +167,6 @@ const StudyPlate = () => {
                                 <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
                             </div>
                             <div className="choice_plate_study">
-
 
                                 {questionData[selectedQuestionIndex].options.map((option, index) => {
                                     const isSelected = selectedOptionIndex === index;
@@ -223,7 +225,7 @@ const StudyPlate = () => {
                         />
                     ))}
                 </div>
-            </div>
+            </div></> :"Sorry this exam is not available for you!"}
         </div>
         </Wrapper>
         </section>

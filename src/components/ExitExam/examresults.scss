@@ -1,0 +1,102 @@
+.exam-results-container {
+    padding: 20px;
+justify-content: center;
+display: flex;
+flex-direction: column;
+padding-top: 50px;
+.header-section{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+}
+    .statistics-section {
+        margin-bottom: 20px;
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-between;
+flex-wrap: wrap;
+gap: 1rem;
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .statistic-item {
+            margin-bottom: 10px;
+
+            .ant-statistic-title {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .highest-scorer-section {
+        margin-bottom: 20px;
+        width: 100%;
+        margin: auto;
+        justify-content: center;
+        background-color: rgba(124, 255, 2, 0.205);
+        align-items: center;
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .paragraph {
+            font-size: 16px;
+
+            .ant-typography-text {
+                font-weight: bold;
+            }
+
+            .anticon-smile {
+                vertical-align: middle;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .exam-results-section {
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .list-item {
+            .ant-typography-text {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.list-item {
+    padding: 10px;
+    border-bottom: 1px solid #e8e8e8;
+
+    .result-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 40%;
+
+        .name {
+            font-weight: bold;
+        }
+
+        .correct-answers {
+            color: #1890ff;
+        }
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}

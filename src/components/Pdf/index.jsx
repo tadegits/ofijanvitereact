@@ -71,7 +71,7 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                     <Col xs={24} sm={12} md={8} key={index}>
                       <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
                         <Card hoverable className="blog-card pdf__card" style={{ width:300, height:300 }}>
-                          <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6g_jGGMzjjP9G6jrAhg3CfsMdg3gxeuwC5Q&usqp=CAU" className="blog-image" />
+                          <Image src="./images.png" className="blog-image" />
                           <Card.Meta
                             description={
                               <div>

@@ -29,8 +29,9 @@ const TestMePlate = () => {
     const [timeLeft, setTimeLeft] = useState(1);
     const [initialTime, setInitialTime] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [examType, setExamType] = useState('');
     const [attemptedMessage, setAttemptedMessage] = useState('');
-    const alphabet = ["A", "B", "C", "D"];
+    const  alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
     useEffect(() => {
         // Load state from localStorage if available
@@ -88,6 +89,7 @@ const TestMePlate = () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/way_questions/${ofin_id}`);
                 setQuestionData(response.data);
+                setExamType(response.data[10].exam.exam_type);
                 const examDurationInMinutes = response.data[1].exam.exam_duration;
                 const examDurationInSeconds = examDurationInMinutes * 60;
                 setInitialTime(examDurationInSeconds);
@@ -247,7 +249,7 @@ console.log('question', questionData);
                 <meta property="og:image" content="withmoto.png" />
                 <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
             </Helmet>
-
+            {examType == null? 
             <Wrapper className='test__section'>
                 <div className='ofijan_exam_plate'>
                     <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
@@ -353,7 +355,7 @@ console.log('question', questionData);
                         </div>
                     }
                 </div>
-            </Wrapper>
+            </Wrapper> :'This exam is not avilable for you!'}
         </section>
     );
 };

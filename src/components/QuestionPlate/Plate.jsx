@@ -23,6 +23,7 @@ const Plate = () => {
     const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
+    const [examType, setExamType] = useState('');
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
@@ -41,10 +42,11 @@ const Plate = () => {
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
+                setExamType(data[3].exam.exam_type);
             })
             .catch((err) => console.log(err));
     }, [ofin_id, userId]);
-
+console.log('exam_type', examType);
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {

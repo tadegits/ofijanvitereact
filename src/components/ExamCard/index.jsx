@@ -93,13 +93,13 @@ const Index = ({ exams }) => {
                         <b>Ofijan Id:</b> OF{exams.id}{exams.id}IN
                     </p>
                     <p>
-                        <b>Prepared By:</b> Gaki Serocho
+                        <b>Prepared By:</b> Million Sime
                     </p>
                     <p>
                         <b>Total no of Questions:</b> {exams.questions_count}
                     </p>
                     <p>
-                        <b>Topics Covered:</b> 12
+                        <b>Topics Covered:</b> 4 Chapters
                     </p>
                 </Card>
                 <Modal

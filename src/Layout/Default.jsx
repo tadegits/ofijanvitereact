@@ -30,6 +30,7 @@ import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs';
 import TermsOfService from '../components/footer/TermsOfService';
 import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate';
+import ExamResults from '../components/ExitExam/ExamResult';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -70,15 +71,18 @@ const Default = () => {
         <Route path="/2015MosheExitExam" element={<Pdf />} />
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
+        <Route path="/examresults/:id" element={<ExamResults />} />
         <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-exam/:id" element={<DisplayBluePrint />} />
         <Route path="/display-pdf/:id" element={<DisplayBluePrint />} />
         <Route path="/blueprint" element={<BluePrint />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route exact path='/gezi' element={<Gezi/>}/> */}
+
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
+        
         <Route path="/seller" element={<Seller />} />
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}
