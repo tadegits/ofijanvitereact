@@ -1,3 +1,4 @@
+@import "../../styles/mixin.scss";
 .exam-results-container {
     padding: 20px;
 justify-content: center;
@@ -10,6 +11,12 @@ padding-top: 50px;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 90%;
+}
+.name{
+    text-align: justify;
+}
+.result-text{
+    text-align: justify;
 }
     .statistics-section {
         margin-bottom: 20px;
@@ -91,12 +98,64 @@ gap: 1rem;
             font-weight: bold;
         }
 
-        .correct-answers {
-            color: #1890ff;
-        }
+        
     }
 
     &:last-child {
         border-bottom: none;
     }
+}
+.exam-results-section {
+    margin: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.two-column-container {
+    display: flex;
+    @include respond(phone) {
+        flex-direction: column;
+      }
+    
+}
+
+.column {
+    flex: 1;
+}
+
+.result-item {
+    margin-bottom: 10px;
+}
+
+.result-item .sequence {
+    margin-right: 10px;
+}
+.result-item {
+    margin-bottom: 10px;
+}
+
+.result-item .sequence {
+    margin-right: 10px;
+}
+
+.result-item .result-space {
+    margin-right: 40px; 
+}
+
+.correct-answers {
+            color: #1890ff;
+        }
+        .name{
+            width: 200px;
+        }
+        .result-space{
+            width: 200px;
+        }
+
+.result-item{
+    background-color: rgb(236, 233, 233);
+    display: flex;
+
 }

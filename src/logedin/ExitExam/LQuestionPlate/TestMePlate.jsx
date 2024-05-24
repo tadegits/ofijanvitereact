@@ -31,7 +31,7 @@ const TestMePlate = () => {
     const [showModal, setShowModal] = useState(false);
     const [examType, setExamType] = useState('');
     const [attemptedMessage, setAttemptedMessage] = useState('');
-    const  alphabet = ["A", "B", "C", "D"];
+    const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
     useEffect(() => {
         // Load state from localStorage if available
@@ -89,7 +89,7 @@ const TestMePlate = () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/way_questions/${ofin_id}`);
                 setQuestionData(response.data);
-                setExamType(response.data[10].exam.exam_type);
+
                 const examDurationInMinutes = response.data[1].exam.exam_duration;
                 const examDurationInSeconds = examDurationInMinutes * 60;
                 setInitialTime(examDurationInSeconds);
@@ -103,7 +103,6 @@ const TestMePlate = () => {
             fetchQuestionData();
         }
     }, [ofin_id, userId, testStarted, timeLeft, initialTime]);
-console.log('question', questionData);
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
@@ -121,13 +120,11 @@ console.log('question', questionData);
         try {
             const response = await axios.post(`${API_BASE_URL}/check-user-exam`, { userId, examId: ofin_id });
             if (response.data.message === 'Yes') {
-                console.log('checker1', response.data.message)
                 setAttemptedMessage("You have already taken this exam!");
                 setTestStarted(false);
                 setShowModal(false);
             }
             else {
-                console.log('checker2', response.data.message)
                 setTestStarted(true);
                 setShowModal(true);
             }
@@ -249,113 +246,122 @@ console.log('question', questionData);
                 <meta property="og:image" content="withmoto.png" />
                 <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
             </Helmet>
-            {examType == null? 
+
             <Wrapper className='test__section'>
                 <div className='ofijan_exam_plate'>
                     <h1 className='ofijanTestPlateHeader'>OFIJAN TEST PLATE</h1>
                     {!testStarted && (
                         <div className="strt">
-                            <p>{attemptedMessage? attemptedMessage:""}</p>
+                            <p>{attemptedMessage ? attemptedMessage : ""}</p>
                             <button className='butnstart' onClick={handleStartClick}>START TEST</button>
-                            
                         </div>
                     )}
 
-                    {testStarted &&
+                    {testStarted && (
                         <div className='plate'>
-                            {showModal &&
+                            {showModal && (
                                 <div className="wmodal">
                                     <div className="wmodal-content">
-
                                         <div className="topbar">
                                             <Button type='default' onClick={handleBackButtonClick}>Back</Button>
-
-                                            <TimePlate
-                                                isLoggedin={isLoggedin}
-                                                timeLeft={formatTime(timeLeft)}
-                                            />
-
+                                            {/* Show the timer only when exam type is null */}
+                                            {questionData.length > 0 ? (
+    <>
+                                            {questionData[selectedQuestionIndex].exam.exam_type === null && isLoggedin && timeLeft && 
+                                            <TimePlate timeLeft={formatTime(timeLeft)} />}</>):''}
                                         </div>
 
                                         <div className='wplate'>
-                                            <div className='flag_plate'>
-                                                <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
-                                                <p>Answer saved</p>
-                                                <p>Marked out of 100</p>
-                                                <p></p>
-                                                <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
-                                            </div>
-                                            <div className='question_plate'>
-
-                                                <div className="questionplate">
-                                                    {questionData.length > 0 && (
+                                            {questionData.length > 0 ? (
+                                                <>
+                                                    {questionData[selectedQuestionIndex].exam.exam_type === null ? (
                                                         <>
-                                                            <div className="questionText">
-                                                                <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                                                            <div className='flag_plate'>
+                                                                <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
+                                                               
+                                                                <p></p>
+                                                                <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
                                                             </div>
-                                                            <div className="choicePlate">
-                                                                {questionData[selectedQuestionIndex].options.map((option, index) => {
-                                                                    const isSelected = selectedOptionIndex === index;
-                                                                    const isCorrectAnswer = option.correct === '1';
-                                                                    return (
-                                                                        <label
-                                                                            className={`option_box ${isSelected ? 'selected' : ''} `}
+                                                            <div className='question_plate'>
+                                                                <div className="questionplate">
+                                                                    <div className="questionText">
+                                                                        <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                                                                    </div>
+                                                                    <div className="choicePlate">
+                                                                        {questionData[selectedQuestionIndex].options.map((option, index) => {
+                                                                            const isSelected = selectedOptionIndex === index;
+                                                                            const isCorrectAnswer = option.correct === '1';
+                                                                            return (
+                                                                                <label
+                                                                                    className={`option_box ${isSelected ? 'selected' : ''} `}
+                                                                                    key={index}
+                                                                                    onClick={() => handleOptionClick(index)}
+                                                                                >
+                                                                                    <input
+                                                                                        type='radio'
+                                                                                        name={`option_${selectedQuestionIndex}`}
+                                                                                        value={option.option}
+                                                                                        checked={isSelected}
+                                                                                        readOnly
+                                                                                    />
+                                                                                    <span className="alphabet">{alphabet[index]}. </span>
+                                                                                    {option.option}
+                                                                                    <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ></span>
+                                                                                </label>
+                                                                            );
+                                                                        })}
+                                                                        <div className='choice_and_answer'>
+                                                                            <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <LNavigationButtons
+                                                                    handlePreviousClick={handlePreviousClick}
+                                                                    handleNextClick={handleNextClick}
+                                                                    handleFinishAttempt={sendExamDataToAPI}
+                                                                    selectedQuestionIndex={selectedQuestionIndex}
+                                                                    length={questionData.length - 1}
+                                                                />
+                                                            </div>
+                                                            <div className="answer_plate">
+                                                                <h5>Exam Navigation</h5>
+                                                                <div className="answer_plate">
+                                                                    {questionData.map((question, index) => (
+                                                                        <LAnswerBox
                                                                             key={index}
-                                                                            onClick={() => handleOptionClick(index)}
-                                                                        >
-                                                                            <input
-                                                                                type='radio'
-                                                                                name={`option_${selectedQuestionIndex}`}
-                                                                                value={option.option}
-                                                                                checked={isSelected}
-                                                                                readOnly
-                                                                            />
-                                                                            <span className="alphabet">{alphabet[index]}. </span>
-                                                                            {option.option}
-                                                                            <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ></span>
-                                                                        </label>
-                                                                    );
-                                                                })}
-                                                                <div className='choice_and_answer'>
-                                                                    <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
+                                                                            index={index}
+                                                                            isSelected={selectedQuestionIndex === index}
+                                                                            isFlagged={question.flagged}
+                                                                            isAnswered={question.options.some(option => option.selected)}
+                                                                            handleClick={handleQuestionClick}
+                                                                            handleSweetAlert={handleSweetAlert}
+                                                                        />
+                                                                    ))}
                                                                 </div>
                                                             </div>
                                                         </>
+                                                    ) : (
+                                                        <div className="questionText">
+                                                            <h1>This exam is not available for you!</h1>
+                                                        </div>
                                                     )}
+                                                </>
+                                            ) : (
+                                                <div className="error_message">
+                                                    <p>Error: Unable to fetch question data</p>
                                                 </div>
-                                                <LNavigationButtons
-                                                    handlePreviousClick={handlePreviousClick}
-                                                    handleNextClick={handleNextClick}
-                                                    handleFinishAttempt={sendExamDataToAPI}
-                                                    selectedQuestionIndex={selectedQuestionIndex}
-                                                    length={questionData.length - 1}
-                                                />
-                                            </div>
-                                            <div className="answer_plate">
-                                                <h5>Exam Navigation</h5>
-                                                <div className="answer_plate">
-                                                    {questionData.map((question, index) => (
-                                                        <LAnswerBox
-                                                            key={index}
-                                                            index={index}
-                                                            isSelected={selectedQuestionIndex === index}
-                                                            isFlagged={question.flagged}
-                                                            isAnswered={question.options.some(option => option.selected)}
-                                                            handleClick={handleQuestionClick}
-                                                            handleSweetAlert={handleSweetAlert}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-
+                                            )}
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            )}
                         </div>
-                    }
+                    )}
                 </div>
-            </Wrapper> :'This exam is not avilable for you!'}
+            </Wrapper>
+
+
+
         </section>
     );
 };
