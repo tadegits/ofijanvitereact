@@ -14,6 +14,8 @@ const TestMePlate = () => {
     const { ofin_id } = useParams();
     const { userId } = useLoggedInUser();
     const [answered, setAnswered] = useState(false);
+    const [userAnswer, setUserAnswer] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState([]);
     const [questionData, setQuestionData] = useState([]);
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
@@ -236,7 +238,8 @@ const TestMePlate = () => {
         </div>
 
             </div>}
-            {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
+            {
+            /* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
     );
 };

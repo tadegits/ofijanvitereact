@@ -35,6 +35,7 @@ const LExitExam = () => {
           const foundUser = JSON.parse(loggedInUser);
           setDid(foundUser.user.dept_id);
           if (foundUser.user.dept_id !== null) {
+            console.log(data)
             setDepartmentTitle(data.title);
             console.log('the data', data.title);
             fetch(`${API_BASE_URL}/examsfront/${foundUser.user.dept_id}`)
