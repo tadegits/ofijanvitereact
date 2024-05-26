@@ -1,16 +1,49 @@
 @import "../../../styles/mixin.scss";
 @import "../../../styles/colors.scss";
 
+.tobpar__info{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  
+}
+.test__section{
+  padding: 0;
+  padding-top: 2rem;
+
+ 
+}
+.topbar{
+  padding: 0.1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  align-items: end;
+  align-content: end;
+  border-radius: 0px 0px 40px 15px;
+  padding-right: 20px;
+  height: max-content;
+  @include respond(phone)
+  {
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    padding: 0;
+    height: max-content;
+  }
+}
 .ofijan_exam_plate {
   width: 100%;
+  padding: 0;
+  padding-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin-top: 0vh;
-
-  @include respond(phone) {}
+  @include respond(phone) {
+    padding: 4px;
+  }
 }
 
 .exam_info_plate {
@@ -41,30 +74,33 @@
     flex-direction: column;
   }
 }
-th{
+
+th {
   background-color: rgb(117, 116, 116);
 }
-.basicInfoPlate
-{
+
+.basicInfoPlate {
   width: 100%;
   display: flex;
   justify-content: center;
-  
+
 
 }
-.basicInfoPlate2
-{
+
+.basicInfoPlate2 {
   width: 75%;
-  table{
+
+  table {
     width: 100%;
   }
-tr{
-  width: 50%;
-}
-td
-{
-  width: 50%;
-}
+
+  tr {
+    width: 50%;
+  }
+
+  td {
+    width: 50%;
+  }
 }
 
 
@@ -75,6 +111,15 @@ td
   padding: 0.31rem;
   margin-top: 100px;
   margin-bottom: 50px;
+  height: max-content;
+
+  @include respond(phone) {
+    display: flex;
+    margin-bottom: 0px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.1em;
+  }
 
   h5 {
     font-size: x-large;
@@ -89,15 +134,18 @@ td
 
 .question_plate {
   height: fit-content;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .questionplate {
-  background-color: rgb(186, 230, 230);
+  background-color: rgb(217, 241, 241);
   padding: 0rem;
   height: max-content;
   display: flex;
-  flex-direction: column;
+  @include respond(phone){
+    padding: 10px;
+  }
+
 }
 
 .timePlate {
@@ -116,12 +164,26 @@ td
 }
 
 .questionText {
-  padding: 1rem;
   width: 100%;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  color: #333333;
+
+  @include respond(phone) {
+    padding: 0%;
+  }
 }
 
 .choicePlate {
   padding-left: 5rem;
+
+  @include respond(phone) {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
 }
 
 .answer_plate {
@@ -132,25 +194,26 @@ td
 
   .answer_box_holder {
     display: flex;
-    width: 30px;
-    height: 29px;
+    width: 32px;
+    height: 45px;
     background-color: #e0e0e0;
-    margin: 0 1px;
+    margin: 0 0px;
     border: 1px solid gray;
     flex-direction: column;
     cursor: pointer;
-    
+
   }
+
   .answer_box_holderl {
     display: flex;
-    width: 30px;
-    height: 29px;
+    width: 32px;
+    height: 45px;
     background-color: #e0e0e0;
     margin: 0 1px;
     border: 1px solid gray;
     flex-direction: column;
     cursor: pointer;
-    
+
   }
 
   .answer_box {
@@ -160,21 +223,29 @@ td
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: bolder;
   }
 }
 
 .option_box {
   display: block;
-  margin-bottom: 10px;
   cursor: pointer;
   gap: 1rem;
+  padding: 1px;
+  margin: 2px;
+  border: 0px solid #ccc;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  color: #333333;
+
 }
 
 .answer_box_holder:nth-child(n+6) .answer_box {
   pointer-events: none;
   opacity: 1;
 }
+
 .answer_box_holderl:nth-child(n+6) .answer_box {
   pointer-events: none;
   opacity: 1;
@@ -215,8 +286,9 @@ td
 .answer_box_holder.selected {
   border: 2px #636262 solid;
 }
+
 .answer_box_holderl.selected {
-  border: 2px #636262 solid;
+  border: 2px $tade-color solid;
 }
 
 .answer_box.answered {
@@ -224,13 +296,7 @@ td
 }
 
 
-.option_box {
-  
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-  border: 0px solid #ccc;
-}
+
 
 // .option_box.selected {
 //   background-color: $tade-color; 
@@ -239,36 +305,36 @@ td
 
 
 
-.correct_is
-{
+.correct_is {
   opacity: 0;
 }
-.correct_is.answered.hi
-  {
-    //laundary 
-    //cafe
-    // 
-    justify-content: end;
-    align-items: end;
-    opacity: 1;
-  }
+
+.correct_is.answered.hi {
+  //laundary 
+  //cafe
+  // 
+  justify-content: end;
+  align-items: end;
+  opacity: 1;
+}
 
 
-  .right-icon-animation {
-    display: inline-block;
-    margin-left: 5px;
-    animation: rightIconAnimation 0.5s ease;
+.right-icon-animation {
+  display: inline-block;
+  margin-left: 5px;
+  animation: rightIconAnimation 0.5s ease;
 }
 
 @keyframes rightIconAnimation {
-    0% {
-        opacity: 0;
-        transform: translateX(-5px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .step-line {
@@ -286,15 +352,17 @@ td
   width: 30px;
   height: 30px;
   border-radius: 0%;
-  color:#594fb6;
+  color: #594fb6;
   background-color: #e7dfdf;
   text-align: center;
 }
+
 .step.active {
   font-weight: bold;
   color: white;
   background-color: $tade-color;
 }
+
 .line {
   position: absolute;
   bottom: 0;
@@ -304,53 +372,59 @@ td
   z-index: 0;
   transition: width 0.15s ease;
 }
+
 .answer_box_holder.flagged::before {
   content: "";
   top: 0;
   left: 0;
-  width: 12px; 
-  height: 12px; 
+  width: 12px;
+  height: 12px;
   justify-content: flex-end;
   background-color: red;
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
+
 .answer_box_holder.flagged::before {
 
- .answer_box{
-  content: "";
-  top: 0;
-  left: 0;
-  width: 12px; 
-  height: 5px; 
-  background-color: red;
-  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
- } 
+  .answer_box {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 5px;
+    background-color: red;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
 
 
- 
+
 }
+
 .answer_box_holderl.flagged::before {
   content: "";
   top: 0;
   left: 0;
-  width: 12px; 
-  height: 12px; 
+  width: 12px;
+  height: 12px;
   justify-content: flex-end;
   background-color: red;
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
+
 .answer_box_holderl.flagged::before {
 
- .answer_box{
-  content: "";
-  top: 0;
-  left: 0;
-  width: 12px; 
-  height: 5px; 
-  background-color: red;
-  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
- } }
- .squestion_plate {
+  .answer_box {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 5px;
+    background-color: red;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
+}
+
+.squestion_plate {
   height: fit-content;
   margin-bottom: 20px;
 }
@@ -404,6 +478,82 @@ td
     }
   }
 }
-.ofijanTestPlateHeader{
+
+.ofijanTestPlateHeader {
   opacity: 0.1;
+}
+
+.strt {
+  margin-bottom: 20%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  p{
+    color: red;
+    align-items: center;
+    margin-bottom: 5px;
+    font-weight: bolder;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .strt {
+    margin-bottom: 40%;
+  }
+
+}
+
+.butnstart {
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: bolder;
+  font-size: 0.9em;
+  border-style: outline;
+  color: white;
+  background-color: $tade-color;
+  letter-spacing: 1px;
+  width: 100%;
+
+}
+
+.wplate {
+  display: grid;
+  grid-template-columns: .5fr 2.5fr 1fr;
+  gap: 0.2rem;
+  background-color: rgb(255, 254, 254);
+  padding: 0px;
+  border-radius: 8px;
+  height: 90vh;
+
+  @include respond(phone) {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+}
+
+.wmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wmodal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

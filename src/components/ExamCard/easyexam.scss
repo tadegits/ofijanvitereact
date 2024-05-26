@@ -28,4 +28,6 @@
       margin-right: 10px;
     }
   }
-  
+  input::placeholder {
+    color: var(--placeholder-color);
+}

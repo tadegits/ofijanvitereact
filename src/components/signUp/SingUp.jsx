@@ -15,7 +15,7 @@ const LoginSection = () => {
     const [fname, setFname] = useState("");
     const [fnmessage, setFnMessage] = useState("");
     const [lname, setLname] = useState("");
-    const [lnmessage, setLnMessage] = useState("");
+    const [lnmessage, setLnMessage] = useState(""); 
     const [password, setPassword] = useState("");
     const [pasmessage, setPasMessage] = useState("");
     const [confpassword, setConfPassword] = useState("");
@@ -141,7 +141,7 @@ const LoginSection = () => {
         }
         else if (password === "") {
             setPasMessage("Password required");
-        }
+        } 
         else if (confpassword === "") {
             setConfMessage("Confirm password required");
         }
@@ -196,7 +196,7 @@ const LoginSection = () => {
                             </div>
                             <hr></hr>
                         </div> */}
-                        <div className="login__signupregistered">Create your Ofijan Account</div>
+                        <div className="login__signupregistered">Create  Account</div>
                         <div className="form2">
 
                             <div className="form-contents1">
@@ -229,7 +229,7 @@ const LoginSection = () => {
                                     <div className="department">
                                         <label>Department</label>
                                         <select name='department' className='dept' defaultValue="" value={dept} onChange={checkDept} required>
-                                            <option value="1"></option>
+                                            <option value="200"></option>
                                             {data.map(data => (
                                                 <option key={data.id} value={data.id} selected>{data.title}</option>
                                             ))}

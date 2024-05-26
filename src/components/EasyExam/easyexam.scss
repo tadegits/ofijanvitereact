@@ -1,33 +1,95 @@
 @import '../../styles/mixin.scss';
-@import '../../styles//colors.scss';
+@import '../../styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .easyExam{
-height: 70vh;
-padding-block: 2rem;
+    background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
-.easy_exam_wrapper{
-    display: flex;
-    justify-content: center;
-}
-.easy_exam_input_holder{
 
+.easy_exam_wrapper {
+    display: flex;
+    margin:0px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    padding-top: 4rem;
+    
+    @include respond(phone)
+    {
+        padding-top: 5rem;
+    }
+}
+.ofijan__info{
+    .search{
+        color: white;
+        width: 50%;
+        padding: 5px;
+        //background-color: rgba(35, 10, 77, 0.452);
+        border-radius: 10px;
+        font-family: "poppins", Arial, Helvetica, sans-serif;
+    }
+}
+.easy_exam_input_holder {
     display: flex;
     justify-content: center;
     width: 50%;
-align-self: center;
-border-radius: 30px;
-border: 1px solid $tade_color;
-align-items: center;
-padding-left: 20px;
+    align-self: center;
+    border-radius: 30px;
+    border: 1px solid $tade_color;
+    align-items: center;
+    padding-left: 20px;
+    background-color: white;
+    margin-top: 1rem;
 }
-.searchExam{
+.searchExam {
     width: 90%;
-    padding: 15px;
+    padding: 5px;
+    outline: none;
+    border: 0px;
+    
 }
-.searchExamBtn{
+.searchExamBtn {
     height: 100%;
     border: 1px $tade_color solid;
     padding: 15px;
-    border-radius: 0px 20px 20px 0 ;
+    width: 120px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 0px 20px 20px 0;
     background-color: $tade_color;
     color: white;
+}
+.ofijan__for__cards{
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    gap: 2rem;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    @include respond(phone)
+    {
+        flex-direction: column;
+    }
+    .for__card{
+        background-color: #0000003d;
+        color: white;
+        min-width: 30%;
+        font-family: "poppins", Arial, Helvetica, sans-serif;
+        h5{
+            color: $tade-yellow;
+            font-size: 16px;
+            font-family: "poppins", Arial, Helvetica, sans-serif;
+        }
+        p{
+            color: white;
+            font-size: 16px;
+            font-family: "poppins", Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+        li{
+            font-family: "poppins", Arial, Helvetica, sans-serif;
+        }
+    }
 }

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import CheckIcon from '@mui/icons-material/Check';
 import TimerIcon from '@mui/icons-material/Timer';
 import API_BASE_URL from '../../Globals/apiConfig';
+import Wrapper from '../wrapper/Wrapper';
 import './plate.scss';
 const Plate = () => {
     const { ofin_id } = useParams();
@@ -22,6 +23,7 @@ const Plate = () => {
     const [timeLeft, setTimeLeft] = useState(60);
     const alphabet = ["A", "B", "C", "D"];
     const [role, setRole] = useState('');
+    const [examType, setExamType] = useState('');
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
@@ -40,17 +42,18 @@ const Plate = () => {
             .then((res) => res.json())
             .then((data) => {
                 setQuestionData(data);
+                setExamType(data[3].exam.exam_type);
             })
             .catch((err) => console.log(err));
     }, [ofin_id, userId]);
-
+console.log('exam_type', examType);
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
-    if (loggedUser !== null) {
-      setIsLoggedin(true);
-      const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id);
-    }
+        if (loggedUser !== null) {
+            setIsLoggedin(true);
+            const userLogged = JSON.parse(loggedUser);
+            setRole(userLogged.user.role_id);
+        }
         if (questionData.length > 0) {
             const selectedOption = questionData[selectedQuestionIndex].options.find((option) => option.selected);
             setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
@@ -127,6 +130,10 @@ const Plate = () => {
         setQuestionData(updatedQuestionData);
     };
     return (
+        <section className='exam'>
+            <Wrapper className='exam__section'>
+
+           
         <div className='ofijan_exam_plate'>
             {/* <p>This is for sample not loged in user</p> */}
             <div className='plate'>
@@ -138,15 +145,20 @@ const Plate = () => {
                     <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
                 </div>
                 <div className='question_plate'>
+                    <a href="/Login">
+                        <marquee direction="right">
+                            <h6  className='timePlate'>Login for better experiance</h6>
+                        </marquee>
+                    </a>
                     <div className="timePlate">
                         <div className="timebox1"></div>
-                       {isLoggedin? (<div className='timebox2'>
+                        {isLoggedin ? (<div className='timebox2'>
                             <TimerIcon /> Time left {timeLeft} sec
                         </div>) :
-                        (<div className='timebox2'>
-                             <TimerIcon /> Time left 00:00 sec
-                             
-                        </div>)} 
+                            (<div className='timebox2'>
+                                <TimerIcon /> Time left 00:00 sec
+
+                            </div>)}
                     </div>
                     <div className="questionplate">
                         {questionData.length > 0 && (
@@ -179,9 +191,9 @@ const Plate = () => {
                                     })}
                                     <div className='choice_and_answer'>
                                         <h5 className='clear_choice' onClick={handleClearChoiceClick}>Clear Choice</h5>
-                                        <h5 className='show_answer' onClick={()=> {!isLoggedin ? (handleSweetAlert(5)) : (<></>)}}>Show me answer</h5>
+                                        <h5 className='show_answer' onClick={() => { !isLoggedin ? (handleSweetAlert(5)) : (<></>) }}>Show me answer</h5>
                                     </div>
-                                   
+
                                 </div>
                             </>
                         )}
@@ -195,25 +207,26 @@ const Plate = () => {
                     />
                 </div>
                 <div className="answer_plate">
-          <h5>Exam Navigation</h5>
-          <div className="answer_plate">
-            {questionData.map((question, index) => (
-              <AnswerBox
-                key={index}
-                index={index}
-                isSelected={selectedQuestionIndex === index}
-                isFlagged={question.flagged}
-                isAnswered={question.options.some(option => option.selected)}
-                handleClick={handleQuestionClick}
-                handleSweetAlert={handleSweetAlert}
-              />
-            ))}
-          </div>
-        </div>
-
+                    <h5>Exam Navigation</h5>
+                    <div className="answer_plate">
+                        {questionData.map((question, index) => (
+                            <AnswerBox
+                                key={index}
+                                index={index}
+                                isSelected={selectedQuestionIndex === index}
+                                isFlagged={question.flagged}
+                                isAnswered={question.options.some(option => option.selected)}
+                                handleClick={handleQuestionClick}
+                                handleSweetAlert={handleSweetAlert}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
             {/* <div className='correct_counter'>Correct Answers: {correctAnswersCounter}</div> */}
         </div>
+        </Wrapper>
+        </section>
     );
 };
 

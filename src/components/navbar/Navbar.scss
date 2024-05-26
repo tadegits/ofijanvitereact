@@ -1,14 +1,17 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
 .navbarz {
   background-color: #ffffff;
-  padding: 15px;
+  padding: 5px;
   width: 100%;
+  position: fixed;
+  z-index: 100;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
   border-bottom: 1px solid rgba(0, 0, 0, 0.089);
- 
+
   @include respond(phone) {
     padding-block: 15px;
   }
@@ -18,10 +21,37 @@
     align-items: center;
     justify-content: space-between;
   }
+&__logo{
+   display: flex;
+  flex-direction: row;
+  gap: 1em;
+    h1{
+      font-size: 35px;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 0.1em;
+      font-family: 'Quicksand', sans-serif;
+    }
+.logo__moto{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  p{
+    font-size: 15px;
+    justify-content: right;
+    align-items: right;
+    justify-self: right;
+  }
+}
+}
 
   &__logo img {
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 40px;
+   
 
     @include respond(phone) {
       width: 3rem;
@@ -85,6 +115,16 @@
     }
   }
 
+  .button-sig{
+    display: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+    @include respond(tab-port) {
+      display: inline-block;
+    }
+  }
   &__menubar {
     display: none;
     cursor: pointer;
@@ -92,7 +132,7 @@
     padding: 0.8rem;
     background-color: #6f00eb;
     transition: all 0.3s ease;
-
+ 
     svg {
       display: grid;
       place-content: center;
@@ -108,6 +148,7 @@
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+  
 }
 
 #exit {
@@ -142,6 +183,7 @@
 
 .show-nav {
   display: flex;
+  z-index: 1;
 }
 
 .bg-color {

@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react';
-// import './LoginSection.scss';
 import Wrapper from '../wrapper/Wrapper';
-import Lottie from 'lottie-react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
-import animationData from '../../assets/animation_lnk8tp8u.json';
-import logoImg from '../../assets/ofijan_logo.png';
-import 'react-toastify/dist/ReactToastify.css';
+import { Divider } from "antd";
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectRedirectUrl} from "../../features/userSlice";
 import './LoginSection.scss'
 import GoogleLoginButton from './GoogleLoginButton';
+
 const LoginSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false); 
+    const redirectUrl = useSelector(selectRedirectUrl);
     const navigate = useNavigate();
-    const handleGoogleLoginSuccess = (profile) => {
-        console.log('Successful login:', profile);
-
-    };
-
-    const handleGoogleLoginFailure = () => {
-        console.log('Login failed');
-
-    };
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const logedUser = localStorage.getItem("user");
         if (logedUser !== null) {
@@ -40,10 +32,12 @@ const LoginSection = () => {
         setPassword(e.target.value);
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log("checking login locally");
 
         if (email === "" || password === "") {
             setError("Email and password are required");
@@ -55,8 +49,17 @@ const LoginSection = () => {
             console.log(response.data);
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
-                navigate('/');
-                window.location.reload();
+                dispatch(
+                    login({
+                      email: email,
+                      password: password,
+                      loggedIn: true,
+                    }));
+                    if (redirectUrl) {
+                        navigate(redirectUrl); 
+                      } else {
+                        navigate("/Exit_Exam");
+                      }
             }
         } catch (error) {
             if (error.response && error.response.status === 422) {
@@ -67,38 +70,39 @@ const LoginSection = () => {
 
     return (
         <section className="login">
-            <Wrapper>
+            <Wrapper className='login__section'>
                 <div className="login__container">
-                    {/* <div className="login__image_holder">
-                        <Lottie animationData={animationData} className='img-1' />
-                    </div>
-                    <div className="login__form_container"> */}
-                    <div className="login__image_holder2">
-                        {/* <div className="logtitle">
-                            {/* <img src={logoImg} className='img-2' alt="Ofijan Logo" /> 
-
-                        </div> */}
-                        {/* <div className="login__header">
-                            {/* <p className='infos'>Continue your study to increase your achivement.</p> 
-                        </div>
-                        <hr /> */}
-                        {/* </div> */}
-                        <div className="login__form1">
-                            <div className="form-contents">
-                                {error && <div className="error-message">{error}</div>}
-                                <input type="text" placeholder='Email' value={email} onChange={handleEmailChange} className="email" />
-                                <input type="password" placeholder='Password' value={password} onChange={handlePasswordChange} className="pass" />
-                                <div className="summit-forward">
-                                    {/* <p>Forgot your password ?</p> */}
-                                </div>
-                                <div className="summit-login">
-                                    <button className='logbtn' onClick={handleSubmit}> Log me In</button>
-                                    <GoogleLoginButton onSuccess={handleGoogleLoginSuccess} onFailure={handleGoogleLoginFailure} />
-                                </div>
-                                <div className="summit-signup">
-                                    <h5>Register as new user</h5> <Link to={'/signup'}><input type='submit' value="Sign Up" className='singup' /></Link>
-                                </div>
+                    <div className="login__form1">
+                        <div className="form-contents">
+                            {error && <div className="error-message">{error}</div>}
+                            <input type="text" placeholder='Email' value={email} onChange={handleEmailChange} className="email" />
+                            <div className="password-container">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder='Password'
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    className="pass"
+                                />
+                                {/* <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="password-toggle"
+                                >
+                                    {showPassword ? 'Hide' : 'Show'}
+                                </button> */}
                             </div>
+                            <div className="summit-login">
+                                <button className='logbtn' onClick={handleSubmit}> Log In</button>
+                            </div> 
+                            <GoogleLoginButton/>
+
+                            
+                            <Divider><p>Don't Have Account? <div className="summit-signup">
+                                <Link to={'/signup'}><input type='submit' value="Register" className='singup' /></Link>
+                            </div></p></Divider>
+                           
+                            
                         </div>
                     </div>
                 </div>
@@ -106,4 +110,5 @@ const LoginSection = () => {
         </section>
     )
 }
+
 export default LoginSection;

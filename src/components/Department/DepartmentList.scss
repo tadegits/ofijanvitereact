@@ -1,0 +1,55 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/colors.scss";
+
+.department-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: $tade-color;
+@include respond(phone){
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+}
+    .department-card {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px $tade-color;
+        height: 100px;
+        width: 300px;
+        align-items: center;
+        display: flex;
+        margin-top: 20px;
+        background-color: rgb(255, 255, 255);
+        justify-content: center;
+        padding: 5px;
+        p {
+            font-weight: bold;
+            color: $tade-color;
+            align-items: center;
+            text-justify: distribute-all-lines;
+        }
+@include respond(phone)
+{
+    height: 150px;
+    width: 200px;
+    min-width: 150px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+        
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+
+        .department-card {
+            width: 100%;
+        }
+    }
+}

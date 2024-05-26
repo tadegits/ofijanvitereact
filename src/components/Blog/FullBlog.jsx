@@ -4,21 +4,26 @@ import './BlogList.scss';
 import BlogActions from './BlogActions';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
-import TopicsCard from './Topics/TopicsCard';
-import { useNavigate } from 'react-router-dom';
-import { Card, Button, Row, Col, Divider, Avatar, Tag, Typography } from 'antd';
+import { Card, Button, Row, Col, Divider, Tag, Typography } from 'antd';
 import { LeftCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
+import BlogCategories from './BlogCategories';
+import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+import Wrapper from '../wrapper/Wrapper';
+const { Text } = Typography;
+
 const FullBlog = ({ blogs }) => {
   const { category, title } = useParams();
   const [views, setViews] = useState(0);
   const [blog, setBlog] = useState(null);
-  const [shareUrl, setShareUrl] = useState('');
-  const { Title, Text } = Typography;
+  const location = useLocation();
   useEffect(() => {
     const fetchBlog = () => {
-      const foundBlog = blogs.find((blog) => blog.categories === category && blog.title === title);
-      setBlog(foundBlog);
+      if (blogs && category && title) {
+        const foundBlog = blogs.find((blog) => blog.categories === category && blog.title === title);
+        setBlog(foundBlog);
+      }
     };
 
     fetchBlog();
@@ -51,76 +56,83 @@ const FullBlog = ({ blogs }) => {
         });
     }
   }, [blog, views]);
-
+  const trimText = (text) => {
+    const words = text.split(' ');
+    if (words.length > 100) {
+      return words.slice(0, 100).join(' ') + '...';
+    }
+    return text;
+  };
   const handleViewCount = () => {
-
-  }
-
-  const handleShareOnSocialMedia = (platform) => {
   };
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
+
+  const navigateBack = () => {
+    window.history.back();
   };
+
   if (!blog) {
-    return <div>Blog not found</div>;
+    return <div>Loading...</div>;
   }
+
+  const relatedArticles = blogs.filter((item) => item.categories === blog.categories && item.title !== blog.title);
 
   return (
-    <div className="blog-list-container">
-      <Card title="Ofijan Blogs">
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-            <div className='blog-body-container'>
-              <div className="blog__detail">
-                <div className="first__row">
-                  <Button className='back__button' onClick={goBack}>
-                    <LeftCircleOutlined /> Back
-                  </Button>
-                  <TopicsCard />
-                </div>
-                <div className="second__row">
-                  <Card
-                    title={blog.title} style={{ width: 600 }}
-                    cover={<img alt="blog cover" src={"https://brandhub.co.nz/wp-content/uploads/2018/03/blog-page-placeholder-image.jpg"} />}
-                    className="card-content"
-                  >
-                    <p>Category: <Tag color="blue">{blog.category}</Tag></p>
-                    <div className='author-info'>
-                      <Avatar size={32} src={blog.author.avatar} />
-                      <Text strong>{blog.author.name}</Text>
+    <section className='blog'>
+      <Wrapper className='blog__section'>
+        <div className="blog-list-container">
+          <Helmet>
+            <title>{blog.title}</title>
+            <meta name="description" content={trimText(blog.body)} />
+            <meta property="og:title" content={blog.title} />
+            <meta property="og:description" content={blog.title} />
+            <meta property="og:image" content="../../" />
+            <meta property="og:url" content={location.pathname} />
+          </Helmet>
+          <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
+            <Button className='back__button' >
+              <LeftCircleOutlined /> Back
+            </Button></a>}>
+            <Row gutter={[16, 16]}>
+              <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+                <div className='blog-body-container'>
+                  <div className="blog__detail">
+                    <div className="second___row">
+                      <Card className="card-content">
+                        <h1>{blog.title}<div>&#x1F389;</div></h1>
+                        <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
+                        <div className='author-info'>
+                          <Text strong>{blog.author.name}</Text>
+                        </div>
+                        <article className='blogme__body' dangerouslySetInnerHTML={{ __html: blog.body }}></article><Divider />
+                        <div className='blog-actions'>
+                          <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
+                          <BlogActions blog={blog} />
+                        </div>
+                        <Divider />
+                      </Card>
                     </div>
-                    <div className='imageSpace'>
-                      <img alt="blog content" src={blog.contentImageUrl} style={{ width: '100%' }} />
+                    <div className="third__row">
+                      <RelatedArticlesCard blogs={relatedArticles} />
                     </div>
-                    <Title level={4}>Summary</Title>
-                    <p>{blog.summary}</p>
-                    <Title level={4}>Content</Title>
-                    <p dangerouslySetInnerHTML={{ __html: blog.body }} />
-                    <Divider />
-                    <div className='blog-actions'>
-                      <Button icon={<EyeOutlined />} onClick={handleViewCount}>{blog.views} Views</Button>
-                      <BlogActions blog={blog} />
-                    </div>
-                    <Divider />
-                  </Card>
+                  </div>
                 </div>
-                <div className="third__row">
-                  <RelatedArticlesCard blogs={blogs}/>
+              </Col>
+              <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+                <div className='blogs_side'>
+                  {/* Side content, e.g., recent posts, popular tags, etc. */}
                 </div>
-              </div>
-            </div>
-          </Col>
-          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
-            <div className='blogs_side'>
-              {/* Side content, e.g., recent posts, popular tags, etc. */}
-            </div>
-          </Col>
-        </Row>
-      </Card>
-
-    </div>
-
+              </Col>
+            </Row>
+          </Card>
+          {/* Add meta tags for SEO */}
+          <meta charSet="UTF-8" />
+          <title>{blog.title}</title>
+          <meta name="description" content={blog.summary} />
+          <link rel="canonical" href={location.pathname} />
+          <a href={location.pathname}>Read more</a>
+        </div>
+      </Wrapper>
+    </section>
   );
 };
 

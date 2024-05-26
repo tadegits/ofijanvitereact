@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import './plate.scss';
-import axios from 'axios';
+import axios from 'axios'; 
 import Swal from 'sweetalert2';
 import API_BASE_URL from '../../../Globals/apiConfig';
 import ExamDetails from './ExamDetails';

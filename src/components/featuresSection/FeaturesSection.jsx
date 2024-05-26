@@ -13,6 +13,8 @@ const FeaturesSection = () => {
       <h6></h6>
     <div className="features__text">
         </div>
+        <h4>Ofijan enables you to,</h4>
+        <p>-</p>
       <div className="features__container">
         <div className="features__feature dark-feature">
         <ExploreIcon/>

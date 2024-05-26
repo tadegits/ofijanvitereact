@@ -3,23 +3,47 @@ import { Link } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
 import anim from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
-
-import Img1 from '../../assets/education1.png';
-import Img2 from '../../assets/education2.png';
-import Img3 from '../../assets/sun1.png';
-import Img4 from '../../assets/sun2.png';
-
+import API_BASE_URL from '../../Globals/apiConfig';
+import { Helmet } from 'react-helmet';
 import './Hero.scss';
+import DepartmentList from '../Department/DepartmentList';
+import ExitExam from '../ExitExam/ExitExam';
+import Service from '../Service/Service'
 
-const Hero = () => { 
-  const [text, setText] = useState('Study with exams!');
+const Hero = () => {
+  const [text, setText] = useState('Test Your Limit');
   const [role, setRole] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false); 
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const url = `${API_BASE_URL}/departments`;
+  const [loading, setLoading] = useState(true);
+  const [deptData, setDeptData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response1 = await fetch(url);
+        const data = await response1.json();
+        console.log('the data', data);
+        setDeptData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Make sure to set loading to false in case of error too
+      }
+    };
+
+    fetchData(); // Call fetchData function here, outside the async function
+
+    const loadingTimeout = setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+
+    return () => clearTimeout(loadingTimeout);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       // Change the text after 20 seconds
-      setText('A Place to confirm Your Study');
+      setText('A Place to Confirm Your Study');
     }, 20000);
 
     return () => clearInterval(interval);
@@ -30,45 +54,55 @@ const Hero = () => {
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id);
+     
     }
   }, []);
 
   return (
     <section className="hero">
+      <Helmet>
+         <title>Home</title>
+      <meta property="og:title" content="home" />
+      <meta property="og:description" content="Ofijan: Your Ultimate Online Exam Bank for Ethiopia's National Exit Exams!" />
+      <meta property="og:image" content="withmoto.png" />
+      <meta property="og:url" content="https://ofijan.com" />
+      </Helmet>
+     
       <Wrapper className="hero__container">
         <div className="hero__left">
-          <h1>{text}</h1>
-          <p>
-            Revolutionize Your Exam Preparation with Our Cutting-Edge Exam Selling Website. Unleash your
-            potential with our comprehensive collection of exam resources, meticulously crafted to meet your
-            specific needs.
-          </p>
+          <div className="hero__text-container">
+            <h1>{text}</h1>
+            <p>
+              We have gathered more than 4000+ Exit Exam Questions For You!
+            </p>
+          </div>
 
           <div className="hero__btn-container">
             {!isLoggedin && (
-              <Link to="/signup" className="button-primary">
-                Join Us
+              <Link to="/ExitExam" className="button-outline btn_hero ">
+                Select Your Field Of Study
               </Link>
             )}
 
-            <Link
-              // to={isLoggedin ? (role === 3 ? '/seller' : '/requestseller') : '/Login'}
-              to={isLoggedin ? ('/easyexam') : '/Login'}
+            {/* <Link
+              to={isLoggedin ? '/easyexam' : '/Login'}
               state={{ name: 'seller' }}
               className="button-outline"
             >
               Take Exam now
-            </Link>
+            </Link> */}
           </div>
         </div>
 
         <div className="hero__right">
-          <div>
-            <Lottie animationData={anim} className="img-1" />
-          </div>
+          <Lottie animationData={anim} className="animation" />
         </div>
+
       </Wrapper>
+      <Service />
+      {/* <div className='hero__container hero__left hero__text-container hero__depts'><h6>Departments</h6></div> */}
+      {/* <ExitExam/> */}
+      {/* <DepartmentList departments={deptData}/>  */}
     </section>
   );
 };

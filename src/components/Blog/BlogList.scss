@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@700&display=swap');
-
+@import "../../styles/mixin.scss";
+@import "../../styles/colors.scss";
 // Variables SCSS para fuentes
 $title-font: 'Montserrat', sans-serif;
 $body-font: 'Merriweather', serif;
-
+.blog__section{
+  padding: 0;
+  padding-top: 2rem;
+}
 .blog-list-container {
   padding: 20px;
   gap: 1rem;
@@ -191,10 +195,16 @@ h6{
 
 .card-content {
   font-family: 'Arial', sans-serif;
+  width: 800px;
+  
   p {
     text-align: justify; 
     margin-bottom: 10px; 
     font-size: 16px;
+  }
+  h1{
+    font-size: 40px;
+    letter-spacing: 0.01px;
   }
   .imageSpace {
     margin-top: 20px;
@@ -204,5 +214,84 @@ h6{
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
   }
+}
+@include respond(phone)
+{
+.blog-list-container {
+  padding: 0px;
+  margin: 0px;
+    .ant-card {
+      border-radius: 15px; 
+      padding: 0px;
+    }
+    .blog-body-container {
+      padding: 0px; 
+      display: flex;
+      flex-direction: column;
+     
+    }
+    .blog-row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+    .blog__detail{
+      padding: 0px;
+      margin: 0px;
+      display: flex;
+      flex-direction: column;
+    }
+  .card-content{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    h1{
+      padding: 0px;
+      font-size: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+    .blog-card {
+      width: 100%; 
+      border: none; 
+      box-shadow: none; 
+      border: 1px solid rgba(128, 128, 128, 0.418);
+  
+      .ant-card-meta-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px; 
+      }
+  
+      .author-name {
+        font-size: 1rem; 
+      }
+  
+      .blog-category {
+        font-size: 0.8rem; 
+      }
+  
+      .author-info {
+        display: flex;
+        align-items: center;
+        font-size: 0.8rem;
+        margin-bottom: 5px; 
+      }
+  
+      .author__photo {
+        width: 20px; 
+        height: 20px;
+        margin-right: 5px;
+      }
+  
+      .blog-body {
+        font-size: 0.9rem; 
+      }
+    }
+    
+    .read-more-link {
+      font-size: 0.9rem; 
+    }
+  }
+  
 }

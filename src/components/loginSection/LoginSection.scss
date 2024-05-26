@@ -1,10 +1,16 @@
 @import '../../styles/mixin.scss';
+@import '../../styles/colors.scss';
 
 .login {
 
     border-top-right-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
     background-color: #ffffff;
+
+    .__section {
+        padding: 0;
+        padding-top: 2rem;
+    }
 
     &__header {
         align-items: center;
@@ -28,8 +34,21 @@
         // background-color: #594fb6;
         justify-content: center;
         display: grid;
+        padding: 0;
+        padding-top: 4rem;
         grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
         gap: 1rem;
+    }
+
+    @media screen and (max-width: 767px) {
+        &__container {
+            justify-content: right;
+            display: grid;
+            margin-left: 10px;
+            width: 100%;
+
+        }
+
     }
 
     &__image_holder {
@@ -55,7 +74,7 @@
         margin-inline: auto;
         align-content: center;
         align-items: center;
-        
+
 
         .logtitle {
             display: flex;
@@ -114,13 +133,13 @@
     }
 
     &__form1 {
-       
+
         padding: 0.5rem;
         width: auto;
         margin-bottom: 10px;
 
         .form-contents {
-           
+
             width: 100%;
 
             @include respond(tab-land) {
@@ -149,6 +168,18 @@
 
             &:focus {
                 border: 3px solid #594fb6;
+            }
+
+        }
+
+        @media screen and (max-width: 767px) {
+
+            .email,
+            .pass {
+                width: 180px;
+                display: flex;
+                justify-content: flex-start;
+
             }
 
         }
@@ -198,6 +229,17 @@
             }
         }
 
+        @media screen and (max-width: 767px) {
+            .logbtn {
+                width: 100%;
+                display: inline-block;
+                margin-left: 30px;
+
+
+            }
+
+        }
+
         .summit-signup {
             display: flex;
             width: fit-content;
@@ -212,6 +254,16 @@
                 font-size: 0.8rem;
                 font-weight: 700;
                 margin: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                h5 {
+                    width: 100%;
+                    font-size: large;
+                    display: inline;
+
+                }
+
             }
 
             .singup {
@@ -232,6 +284,15 @@
 
         }
 
+        @media screen and (max-width: 767px) {
+            .singup {
+                width: 100%;
+                display: inline;
+                font-size: x-large;
+
+            }
+
+        }
 
 
         .button-primary {
@@ -239,3 +300,69 @@
         }
     }
 }
+
+.login__form1 {
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    height: 70vh;
+    display: flex;
+
+    @include respond(phone) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .form-contents {
+        display: flex;
+        flex-direction: column;
+        .email{
+            width: 100%;
+        }
+        .pass{
+            width: 100%;
+        }
+        .summit-login{
+            margin: 0;
+            padding: 0;
+            .logbtn{
+                margin: 0;
+                padding: 0;
+                height: 50px;
+            }
+        }
+    }
+}
+.googlelogin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: $tade-color;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+  
+    &:hover {
+      background-color: $tade-color;
+      color: white;
+      opacity: 0.8; 
+    }
+  
+    .google-icon {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+  
+    strong {
+      font-weight: bold;
+    }
+  }

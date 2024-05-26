@@ -1,17 +1,51 @@
 @import "../../styles/mixin.scss";
+@import "../../styles/colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
- .hero{
-    padding-block: 2rem;
- background-color: rgb(255, 255, 255);
-margin-top: 0px;
+
+
+.hero {
+    
+    padding: 0;
+    padding-top: 2rem;
+    // background-color: $tade-color;
+    background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
+    @include respond(phone)
+    {
+        background-image: linear-gradient($tade-color, rgb(255, 255, 255) ); 
+    }
+
     &__container {
-        display: grid;
-        align-items: flex-start;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        align-items: center;
+        grid-template-columns: repeat(2, 2fr);
         gap: 4rem;
+        h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size:4.8rem;
+            color: rgb(255, 255, 255);
+            margin-top: 25px;
+        }
+        p{
+            color: yellow;
+            opacity: 0.9;
+            padding-left: 25px;
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 0.1em;
+        }
 
         @include respond(tab-port) {
             grid-template-columns: 1fr;
+        }
+
+        @include respond(phone) {
+            flex-direction: column-reverse;
+            gap: 0rem;
+
+            h1 {
+                font-size: 2.5rem;
+                text-align: center;
+            }
         }
     }
 
@@ -21,34 +55,47 @@ margin-top: 0px;
         gap: 1rem;
         flex-wrap: wrap;
         margin-top: 3rem;
-    }
-
-    &__right {
-        position: relative;
-
-        @include respond(tab-port){
-            width: 70%;
-            margin-inline: auto;
+        margin-bottom: 10PX;
+        justify-content: center;
+        .btn_hero{
+            color:yellow;
+            border: 1px solid yellow;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 300;
+        }
+        button {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
     }
 
-    .img-1{
-      width: 80%;
+    &__right {
+
+        @include respond(tab-port) {
+            width: 70%;
+            margin-inline: auto;
+            position: relative;
+            align-items: start;
+        }
+
+        @include respond(phone) {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    }
+
+    .animation {
+        width: 80%;
         height: 40%;
-    }
+        position: relative;
+        top: 0;
 
-    .img-2{
-        width: 35%;
-        position: absolute;
-        bottom: 0;
-        right: -20px;
+        @include respond(phone) {
+            height: 150px;
+            margin: 0;
+            padding: 0;
+        }
     }
-
-    .img-3{
-        width: 50%;
-        position: absolute;
-        bottom: -20px;
-        left: -30px;
-    }
-    
- }
+}

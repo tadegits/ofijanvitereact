@@ -11,7 +11,10 @@ margin-bottom: 10px;
     display: flex;
     gap: 2rem;
     width: fit-content;
-    
+    @include respond(phone)
+    {
+      flex-direction: column;
+    }
 }
 .card{
 width: 20rem;

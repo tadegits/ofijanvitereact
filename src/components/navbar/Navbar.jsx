@@ -1,120 +1,151 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
-import Logo from "../../assets/withmoto.png";
-import { FaBars } from "react-icons/fa";
-import { BrowserRouter as Router, Route, Link, Routes, Navigate, Outlet } from 'react-router-dom';
-import { useEffect, useState, } from "react";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Logo from "../../assets/logo.png";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { Menu, Dropdown, Avatar, Modal } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUser, logout } from '../../features/userSlice'
 const Navbar = () => {
-    const [user, setUser] = useState("")
+
+    const my_user = useSelector(selectUser);
+    
+    const [user, setUser] = useState(null);
     const [showNav, setShowNav] = useState(false);
-    const [showExams, setShowExams] = useState(false);
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [isLoggedIn, setIsLoggedin] = useState(false);
-    const handleMouseEnter = () => {
-        setDropdownVisible(true);
-    };
-
-    const handleMouseLeave = () => {
-        setDropdownVisible(false);
-    };
-    const loggedInUser = localStorage.getItem("user");
+    const isLoggedIn = useSelector(selectUser)
+    const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
+        const loggedInUser = JSON.parse(localStorage.getItem("user"));
         if (loggedInUser) {
-            const foundUser = JSON.stringify(loggedInUser);
-            setUser(foundUser);
-            setIsLoggedin(true);
-
+            setUser(loggedInUser);
         }
     }, []);
+console.log(user);
     const handleLogout = () => {
-        localStorage.clear();
-        window.location.href = '/';
 
+        setLogoutModalVisible(true);
     };
+
+    const handleConfirmLogout = (e) => {
+        setLogoutModalVisible(false);
+        e.preventDefault();
+        localStorage.removeItem("user");
+        setUser(null);
+        dispatch(logout());
+        navigate('/')
+    };
+
+    const handleCancelLogout = () => {
+        setLogoutModalVisible(false);
+    };
+
+    const menu = (
+        <Menu>
+            {isLoggedIn ? (
+                <>
+                    <Menu.Item key="edit-profile">
+                        <Link to="/edit-profile">Edit Profile</Link>
+                    </Menu.Item>
+                    <Menu.Item key="logout" onClick={handleLogout}>Logout</Menu.Item>
+                </>
+            ) : (
+                <Menu.Item key="get-started">
+                    <Link to="/Login">Get Started</Link>
+                </Menu.Item>
+
+            )}
+        </Menu>
+    );
+
     return (
         <nav className="navbarz">
             <Wrapper className="navbarz__container">
-                <Link to="/" className="navbarz__logo"
-                    onClick={() => setShowNav(false)}>
-                    <img src={Logo} alt="" />
-
+                <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
+                    <div className="logo__moto">
+                        <h1>OFIJAN </h1>
+                    </div>
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
-                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
-                        <Link to="/your exams">For you</Link> 
-                    </li>):( <li onClick={() => setShowNav(false)}>
-                        <Link to="/">Home</Link> 
-                    </li>)}
-                    {/* <li onClick={() => setShowNav(false)}>
+                    <li onClick={() => setShowNav(false)}>
                         <Link to="/">Home</Link>
-                    </li> */}
-                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
-                        <Link to="/Exit_Exam">All Exams</Link> 
-                    </li>):( <li onClick={() => setShowNav(false)}>
-                        <Link to="/ExitExam">All Exams</Link> 
-                    </li>)}
-                   
-                    {/* <li onClick={() => setShowNav(false)}>
-                        <Link to="/CoC">CoC</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade12">Grade 12<sup>th</sup></Link>
-
+                        <Link to={isLoggedIn ? "/Exit_Exam" : "/ExitExam"}>All Exams</Link>
                     </li>
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade8">Grade 8<sup>th</sup></Link>
-                    </li>
-
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/Grade6">Grade 6<sup>th</sup></Link>
-                    </li> */}
-                    {isLoggedIn? (<li onClick={() => setShowNav(false)}>
-                        <a href="/easyexam">Take Exam</a>
-                    </li>):
-                    (<></>)}
-
-                    <li onClick={() => setShowNav(false)}>
-                        <Link to="/ofijan_blogs">Blog</Link> 
-                    </li>
-                    {isLoggedIn ?
-
-                        (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
-                            onClick={handleLogout}>
-                            Log out
-                        </li>)
-
-                        :
-
-                        (<li className={`navbarz__menubar ${showNav ? "button-outline" : ""}`}
-                            onClick={handleLogout}>
-                            <a href="/Login">Get Started</a>
-                        </li>)
+                    {isLoggedIn &&
+                        <li onClick={() => setShowNav(false)}>
+                            <a href="/easyexam">Take Exam</a>
+                        </li>
                     }
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/2015_exit_pdfs">2015 Exit Exam</Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/blueprint">Blue Print</Link>
+                    </li>
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="/ofijan_blogs">Blog</Link>
+                    </li>
+                    {isLoggedIn &&
+                        <li onClick={() => setShowNav(false)}>
+                            <Link to="/my_results">My Result</Link>
+                        </li>
+                    }
+                    <li onClick={() => setShowNav(false)}>
+                        <Link to="#">                              </Link>
+                    </li>
 
+                    {isLoggedIn &&
+                        <li>
+                            <Dropdown overlay={menu} trigger={['click']}>
+                                <Avatar icon={<UserOutlined />} />
+                            </Dropdown>
+                        </li>
+                    }
+                    <li>
+
+
+                        {!isLoggedIn && <div className={`button-sig ${showNav ? "tade-color" : ""}`} onClick={() => setShowNav(!showNav)}>
+                            <Link to='/Login' className="button-outline">
+                                Sign in
+                            </Link>
+                        </div>}
+
+                    </li>
+                    <li>
+
+
+                        <div className={`navbarz__menubar ${showNav ? "tade-color" : ""}`} onClick={() => setShowNav(!showNav)}>
+                            <FaTimes />
+                        </div>
+
+                    </li>
                 </ul>
-                {isLoggedIn ?
-                    (<Link to='#' onClick={handleLogout} className="button-primary navbarz__btn">
-                        Log out
-                    </Link>) 
-                    
-                    :
+                {!isLoggedIn &&
+                    <Link to='/Login' className="button-primary navbarz__btn">
+                        Sign in
+                    </Link>
+                }
 
-                    (<Link to='/Login' className="button-primary navbarz__btn">
-                            Sign in
-                        </Link>
-                    )}
-
-                <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`}
-                    onClick={() => setShowNav(!showNav)}>
+                <div className={`navbarz__menubar ${showNav ? "bg-color" : ""}`} onClick={() => setShowNav(!showNav)}>
                     <FaBars />
                 </div>
+                <Modal
+                    title="Confirm Logout"
+                    open={logoutModalVisible}
+                    onOk={handleConfirmLogout}
+                    onCancel={handleCancelLogout}
+                >
+                    <p>Are you sure you want to logout?</p>
+                </Modal>
             </Wrapper>
-
         </nav>
-
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

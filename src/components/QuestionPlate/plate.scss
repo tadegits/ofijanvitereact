@@ -10,6 +10,10 @@ $milli_gray: rgb(117, 116, 116);
 $light_blue: rgb(186, 230, 230);
 $tade_color: #007bff;
 
+.exam__section{
+padding: 0;
+padding-top: 3rem;
+}
 .ofijan_exam_plate {
   width: 100%;
   display: flex;
@@ -116,7 +120,7 @@ th {
   margin: 5px;
 
   .timebox2 {
-    border: red solid 1px;
+    border: rgb(0, 255, 242) solid 1px;
     width: fit-content;
     padding: 2px;
   }
@@ -224,7 +228,7 @@ th {
 .choice_and_answer{
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 75%;
   align-items: center;
   align-self: center;
 .clear_choice{

@@ -1,6 +1,7 @@
 import React from 'react'
 import './BlogActions.scss'
 import { FaThumbsUp, FaShare, FaComment } from 'react-icons/fa';
+
 const BlogActions = (blog) => {
   function copy() {
     const el = document.createElement('input');
@@ -11,7 +12,7 @@ const BlogActions = (blog) => {
     document.body.removeChild(el);
   }
   return (
-    <div className='blog-actions'>
+    <div className='blogactions'>
                   <button className='button-like'>
                     <FaThumbsUp />
                     &nbsp;  Like  {blog.likes}

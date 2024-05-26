@@ -1,31 +1,33 @@
-// ExitExam.scss
-
-$primary-color: #1890ff; // Define primary color
+@import '../../../src//styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+$primary-color: #1890ff; 
 .exam_card1{
-  width: 350px;
-  margin: 5px;
+  width: 250px; 
   border-radius: 8px;
   border: solid #00000025 1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   min-width: 400px;
-  width: 90%;
-  padding: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   transition: transform 0.3s ease;
+  font-family: "poppins";
 }
-.cards__holder{
+.cardsholder{
   display: flex;
-  
+  justify-content: space-between;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+
   
 }
 .cards__list{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  width: 100%;
+  
 }
 .card-container {
   display: flex;

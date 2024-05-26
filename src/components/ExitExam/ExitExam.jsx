@@ -1,4 +1,3 @@
-// ExitExam.jsx
 import React, { useState, useEffect } from 'react';
 import Wrapper from '../wrapper/Wrapper';
 import Logo from '../../assets/logo.png';
@@ -6,7 +5,7 @@ import { Card, Button, Modal, Input, Select }  from 'antd';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import ExamCardList from './ExamCard';
-
+import './ExitExam.scss';
 const ExitExam = () => {
   const { Option } = Select;
   const { Meta } = Card;
@@ -16,7 +15,7 @@ const ExitExam = () => {
   const [allExams, setAllExams] = useState([]);
   const [exams, setExams] = useState([]);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(6);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [role, setRole] = useState('');
   const [showAll, setShowAll] = useState(false);
@@ -26,7 +25,7 @@ const ExitExam = () => {
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      setRole(userLogged.user.role_id);
+      // setRole(userLogged.user.role_id);
     }
   }, []);
 
@@ -107,9 +106,11 @@ console.log('id', selectedDepartmentId);
   };
 
   return (
-    <section className='exit_exam_nli'>
+    
+    <section className='exitexam'>
+      <Wrapper className='exitexam__container'>
       <div className='select_field'>
-        <p>Select Your field of study</p>
+        <div><p>Select Your field of study</p></div>
         <div className='input_holder'>
           <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
             <option value=''>All</option>
@@ -120,7 +121,7 @@ console.log('id', selectedDepartmentId);
             ))}
           </select>
         </div>
-        {isLoggedin ? (
+        {/* {isLoggedin ? (
           <Button>
             <Link to='/easyexam'>
               Take Exam now!
@@ -132,11 +133,11 @@ console.log('id', selectedDepartmentId);
               Take Exam now!
             </Link>
           </Button>
-        )}
+        )} */}
       </div>
 
-      <Wrapper className='examsholder'>
-        {loading && <p>Loading...</p>}
+      <div className='exams__holder'>
+        {loading && <p className='loading'></p>}
 
         {!loading &&
           (exams.length ? (
@@ -146,8 +147,10 @@ console.log('id', selectedDepartmentId);
               <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
             </div>
           ))}
-      </Wrapper>
-    </section>
+      </div>
+</Wrapper>   
+ </section>
+    
   );
 };
 

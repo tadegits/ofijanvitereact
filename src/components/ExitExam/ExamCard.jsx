@@ -5,26 +5,49 @@ import { Link } from 'react-router-dom';
 import WhatModal from '../../logedin/ExitExam/WhatModal';
 
 const ExamCard = ({ exam, openModal }) => {
-  const { id, exam_name, department } = exam;
+  const { id, exam_name, department, questions_count, teacher_id } = exam;
+  console.log('data', exam)
+  if (questions_count > 20) {
+    return (
+      <Card
+        className='exam_card1'
+        title={department ? <><strong>{department.title}</strong> </> : ''}
+      
+        extra={<Button  onClick={() => openModal(exam)}>
+            Open
+          </Button>}
+        key={id}
+        actions={[
+          ,
+          //         <Link to={`/ofijan_exam_plate/testmode/${id}`} >
+          //              <Button className='button-open'>
+          //            Open
+          //          </Button>
+          //             </Link>ofijan_exam_plate/studymode
 
-  return (
-    <Card
-      className='exam_card1'
-      title={exam_name}
-      key={id}
-      actions={[
-        <Button className='button-open' onClick={() => openModal(exam)}>
-          Open
-        </Button>,
-      ]}
-      style={{ marginBottom: 16 }}
-    >
-      <p>
-        <strong>Department:</strong> {department ? department.title : 'N/A'}
-      </p>
-      <Space></Space>
-    </Card>
-  );
+          //  <Link to={`/ofijan_exam_plate/studymode/${id}`} >
+          //              <Button className='button-open'>
+          //            Open
+          //          </Button>
+          //             </Link> 
+
+        ]}
+        style={{ marginBottom: 16 }}
+      >
+        <p>
+        {exam_name}
+        </p>
+        <p>
+          <strong>{questions_count} Questions:</strong>
+        </p>
+        <hr></hr>
+
+
+        <Space></Space>
+      </Card>
+    );
+  }
+
 };
 
 const ExamCardList = ({ exams }) => {
@@ -42,10 +65,11 @@ const ExamCardList = ({ exams }) => {
   };
 
   return (
-    <div className='cards__list'>
+    <div className='cardsholder'>
       {exams.map((exam) => (
-        <div span={8} key={exam.id}>
+        <div key={exam.id}>
           <ExamCard exam={exam} openModal={openModal} />
+
         </div>
       ))}
       {isModalOpen && selectedExamId && (
