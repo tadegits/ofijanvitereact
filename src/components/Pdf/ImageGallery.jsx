@@ -43,7 +43,7 @@ const redirectUrl = useSelector(selectRedirectUrl);
 
   useEffect(() => {
     const fetchImage = async () => {
-      if (!imageUrls.length) return; // Avoid unnecessary requests
+      if (!imageUrls.length) return; 
 
       try {
         setLoading(true);
