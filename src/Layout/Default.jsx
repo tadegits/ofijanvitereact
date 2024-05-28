@@ -31,6 +31,7 @@ import AboutUs from '../components/footer/AboutUs';
 import TermsOfService from '../components/footer/TermsOfService';
 import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate';
 import ExamResults from '../components/ExitExam/ExamResult';
+import ExamResultsUgr from '../components/ExitExam/ExamResultUgr';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -72,6 +73,7 @@ const Default = () => {
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/examresults/:id" element={<ExamResults />} />
+        <Route path="/examresultsugr/:id" element={<ExamResultsUgr />} />
         <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-exam/:id" element={<DisplayBluePrint />} />
         <Route path="/display-pdf/:id" element={<DisplayBluePrint />} />

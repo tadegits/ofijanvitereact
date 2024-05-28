@@ -139,9 +139,6 @@ console.log('exam_type', examType);
             <div className='plate'>
                 <div className='flag_plate'>
                     <h5>Question {selectedQuestionIndex + 1}/{questionData.length}</h5>
-                    <p>Answer saved</p>
-                    <p>Marked out of 100</p>
-                    <p></p>
                     <p><a href='#' onClick={() => handleFlagClick(selectedQuestionIndex)}>Flag Question</a></p>
                 </div>
                 <div className='question_plate'>
