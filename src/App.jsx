@@ -9,7 +9,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 function App() {
-  const [user, setUser] = useState(""); // Consider removing this state if not used elsewhere
+  const [user, setUser] = useState(""); 
   const isLoggedIn = useSelector(selectUser);
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function App() {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const roleUser = JSON.parse(loggedInUser);
-      setUser(roleUser); // Update the state with the user object
+      setUser(roleUser);
     }
   }, []);
 

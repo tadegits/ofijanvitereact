@@ -121,15 +121,15 @@ const TestMePlate = () => {
     const handleStartClick = async () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/check-user-exam`, { userId, examId: ofin_id });
-            if (response.data.message === 'Yes') {
-                setAttemptedMessage("You have already taken this exam!");
-                setTestStarted(false);
-                setShowModal(false);
-            }
-            else {
+            // if (response.data.message === 'Yes') {
+            //     setAttemptedMessage("You have already taken this exam!");
+            //     setTestStarted(false);
+            //     setShowModal(false);
+            // }
+            // else {
                 setTestStarted(true);
                 setShowModal(true);
-            }
+            // }
         } catch (error) {
             console.log('Error checking exam result', error);
         }
