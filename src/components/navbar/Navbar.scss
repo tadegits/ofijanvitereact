@@ -70,10 +70,11 @@
       display: none;
       flex-direction: column;
       position: absolute;
-      background-color: #fff;
-      width: 50%;
-      left: 50%;
+      background-color: #ffffff;
+      width: 100%;
+      left: 0%;
       top: 0%;
+      z-index: 2;
       padding-block: 1rem;
       border-left: $tade_color 3px solid;
       gap: 1rem;

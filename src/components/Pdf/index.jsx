@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Card, Image, Row, Col, Button, Spin, Input } from 'antd';
+import { Layout, Card, Image, Row, Col, Button, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 const { Content } = Layout;
-const { Search } = Input;
 import Wrapper from './../wrapper/Wrapper';
 import API_BASE_URL from '../../Globals/apiConfig';
 import './pdf.scss';
@@ -15,8 +14,6 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [imagePath, setImagePath] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // For search
-
   const url = `${API_BASE_URL}/departments`;
 
   // Fetch department data
@@ -51,9 +48,7 @@ const Index = () => {
     fetchImagePath();
   }, []);
 
-  // Filtered departments based on search term
   const filteredDepts = selectedDepartment ? data.filter(dept => dept.id === selectedDepartment) : data;
-
 
   return (
     <section className='pdf_section'>
@@ -80,32 +75,22 @@ const Index = () => {
               <h1>2015 Ethiopian Exit Exam Questions</h1>
               <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
 
-              {/* Search bar */}
-              <Search
-                placeholder="Search departments..."
-                enterButton
-                size="large"
-                onSearch={(value) => setSearchTerm(value)}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ marginBottom: '20px' }} // Spacing before department list
-              />
-
               {loading ? (
                 <div className="loading-spinner">
                   <Spin size="large" />
                 </div>
               ) : (
                 <Row gutter={[16, 16]} className="pdf-row">
-                  {filteredDepts.map((dept, index) => (
+                  {imagePath.map((image, index) => (
                     <Col xs={24} sm={24} md={8} key={index}>
-                      <Link to={`/exit-exam/${dept.id}/1`} state={{ data: dept }}>
+                      <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
                         <Card hoverable className="pdf__card" style={{ width: 300, height: 300 }}>
                           <Image src="./images.png" alt={`Exam PDF ${index}`} className="blog-image" />
                           <Card.Meta
                             description={
                               <div>
-                                <div className='extitle'><h1 >2015 {dept || 'PDF Title'} exit exam &#x1F4DA;</h1></div>
-                                <h2 className="pdf-title"> {dept.image || 'PDF Title'}</h2>
+                                <div className='extitle'><h1 >2015 {image || 'PDF Title'} exit exam &#x1F4DA;</h1></div>
+                                <h2 className="pdf-title"> {image || 'PDF Title'}</h2>
                               </div>
                             }
                           />
