@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Card, Image, Row, Col, Button } from 'antd';
+import { Layout, Card, Image, Row, Col, Button, Spin, Input } from 'antd';
 import { Link } from 'react-router-dom';
 const { Content } = Layout;
-import BluePrintCard from './BluePrintCard';
-import Wrapper from'./../wrapper/Wrapper';
-import CollegeDepartment from '../Faculty/CollegeDepartment';
+const { Search } = Input;
+import Wrapper from './../wrapper/Wrapper';
 import API_BASE_URL from '../../Globals/apiConfig';
 import './pdf.scss';
 import { Helmet } from 'react-helmet';
 import AdvertisementCard from '../Add/AdvertisementCard';
+
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
-  const [loading, setLoading]= useState([]);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [imagePath, setImagePath] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // For search
+
   const url = `${API_BASE_URL}/departments`;
+
+  // Fetch department data
   useEffect(() => {
     const fetchDept = async () => {
       try {
         const response1 = await fetch(url);
         const data1 = await response1.json();
-
         setData(data1);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -30,7 +34,8 @@ const Index = () => {
     };
     fetchDept();
   }, []);
-  const [imagePath, setImagePath] = useState([]);
+
+  // Fetch image path data
   useEffect(() => {
     const fetchImagePath = async () => {
       try {
@@ -38,45 +43,69 @@ const Index = () => {
         const data1 = await response1.json();
         setImagePath(data1);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching image paths:', error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchImagePath();
   }, []);
-const filteredDepts = selectedDepartment ? data.filter(data => data.id === selectedDepartment) : data;
+
+  // Filtered departments based on search term
+  const filteredDepts = selectedDepartment ? data.filter(dept => dept.id === selectedDepartment) : data;
+
 
   return (
     <section className='pdf_section'>
+      {/* SEO-enhanced meta tags */}
       <Helmet>
-                <meta property="og:title" content="2015EXITQUESTIONS" />
-                <meta property="og:image" content="withmoto.png" />
-                <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
-            </Helmet>
-    <Wrapper className='pdfs'>
-    <div className="display-pdf-container">
-        <Row gutter={24}>
-            <Col xs={34} sm={34} md={34} lg={10} xl={6}>
-            <AdvertisementCard/>
-              
-              
-                {/* <CollegeDepartment onSelectDepartment={setSelectedDepartment} /> */}
+        <title>2015 Ethiopian Exit Exam Questions | Ofijan |</title>
+        <meta name="description" content="Access the 2015 Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides." />
+        <meta property="og:title" content="2015 Ethiopian Exit Exam Questions" />
+        <meta property="og:description" content="Prepare for the 2015 Ethiopian Exit Exam with these downloadable PDFs of previous questions. Study effectively with Ofijan's resources." />
+        <meta property="og:image" content="/withmoto.png" />
+        <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
+      <Wrapper className='pdfs'>
+        <div className="display-pdf-container">
+          <Row gutter={24}>
+            <Col xs={24} sm={24} md={8} lg={6} xl={6}>
+              {/* Ad component */}
+              <AdvertisementCard />
             </Col>
-            <Col className="pdf__col" xs={24} sm={24} md={24} lg={14} xl={14}>
+
+            <Col xs={24} sm={24} md={16} lg={12} xl={12} className="pdf__col">
               <h1>2015 Ethiopian Exit Exam Questions</h1>
-              <Row gutter={[16, 16]} className="pdf-row">
-                {imagePath.map((image, index) => (
-                    <Col xs={24} sm={12} md={8} key={index}>
-                      <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
-                        <Card hoverable className="blog-card pdf__card" style={{ width:300, height:300 }}>
-                          <Image src="./images.png" className="blog-image" />
+              <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
+
+              {/* Search bar */}
+              <Search
+                placeholder="Search departments..."
+                enterButton
+                size="large"
+                onSearch={(value) => setSearchTerm(value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ marginBottom: '20px' }} // Spacing before department list
+              />
+
+              {loading ? (
+                <div className="loading-spinner">
+                  <Spin size="large" />
+                </div>
+              ) : (
+                <Row gutter={[16, 16]} className="pdf-row">
+                  {filteredDepts.map((dept, index) => (
+                    <Col xs={24} sm={24} md={8} key={index}>
+                      <Link to={`/exit-exam/${dept.id}/1`} state={{ data: dept }}>
+                        <Card hoverable className="pdf__card" style={{ width: 300, height: 300 }}>
+                          <Image src="./images.png" alt={`Exam PDF ${index}`} className="blog-image" />
                           <Card.Meta
                             description={
                               <div>
-                                <div>Exam &#x1F4DA;</div>
-                                <h6 className="author-name">{image ? image : ''}</h6>
+                                <div className='extitle'><h1 >2015 {dept || 'PDF Title'} exit exam &#x1F4DA;</h1></div>
+                                <h2 className="pdf-title"> {dept.image || 'PDF Title'}</h2>
                               </div>
                             }
                           />
@@ -84,27 +113,21 @@ const filteredDepts = selectedDepartment ? data.filter(data => data.id === selec
                       </Link>
                     </Col>
                   ))}
-              </Row>
-              {/* <ImageGallery/>  */}
-              {/* <ImageSlider/>  */}
-              <Card>
-             
-              </Card>
+                </Row>
+              )}
             </Col>
-            <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-               
-               <Card>
+
+            <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+              {/* Link to blueprint */}
+              <Card>
                 <Link to="../blueprint">
-                  <Button>
-                        View blue print
-                </Button>
+                  <Button type="primary">View Blueprint</Button>
                 </Link>
               </Card>
-              {/* <BluePrintCard/> */}
             </Col>
           </Row>
-    </div>
-    </Wrapper>
+        </div>
+      </Wrapper>
     </section>
   );
 };
