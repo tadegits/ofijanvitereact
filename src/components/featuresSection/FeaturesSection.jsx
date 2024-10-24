@@ -21,12 +21,9 @@ const FeaturesSection = () => {
           <h4 className="dark-feature-title">
             Test yourself before exam
           </h4>
-          <ul className="list-group">
+          <div className="list-group">
             <p>Ofijan serves as a dedicated platform for individuals to formally confirm their readiness to undertake the actual test. This is achieved through the administration of meticulously crafted sample professional questions that are specifically designed to assess the candidate's proficiency and knowledge in their respective field. By engaging with these thoughtfully curated questions on Ofijan, individuals can validate their preparedness and demonstrate their aptitude in a comprehensive and professional manner.</p>
-            {/* <li><p>Based on the new MoE Carriculum</p></li>
-            <li><p>Answers with breif description</p></li>
-            <li><p>For all Subjects</p></li> */}
-          </ul>
+          </div>
          
         </div>
         <div className="features__feature white-feature">
