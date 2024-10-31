@@ -15,13 +15,14 @@ const ExamCard = ({ exam, openModal }) => {
       extra={<Button onClick={() => openModal(exam)}>Open</Button>}
       key={id}
       style={{ marginBottom: 16 }}
-      cover={<img alt="exam" src={'./moe.jpg'} />}
+     
     >
       <p>{exam_name}</p>
       <p><strong>{questions_count} Questions:</strong></p>
       <hr />
       <Space />
     </Card>
+    
     
     );
   }

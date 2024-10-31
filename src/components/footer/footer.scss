@@ -5,14 +5,15 @@
     padding-block: 1rem;
     height: 20vh;
     justify-content: end;
-    color: $tade-color;
+    color: white;
+    background-color: $tade-color;
     width: 100%;
     left: 0;
     right: 0;
     bottom: 0;
 margin-top: auto;
     h3{
-        color: $tade-color;
+      color: white;
         font-size: large;
     }
     &__text{
@@ -45,6 +46,7 @@ img{
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-top: 0.5rem;
+    color: white;
 
 }
 li{
@@ -52,6 +54,7 @@ li{
     transition: color 0.3s ease-in-out;
     text-decoration: none;
     list-style-type: none;
+    color: white;
         &:hover{
             color: #212123;
 }
