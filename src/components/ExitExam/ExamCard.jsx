@@ -10,41 +10,19 @@ const ExamCard = ({ exam, openModal }) => {
   if (questions_count > 20) {
     return (
       <Card
-        className='exam_card1'
-        title={department ? <><strong>{department.title}</strong> </> : ''}
-      
-        extra={<Button  onClick={() => openModal(exam)}>
-            Open
-          </Button>}
-        key={id}
-        actions={[
-          ,
-          //         <Link to={`/ofijan_exam_plate/testmode/${id}`} >
-          //              <Button className='button-open'>
-          //            Open
-          //          </Button>
-          //             </Link>ofijan_exam_plate/studymode
-
-          //  <Link to={`/ofijan_exam_plate/studymode/${id}`} >
-          //              <Button className='button-open'>
-          //            Open
-          //          </Button>
-          //             </Link> 
-
-        ]}
-        style={{ marginBottom: 16 }}
-      >
-        <p>
-        {exam_name}
-        </p>
-        <p>
-          <strong>{questions_count} Questions:</strong>
-        </p>
-        <hr></hr>
-
-
-        <Space></Space>
-      </Card>
+      className='exam_card1'
+      title={department ? <><strong>{department.title}</strong> </> : ''}
+      extra={<Button onClick={() => openModal(exam)}>Open</Button>}
+      key={id}
+      style={{ marginBottom: 16 }}
+      cover={<img alt="exam" src={'./moe.jpg'} />}
+    >
+      <p>{exam_name}</p>
+      <p><strong>{questions_count} Questions:</strong></p>
+      <hr />
+      <Space />
+    </Card>
+    
     );
   }
 

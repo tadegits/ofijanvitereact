@@ -6,13 +6,12 @@ html, body {
 }
 
 .wrapper {
-    display: flex;               // Enable Flexbox
-    flex-direction: column;      // Stack children vertically
-    min-height: 100vh;          // Ensure it covers full viewport height
+    display: flex;               
+    flex-direction: column;      
+    min-height: max-content;         
     max-width: 1440px;
     margin-inline: auto;
     padding-inline: 1rem;
-
     @include respond(tab-land) {
         padding-inline: 1rem;
     }

@@ -31,7 +31,7 @@ const Home = () => {
       {/* <Service/>      */}
      {/* <CounterUpPage/> */}
      <Pdf/> 
-     <Service/>
+     {/* <Service/> */}
      <ExitExam/>
     
       <FeaturesSection/>
