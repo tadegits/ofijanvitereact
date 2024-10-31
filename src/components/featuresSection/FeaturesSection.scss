@@ -1,12 +1,12 @@
 @import '../../styles/mixin.scss';
 
 .features {
-    padding-block: 0rem;
+    padding: 2rem 0; // More padding for better spacing
+
     &__text {
         text-align: center;
         width: 50%;
-        margin-inline: auto;
-        margin-bottom: 0rem;
+        margin: 0 auto 2rem; // Adjust bottom margin for spacing
 
         @include respond(tab-port) {
             width: 70%;
@@ -19,74 +19,85 @@
 
     &__container {
         display: grid;
-        grid-template-columns: 2fr 2fr 2fr;
-        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem; // Added gap for better spacing
 
         @include respond(tab-port) {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; // Stack on small screens
             gap: 1.3rem;
-            grid-template-rows: auto;
         }
-        li{
+
+        li {
             text-decoration: none;
             list-style: none;
-        }
-        .list_group
-        {
-           align-items: center;
-           justify-content: center;
-           justify-items: center; 
         }
     }
 
     &__feature {
         text-align: center;
-        border-radius: 30px 30px 0 0;
-        padding: 1rem;
-        grid-area: span 1 / span 1 / span 1 / span 1;
+        border-radius: 30px; // Adjust border radius
+        padding: 1.5rem; // Increased padding for better touch target
+        transition: transform 0.3s ease; // Smooth hover transition
+        position: relative;
 
-        img {
-            margin-inline: auto;
-            margin-bottom: 1.5rem;
+        &:hover {
+            transform: translateY(-5px); // Slight lift effect on hover
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); // Add shadow effect
         }
+
+        h4 {
+            margin-bottom: 0.5rem; // Reduced bottom margin
+            font-size: 1.5rem; // Increased font size for prominence
+            font-weight: 700; // Bold weight for emphasis
+            color: #594fb6; // Consistent color for titles
+        }
+
         p {
             padding: 0;
             text-align: justify;
             color: #b6b6b6;
-            font-family: Cambria, Cochin, Times, 'Times New Roman', serif;
-            font-size: 0.91rem;
-            line-height: 1.1rem;
+            font-family: 'Cambria', serif;
+            font-size: 1rem; // Slightly larger font size
+            line-height: 1.5rem; // Increased line height for readability
+            margin-bottom: 1rem; // Added margin for space
         }
 
-        h4 {
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            font-weight: 500;
-            font-weight: bold;
+        img {
+            margin: 0 auto 1.5rem; // Adjusted margin
+            width: 50px; // Fixed width for icons
+            height: auto; // Maintain aspect ratio
         }
 
         @include respond(tab-port) {
             padding: 1.3rem;
-            border-radius: 0.8rem;
+            border-radius: 0.8rem; // Adjust border radius for small screens
         }
-    }
 
-    &__feature:nth-child(5){
-        border-radius: 0 0 30px 30px; 
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #594fb6;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
 
-        @include respond(tab-port) {
-            border-radius: 0.8rem;
+            &:hover {
+                background-color: #3d2a87; // Darker shade on hover
+            }
         }
     }
 
     .dark-feature {
-        background-color: #594fb6;
+        background: linear-gradient(135deg, #594fb6 0%, #3d2a87 100%); // Gradient background
         color: #fff;
     }
 
     .white-feature {
-        @include respond(tab-port) {
-            background-color: #ffffff;
+        background-color: #ffffff; // Keep white feature background
+        p {
+            color: rgb(116, 116, 116);
         }
     }
 

@@ -3,9 +3,23 @@
 .pdfs{
 padding: 0px;
   gap: 2rem;
+  padding-bottom: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  padding-top: 0.1rem;
+  @include respond(phone){
+    background-color: rgba(255, 0, 0, 0);
+  }
   h1{
     font-size: 1.2rem;
     letter-spacing: 0.07rem;
+    @include respond(phone)
+   {
+    color: white;
+   }
+}
+p{
+  color: black;
+  font-weight: bolder;
 }
 h3{
   font-size:1em;
@@ -20,7 +34,7 @@ margin: 10px;
 .pdf_section{
   padding: 0;
   padding-top: 4rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   //background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
 .pdf__section_viewer
@@ -41,13 +55,14 @@ margin: 10px;
   margin: 0.2rem;
  h1{
    margin-left: 2rem;
+   
  }
  
 }
 .pdf__col{  
  display: flex;
  flex-wrap: wrap;
- width: 70%;
+ width: 100%;
  gap: 12px;
  align-items: center;
  justify-content: center;

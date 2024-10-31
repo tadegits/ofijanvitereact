@@ -11,6 +11,8 @@ import Testimonals from '../Testimonals/Testimonals'
 import Service from '../Service/Service'
 import Navbar from '../navbar/Navbar'
 import LNavbar from '../../logedin/navbar/LNavbar'
+import Pdf from '../Pdf';
+import ExitExam from '../ExitExam/ExitExam';
 const Home = () => {
   const [user, setUser] = useState("");
   const [isLoggedin, setIsLoggedin] = useState(false); 
@@ -28,11 +30,15 @@ const Home = () => {
       <Hero/>
       {/* <Service/>      */}
      {/* <CounterUpPage/> */}
-     
+     <Pdf/> 
+     <Service/>
+     <ExitExam/>
+    
       <FeaturesSection/>
+      
       {/* <CompanySection/>  */}
-      <SignUpSection/> 
-      <Testimonals/>   
+      {/* <SignUpSection/>  */}
+      {/* <Testimonals/>    */}
     </>
   )
 }

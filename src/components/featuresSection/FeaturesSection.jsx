@@ -1,84 +1,102 @@
-import './FeaturesSection.scss'
-import Wrapper from '../wrapper/Wrapper'
-import Img1 from '../../assets/resource1.png'
-import Img2 from '../../assets/resource2.png'
-import Img3 from '../../assets/resource3.png'
+import './FeaturesSection.scss';
+import Wrapper from '../wrapper/Wrapper';
 import ExploreIcon from '@mui/icons-material/Explore';
-import PaymentIcon from '@mui/icons-material/Payment';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const FeaturesSection = () => {
-  return <section className="features">
-    <Wrapper>
-      <h6></h6>
-    <div className="features__text">
-        </div>
-        <h4>Ofijan enables you to,</h4>
-        <p>-</p>
-      <div className="features__container">
-        <div className="features__feature dark-feature">
-        <ExploreIcon/>
-          <h4 className="dark-feature-title">
-            Test yourself before exam
-          </h4>
-          <div className="list-group">
-            <p>Ofijan serves as a dedicated platform for individuals to formally confirm their readiness to undertake the actual test. This is achieved through the administration of meticulously crafted sample professional questions that are specifically designed to assess the candidate's proficiency and knowledge in their respective field. By engaging with these thoughtfully curated questions on Ofijan, individuals can validate their preparedness and demonstrate their aptitude in a comprehensive and professional manner.</p>
-          </div>
-         
-        </div>
-        <div className="features__feature white-feature">
-        <ExploreIcon/>
-          <h4 className="white-feature-title">
-            Take test and see the answers
-          </h4>
-          <p>
-          Ofijan is a reputable platform that facilitates the administration of tests, providing individuals with the opportunity to assess their knowledge and skills in a controlled environment. By utilizing Ofijan, individuals can undertake tests and gain access to comprehensive answer evaluations. This professional platform ensures a reliable and efficient process for test-taking, enabling users to gauge their performance and enhance their understanding of the subject matter through detailed answer analysis.
-          </p>
-        </div>
-        <div className="features__feature dark-feature">
-          <ExploreIcon/>
-          <h4 className="dark-feature-title">
-          Expert Instructors
-          </h4>
-         <p>
-         Ofijan is a distinguished platform that boasts a team of highly qualified and experienced instructors and professors, who specialize in preparing individuals for a wide range of exams, including exit exams, entrance exams, and professional assessments. The platform offers meticulously crafted exam preparation materials, designed to comprehensively cover the subject matter and ensure that candidates are well-equipped to tackle the challenges of the exam. The professional guidance and mentorship provided by the instructors and professors on Ofijan are unparalleled, ensuring that individuals are equipped with the necessary knowledge and skills to excel in their respective fields.          </p>
-        </div>
-        <div className="features__feature white-feature">
-        <ExploreIcon/>
-          <h4 className="white-feature-title">
-            Exit Exam Question!
-          </h4>
-
-          <p>
-          Ofijan is a distinguished platform that boasts a team of highly qualified and experienced instructors and professors, who specialize in preparing individuals for a wide range of exams, including exit exams, entrance exams, and professional assessments. The platform offers meticulously crafted exam preparation materials, designed to comprehensively cover the subject matter and ensure that candidates are well-equipped to tackle the challenges of the exam. The professional guidance and mentorship provided by the instructors and professors on Ofijan are unparalleled, ensuring that individuals are equipped with the necessary knowledge and skills to excel in their respective fields.          
-          </p>
-        </div>
-        <div className="features__feature dark-feature">
-        <ExploreIcon/>
-          <h4 className="dark-feature-title">
-            Grade 6 , 8 , 12 Exam Question's
-          </h4>
-          <p>
-          At Ofijan, we take great care in developing our question bank. Our team of experts meticulously crafts each question, ensuring they align with authoritative guides and adhere to the most up-to-date curriculum set by the Ethiopian Ministry of Education <b>(#MoE).</b> This means that the questions you encounter on Ofijan are not only relevant and comprehensive but also reflect the specific knowledge and skills required by the MoE curriculum. By utilizing our platform, you can have confidence that you are practicing with high-quality questions that are directly aligned with the educational standards set by the MoE.
-            </p>
-            
-        </div>
-     
-        <div className="features__feature white-feature">
-        <ExploreIcon/>
-          <h4 className="white-feature-title">
-          Simple Payment getway
-          </h4>
-          <p>
-          Ofijan aims to provide fair pricing for its exams, ensuring accessibility for all individuals. To make the payment process simple and convenient, we have implemented the Chapa(www.chapa.co) payment gateway. With Chapa, users can easily complete their payments in a few simple steps. What makes #Chapa.co even more convenient is that it works seamlessly with 26 banks in Ethiopia, allowing users to choose their preferred bank for the transaction. This integration with multiple banks ensures a smooth and hassle-free payment experience for our valued users.
-          </p>
-        </div>
-
+  return (
+    <section className="features" aria-labelledby="features-heading">
+      <Wrapper>
         
-      </div>
-   
-    </Wrapper>
-  </section>
-}
+        <div className="features__text">
+          <h2 id="features-heading">Comprehensive Resources for Ethiopian Students</h2>
+          <h4>Ofijan enables you to achieve:</h4>
+          <ul>
+            <li>Tailored exam preparation and resources for success.</li>
+          </ul>
+        </div>
+        <div className="features__container">
 
-export default FeaturesSection
+          {featuresData.map((feature, index) => (
+            <div key={index} className={`features__feature ${feature.backgroundClass}`}>
+              <ExploreIcon alt={feature.iconAlt} />
+              <h4 className={`${feature.titleClass}`}>{feature.title}</h4>
+              <p>{feature.description}</p>
+              {/* <Link to={feature.link} className="cta-button">Learn More</Link> */}
+            </div>
+          ))}
+
+        </div>
+      </Wrapper>
+    </section>
+  );
+};
+
+const featuresData = [
+  {
+    title: "Ethiopian Exit Exam Preparation",
+    description: "Ofijan provides comprehensive exam preparation resources, specifically designed for Ethiopian exit exams. Our platform offers a range of study materials, including downloadable past exam papers and guides.",
+    backgroundClass: "dark-feature",
+    titleClass: "dark-feature-title",
+    iconAlt: "Explore icon",
+    link: "/exit-exam-preparation",
+  },
+  {
+    title: "Online Exam Practice",
+    description: "Engage in online exam practice with a focus on Ethiopian Ministry of Education exam questions. Test your knowledge with free questions tailored to the curriculum.",
+    backgroundClass: "white-feature",
+    titleClass: "white-feature-title",
+    iconAlt: "Explore icon",
+    link: "/online-exam-practice",
+  },
+  {
+    title: "Expert Exam Preparation Instructors",
+    description: "Benefit from professional exam preparation with expert instructors at Ofijan. Our tutoring services offer personalized guidance, ensuring you have the resources you need for academic success.",
+    backgroundClass: "dark-feature",
+    titleClass: "dark-feature-title",
+    iconAlt: "Explore icon",
+    link: "/expert-instructors",
+  },
+  {
+    title: "Customizable Test Preparation",
+    description: "Ofijan’s platform allows for customizable test preparation, enabling students to tailor their study aids according to specific subjects. Access a comprehensive exam question bank to enhance your readiness.",
+    backgroundClass: "white-feature",
+    titleClass: "white-feature-title",
+    iconAlt: "Explore icon",
+    link: "/customizable-test-preparation",
+  },
+  {
+    title: "Accessible Payment Solutions with Chapa",
+    description: "With Chapa payment gateway for Ethiopian students, Ofijan provides a seamless payment experience for accessing premium content. Start practicing for your exit exams today.",
+    backgroundClass: "dark-feature",
+    titleClass: "dark-feature-title",
+    iconAlt: "Explore icon",
+    link: "/payment-solutions",
+  },
+  {
+    title: "Engaging Learning Tools",
+    description: "Join Ofijan for better exam readiness with interactive exam preparation tools. Subscribe to our YouTube channel and explore exam question archives to support your preparation journey.",
+    backgroundClass: "white-feature",
+    titleClass: "white-feature-title",
+    iconAlt: "Explore icon",
+    link: "/learning-tools",
+  },
+  {
+    title: "Success Stories and Testimonials",
+    description: "Our platform is trusted by Ethiopian students. Read testimonials and endorsements from students who have successfully prepared for their exams using Ofijan.",
+    backgroundClass: "dark-feature",
+    titleClass: "dark-feature-title",
+    iconAlt: "Explore icon",
+    link: "/success-stories",
+  },
+  {
+    title: "Join and Engage with Ofijan",
+    description: "Explore our platform and join Ofijan today to experience quality exam preparation. Start learning and testing your knowledge online with our interactive features.",
+    backgroundClass: "white-feature",
+    titleClass: "white-feature-title",
+    iconAlt: "Explore icon",
+    link: "/join-us",
+  },
+];
+
+export default FeaturesSection;

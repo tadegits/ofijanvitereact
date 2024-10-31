@@ -1,10 +1,18 @@
 @import '../../styles/mixin.scss';
-.adCard{
+.advertisement-card{
     width: 250px;
-    padding: 1rem;
+    padding: 0rem;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0);
+    @include respond(phone){
+        width: 100%;
+        border: none;
+        display: none;
+      }
     img{
         width: 10px;
-        margin-left: 10px;
+        margin-left: 0px;
+        background-color: rgba(255, 255, 255, 0);
         @include respond(phone)
         {
             width: 80px;

@@ -1,16 +1,28 @@
 @import "../../styles/mixin.scss";
 
-.wrapper{
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;               // Enable Flexbox
+    flex-direction: column;      // Stack children vertically
+    min-height: 100vh;          // Ensure it covers full viewport height
     max-width: 1440px;
-    
     margin-inline: auto;
-    padding-inline: 2rem;
+    padding-inline: 1rem;
 
     @include respond(tab-land) {
         padding-inline: 1rem;
     }
 
-    @include respond(phone){
-        padding-inline: 0.5rem;
+    @include respond(phone) {
+        padding-inline: 1rem;
+        max-width: 100%;
     }
+}
+
+.footer {
+    margin-top: auto;           // Pushes footer to the bottom
 }

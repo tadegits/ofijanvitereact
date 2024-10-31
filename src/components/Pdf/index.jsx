@@ -54,7 +54,7 @@ const Index = () => {
     <section className='pdf_section'>
       {/* SEO-enhanced meta tags */}
       <Helmet>
-        <title>2015 Ethiopian Exit Exam Questions | Ofijan |</title>
+        <title>2015 Ethiopian Exit Exam Questions | Ofijan  | 2016 Ethiopian Exit Exam Questions | Ethiopia Exit Exam | 2016 </title>
         <meta name="description" content="Access the 2015 Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides." />
         <meta property="og:title" content="2015 Ethiopian Exit Exam Questions" />
         <meta property="og:description" content="Prepare for the 2015 Ethiopian Exit Exam with these downloadable PDFs of previous questions. Study effectively with Ofijan's resources." />
@@ -71,8 +71,8 @@ const Index = () => {
               <AdvertisementCard />
             </Col>
 
-            <Col xs={24} sm={24} md={16} lg={12} xl={12} className="pdf__col">
-              <h1>2015 Ethiopian Exit Exam Questions</h1>
+            <Col xs={24} sm={24} md={18} lg={16} xl={16} className="pdf__col">
+              <h1>Get Pdf for 2015 MoE Ethiopian Exit Exam Questions</h1>
               <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
 
               {loading ? (
@@ -82,10 +82,10 @@ const Index = () => {
               ) : (
                 <Row gutter={[16, 16]} className="pdf-row">
                   {imagePath.map((image, index) => (
-                    <Col xs={24} sm={24} md={8} key={index}>
+                    <Col xs={24} sm={24} md={6} key={index}>
                       <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
-                        <Card hoverable className="pdf__card" style={{ width: 300, height: 300 }}>
-                          <Image src="./images.png" alt={`Exam PDF ${index}`} className="blog-image" />
+                        <Card hoverable className="pdf__card" style={{ width: 250, height: 300 }}>
+                          <Image src="./images.png" alt="2015 Exit Exam PDF for Ethiopian Students" className="blog-image" />
                           <Card.Meta
                             description={
                               <div>
@@ -102,14 +102,13 @@ const Index = () => {
               )}
             </Col>
 
-            <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-              {/* Link to blueprint */}
-              <Card>
+            {/* <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+         
                 <Link to="../blueprint">
                   <Button type="primary">View Blueprint</Button>
                 </Link>
-              </Card>
-            </Col>
+              
+            </Col> */}
           </Row>
         </div>
       </Wrapper>

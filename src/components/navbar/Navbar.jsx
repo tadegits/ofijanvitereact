@@ -64,7 +64,7 @@ console.log(user);
 
     return (
         <nav className="navbarz">
-            <Wrapper className="navbarz__container">
+            <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
                         <h1>OFIJAN </h1>
@@ -72,10 +72,10 @@ console.log(user);
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/">Home</Link>
+                        <Link to="/" title="Go to Home">Home</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to={isLoggedIn ? "/Exit_Exam" : "/ExitExam"}>All Exams</Link>
+                        <Link to={isLoggedIn ? "/Exit_Exam" : "/ExitExam" } title="exams">All Exams</Link>
                     </li>
                     {isLoggedIn &&
                         <li onClick={() => setShowNav(false)}>
@@ -83,17 +83,17 @@ console.log(user);
                         </li>
                     }
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/2015_exit_pdfs">2015 Exit Exam</Link>
+                        <Link  to="/2015_exit_pdfs" title="2015 ethopian Exit Exam">2015 Exit Exam</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/blueprint">Blue Print</Link>
+                        <Link to="/blueprint" title="Exit exam blue print">Blue Print</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to="/ofijan_blogs">Blog</Link>
+                        <Link to="/ofijan_blogs" title="Ofijan Blog">Blog</Link>
                     </li>
                     {isLoggedIn &&
                         <li onClick={() => setShowNav(false)}>
-                            <Link to="/my_results">My Result</Link>
+                            <Link to="/my_results" title="Show my results">My Result</Link>
                         </li>
                     }
                     <li onClick={() => setShowNav(false)}>
@@ -127,7 +127,7 @@ console.log(user);
                     </li>
                 </ul>
                 {!isLoggedIn &&
-                    <Link to='/Login' className="button-primary navbarz__btn">
+                    <Link to='/Login' title="Login to ofijan" className="button-primary navbarz__btn">
                         Sign in
                     </Link>
                 }
@@ -143,7 +143,7 @@ console.log(user);
                 >
                     <p>Are you sure you want to logout?</p>
                 </Modal>
-            </Wrapper>
+            </section>
         </nav>
     );
 }

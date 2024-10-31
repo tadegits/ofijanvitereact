@@ -6,32 +6,76 @@
 
 .hero {
     
-    padding: 0;
-    padding-top: 2rem;
+    padding: 0rem;
+    padding-top: 0rem;
+    width: 100%;
+    height: 80vh;
     // background-color: $tade-color;
     background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
     @include respond(phone)
     {
-        background-image: linear-gradient($tade-color, rgb(255, 255, 255) ); 
+        padding-top: 0rem;
+        background-image: linear-gradient(to bottom, $tade-color, white);
     }
 
     &__container {
         display: flex;
+        flex-direction: row;
         align-items: center;
-        grid-template-columns: repeat(2, 2fr);
-        gap: 4rem;
+        justify-content: center;
+        height: 40vh;
+        gap: 0rem;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        @include respond(phone){
+            padding-top: 10px;
+            // background-image: linear-gradient(to bottom  rgb(109, 19, 19), $tade-color);
+        }
+       h2{
+            
+            font-family: 'Quicksand', sans-serif;
+            font-size:1.8rem;
+            color: white;
+            margin-top: 5px;
+            margin-left: 10px;  
+            @include respond(phone)
+            {
+                color: white;
+                word-spacing: 1px;
+                font-size: 18px;
+                justify-content: center;
+                text-align: justify;
+                padding: 10px;
+                display: none;
+            }
+        }
         h1 {
             font-family: 'Quicksand', sans-serif;
             font-size:4.8rem;
-            color: rgb(255, 255, 255);
-            margin-top: 25px;
+            color: white;
+            margin-top: 65px;
+
+            @include respond(phone)
+            {
+                margin-top: 0px;
+                
+            }
         }
         p{
-            color: yellow;
+            color: rgb(0, 0, 0);
             opacity: 0.9;
-            padding-left: 25px;
-            font-family: 'Quicksand', sans-serif;
+            width: 75%;
+            margin-top: 10px;
+            padding-left: 10px;
+            font-family: 'roboto', sans-serif;
             letter-spacing: 0.1em;
+            text-align: justify;
+            @include respond(phone){
+                margin-top: 0px;
+                width: 100%;
+                text-align: justify;
+                color: white;
+            }
         }
 
         @include respond(tab-port) {
@@ -54,27 +98,34 @@
         align-items: center;
         gap: 1rem;
         flex-wrap: wrap;
-        margin-top: 3rem;
-        margin-bottom: 10PX;
+        margin-top: 0rem;
+        margin-bottom: 0px;
         justify-content: center;
         .btn_hero{
-            color:yellow;
-            border: 1px solid yellow;
+            color:$tade-color;
+            font-weight: bold;
+            border: 1px solid white;
+            background-color: yellow;
             font-family: 'Quicksand', sans-serif;
-            font-weight: 300;
         }
         button {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
     }
-
+    &__left{
+       
+        width: 50%;
+    }
     &__right {
-
+width: 50%;
+height: 60vh;
+justify-content: center;
         @include respond(tab-port) {
             width: 70%;
             margin-inline: auto;
             position: relative;
             align-items: start;
+        
         }
 
         @include respond(phone) {
@@ -88,7 +139,7 @@
 
     .animation {
         width: 80%;
-        height: 40%;
+        height: 100%;
         position: relative;
         top: 0;
 
@@ -97,5 +148,12 @@
             margin: 0;
             padding: 0;
         }
+    }
+}
+.hero__right{
+    @include respond(phone)
+    {
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 }
