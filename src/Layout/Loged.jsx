@@ -57,6 +57,7 @@ const Loged = () => {
          <Route path='/termsofservice' element={<TermsOfService/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/easyexam" element={<EasyExam />} />
         <Route path="/easy_exam_plate/:ofin_id" element={<EasyExamPlate />} />
         <Route path="/examresults/:id" element={<ExamResults />} />

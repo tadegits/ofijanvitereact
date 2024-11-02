@@ -64,10 +64,23 @@ const Index = () => {
       </Helmet>
 
       <Wrapper className='pdfs'>
+        {/* Top Banner Ad */}
+        <div className="ad-banner-top">
+          <ins className="adsbygoogle"
+               style={{ display: 'block' }}
+               data-ad-client="ca-pub-8449765590756444"
+               data-ad-slot="8261485661"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
         <div className="display-pdf-container">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={8} lg={6} xl={6}>
-              {/* Ad component */}
+              {/* Sidebar Ad */}
               <AdvertisementCard />
             </Col>
 
@@ -82,34 +95,57 @@ const Index = () => {
               ) : (
                 <Row gutter={[16, 16]} className="pdf-row">
                   {imagePath.map((image, index) => (
-                    <Col xs={24} sm={24} md={6} key={index}>
-                      <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
-                        <Card hoverable className="pdf__card" style={{ width: 250, height: 300 }}>
-                          <Image src="./images.png" alt="2015 Exit Exam PDF for Ethiopian Students" className="blog-image" />
-                          <Card.Meta
-                            description={
-                              <div>
-                                <div className='extitle'><h1 >2015 {image || 'PDF Title'} exit exam &#x1F4DA;</h1></div>
-                                <h2 className="pdf-title"> {image || 'PDF Title'}</h2>
-                              </div>
-                            }
-                          />
-                        </Card>
-                      </Link>
-                    </Col>
+                    <>
+                      {/* In-feed Ad after every 4 items */}
+                      {index > 0 && index % 4 === 0 && (
+                        <Col span={24}>
+                          <div className="in-feed-ad">
+                            <ins className="adsbygoogle"
+                                 style={{ display: 'block' }}
+                                 data-ad-client="ca-pub-8449765590756444"
+                                 data-ad-slot="8261485661"
+                                 data-ad-format="auto"></ins>
+                            <script>
+                              (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                          </div>
+                        </Col>
+                      )}
+                      
+                      <Col xs={24} sm={24} md={6} key={index}>
+                        <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
+                          <Card hoverable className="pdf__card">
+                            <Image src="./images.png" alt="2015 Exit Exam PDF for Ethiopian Students" className="blog-image" />
+                            <Card.Meta
+                              description={
+                                <div>
+                                  <div className='extitle'><h1>2015 {image || 'PDF Title'} exit exam &#x1F4DA;</h1></div>
+                                  <h2 className="pdf-title"> {image || 'PDF Title'}</h2>
+                                </div>
+                              }
+                            />
+                          </Card>
+                        </Link>
+                      </Col>
+                    </>
                   ))}
                 </Row>
               )}
             </Col>
-
-            {/* <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-         
-                <Link to="../blueprint">
-                  <Button type="primary">View Blueprint</Button>
-                </Link>
-              
-            </Col> */}
           </Row>
+
+          {/* Bottom Banner Ad */}
+          <div className="ad-banner-bottom">
+            <ins className="adsbygoogle"
+                 style={{ display: 'block' }}
+                 data-ad-client="ca-pub-8449765590756444"
+                 data-ad-slot="8261485661"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
         </div>
       </Wrapper>
     </section>

@@ -29,9 +29,9 @@ const footer = () => {
         </ul> */}
         <ul className='footer__links'>
             {/* <li>Services</li>*/}
-            <li><Link to='/about-us'>About Us</Link></li> 
-            <li><Link to='/termsofservice'>Terms Of Service</Link></li>
-            <li><Link to='/privacy'>privacy policy</Link></li>
+            <li><Link className='footer_link' to='/about-us'>About Us</Link></li> 
+            <li><Link className='footer_link' to='/termsofservice'>Terms Of Service</Link></li>
+            <li><Link className='footer_link' to='/privacy'>privacy policy</Link></li>
             {/* <li>FAQS</li> */}
         </ul>
         

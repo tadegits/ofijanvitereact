@@ -121,19 +121,7 @@ console.log('id', selectedDepartmentId);
             ))}
           </select>
         </div>
-        {/* {isLoggedin ? (
-          <Button>
-            <Link to='/easyexam'>
-              Take Exam now!
-            </Link>
-          </Button>
-        ) : (
-          <Button type='primary'>
-            <Link to='/Login' >
-              Take Exam now!
-            </Link>
-          </Button>
-        )} */}
+      
       </div>
 
       <div className='exams__holder'>
@@ -147,7 +135,7 @@ console.log('id', selectedDepartmentId);
               <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
             </div>
           ))}
-      </div>
+      </div> 
 </Wrapper>   
  </section>
     

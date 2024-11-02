@@ -9,13 +9,16 @@
     padding: 0rem;
     padding-top: 0rem;
     width: 100%;
-    height: 80vh;
+    height: 75vh;
+
     // background-color: $tade-color;
     background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
-    @include respond(phone)
-    {
-        padding-top: 0rem;
-        background-image: linear-gradient(to bottom, $tade-color, white);
+    @include respond(phone){
+        background-image: linear-gradient(to left, rgb(95, 10, 121), $tade-color);
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__container {
@@ -28,8 +31,10 @@
         margin-bottom: 0px;
         padding-top: 0px;
         @include respond(phone){
-            padding-top: 10px;
-            // background-image: linear-gradient(to bottom  rgb(109, 19, 19), $tade-color);
+            align-items: flex-end;
+            display: flex;
+            justify-content: end;
+            padding-top: 20px;
         }
        h2{
             
@@ -115,10 +120,13 @@
     &__left{
        
         width: 50%;
+        @include respond(phone) {
+           width: 100%;
+
+        }
     }
     &__right {
 width: 50%;
-height: 60vh;
 justify-content: center;
         @include respond(tab-port) {
             width: 70%;
@@ -134,12 +142,17 @@ justify-content: center;
             display: flex;
             justify-content: center;
             width: 100%;
+            align-items: center;
+            align-content: center;
+
         }
     }
 
     .animation {
         width: 80%;
-        height: 100%;
+        height: 80%;
+        align-items: center;
+        justify-content: center;
         position: relative;
         top: 0;
 

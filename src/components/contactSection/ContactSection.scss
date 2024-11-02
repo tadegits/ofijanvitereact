@@ -1,0 +1,103 @@
+// ContactSection.scss
+@import '../../styles/mixin.scss';
+
+.contact {
+    padding: 2rem 0;
+
+    &__text {
+        text-align: center;
+        width: 50%;
+        margin: 0 auto 2rem;
+
+        @include respond(tab-port) {
+            width: 70%;
+        }
+
+        @include respond(phone) {
+            width: 100%;
+        }
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+
+        @include respond(tab-port) {
+            grid-template-columns: 1fr;
+            gap: 1.3rem;
+        }
+    }
+
+    &__item {
+        text-align: center;
+        border-radius: 30px;
+        padding: 1.5rem;
+        transition: transform 0.3s ease;
+        position: relative;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #594fb6;
+        }
+
+        p {
+            padding: 0;
+            text-align: justify;
+            color: #b6b6b6;
+            font-family: 'Cambria', serif;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @include respond(tab-port) {
+            padding: 1.3rem;
+            border-radius: 0.8rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #594fb6;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #3d2a87;
+            }
+        }
+    }
+
+    .dark-contact {
+        background: linear-gradient(135deg, #594fb6 0%, #3d2a87 100%);
+        color: #fff;
+    }
+
+    .white-contact {
+        background-color: #ffffff;
+
+        p {
+            color: rgb(116, 116, 116);
+        }
+    }
+
+    .dark-contact-title {
+        color: #fff;
+    }
+
+    .white-contact-title {
+        color: #594fb6;
+    }
+}

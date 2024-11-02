@@ -20,7 +20,7 @@ const FeaturesSection = () => {
           {featuresData.map((feature, index) => (
             <div key={index} className={`features__feature ${feature.backgroundClass}`}>
               <ExploreIcon alt={feature.iconAlt} />
-              <h4 className={`${feature.titleClass}`}>{feature.title}</h4>
+              <h1 className={`${feature.titleClass}`}>{feature.title}</h1>
               <p>{feature.description}</p>
               {/* <Link to={feature.link} className="cta-button">Learn More</Link> */}
             </div>
@@ -96,6 +96,14 @@ const featuresData = [
     titleClass: "white-feature-title",
     iconAlt: "Explore icon",
     link: "/join-us",
+  },
+  {
+    title: "Access Over 10,000+ Ethiopian Exit Exam Questions with Ofijan.",
+    description: "Our platform is trusted by Ethiopian students. Read testimonials and endorsements from students who have successfully prepared for their exams using Ofijan.",
+    backgroundClass: "dark-feature",
+    titleClass: "dark-feature-title",
+    iconAlt: "Explore icon",
+    link: "/success-stories",
   },
 ];
 

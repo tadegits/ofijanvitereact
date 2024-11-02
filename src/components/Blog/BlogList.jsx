@@ -39,7 +39,7 @@ const BlogList = ({ blogs }) => {
                           <div className="author-info">
                             <img src={Logo} alt="Author Logo" width={10} height={10} className="author__photo" />
                             <div className="author-details">
-                              <p className="author-name">Mr.{blog.author}</p>
+                              {/* <p className="author-name">Mr.{blog.author}</p> */}
                               <p className="author-role">Writer</p>
                             </div>
                           </div>

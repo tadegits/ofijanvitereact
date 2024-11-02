@@ -57,6 +57,7 @@ const Default = () => {
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/termsofservice' element={<TermsOfService />} />
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/CoC" element={<CoC />} />
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />

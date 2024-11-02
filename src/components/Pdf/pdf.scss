@@ -1,100 +1,128 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixin.scss';
-.pdfs{
-padding: 0px;
+
+.pdfs {
+  padding: 0px;
   gap: 2rem;
+ 
   padding-bottom: 5px;
   background-color: rgba(255, 255, 255, 0);
   padding-top: 0.1rem;
-  @include respond(phone){
+
+  @include respond(phone) {
     background-color: rgba(255, 0, 0, 0);
   }
-  h1{
+
+  h1 {
     font-size: 1.2rem;
+    
     letter-spacing: 0.07rem;
-    @include respond(phone)
-   {
-    color: white;
-   }
+
+    @include respond(phone) {
+      color: $tade-color;
+      font-size: 16px;
+    }
+  }
+
+  p {
+    color: black;
+    font-weight: bolder;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  @include respond(phone) {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
 }
-p{
-  color: black;
-  font-weight: bolder;
-}
-h3{
-  font-size:1em;
-}
-@include respond(phone){
-  padding: 10px;
-display: flex;
-justify-content: center;
-margin: 10px;
-}
-}
-.pdf_section{
+
+.pdf_section {
   padding: 0;
   padding-top: 4rem;
   background-color: rgba(255, 255, 255, 0);
   //background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
-.pdf__section_viewer
-{
+
+.pdf__section_viewer {
   padding: 0;
 }
-.pdf-row{
+
+.pdf__card {
+  width: 250px;
+  height: 300px;
+  display: flex;
+
+  justify-content: center;
+  @include respond(phone) {
+    width: 100%;
+  }
+}
+
+.pdf-row {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 0px;
-  @include respond(phone){
+
+  @include respond(phone) {
     padding-left: 0px;
   }
 }
-.pdf__viewer{
+
+.pdf__viewer {
   margin-top: 1rem;
   margin: 0.2rem;
- h1{
-   margin-left: 2rem;
-   
- }
- 
+
+  h1 {
+    margin-left: 2rem;
+
+  }
+
 }
-.pdf__col{  
- display: flex;
- flex-wrap: wrap;
- width: 100%;
- gap: 12px;
- align-items: center;
- justify-content: center;
- align-self: center;
- @include respond(phone){
+
+.pdf__col {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 12px;
+  align-items: center;
   justify-content: center;
- }
+  align-self: center;
+
+  @include respond(phone) {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 ant-collapse-content-box {
-    padding: 10px; 
-  }
-  
-  .ant-collapse-content-box ul {
-    list-style-type: none; 
-    padding: 0;
-  }
-  
-  .ant-collapse-content-box li {
-    margin-bottom: 5px; 
-    color: #555; 
-    font-size: 14px; 
-  }
-  
-  .ant-collapse-content-box li:before {
-    content: "▹"; 
-    margin-right: 5px; 
-    color: #ff6600; 
-    font-weight: bold; 
-  }
-  $mobile-breakpoint: 576px;
+  padding: 10px;
+}
+
+.ant-collapse-content-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ant-collapse-content-box li {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 14px;
+}
+
+.ant-collapse-content-box li:before {
+  content: "▹";
+  margin-right: 5px;
+  color: #ff6600;
+  font-weight: bold;
+}
+
+$mobile-breakpoint: 576px;
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 992px;
 $large-desktop-breakpoint: 1200px;
@@ -102,25 +130,25 @@ $large-desktop-breakpoint: 1200px;
 .Row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 0px; 
-  margin-right: 0px; 
+  margin-left: 0px;
+  margin-right: 0px;
   display: flex;
   justify-content: center;
 
   .Col {
-    padding-left: 12px; 
-    padding-right: 12px; 
+    padding-left: 12px;
+    padding-right: 12px;
 
-   
+
     @media (max-width: $mobile-breakpoint) {
-      flex: 0 0 100%; 
+      flex: 0 0 100%;
       max-width: 100%;
       justify-content: center;
       margin: 10px;
     }
 
     @media (min-width: $tablet-breakpoint) {
-      flex: 0 0 50%; 
+      flex: 0 0 50%;
       max-width: 50%;
     }
 
@@ -130,32 +158,34 @@ $large-desktop-breakpoint: 1200px;
     }
 
     @media (min-width: $large-desktop-breakpoint) {
-      flex: 0 0 20%; 
+      flex: 0 0 20%;
       max-width: 20%;
     }
   }
 }
 
-.display-pdf-container{
+.display-pdf-container {
   margin-top: 10px;
   padding: 0;
-  @include respond(phone)
-  {
+
+  @include respond(phone) {
 
     display: flex;
     padding: 10px;
   }
- 
+
 }
-.extitle{
-  h1{
-color: rgb(177, 175, 175);
-  font-size: 12px;
-  font-family: "roboto", Arial, Helvetica, sans-serif;
+
+.extitle {
+  h1 {
+    color: rgb(177, 175, 175);
+    font-size: 12px;
+    font-family: "roboto", Arial, Helvetica, sans-serif;
   }
-  
+
 }
-.pdf-title{
+
+.pdf-title {
   font-size: 16px;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   color: $tade-color;
