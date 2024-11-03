@@ -5,7 +5,9 @@ import anim from '../../assets/aguytakingexam.json';
 import Lottie from 'lottie-react';
 import API_BASE_URL from '../../Globals/apiConfig';
 import { Helmet } from 'react-helmet';
+import { ArrowDownOutlined } from '@ant-design/icons';
 import './Hero.scss';
+import { Card, Button, Space } from 'antd';
 import Service from '../Service/Service';
 import Pdf from '../Pdf';
 import ExitExam from "../ExitExam/ExitExam";
@@ -69,8 +71,13 @@ const Hero = () => {
           </div>
 
           <div className="hero__btn-container">
-            <Link to="/ExitExam" className="button-outline btn_hero">
+            <Link to="/ExitExam" >
+            <Button type="primary" className="button-outline btn_hero" shape="round" size="large">
               Select Your Field of Study
+              </Button>  
+            </Link>
+            <Link to="/2015_exit_pdfs" >
+            <Button type="primary" className="button-outline btn_hero" shape="round" size="large" icon={<ArrowDownOutlined />}>Download</Button>
             </Link>
           </div>
         </div>

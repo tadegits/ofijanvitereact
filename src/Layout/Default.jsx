@@ -96,8 +96,7 @@ const Default = () => {
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
       </Routes>
-      <Footer/>
-
+<Footer/>
     </>
   )
 }

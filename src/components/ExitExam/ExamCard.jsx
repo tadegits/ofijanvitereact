@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Button, Space } from 'antd';
 import './ExamCard.scss';
 import WhatModal from '../../logedin/ExitExam/WhatModal';
-
+import { ArrowRightOutlined } from '@ant-design/icons';
 // AdSense script added once in the component
 const AdSenseScript = () => (
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8449765590756444" 
@@ -16,7 +16,7 @@ const ExamCard = ({ exam, openModal }) => {
     <Card
       className='exam_card1'
       title={department ? <><strong>{department.title}</strong> </> : ''}
-      extra={<Button onClick={() => openModal(exam)}>Open</Button>}
+      extra={<Button type="primary" shape="round" size="large" icon={<ArrowRightOutlined />} onClick={() => openModal(exam)}>Take Exam</Button>}
       key={id}
       style={{ marginBottom: 16 }}
     >

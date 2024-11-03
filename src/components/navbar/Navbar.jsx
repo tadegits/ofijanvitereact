@@ -63,7 +63,9 @@ console.log(user);
     );
 
     return (
+    <Wrapper>
         <nav className="navbarz">
+            
             <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
@@ -144,7 +146,8 @@ console.log(user);
                     <p>Are you sure you want to logout?</p>
                 </Modal>
             </section>
-        </nav>
+           
+        </nav> </Wrapper>
     );
 }
 

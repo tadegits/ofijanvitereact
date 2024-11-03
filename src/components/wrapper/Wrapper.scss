@@ -8,10 +8,10 @@ html, body {
 .wrapper {
     display: flex;               
     flex-direction: column;      
-    min-height: 80vh;         
+    min-height: max-content;         
     max-width: 1440px;
-    margin-inline: auto;
-    padding-inline: 1rem;
+    margin: 0 auto;
+    padding-inline: 0rem;
     @include respond(tab-land) {
         padding-inline: 1rem;
     }
@@ -22,5 +22,6 @@ html, body {
 }
 
 .footer {
-    margin-top: auto;           // Pushes footer to the bottom
+    margin-top: auto;           
 }
+

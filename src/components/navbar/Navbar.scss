@@ -4,20 +4,21 @@
 
 .navbarz {
   background-color: #ffffff;
-  padding: 5px;
+  padding: 5px 20px 5px 20px;
   width: 100%;
-  position: fixed;
+  // position: fixed;
   z-index: 100;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
   border-bottom: 1px solid rgba(0, 0, 0, 0.089);
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
   @include respond(phone) {
     padding-top: 25px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1px;
+    padding-right: 5px;
 
   }
 
@@ -26,37 +27,41 @@ justify-content: space-between;
     justify-content: space-between;
     width: 100%;
   }
-&__logo{
-   display: flex;
-  flex-direction: row;
-  gap: 1em;
-    h1{
+
+  &__logo {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+
+    h1 {
       font-size: 35px;
       margin: 0;
       padding: 0;
       letter-spacing: 0.1em;
       font-family: 'Quicksand', sans-serif;
     }
-.logo__moto{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  gap: 0;
-  p{
-    font-size: 15px;
-    justify-content: right;
-    align-items: right;
-    justify-self: right;
+
+    .logo__moto {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      gap: 0;
+
+      p {
+        font-size: 15px;
+        justify-content: right;
+        align-items: right;
+        justify-self: right;
+      }
+    }
   }
-}
-}
 
   &__logo img {
     width: 60px;
     height: 40px;
-   
+
 
     @include respond(phone) {
       width: 3rem;
@@ -121,16 +126,18 @@ justify-content: space-between;
     }
   }
 
-  .button-sig{
+  .button-sig {
     display: none;
     cursor: pointer;
     border-radius: 50%;
     padding: 0.8rem;
     transition: all 0.3s ease;
+
     @include respond(tab-port) {
       display: inline-block;
     }
   }
+
   &__menubar {
     display: none;
     cursor: pointer;
@@ -138,7 +145,7 @@ justify-content: space-between;
     padding: 0.8rem;
     background-color: #6f00eb;
     transition: all 0.3s ease;
- 
+
     svg {
       display: grid;
       place-content: center;
@@ -154,7 +161,7 @@ justify-content: space-between;
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
 }
 
 #exit {
@@ -200,6 +207,7 @@ justify-content: space-between;
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(0%);
   }

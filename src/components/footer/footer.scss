@@ -1,130 +1,77 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
 
-.footer{
+.footer {
     padding-block: 1rem;
     height: 10vh;
-    justify-content: end;
+    max-height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: $tade-color;
     width: 100%;
-    left: 0;
-    right: 0;
+    position: relative;
     bottom: 0;
-margin-top: auto;
-    h3{
-      color: white;
-        font-size: large;
-    }
-    &__text{
-        text-align: center;
+    margin-top: auto;
 
+    h3 {
+        color: white;
+        font-size: large;
+        text-align: center;
+        margin: 0;
     }
-    &__stores
-    {
+
+    &__text {
+        text-align: center;
+    }
+
+    &__stores {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap:  2rem;
+        gap: 2rem;
+        width: fit-content;
+        margin: 2rem auto;
+    }
+
+    &__logo {
         width: fit-content;
         margin-inline: auto;
-        margin-block: 3rem 6rem;
-    }
-&__logo{
-    width: fit-content;
-    margin-inline: auto;
-img{
-    width: 100%
-}
-}
-&__links{
-    width: fit-content;
-    margin-inline: auto;
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 0.5rem;
-    color: white;
 
-}
-li{
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-    text-decoration: none;
-    list-style-type: none;
-    color: white;
-        &:hover{
-            color: #212123;
-}
-}
-
-}
-.about-us-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px; 
-    
-    h1 {
-      color: $tade-color;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-  
-    h2 {
-      color: $tade-color;
-      font-size: 24px;
-      margin-top: 40px;
-      margin-bottom: 10px;
-    }
-  
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-      margin-bottom: 20px;
-    }
-  
-    .main-color {
-      color: $tade-color;
-    }
-  }
-  .about-us-container{
-    padding: 0;
-    padding: 3rem;
-    padding-top: 5rem;
-  }
-  .terms {
-    background-color: #f2f2f2; /* Set your desired background color */
-    padding: 45px 0; /* Adjust padding as needed */
-    
-    .terms__container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 30px; /* Adjust padding as needed */
-
-      
-      .terms__title {
-        color: #333; /* Set your desired title color */
-        margin-bottom: 20px; /* Adjust margin as needed */
-      }
-      
-      .terms__paragraph {
-        color: #666; /* Set your desired paragraph text color */
-        margin-bottom: 15px; /* Adjust margin as needed */
-        
-        .terms__link {
-          color: #007bff; /* Set your desired link color */
-          
-          &:hover {
-            text-decoration: underline; /* Add underline on hover */
-          }
+        img {
+            width: 100%;
         }
-      }
     }
-  }
-  
-.footer_link{
-  color: white;
-  
+
+    &__links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        color: white;
+
+        li {
+            list-style: none;
+            cursor: pointer;
+            color: white;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+                color: #212123;
+            }
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover {
+                color: #212123;
+            }
+        }
+    }
 }
+

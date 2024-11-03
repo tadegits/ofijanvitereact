@@ -7,6 +7,7 @@ import Footer from './components/footer/footer';
 import { selectUser } from "./features/userSlice";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
   const [user, setUser] = useState(""); 
@@ -37,10 +38,12 @@ const analytics = getAnalytics(app);
     <>
       {isLoggedIn ? (
         <>
+        {/* <Navbar/> */}
           <Loged />
         </>
       ) : (
         <>
+        {/* <Navbar/> */}
           <Default />
    
         </>
