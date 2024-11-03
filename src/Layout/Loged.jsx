@@ -86,8 +86,8 @@ const Loged = () => {
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
         <Route exact path='/my_results' element={<Result/>} />
       </Routes>
+      <Footer/>
     </>
   )
 }
-
 export default Loged

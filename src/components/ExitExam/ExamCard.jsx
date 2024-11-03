@@ -51,7 +51,7 @@ const ExamCardList = ({ exams }) => {
         <div key={exam.id}>
           <ExamCard exam={exam} openModal={openModal} />
           
-          {/* In-feed Ad every 4 exams */}
+          {/* In-feed Ad every 4 exams
           {(index + 1) % 4 === 0 && (
             <div className='ad-infeed'>
               <ins className="adsbygoogle"
@@ -64,7 +64,7 @@ const ExamCardList = ({ exams }) => {
                 {(adsbygoogle = window.adsbygoogle || []).push({})}
               </script>
             </div>
-          )}
+          )} */}
         </div>
       ))}
       {isModalOpen && selectedExamId && (

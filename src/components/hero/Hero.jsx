@@ -70,7 +70,7 @@ const Hero = () => {
 
           <div className="hero__btn-container">
             <Link to="/ExitExam" className="button-outline btn_hero">
-              Select Your Field of Study for Ethiopian Exit Exams
+              Select Your Field of Study
             </Link>
           </div>
         </div>

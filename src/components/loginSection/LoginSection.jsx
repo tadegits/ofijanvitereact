@@ -95,7 +95,7 @@ const LoginSection = () => {
                             <div className="summit-login">
                                 <button className='logbtn' onClick={handleSubmit}> Log In</button>
                             </div> 
-                            <GoogleLoginButton/>
+                            {/* <GoogleLoginButton/> */}
 
                             
                             <Divider><p>Don't Have Account? <div className="summit-signup">

@@ -13,8 +13,7 @@ import { Link } from 'react-router-dom';
 import { Copyright } from '@material-ui/icons';
 const footer = () => {
   return (
-    <section className='footer'>
-        <Wrapper>
+        <Wrapper className='footer'>
           <Feedback/>
         <div className='footer__text'>
             <h3>Learn, Study & Test Your Study with  <span>Ofijan</span></h3>
@@ -33,10 +32,8 @@ const footer = () => {
             <li><Link className='footer_link' to='/termsofservice'>Terms Of Service</Link></li>
             <li><Link className='footer_link' to='/privacy'>privacy policy</Link></li>
             {/* <li>FAQS</li> */}
-        </ul>
-        
+        </ul>        
     </Wrapper>
-    </section>
   )
 }
 

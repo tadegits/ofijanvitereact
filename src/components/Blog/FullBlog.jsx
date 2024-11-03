@@ -83,7 +83,7 @@ const FullBlog = ({ blogs }) => {
           <Helmet>
             <title>{blog.title}</title>
             <meta name="description" content={trimText(blog.body)} />
-            <meta property="og:title" content={blog.title} />
+            <meta property="og:title" content={blog.id} />
             <meta property="og:description" content={blog.title} />
             <meta property="og:image" content="../../" />
             <meta property="og:url" content={location.pathname} />

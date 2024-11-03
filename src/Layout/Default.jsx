@@ -32,6 +32,7 @@ import TermsOfService from '../components/footer/TermsOfService';
 import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate';
 import ExamResults from '../components/ExitExam/ExamResult';
 import ExamResultsUgr from '../components/ExitExam/ExamResultUgr';
+import Footer from '../components/footer/footer';
 const Default = () => {
 
   const [blogData, setBlogData] = useState([]);
@@ -95,6 +96,7 @@ const Default = () => {
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
       </Routes>
+      <Footer/>
 
     </>
   )

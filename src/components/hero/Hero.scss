@@ -14,7 +14,7 @@
     // background-color: $tade-color;
     background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
     @include respond(phone){
-        background-image: linear-gradient(to left, rgb(95, 10, 121), $tade-color);
+        background-image: linear-gradient(to left, rgb(60, 87, 177), $tade-color);
         height: 80vh;
         display: flex;
         justify-content: center;
@@ -106,6 +106,7 @@
         margin-top: 0rem;
         margin-bottom: 0px;
         justify-content: center;
+        margin-bottom: 10px;
         .btn_hero{
             color:$tade-color;
             font-weight: bold;

@@ -38,12 +38,11 @@ const analytics = getAnalytics(app);
       {isLoggedIn ? (
         <>
           <Loged />
-          <Footer />
         </>
       ) : (
         <>
           <Default />
-          <Footer />
+   
         </>
       )}
     </>

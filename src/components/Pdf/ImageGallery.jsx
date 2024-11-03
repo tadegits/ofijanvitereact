@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Button, Spin, Image } from 'antd';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
-import { selectUser, selectRedirectUrl, setRedirectUrl } from "../../features/userSlice";
-import { useDispatch, useSelector} from 'react-redux';
+import { selectUser, setRedirectUrl } from '../../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+
 const ImageGallery = ({ id }) => {
-  const [imageUrls, setImageUrls] = useState([]); 
+  const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [imageData, setImageData] = useState(null);
-  const [error, setError] = useState(null); 
-  const imagesPerPage = 5;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
+
   const isLoggedIn = useSelector(selectUser);
-const dispatch = useDispatch();
-const navigate = useNavigate();
-const redirectUrl = useSelector(selectRedirectUrl);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
@@ -39,102 +38,68 @@ const redirectUrl = useSelector(selectRedirectUrl);
     };
 
     fetchImageUrls();
-  }, []);
+  }, [id]);
 
-  useEffect(() => {
-    const fetchImage = async () => {
-      if (!imageUrls.length) return; 
-
-      try {
-        setLoading(true);
-        const url = imageUrls[currentImageIndex];
-        const response = await axios.get(url, {
-          responseType: 'blob',
-          headers: {
-            'Accept': 'image/*',
-          },
-        });
-        const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
-        const imageSrc = URL.createObjectURL(imageBlob);
-
-        setImageData(imageSrc);
-      } catch (error) {
-        setError(error);
-        console.error('Error fetching image:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchImage();
-  }, [currentImageIndex, imageUrls]);
-
-  const handleNextPage = () => {
-if(!isLoggedIn)
-{
-  console.log('logedin', isLoggedIn)
-handleSweetAlert();
-}
-else{
-  setCurrentPage((prevPage) => prevPage + 1);
-}
+  const handleImageClick = (index) => {
+    if (!isLoggedIn && index >= 10) {
+      handleLoginPrompt();
+    } else {
+      setCurrentImageIndex(index);
+    }
   };
 
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-  const handleSweetAlert = () => {
+  const handleLoginPrompt = () => {
     Swal.fire({
-        text: 'Login to get the rest of the questions!',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonText: 'Login Now',
+      text: 'Login to view more images!',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Login Now',
     }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(setRedirectUrl(window.location.pathname));
-          window.location.href = '/Login';
-          navigate('/Login');
-        }
+      if (result.isConfirmed) {
+        dispatch(setRedirectUrl(window.location.pathname));
+        navigate('/Login');
+      }
     });
-};
-  const startIndex = (currentPage - 1) * imagesPerPage;
-  const endIndex = startIndex + imagesPerPage;
-
-  const imagesToDisplay = imageUrls.slice(startIndex, endIndex);
+  };
 
   if (loading) {
     return <Spin size="large" />;
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>; // Display error message
+    return <p>Error: {error.message}</p>;
   }
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
-        <Button onClick={handlePrevPage} style={{ marginRight: '8px' }} disabled={currentPage === 1}>
-          Previous Page
-        </Button>
-        <Button onClick={handleNextPage} disabled={endIndex >= imageUrls.length}>
-          Next Page
-        </Button>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        {imagesToDisplay.map((imageUrl, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
-            <Image src={imageUrl} alt="Image not found" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+    <div style={{ textAlign: 'center' }}>
+      {imageUrls.length > 0 && (
+        <div style={{ margin: '16px 0' }}>
+          <Image
+            src={imageUrls[currentImageIndex]}
+            alt={`Image ${currentImageIndex + 1}`}
+            style={{ maxWidth: '100%', maxHeight: '300px' }}
+          />
+          <div style={{ marginTop: '16px' }}>
+            {imageUrls.map((_, index) => (
+              <Button
+                key={index}
+                onClick={() => handleImageClick(index)}
+                disabled={!isLoggedIn && index >= 10}
+                style={{
+                  margin: '0 4px',
+                  backgroundColor: currentImageIndex === index ? '#1890ff' : '#f0f0f0',
+                  color: currentImageIndex === index ? '#fff' : '#000',
+                }}
+              >
+                {index + 1}
+              </Button>
+            ))}
           </div>
-        ))}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
-        <Button onClick={handlePrevPage} style={{ marginRight: '8px' }} disabled={currentPage === 1}>
-          Previous Page
-        </Button>
-        <Button onClick={handleNextPage} disabled={endIndex >= imageUrls.length}>
-          Next Page
-        </Button>
-      </div>
+          <p style={{ marginTop: '8px' }}>
+            Viewing Image {currentImageIndex + 1} of {imageUrls.length}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
