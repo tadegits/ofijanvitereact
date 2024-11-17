@@ -6,7 +6,7 @@
   background-color: #ffffff;
   padding: 5px 20px 5px 20px;
   width: 100%;
-  // position: fixed;
+ 
   z-index: 100;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
@@ -17,8 +17,8 @@
 
   @include respond(phone) {
     padding-top: 25px;
-    padding-left: 1px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
 
   }
 

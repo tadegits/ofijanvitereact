@@ -77,7 +77,8 @@ const Hero = () => {
               </Button>  
             </Link>
             <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="button-outline btn_hero" shape="round" size="large" icon={<ArrowDownOutlined />}>Download</Button>
+            <Button type="primary" className="button-outline btn_hero" shape="round" size="large"
+             icon={<ArrowDownOutlined />}>Download 2015 Exam PDF</Button>
             </Link>
           </div>
         </div>

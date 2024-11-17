@@ -1,31 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { Row, Col } from 'antd';
 import PropTypes from 'prop-types';
-import { Card, Spin, Row, Col } from 'antd';
 import API_BASE_URL from '../../Globals/apiConfig';
-import TopicsCard from '../Blog/Topics/TopicsCard';
-import './pdf.scss';
-import SampleExams from './SampleExams';
-import BluePrintCard from './BluePrintCard';
 import Wrapper from '../wrapper/Wrapper';
-import CollegeDepartment from '../Faculty/CollegeDepartment';
+import AdComponent from '../Add/AdComponent';
 import ImageGallery from './ImageGallery';
 import AdvertisementCard from '../Add/AdvertisementCard';
+import './pdf.scss';
 
 const DisplayPdf = () => {
     const location = useLocation();
     const depts = location.state?.data;
     const { id } = useParams();
-    const [pdfFile, setPdfFile] = useState(null);
     const [loading, setLoading] = useState(true);
-    
+
     // Example: Adjust pdfUrl logic here if necessary
-    const pdfUrl = `${API_BASE_URL}/pdfs/${depts?.title}_${id}.pdf`; // Make sure the URL points to your PDF
+    const pdfUrl = `${API_BASE_URL}/pdfs/${depts?.title}_${id}.pdf`; // Ensure this URL points to your PDF
 
     return (
         <section className='pdfs'>
@@ -38,16 +30,55 @@ const DisplayPdf = () => {
                 <meta property="og:url" content={`http://localhost:3000/exit-exam/${depts?.title}/${id}`} />
             </Helmet>
             <Wrapper className='pdf_section'>
+                {/* <AdComponent/> */}
                 <div className="display-pdf-container">
                     <Row gutter={24}>
+                        {/* First Advertisement Card */}
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                             <AdvertisementCard />
                         </Col>
+                        
+                        {/* Image Gallery Section */}
                         <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
                             <h1>{depts ? depts.title : 'Subject'} 2015 {id} Ethiopian Exit Exam Questions</h1>
                             <h2>{id}</h2> {/* Added additional heading */}
                             <ImageGallery id={id} />
-                            {/* <SampleExams id={id} />   */}
+                        </Col>
+                        
+                        {/* Second Advertisement Card */}
+                        <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                        <div className="ad-banner-bottom">
+            <ins className="adsbygoogle"
+                 style={{ display: 'block' }}
+                 data-ad-client="ca-pub-8449765590756444"
+                 data-ad-slot="8261485661"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+          <div className="ad-banner-bottom">
+            <ins className="adsbygoogle"
+                 style={{ display: 'block' }}
+                 data-ad-client="ca-pub-8449765590756444"
+                 data-ad-slot="8261485661"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8449765590756444"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style={{ display: 'block' }}
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-8449765590756444"
+     data-ad-slot="6959146314"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
                         </Col>
                     </Row>
                 </div>

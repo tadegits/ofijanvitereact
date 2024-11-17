@@ -9,7 +9,7 @@ $button-hover-color: darken($primary-color, 10%);
   padding: 16px;
   max-width: 800px; 
   margin: 0 auto;
-
+background-color: red;
   .image-container {
     margin: 16px 0;
     
@@ -231,3 +231,8 @@ $button-inactive-color: #000;
     justify-content: center;
     gap: 12px;
 }
+// .imageee{
+//   padding: 10px;
+//   margin-left: 1rem;
+//   margin-right: 2rem;
+// }

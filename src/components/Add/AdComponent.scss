@@ -1,0 +1,18 @@
+/* AdComponent.scss */
+.ad-container {
+    width: 70%;       
+    max-width: 728px;    /* Set a max width for larger displays */
+    margin: 16px auto;   /* Center the ad horizontally */
+         /* Add some padding for aesthetics */
+    border: 1px solid #dcdcdc;  /* Optional border */
+    border-radius: 8px;  /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for contrast */
+    text-align: center;   /* Center the ad content */
+  }
+  
+  .ad-container img {
+    width: 100%;         /* Make ad images responsive */
+    height: auto;        /* Maintain aspect ratio */
+    border-radius: 5px;  /* Rounded corners for ad images */
+  }
+  

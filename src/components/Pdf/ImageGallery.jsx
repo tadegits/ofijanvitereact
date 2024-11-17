@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet';
 import { FaTelegram } from "react-icons/fa";
 import './ImageGallery.scss';
 import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
-
+import AdComponent from '../Add/AdComponent';
 const ImageGallery = ({ id }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -18,7 +18,7 @@ const ImageGallery = ({ id }) => {
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  
+
   const { term } = useParams();
   const isLoggedIn = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -82,10 +82,14 @@ const ImageGallery = ({ id }) => {
       handleImageClick(prevIndex);
     }
   };
-
+  const loadAd = () => {
+    if (window.adsbygoogle) {
+      window.adsbygoogle.push({});
+    }
+  };
   const renderImageButtons = () => {
     const totalImages = imageUrls.length;
-    const rangeSize = 3; // Number of buttons to display before and after the current index
+    const rangeSize = 3;
     const startIndex = Math.max(0, currentImageIndex - rangeSize);
     const endIndex = Math.min(totalImages - 1, currentImageIndex + rangeSize);
 
@@ -145,9 +149,9 @@ const ImageGallery = ({ id }) => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-  const baseUrl = window.location.origin; 
+
+  const baseUrl = window.location.origin;
   const shareableUrl = `${baseUrl}/image-gallery/${id}?imageIndex=${currentImageIndex}`;
-console.log("baseurl", baseUrl);
   const currentImageUrl = imageUrls[currentImageIndex];
   const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentImageUrl)}&text=Check this image!`;
 
@@ -166,7 +170,9 @@ console.log("baseurl", baseUrl);
             alt={`2015 Ethiopian Exit Exam ${id} PDF ${currentImageIndex + 1}`}
             style={{ maxWidth: '100%', maxHeight: '300px' }}
             loading="lazy"
+            className='imageee'
           />
+          {/* <AdComponent/> */}
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
             <Button onClick={handlePrevImage} disabled={currentImageIndex === 0} style={{ marginRight: '8px' }}>
               Previous
@@ -181,6 +187,9 @@ console.log("baseurl", baseUrl);
           <p style={{ marginTop: '8px' }}>
             Viewing Image {currentImageIndex + 1} of {imageUrls.length}
           </p>
+
+
+
           {/* Social Media Sharing Section */}
           <div style={{ marginTop: '16px' }}>
             <h3>Share this image</h3>
@@ -192,10 +201,11 @@ console.log("baseurl", baseUrl);
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
               <a href={shareableUrl} target="_blank" rel="noopener noreferrer">
-              <FaTelegram size={32} round />
+                <FaTelegram size={32} round />
               </a>
             </div>
           </div>
+          
           {/* Comments Section */}
           <div style={{ marginTop: '32px', textAlign: 'left' }}>
             <h3>Comments</h3>
@@ -218,6 +228,7 @@ console.log("baseurl", baseUrl);
               Submit
             </Button>
           </div>
+          
         </article>
       )}
     </section>

@@ -63,8 +63,8 @@ console.log(user);
     );
 
     return (
-    <Wrapper>
-        <nav className="navbarz">
+    <nav className="navbarz">
+        
             
             <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
@@ -147,7 +147,7 @@ console.log(user);
                 </Modal>
             </section>
            
-        </nav> </Wrapper>
+         </nav>
     );
 }
 

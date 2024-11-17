@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Button, Col } from 'antd';
 import { YoutubeOutlined } from '@ant-design/icons';
+import AdPreview from './AddPreview';
 import './AdvertismentCard.scss';
 
 const AdvertisementCard = () => {
@@ -32,6 +33,18 @@ const AdvertisementCard = () => {
           Subscribe Now
         </Button>
       </Card>
+      {/* <AdPreview/> */}
+      <div className="ad-banner-bottom">
+            <ins className="adsbygoogle"
+                 style={{ display: 'block' }}
+                 data-ad-client="ca-pub-8449765590756444"
+                 data-ad-slot="8261485661"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
     </Col>
   );
 };
