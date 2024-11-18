@@ -80,15 +80,7 @@ const FullBlog = ({ blogs }) => {
 
     <section className='blog'>
       <Wrapper>
-      <div className="adsense-left">
-        {/* Replace 'AD_CLIENT' and 'AD_SLOT' with your AdSense codes */}
-        <ins 
-          className="adsbygoogle"
-          style={{ display: "block", width: "160px", height: "600px" }}
-          data-ad-client="ca-pub-AD_CLIENT"
-          data-ad-slot="AD_SLOT_LEFT"
-        />
-        </div>
+        
         <div className="blog-list-container">
           <Helmet>
             <title>{blog.title}</title>
