@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './BlogList.scss';
+import './FullBlog.scss';
 import BlogActions from './BlogActions';
 import axios from 'axios';
 import API_BASE_URL from '../../Globals/apiConfig';
@@ -78,7 +78,7 @@ const FullBlog = ({ blogs }) => {
 
   return (
     <section className='blog'>
-      <Wrapper className='blog__section'>
+      <Wrapper>
         <div className="blog-list-container">
           <Helmet>
             <title>{blog.title}</title>
@@ -88,41 +88,32 @@ const FullBlog = ({ blogs }) => {
             <meta property="og:image" content="../../" />
             <meta property="og:url" content={location.pathname} />
           </Helmet>
-          <Card title="Ofijan Blogs" extra={<a href='/ofijan_blogs'>
+          <Card className='blog-body-container' extra={<a href='/ofijan_blogs'>
             <Button className='back__button' >
               <LeftCircleOutlined /> Back
-            </Button></a>}>
-            <Row gutter={[16, 16]}>
-              <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-                <div className='blog-body-container'>
-                  <div className="blog__detail">
-                    <div className="second___row">
-                      <Card className="card-content">
-                        <h1>{blog.title}<div>&#x1F389;</div></h1>
-                        <p>Category: <Tag color="blue">{blog.categories}</Tag></p>
-                        <div className='author-info'>
-                          <Text strong>{blog.author.name}</Text>
-                        </div>
-                        <article className='blogme__body' dangerouslySetInnerHTML={{ __html: blog.body }}></article><Divider />
-                        <div className='blog-actions'>
-                          <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
-                          <BlogActions blog={blog} />
-                        </div>
-                        <Divider />
-                      </Card>
-                    </div>
-                    <div className="third__row">
-                      <RelatedArticlesCard blogs={relatedArticles} />
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={24} sm={24} md={6} lg={6} xl={6}>
-                <div className='blogs_side'>
-                  {/* Side content, e.g., recent posts, popular tags, etc. */}
-                </div>
-              </Col>
-            </Row>
+            </Button>
+          </a>
+          }>
+            <p>Published in: <Tag color="blue">{blog.categories}</Tag></p>
+            <h1 className='title_text'>{blog.title}<div>&#x1F389;</div></h1>
+
+            <div className='author-info'>
+              <Text strong>{blog.author.name}</Text>
+            </div>
+            <article className='blogme__body' dangerouslySetInnerHTML={{ __html: blog.body }}></article><Divider />
+            <div className='blog-actions'>
+              <Button icon={<EyeOutlined />} onClick={handleViewCount}>{views} </Button>
+              <BlogActions blog={blog} />
+            </div>
+            <Divider />
+
+
+            <div className="third__row">
+              <RelatedArticlesCard blogs={relatedArticles} />
+            </div>
+            <div className='blogs_side'>
+              {/* Side content, e.g., recent posts, popular tags, etc. */}
+            </div>
           </Card>
           {/* Add meta tags for SEO */}
           <meta charSet="UTF-8" />

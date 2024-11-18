@@ -1,0 +1,10 @@
+.related-articles-card{
+    width: 100%;
+}
+.related-articles-list{
+    display: flex;
+    flex-wrap: wrap;
+    .blogs{
+        width: 300px;
+    }
+}

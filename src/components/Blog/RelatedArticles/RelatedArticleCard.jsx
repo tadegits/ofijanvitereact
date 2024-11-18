@@ -14,7 +14,7 @@ const RelatedArticlesCard = ({ blogs, categories }) => {
                 <Title level={3}></Title>
             <div className="related-articles-list">
                 {filteredBlogs.map(relatedBlog => (
-                    <div style={{ width:200 }}> <h5>{relatedBlog.title}</h5><Paragraph>{relatedBlog.summary}</Paragraph>
+                    <div className='blogs' > <h5>{relatedBlog.title}</h5><Paragraph>{relatedBlog.summary}</Paragraph>
                     <Link to={`/blog/${relatedBlog.categories}/${relatedBlog.title}/full`} className="read-more-link">Read More</Link>
                 </div>
                   

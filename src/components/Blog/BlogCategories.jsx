@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { Collapse } from 'antd';
 import { fetchBlogCategories } from './../../Globals/incomingData';
-const { Panel } = Collapse;
+import './BlogCategories.scss';
 
 const BlogCategories = ({ onSelectCategory }) => {
-    const [blogCategories, setBlogCategories] = useState([]);
+  const [blogCategories, setBlogCategories] = useState([]);
 
-    useEffect(() => {
-        const getBlogCategories = async () => {
-            const fetchedCategories = await fetchBlogCategories();
-            setBlogCategories(fetchedCategories);
-        };
-        getBlogCategories();
-    }, []);
-
-    const handleCategoryClick = (category) => {
-        onSelectCategory(category);
+  useEffect(() => {
+    const getBlogCategories = async () => {
+      const fetchedCategories = await fetchBlogCategories();
+      setBlogCategories(fetchedCategories);
     };
+    getBlogCategories();
+  }, []);
 
-    return (
-        <Collapse accordion>
-            {blogCategories.map((category, index) => (
-                <Panel header={category} key={index} onClick={() => handleCategoryClick(category)}>
-                    {/* {category} */}
-                </Panel>
-            ))}
-        </Collapse>
-    );
+  const handleCategoryClick = (category) => {
+    onSelectCategory(category);
+  };
+
+  return (
+    <div className="blog-categories">
+      {blogCategories.map((category, index) => (
+        <div
+          key={index}
+          className="category-item"
+          onClick={() => handleCategoryClick(category)}
+        >
+          {category}
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default BlogCategories;

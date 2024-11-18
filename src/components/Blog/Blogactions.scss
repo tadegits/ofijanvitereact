@@ -1,18 +1,22 @@
 .blog-actions {
-    display: flex;
-    width: 200px;
-    justify-content: space-between;
-background-color: #ffffff;
-  }
-  h1{
-    color: #b89999;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
-  
-  .button-like,
-  .button-share,
-  .button-comment {
-    margin-right: 10px;
-    background-color: #ffffff;
-    color: #594fb6;
-    margin-top: 1rem;
-  }
+
+h1 {
+  color: #b89999;
+}
+
+.button-like,
+.button-share,
+.button-comment {
+  margin-right: 10px;
+  background-color: #ffffff;
+  color: #594fb6;
+  margin-top: 1rem;
+}
