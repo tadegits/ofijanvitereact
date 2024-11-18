@@ -9,6 +9,7 @@ import { LeftCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import RelatedArticlesCard from './RelatedArticles/RelatedArticleCard';
 import BlogCategories from './BlogCategories';
 import { Helmet } from 'react-helmet';
+import PlaceholderImage from '../../assets/pl.jpeg';
 import { useLocation } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
 const { Text } = Typography;
