@@ -3,7 +3,7 @@
 
 .exitexam {
   padding: 0;
-  padding: 0 20px 0px 20px;
+
 
   background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
@@ -13,7 +13,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   @include respond(tab-port) {
     width: 100%;
   }
@@ -317,4 +316,13 @@ border-radius: 20px;
   border-top: 5px solid $tade-color;
   border-radius: 50%;
   animation: loading 2s linear infinite;
+}
+.department-card {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.department-card:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

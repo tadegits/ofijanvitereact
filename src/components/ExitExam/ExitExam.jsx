@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import API_BASE_URL from '../../Globals/apiConfig';
 import ExamCardList from './ExamCard';
 import './ExitExam.scss';
+import DepartmentList from '../Department/DepartmentList';
 const ExitExam = () => {
   const { Option } = Select;
   const { Meta } = Card;
@@ -108,8 +109,9 @@ console.log('id', selectedDepartmentId);
   return (
     
     <section className='exitexam'>
-      <Wrapper className='exitexam__container'>
+      <Wrapper >
       <div className='select_field'>
+
         <div><p>Select Your field of study</p></div>
         <div className='input_holder'>
           <select name='department' className='dept' onChange={handleDepartmentChange} defaultValue='' required>
@@ -132,7 +134,7 @@ console.log('id', selectedDepartmentId);
            <ExamCardList  exams={exams} />
           ) : (
             <div className='exams_card'>
-              <p>We have no exams for your department. <li>Click Here</li> If you want to get notified!</p>
+              <p>We have no exams for your department. </p>
             </div>
           ))}
       </div> 
