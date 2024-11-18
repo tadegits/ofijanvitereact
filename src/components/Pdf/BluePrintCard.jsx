@@ -27,7 +27,8 @@ const BluePrintCard = () => {
 
   console.log('blueprint', bluePrintData);
   return (
-    <Card title={<h2>Blueprint for Ethiopian National Exit Examination </h2>}>
+    <Card>
+      <h2>Blueprint for Ethiopian National Exit Examination </h2>
     {loading ? (
       <p>Fetching blueprint data...</p>
     ) : bluePrintData.length ? (

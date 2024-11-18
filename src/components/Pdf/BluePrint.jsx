@@ -14,8 +14,8 @@ const BluePrint = () => {
                 <meta property="og:image" content="withmoto.png" />
                 <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
             </Helmet>
-<Wrapper className='pdfs'>
-    <div className="display-pdf-container">
+<Wrapper className=''>
+    <div className="">
     <Row gutter={24} className=''>
     
     <Col xs={24} sm={24} md={24} lg={14} xl={14} className=''>

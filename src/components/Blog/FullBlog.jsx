@@ -77,8 +77,18 @@ const FullBlog = ({ blogs }) => {
   const relatedArticles = blogs.filter((item) => item.categories === blog.categories && item.title !== blog.title);
 
   return (
+
     <section className='blog'>
       <Wrapper>
+      <div className="adsense-left">
+        {/* Replace 'AD_CLIENT' and 'AD_SLOT' with your AdSense codes */}
+        <ins 
+          className="adsbygoogle"
+          style={{ display: "block", width: "160px", height: "600px" }}
+          data-ad-client="ca-pub-AD_CLIENT"
+          data-ad-slot="AD_SLOT_LEFT"
+        />
+        </div>
         <div className="blog-list-container">
           <Helmet>
             <title>{blog.title}</title>
@@ -94,9 +104,16 @@ const FullBlog = ({ blogs }) => {
             </Button>
           </a>
           }>
-            <p>Published in: <Tag color="blue">{blog.categories}</Tag></p>
+            
             <h1 className='title_text'>{blog.title}<div>&#x1F389;</div></h1>
-
+            <p>Published in: <Tag color="blue">{blog.categories}</Tag></p>
+            <img
+            src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
+            alt={blog.title}
+            className="blog-image"
+            loading="lazy"
+          />
+          
             <div className='author-info'>
               <Text strong>{blog.author.name}</Text>
             </div>

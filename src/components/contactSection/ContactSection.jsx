@@ -1,10 +1,9 @@
-// ContactSection.js
 import './ContactSection.scss';
 import Wrapper from '../wrapper/Wrapper';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import TikTokIcon from '@mui/icons-material/EmojiEmotions'; // Use appropriate TikTok icon or custom SVG
+import { FaTiktok, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { FaTiktok } from "react-icons/fa";
+
 const ContactSection = () => {
   return (
     <section className="contact" aria-labelledby="contact-heading">
@@ -31,11 +30,11 @@ const ContactSection = () => {
 const contactData = [
   {
     title: "Telegram",
-    description: "Join our Telegram group for updates, discussions, and support.",
+    description: "Join our Telegram group if you have any questions, discussions, and support.",
     backgroundClass: "dark-contact",
     titleClass: "dark-contact-title",
     icon: <TelegramIcon />,
-    link: "https://t.me/yourtelegramlink",
+    link: "https://t.me/OfijanExam",
   },
   {
     title: "TikTok",
@@ -43,7 +42,23 @@ const contactData = [
     backgroundClass: "white-contact",
     titleClass: "white-contact-title",
     icon: <FaTiktok />,
-    link: "https://www.tiktok.com/@yourtiktokhandle",
+    link: "https://www.tiktok.com/@Ofijan.com",
+  },
+  {
+    title: "YouTube",
+    description: "Get our YouTube videos. We provide brief descriptions for your questions!",
+    backgroundClass: "white-contact",
+    titleClass: "white-contact-title",
+    icon: <FaYoutube />,
+    link: "https://www.youtube.com/@OfijanExams",
+  },
+  {
+    title: "LinkedIn",
+    description: "Connect with us on LinkedIn for professional updates and networking.",
+    backgroundClass: "dark-contact",
+    titleClass: "dark-contact-title",
+    icon: <FaLinkedin />,
+    link: "https://www.linkedin.com/company/ofijan",
   },
 ];
 

@@ -32,8 +32,10 @@ const Home = () => {
       <Hero/>
       {/* <Service/>      */}
      {/* <CounterUpPage/> */}
-     <Pdf/> 
-     {/* <Service/> */}
+      <Pdf/>  
+       {/* <Service/> */}
+      
+   
      <ExitExam/>
     
       <FeaturesSection/>

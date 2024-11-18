@@ -34,9 +34,16 @@
             padding-bottom: 20px;
             flex-direction: column;
             color: #333;
-            font-size: 44px;
+            font-size: 35px;
+            letter-spacing: 0.01rem;
+            font-family: 'Montserrat', sans-serif;
+
             @include respond (phone){
-                font-size: 24px;
+                font-size: 22px;
+                background-color: rgb(238, 236, 233);
+                padding: 10px;
+                margin: 1px;
+                letter-spacing: 1px;
                 padding: 0;
             }
         }
@@ -322,5 +329,16 @@
         font-family: 'Poppins', sans-serif;
 
     }
+    li{
+        color: rgb(56, 54, 54);
+        font-size: 16px;
+        text-align: justify;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 2px;
+        font-style: normal
+    }
+}
+img{
+    width: 100%;
 }
 

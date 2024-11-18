@@ -16,6 +16,9 @@ margin: 0 20px 0px 20px;
         @include respond(phone) {
             width: 100%;
         }
+        h4{
+            font-size: 1.9rem;
+        }
     }
 
     &__container {
