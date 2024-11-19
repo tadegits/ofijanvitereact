@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Divider, Button, Modal, Input } from 'antd';
 import Wrapper from '../wrapper/Wrapper';
-import Logo from '../../assets/ofijan_logo.png';
+// import Logo from '../../assets/ofijan_logo.png';
 import '../../App.css';
 import API_BASE_URL from '../../Globals/apiConfig';
 
@@ -74,7 +74,7 @@ const Index = ({ exams }) => {
                 <Card
                     key={exams.id}
                     className="exams_card"
-                    cover={<img className="__logo" alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
+                    // cover={<img className="__logo" alt="logo" src={Logo} style={{ width: 50, height: 30 }} />}
                     actions={[
                         <Button type="primary" onClick={() => showModal(exams.id)}>
                             Open

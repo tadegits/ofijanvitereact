@@ -81,15 +81,26 @@ const FullBlog = ({ blogs }) => {
 
     <section className='blog'>
       <Wrapper>
-        
+
         <div className="blog-list-container">
           <Helmet>
-            <title>{blog.title}</title>
+            {/* Primary meta tags */}
+            <title>{String(blog.id)}</title>
             <meta name="description" content={trimText(blog.body)} />
-            <meta property="og:title" content={blog.id} />
-            <meta property="og:description" content={blog.title} />
-            <meta property="og:image" content="../../" />
-            <meta property="og:url" content={location.pathname} />
+
+            {/* Open Graph / Facebook meta tags */}
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={String(blog.id)} />
+            <meta property="og:description" content={trimText(blog.body)} />
+            <meta property="og:image" content={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage} />
+            <meta property="og:url" content={`https://ofijan.com${location.pathname}`} />
+            <meta property="og:site_name" content="Ofijan Blogs" />
+
+            {/* Twitter meta tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={String(blog.id)}/>
+            <meta name="twitter:description" content={trimText(blog.body)} />
+            <meta name="twitter:image" content={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage} />
           </Helmet>
           <Card className='blog-body-container' extra={<a href='/ofijan_blogs'>
             <Button className='back__button' >
@@ -97,16 +108,16 @@ const FullBlog = ({ blogs }) => {
             </Button>
           </a>
           }>
-            
+
             <h1 className='title_text'>{blog.title}<div>&#x1F389;</div></h1>
             <p>Published in: <Tag color="blue">{blog.categories}</Tag></p>
             <img
-            src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
-            alt={blog.title}
-            className="blog-image"
-            loading="lazy"
-          />
-          
+              src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
+              alt={blog.title}
+              className="blog-image"
+              loading="lazy"
+            />
+
             <div className='author-info'>
               <Text strong>{blog.author.name}</Text>
             </div>
