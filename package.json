@@ -54,6 +54,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.69.2",
     "styled-components": "^6.1.0",
+    "tesseract.js": "^5.1.1",
     "validator": "^13.11.0"
   },
   "devDependencies": {
