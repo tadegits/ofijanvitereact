@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'; 
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
+import Wrapper from "./components/wrapper/Wrapper";
 import Footer from './components/footer/footer';
 import { selectUser } from "./features/userSlice";
 import { initializeApp } from "firebase/app";
@@ -38,12 +39,13 @@ const analytics = getAnalytics(app);
     <>
       {isLoggedIn ? (
         <>
-        {/* <Navbar/> */}
+        <Navbar/>
           <Loged />
         </>
       ) : (
         <>
-        {/* <Navbar/> */}
+          
+        <Navbar/>
           <Default />
    
         </>

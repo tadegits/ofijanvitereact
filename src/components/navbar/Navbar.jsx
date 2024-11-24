@@ -63,13 +63,15 @@ console.log(user);
     );
 
     return (
-    <nav className="navbarz">
+<Wrapper>
+<nav className="navbarz">
         
             
             <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
-                        <h1>OFIJAN </h1>
+                        <img src={"olml.png"}/>
+                        <h1>Ofijan </h1>
                     </div>
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
@@ -147,7 +149,7 @@ console.log(user);
                 </Modal>
             </section>
            
-         </nav>
+         </nav></Wrapper>
     );
 }
 

@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
 .navbarz {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 5px 20px 5px 20px;
   width: 100%;
  
@@ -19,13 +19,16 @@
     padding-top: 25px;
     padding-left: 15px;
     padding-right: 15px;
-
+    width: 100%;
   }
 
   &__container {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    @include respond(phone) {
+      width: 100%;
+    }
   }
 
   &__logo {
@@ -44,11 +47,20 @@
     .logo__moto {
       display: flex;
       justify-content: center;
-      flex-direction: column;
+      flex-direction: row;
       margin: 0;
       padding: 0;
-      gap: 0;
-
+      gap: 2px;
+      h1{
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+img{
+  height: 40px;
+  width: 40px;
+}
       p {
         font-size: 15px;
         justify-content: right;

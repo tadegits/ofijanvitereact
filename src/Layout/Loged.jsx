@@ -50,7 +50,7 @@ const Loged = () => {
   return (
     <>
 
-       <Navbar />
+       {/* <Navbar /> */}
       <Routes>
         <Route path='/privacy' element={<Privacy/>} />
          <Route path='/about-us' element={<AboutUs/>}/>
