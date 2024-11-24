@@ -1,4 +1,5 @@
 @import "./styles/mixin.scss";
+@import "./styles/colors.scss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;1,500&display=swap" rel="stylesheet');
 * *::after,
 *::before {
@@ -11,7 +12,7 @@
 }
 
 body {
-    color: #290bd39a;
+    color: #0c0c0c9a;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -19,6 +20,15 @@ body {
     font-family: "Roboto";
     src: url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu7GxKOzY.woff2") format("woff2"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxK.woff2") format("woff2");
     font-display: swap;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    @include respond(phone)
+    {
+        background-color: rgb(255, 255, 255);
+        margin: 0;
+        padding: 0;
+    }
 }
 
 img {
@@ -212,3 +222,30 @@ h6 {
     font-size: 0.8rem;
     color: red;
 }
+@keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loading_container
+  {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loading {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 200px;
+        border: 5px solid $tade-yellow;
+        border-top: 5px solid $tade-color;
+        border-radius: 50%;
+        
+        animation: loading 2s linear infinite;
+      }
+  }
+  

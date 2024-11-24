@@ -89,9 +89,11 @@ const Index = () => {
               <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
 
               {loading ? (
-                <div className="loading-spinner">
-                  <Spin size="large" />
+                <div className='loading_container'>
+                <div className="loading">
+          
                 </div>
+              </div>
               ) : (
                 <Row gutter={[16, 16]} className="pdf-row">
                   {imagePath.map((image, index) => (

@@ -72,7 +72,11 @@ const FullBlog = ({ blogs }) => {
   };
 
   if (!blog) {
-    return <div>Loading...</div>;
+    return <div className='loading_container'>
+    <div className="loading">
+
+    </div>
+  </div>;;
   }
 
   const relatedArticles = blogs.filter((item) => item.categories === blog.categories && item.title !== blog.title);

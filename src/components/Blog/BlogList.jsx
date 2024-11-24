@@ -11,7 +11,11 @@ const BlogList = ({ blogs }) => {
   const [selectedCategory, setSelectedCategory] = useState();
 
   if (!Array.isArray(blogs) || blogs.length === 0) {
-    return <div>Loading...</div>;
+    return <div className='loading_container'>
+      <div className="loading">
+
+      </div>
+    </div>;
   }
 
   const filteredBlogs = selectedCategory

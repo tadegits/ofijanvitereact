@@ -127,14 +127,18 @@ console.log('id', selectedDepartmentId);
       </div>
 
       <div className='exams__holder'>
-        {loading && <p className='loading'></p>}
+        {loading && <div className='loading_container'>
+      <div className="loading">
+
+      </div>
+    </div>}
 
         {!loading &&
           (exams.length ? (
            <ExamCardList  exams={exams} />
           ) : (
             <div className='exams_card'>
-              <p>We have no exams for your department. </p>
+              <p>Error Fetching Exam Refresh the page.  </p>
             </div>
           ))}
       </div> 

@@ -9,8 +9,8 @@ const Footer = () => {
     <Wrapper className="footer">
       <Feedback />
       <div className="footer__text">
-        <h3>Learn, Study & Test Your Study with <span>Ofijan</span></h3>
-        <p><Copyright /> Team Ofijan <span>2024</span></p>
+        <h3>Learn, Study & Test Your Study with Ofijan</h3>
+        <p><Copyright /> OFIN TECH <span>2024</span></p>
       </div>
       <ul className="footer__links">
         <li><Link className="footer_link" to="/about-us">About Us</Link></li>

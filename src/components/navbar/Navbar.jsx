@@ -71,7 +71,7 @@ console.log(user);
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
                         <img src={"olml.png"}/>
-                        <h1>Ofijan </h1>
+                        <h1>OFIJAN EXAMS </h1>
                     </div>
                 </Link>
                 <ul className={`navbarz__links ${showNav ? "show-nav" : ""}`}>
