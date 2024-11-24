@@ -70,7 +70,7 @@ console.log(user);
             <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
-                        <img src={"olml.png"}/>
+                        <img src={"osvg.svg"}/>
                         <h1>OFIJAN EXAMS </h1>
                     </div>
                 </Link>

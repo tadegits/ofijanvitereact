@@ -1,28 +1,40 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
 
+.wedego{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+
+    @include respond(phone){
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
 .footer {
-    padding-block: 1rem;
+    padding-block: 0.31rem;
     height: 10vh;
-    max-height: 20px;
+    max-height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(207, 204, 204);
     background-color: $tade-color;
     width: 100%;
     position: relative;
     bottom: 0;
     margin-top: 10vh;
-
+   
     h3 {
-        color: white;
+        color: rgb(207, 204, 204);
         font-size: medium;
         text-align: center;
         font-weight: 100;
         margin: 0;
-        letter-spacing: 0.1rem;
+      ;
     }
 
     &__text {
@@ -53,12 +65,12 @@
         align-items: center;
         gap: 1rem;
         margin-top: 1rem;
-        color: white;
+        color: rgb(207, 204, 204);
 
         li {
             list-style: none;
             cursor: pointer;
-            color: white;
+            color: rgb(207, 204, 204);
             transition: color 0.3s ease-in-out;
 
             &:hover {
@@ -67,7 +79,7 @@
         }
 
         a {
-            color: white;
+              color: rgb(207, 204, 204);
             text-decoration: none;
 
             &:hover {
@@ -77,3 +89,15 @@
     }
 }
 
+p{
+    
+    color: rgb(207, 204, 204);
+    
+}
+.logo{
+    width: 120px;
+    @include respond(phone){
+        width: 70px;
+    height: 70px;
+    }
+}

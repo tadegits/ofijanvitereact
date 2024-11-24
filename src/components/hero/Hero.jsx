@@ -77,13 +77,13 @@ const Hero = () => {
               </Button>  
             </Link>
             <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="button-outline hero__btn-container" size="large"
-             icon={<ArrowDownOutlined />}><h1>Download 2015 Exit Exam PDF</h1></Button>
+            <Button type="primary" className="button-outline btn_hero hero__btn-container" size="large"
+             icon={<ArrowDownOutlined />}>Download 2015 Exit Exam PDF</Button>
              
             </Link>
             <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="button-outline hero__btn-container " size="large"
-             icon={<ArrowDownOutlined />}><h1>Download 2016 Exit Exam PDF</h1></Button>
+            <Button type="primary" className="button-outline btn_hero hero__btn-container " size="large"
+             icon={<ArrowDownOutlined />}>Download 2016 Exit Exam PDF</Button>
              
             </Link>
           </div>
