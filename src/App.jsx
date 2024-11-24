@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux'; 
+import { useSelector } from 'react-redux';
 import Default from "./Layout/Default";
 import Loged from "./Layout/Loged";
 import Wrapper from "./components/wrapper/Wrapper";
@@ -11,7 +11,7 @@ import { getAnalytics } from "firebase/analytics";
 import Navbar from "./components/navbar/Navbar";
 
 function App() {
-  const [user, setUser] = useState(""); 
+  const [user, setUser] = useState("");
   const isLoggedIn = useSelector(selectUser);
   const navigate = useNavigate();
 
@@ -33,21 +33,22 @@ function App() {
     measurementId: "G-S09KVVNP50"
   };
   const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+  const analytics = getAnalytics(app);
 
   return (
     <>
       {isLoggedIn ? (
         <>
-        <Navbar/>
+          <Navbar />
           <Loged />
+          <Footer />
         </>
       ) : (
         <>
-          
-        <Navbar/>
+
+          <Navbar />
           <Default />
-   
+          <Footer />
         </>
       )}
     </>

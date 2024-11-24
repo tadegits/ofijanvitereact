@@ -37,7 +37,7 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    margin: 10px;
+    width: 100%;
   }
 }
 
@@ -45,6 +45,8 @@
   padding: 0;
   padding-top: 4rem;
   background-color: rgba(255, 255, 255, 0);
+
+  
   //background: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
 }
 

@@ -6,6 +6,7 @@ import Feedback from 'react-bootstrap/esm/Feedback';
 
 const Footer = () => {
   return (
+    <footer>
     <Wrapper className="footer">
       <Feedback />
       <div className="footer__text">
@@ -17,7 +18,7 @@ const Footer = () => {
         <li><Link className="footer_link" to="/termsofservice">Terms Of Service</Link></li>
         <li><Link className="footer_link" to="/privacy">Privacy Policy</Link></li>
       </ul>
-    </Wrapper>
+    </Wrapper></footer>
   );
 };
 

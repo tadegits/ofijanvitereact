@@ -30,7 +30,11 @@ const BluePrintCard = () => {
     <Card>
       <h2>Blueprint for Ethiopian National Exit Examination </h2>
     {loading ? (
-      <p>Fetching blueprint data...</p>
+      <div className='loading_container'>
+      <div className="loading">
+
+      </div>
+    </div>
     ) : bluePrintData.length ? (
       <ul>
         {bluePrintData.map((bp, index) => (
@@ -42,7 +46,7 @@ const BluePrintCard = () => {
         ))}
       </ul>
     ) : (
-      <p>No blueprint data available</p>
+      <p>Error fetching refresh the page</p>
     )}
   </Card>
   );

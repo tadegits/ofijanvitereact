@@ -61,7 +61,11 @@ const DisplayBluePrint = () => {
                     </Col> */}
                     <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
                         {loading ? ( // Show Spin if loading is true
-                            <Spin size="large" />
+                            <div className='loading_container'>
+                            <div className="loading">
+                      
+                            </div>
+                          </div>
                         ) : (
                             <>
                                 <Viewer fileUrl={pdfFile} />

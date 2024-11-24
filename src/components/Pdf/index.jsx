@@ -51,6 +51,7 @@ const Index = () => {
   const filteredDepts = selectedDepartment ? data.filter(dept => dept.id === selectedDepartment) : data;
 
   return (
+    
     <section className='pdf_section'>
       {/* SEO-enhanced meta tags */}
       <Helmet>
@@ -85,7 +86,7 @@ const Index = () => {
             </Col>
 
             <Col xs={24} sm={24} md={18} lg={16} xl={16} className="pdf__col">
-              <h1>Get Pdf for 2015 MoE Ethiopian Exit Exam Questions</h1>
+              <h1>Get Pdf for MoE Ethiopian Exit Exam Questions</h1>
               <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
 
               {loading ? (
