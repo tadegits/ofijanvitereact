@@ -66,9 +66,6 @@ const Index = () => {
       </Helmet>
 
       <Wrapper className='pdfs'>
-        {/* Top Banner Ad */}
-      
-
         <div className="">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={8} lg={6} xl={6}>
@@ -76,15 +73,12 @@ const Index = () => {
               {/* <AdvertisementCard /> */}
               <AdComponent/>
             </Col>
-
             <Col xs={24} sm={24} md={18} lg={16} xl={16} className="pdf__col">
               <h1>Get Pdf for MoE Ethiopian Exit Exam Questions</h1>
               <p>Download the past exam questions to prepare for your exit exams. Click on a document to view or download the PDF.</p>
-
               {loading ? (
                 <div className='loading_container'>
                 <div className="loading">
-          
                 </div>
               </div>
               ) : (
@@ -94,16 +88,7 @@ const Index = () => {
                       {/* In-feed Ad after every 4 items */}
                       {index > 0 && index % 4 === 0 && (
                         <Col span={24}>
-                          <div className="in-feed-ad">
-                            <ins className="adsbygoogle"
-                                 style={{ display: 'block' }}
-                                 data-ad-client="ca-pub-8449765590756444"
-                                 data-ad-slot="8261485661"
-                                 data-ad-format="auto"></ins>
-                            <script>
-                              (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                          </div>
+                          
                         </Col>
                       )}
                       
