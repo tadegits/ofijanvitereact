@@ -7,6 +7,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 import './pdf.scss';
 import { Helmet } from 'react-helmet';
 import AdvertisementCard from '../Add/AdvertisementCard';
+import AdComponent from '../Add/AdComponent';
 
 const Index = () => {
   const [pdfData, setPdfData] = useState([]);
@@ -82,7 +83,8 @@ const Index = () => {
           <Row gutter={24}>
             <Col xs={24} sm={24} md={8} lg={6} xl={6}>
               {/* Sidebar Ad */}
-              <AdvertisementCard />
+              {/* <AdvertisementCard /> */}
+              <AdComponent/>
             </Col>
 
             <Col xs={24} sm={24} md={18} lg={16} xl={16} className="pdf__col">

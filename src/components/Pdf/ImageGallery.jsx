@@ -175,7 +175,7 @@ const ImageGallery = ({ id }) => {
             loading="lazy"
             className='imageee'
           />
-           <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} />
+           {/* <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} /> */}
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
             <Button onClick={handlePrevImage} disabled={currentImageIndex === 0} style={{ marginRight: '8px' }}>
@@ -210,7 +210,7 @@ const ImageGallery = ({ id }) => {
             </div>
           </div>
           
-          <AdSenseComponent adSlot="0987654321" adStyle={{ margin: '20px 0' }} />
+          {/* <AdSenseComponent adSlot="0987654321" adStyle={{ margin: '20px 0' }} /> */}
 
           <div style={{ marginTop: '32px', textAlign: 'left' }}>
             <h3>Comments</h3>
@@ -235,7 +235,7 @@ const ImageGallery = ({ id }) => {
             
           </div>
           {/* <OcrComponent imageUrl={currentImageUrl} /> */}
-          <AdSenseComponent adSlot="1122334455" adStyle={{ margin: '20px 0' }} />
+          {/* <AdSenseComponent adSlot="1122334455" adStyle={{ margin: '20px 0' }} /> */}
        
         </article>
       )}

@@ -1,6 +1,5 @@
 import "./Navbar.scss";
 import Wrapper from "../wrapper/Wrapper";
-import Logo from "../../assets/logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Avatar, Modal } from 'antd';
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, logout } from '../../features/userSlice'
+import Logo from '../../assets/osvg.svg'
 const Navbar = () => {
 
     const my_user = useSelector(selectUser);
@@ -70,7 +70,7 @@ console.log(user);
             <section className="navbarz__container">
                 <Link to="/" className="navbarz__logo" onClick={() => setShowNav(false)}>
                     <div className="logo__moto">
-                        <img src={"osvg.svg"}/>
+                        <img src={Logo}/>
                         <h1>OFIJAN EXAMS </h1>
                     </div>
                 </Link>
