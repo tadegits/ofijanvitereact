@@ -14,9 +14,8 @@
     }
 }
 .footer {
-    padding-block: 0.31rem;
-    height: 10vh;
-    max-height: 30px;
+    
+    height: 18vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,8 +25,6 @@
     width: 100%;
     position: relative;
     bottom: 0;
-    margin-top: 10vh;
-   
     h3 {
         color: rgb(207, 204, 204);
         font-size: medium;

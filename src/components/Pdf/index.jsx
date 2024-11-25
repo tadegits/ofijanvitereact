@@ -70,7 +70,7 @@ const Index = () => {
           <Row gutter={24}>
             <Col xs={24} sm={24} md={8} lg={6} xl={6}>
               {/* Sidebar Ad */}
-              {/* <AdvertisementCard /> */}
+              <AdvertisementCard />
               <AdComponent/>
             </Col>
             <Col xs={24} sm={24} md={18} lg={16} xl={16} className="pdf__col">

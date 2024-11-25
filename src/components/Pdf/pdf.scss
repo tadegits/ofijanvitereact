@@ -4,9 +4,7 @@
 .pdfs {
   padding: 0px;
   gap: 1rem;
- 
   padding-bottom: 5px;
-  background-color: #ffffff;
   padding-top: 1rem;
 
   @include respond(phone) {
@@ -169,7 +167,6 @@ $large-desktop-breakpoint: 1200px;
 .display-pdf-container {
   margin-top: 10px;
   padding: 0;
-
   @include respond(phone) {
 
     display: flex;
