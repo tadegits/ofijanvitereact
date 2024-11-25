@@ -3,7 +3,7 @@ import Wrapper from '../wrapper/Wrapper';
 import { Link } from 'react-router-dom';
 import { Copyright} from '@material-ui/icons';
 import Feedback from 'react-bootstrap/esm/Feedback';
-import Logo from '../../assets/yellow.png'
+// import Logo from '../../assets/yellow.png'
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
     <Wrapper className="footer">
       {/* <Feedback /> */}
       <div className="wedego">
-      <img src={Logo} className='logo'/>  
+      {/* <img src={Logo} alt='logo' className='logo'/>   */}
       <div className="footer">
         <div className="footer__text">
         <h3>Learn, Study & Test Your Limit with Ofijan</h3>

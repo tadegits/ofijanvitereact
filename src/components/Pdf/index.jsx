@@ -53,7 +53,7 @@ const Index = () => {
 
   return (
     
-    <section className='pdf_section'>
+    <section className='pdfs'>
       {/* SEO-enhanced meta tags */}
       <Helmet>
         <title>2015 Ethiopian Exit Exam Questions | Ofijan  | 2016 Ethiopian Exit Exam Questions | Ethiopia Exit Exam | 2016 </title>
@@ -67,19 +67,9 @@ const Index = () => {
 
       <Wrapper className='pdfs'>
         {/* Top Banner Ad */}
-        <div className="ad-banner-top">
-          <ins className="adsbygoogle"
-               style={{ display: 'block' }}
-               data-ad-client="ca-pub-8449765590756444"
-               data-ad-slot="8261485661"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
+      
 
-        <div className="display-pdf-container">
+        <div className="">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={8} lg={6} xl={6}>
               {/* Sidebar Ad */}
