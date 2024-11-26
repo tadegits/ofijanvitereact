@@ -159,7 +159,7 @@ const ImageGallery = ({ id }) => {
   const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentImageUrl)}&text=Check this image!`;
 
   return (
-    <section className="content-section">
+    <section style={{ textAlign: 'center' }}>
       <Helmet>
         <title>{id} | 2015 Ethiopian Exit Exam | 2016 Ethiopian Exit Exam</title>
         <meta name="description" content="Explore images from the 2015 Ethiopian Exit Exam for Accounting. View study materials and enhance your learning." />
@@ -167,30 +167,37 @@ const ImageGallery = ({ id }) => {
         <meta name="robots" content="index, follow" />
       </Helmet>
       {imageUrls.length > 0 && (
-        <article className="image-container">
-          <img
+        <article style={{ margin: '16px 0' }}>
+          <Image
             src={currentImageUrl}
             alt={`2015 Ethiopian Exit Exam ${id} PDF ${currentImageIndex + 1}`}
-            className="exam-image"
+            style={{ maxWidth: '100%', maxHeight: '300px' }}
             loading="lazy"
+            className='imageee'
           />
+           {/* <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} /> */}
 
-          <div className="navigation-buttons">
-            <button onClick={handlePrevImage} disabled={currentImageIndex === 0}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+            <Button onClick={handlePrevImage} disabled={currentImageIndex === 0} style={{ marginRight: '8px' }}>
               Previous
-            </button>
-            <button onClick={handleNextImage} disabled={currentImageIndex === imageUrls.length - 1}>
+            </Button>
+            <Button onClick={handleNextImage} disabled={currentImageIndex === imageUrls.length - 1}>
               Next
-            </button>
+            </Button>
           </div>
-
-          <div className="image-index">
+          <div style={{ marginTop: '16px' }}>
+            {renderImageButtons()}
+          </div>
+          <p style={{ marginTop: '8px' }}>
             Viewing Image {currentImageIndex + 1} of {imageUrls.length}
-          </div>
+          </p>
 
-          <div className="share-section">
+
+
+          {/* Social Media Sharing Section */}
+          <div style={{ marginTop: '16px' }}>
             <h3>Share this image</h3>
-            <div className="share-buttons">
+            <div className="share_social">
               <FacebookShareButton url={shareableUrl} quote="Check this out!">
                 <FacebookIcon size={32} round />
               </FacebookShareButton>
@@ -198,31 +205,38 @@ const ImageGallery = ({ id }) => {
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
               <a href={shareableUrl} target="_blank" rel="noopener noreferrer">
-                <FaTelegram size={32} />
+                <FaTelegram size={32} round />
               </a>
             </div>
           </div>
+          
+          {/* <AdSenseComponent adSlot="0987654321" adStyle={{ margin: '20px 0' }} /> */}
 
-          <div className="comments-section">
+          <div style={{ marginTop: '32px', textAlign: 'left' }}>
             <h3>Comments</h3>
-            <ul className="comments-list">
-              {comments.map((item, index) => (
-                <li key={index}>
+            <List
+              dataSource={comments}
+              renderItem={item => (
+                <List.Item key={item.id}>
                   <strong>{item.user}:</strong> {item.text}
-                </li>
-              ))}
-            </ul>
-            <div className="comment-input">
-              <input
-                type="text"
-                placeholder="Add a comment"
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleCommentSubmit()}
-              />
-              <button onClick={handleCommentSubmit}>Submit</button>
-            </div>
+                </List.Item>
+              )}
+            />
+            <Input
+              placeholder="Add a comment"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              onPressEnter={handleCommentSubmit}
+              style={{ marginTop: '8px' }}
+            />
+            <Button type="primary" onClick={handleCommentSubmit} style={{ marginTop: '8px' }}>
+              Submit
+            </Button>
+            
           </div>
+          {/* <OcrComponent imageUrl={currentImageUrl} /> */}
+          {/* <AdSenseComponent adSlot="1122334455" adStyle={{ margin: '20px 0' }} /> */}
+       
         </article>
       )}
     </section>
