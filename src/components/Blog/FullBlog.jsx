@@ -89,12 +89,12 @@ const FullBlog = ({ blogs }) => {
         <div className="blog-list-container">
           <Helmet>
             {/* Primary meta tags */}
-            <title>{String(blog.id)}</title>
+            <title>{blog.title}</title>
             <meta name="description" content={trimText(blog.body)} />
 
             {/* Open Graph / Facebook meta tags */}
             <meta property="og:type" content="article" />
-            <meta property="og:title" content={String(blog.id)} />
+            <meta property="og:title" content={blog.title} />
             <meta property="og:description" content={trimText(blog.body)} />
             <meta property="og:image" content={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage} />
             <meta property="og:url" content={`https://ofijan.com${location.pathname}`} />
@@ -102,7 +102,7 @@ const FullBlog = ({ blogs }) => {
 
             {/* Twitter meta tags */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={String(blog.id)}/>
+            <meta name="twitter:title" content={blog.title}/>
             <meta name="twitter:description" content={trimText(blog.body)} />
             <meta name="twitter:image" content={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage} />
           </Helmet>

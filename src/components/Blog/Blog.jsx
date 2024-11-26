@@ -35,7 +35,7 @@ const Blog = () => {
     setSelectedPost(null);
   };
   const handleClick = (category, title) => {
-    navigate(`/blog/${category}/${title}`);
+    navigate(`/blog/${category}/${id}`);
   };
 
   const renderPostContent = (post) => {
