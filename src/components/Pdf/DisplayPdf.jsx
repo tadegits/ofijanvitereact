@@ -54,12 +54,7 @@ const DisplayPdf = () => {
 
                         {/* Main Content Section */}
                         <main className="main-content">
-                            <h1>
-                                {depts ? depts.title : 'Subject'} 2015 {id}{' '}
-                                Ethiopian Exit Exam Questions
-                            </h1>
-                            <h2>{id}</h2>
-                            <ImageGallery id={id} />
+                          
                         </main>
 
                         {/* Right Ad Section */}

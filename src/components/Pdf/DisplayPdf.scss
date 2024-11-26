@@ -2,15 +2,11 @@
   background-color: rgb(255, 255, 255);
   display: flex;
   
-  .left-ad{
-    background-color: yellow;
+  aside{
+    background-color: green;
     width: 25%;
   }
-  .right-ad{
-    background-color: yellow;
-    width: 25%;
-  }
-  .main-content{
+  main{
     background-color: red;
     width: 50%;
   }
