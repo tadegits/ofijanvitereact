@@ -7,6 +7,7 @@ import './AdvertismentCard.scss';
 const AdvertisementCard = () => {
   return (
     <Col xs={24} sm={12} md={8}>
+      
       <Card
         className="advertisement-card"
         style={{ textAlign: 'center', borderRadius: '10px', overflow: 'hidden' }}

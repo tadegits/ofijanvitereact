@@ -8,7 +8,7 @@ import Wrapper from '../wrapper/Wrapper';
 import AdComponent from '../Add/AdComponent';
 import ImageGallery from './ImageGallery';
 import AdvertisementCard from '../Add/AdvertisementCard';
-import './pdf.scss';
+import './DisplayPdf.scss';
 
 const DisplayPdf = () => {
     const location = useLocation();
@@ -30,11 +30,33 @@ const DisplayPdf = () => {
                 <div className="display-pdf-container">
                     <Row gutter={24}>
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>
+                            <div className="ad-banner-bottom">
+                                <ins class="adsbygoogle"
+                                    style={{ display: 'block' }}
+                                    data-ad-client="ca-pub-8449765590756444"
+                                    data-ad-slot="7174432998"
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({ });
+                                </script>
+                            </div>
                             <AdvertisementCard />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-                            <h1>{depts ? depts.title : 'Subject'} 2015 {id} Ethiopian Exit Exam Questions</h1>
+                            <h1 className="subjectHeader">{depts ? depts.title : 'Subject'} 2015 {id} Ethiopian Exit Exam Questions</h1>
                             <h2>{id}</h2>
+                            <div className="ad-banner-bottom">
+                                <ins class="adsbygoogle"
+                                    style={{ display: 'block' }}
+                                    data-ad-client="ca-pub-8449765590756444"
+                                    data-ad-slot="7174432998"
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({ });
+                                </script>
+                            </div>
                             <ImageGallery id={id} />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>
@@ -49,17 +71,7 @@ const DisplayPdf = () => {
                                     (adsbygoogle = window.adsbygoogle || []).push({ });
                                 </script>
                             </div>
-                            <div className="ad-banner-bottom">
-                                <ins className="adsbygoogle"
-                                    style={{ display: 'block' }}
-                                    data-ad-client="ca-pub-8449765590756444"
-                                    data-ad-slot="8261485661"
-                                    data-ad-format="auto"
-                                    data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                                </script>
-                            </div>
+                           
                             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8449765590756444"
                                 crossorigin="anonymous"></script>
                             <ins class="adsbygoogle"

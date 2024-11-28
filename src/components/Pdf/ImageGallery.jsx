@@ -175,7 +175,7 @@ const ImageGallery = ({ id }) => {
             loading="lazy"
             className='imageee'
           />
-           {/* <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} /> */}
+          {/* <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} /> */}
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
             <Button onClick={handlePrevImage} disabled={currentImageIndex === 0} style={{ marginRight: '8px' }}>
@@ -191,11 +191,18 @@ const ImageGallery = ({ id }) => {
           <p style={{ marginTop: '8px' }}>
             Viewing Image {currentImageIndex + 1} of {imageUrls.length}
           </p>
-
+          <div>
+            <ins class="adsbygoogle"
+              style={{ display: 'block' }}
+              data-ad-client="ca-pub-8449765590756444"
+              data-ad-slot="3514389581"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          </div>
 
 
           {/* Social Media Sharing Section */}
-          <div style={{ marginTop: '16px' }}>
+          <div className='social' style={{ marginTop: '16px' }}>
             <h3>Share this image</h3>
             <div className="share_social">
               <FacebookShareButton url={shareableUrl} quote="Check this out!">
@@ -209,10 +216,10 @@ const ImageGallery = ({ id }) => {
               </a>
             </div>
           </div>
-          
+
           {/* <AdSenseComponent adSlot="0987654321" adStyle={{ margin: '20px 0' }} /> */}
 
-          <div style={{ marginTop: '32px', textAlign: 'left' }}>
+          <div className="social" style={{ marginTop: '32px', textAlign: 'left' }}>
             <h3>Comments</h3>
             <List
               dataSource={comments}
@@ -232,11 +239,11 @@ const ImageGallery = ({ id }) => {
             <Button type="primary" onClick={handleCommentSubmit} style={{ marginTop: '8px' }}>
               Submit
             </Button>
-            
+
           </div>
           {/* <OcrComponent imageUrl={currentImageUrl} /> */}
           {/* <AdSenseComponent adSlot="1122334455" adStyle={{ margin: '20px 0' }} /> */}
-       
+
         </article>
       )}
     </section>

@@ -15,7 +15,8 @@
 }
 .footer {
     
-    height: 18vh;
+    height: 20vh;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +45,7 @@
         flex-wrap: wrap;
         gap: 2rem;
         width: fit-content;
-        margin: 2rem auto;
+       
     }
 
     &__logo {
@@ -61,7 +62,7 @@
         justify-content: center;
         align-items: center;
         gap: 1rem;
-        margin-top: 1rem;
+       
         color: rgb(207, 204, 204);
 
         li {

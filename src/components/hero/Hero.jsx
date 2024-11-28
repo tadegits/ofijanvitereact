@@ -72,20 +72,16 @@ const Hero = () => {
 
           <div className="hero__btn-container">
             <Link to="/ExitExam" >
-            <Button type="primary" className="button-outline btn_hero" size="large">
+            <Button type="primary" className=" btn_hero" >
               Select Your Field of Study
               </Button>  
             </Link>
             <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="button-outline btn_hero hero__btn-container" size="large"
+            <Button type="primary" className="btn_hero " 
              icon={<ArrowDownOutlined />}>Download 2015 Exit Exam PDF</Button>
              
             </Link>
-            <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="button-outline btn_hero hero__btn-container " size="large"
-             icon={<ArrowDownOutlined />}>Download 2016 Exit Exam PDF</Button>
-             
-            </Link>
+   
           </div>
         </div>
 

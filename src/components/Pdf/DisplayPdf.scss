@@ -1,4 +1,6 @@
-// Global Variables
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
+
+
 $primary-color: #f4f4f4;
 $text-color: #333;
 $ad-border: 1px solid #ddd;
@@ -77,4 +79,8 @@ $ad-border: 1px solid #ddd;
   .footer-ads {
     margin-top: 10px;
   }
+}
+.subjectHeader{
+  font-size: 1.8rem;
+  font-family: 'Quicksand', sans-serif;
 }
