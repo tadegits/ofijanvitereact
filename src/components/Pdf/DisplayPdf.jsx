@@ -8,6 +8,7 @@ import Wrapper from '../wrapper/Wrapper';
 import AdComponent from '../Add/AdComponent';
 import ImageGallery from './ImageGallery';
 import AdvertisementCard from '../Add/AdvertisementCard';
+import GeneralKnowledge from './GeneralKnowledge';
 import './DisplayPdf.scss';
 
 const DisplayPdf = () => {
@@ -58,6 +59,7 @@ const DisplayPdf = () => {
                                 </script>
                             </div>
                             <ImageGallery id={id} />
+                         
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>
                             <div className="ad-banner-bottom">

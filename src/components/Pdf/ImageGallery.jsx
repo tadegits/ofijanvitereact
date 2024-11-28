@@ -11,6 +11,7 @@ import { FaTelegram } from "react-icons/fa";
 import './ImageGallery.scss';
 import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 import AdComponent from '../Add/AdComponent';
+import GeneralKnowledge from './GeneralKnowledge';
 import AdSenseComponent from '../AddSense/AdsenseComponent';
 // import OcrComponent from './OcrComponent'; 
 
@@ -218,7 +219,7 @@ const ImageGallery = ({ id }) => {
           </div>
 
           {/* <AdSenseComponent adSlot="0987654321" adStyle={{ margin: '20px 0' }} /> */}
-
+          <GeneralKnowledge title={id} />
           <div className="social" style={{ marginTop: '32px', textAlign: 'left' }}>
             <h3>Comments</h3>
             <List
