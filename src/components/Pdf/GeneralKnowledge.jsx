@@ -69,6 +69,7 @@ const GeneralKnowledge = ({ title }) => {
     return (
         <div className="general-knowledge-section">
             <h3>General Knowledge Related to {title || 'Animal Science'}</h3>
+            
             {loading ? (
                 <p>Loading concepts...</p>
             ) : error ? (
