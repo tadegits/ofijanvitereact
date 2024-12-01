@@ -42,10 +42,11 @@ const DisplayPdf = () => {
                                     (adsbygoogle = window.adsbygoogle || []).push({ });
                                 </script>
                             </div>
+                            
                             <AdvertisementCard />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
-                            <h1 className="subjectHeader">{depts ? depts.title : 'Subject'} 2015 {id} Ethiopian Exit Exam Questions</h1>
+                            <h1 className="subjectHeader">{depts ? depts.title : ''} 2015 {id} Ethiopian Exit Exam Questions</h1>
                             <h2>{id}</h2>
                             <div className="ad-banner-bottom">
                                 <ins class="adsbygoogle"
@@ -67,7 +68,7 @@ const DisplayPdf = () => {
                                     style={{ display: 'block' }}
                                     data-ad-client="ca-pub-8449765590756444"
                                     data-ad-slot="8261485661"
-                                    data-ad-format="auto"
+                                    data-ad-format="auto responsive"
                                     data-full-width-responsive="true"></ins>
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({ });

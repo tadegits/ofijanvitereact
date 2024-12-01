@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 import { FaTelegram } from "react-icons/fa";
 import './ImageGallery.scss';
-import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
+import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, TelegramShareButton } from 'react-share';
 import AdComponent from '../Add/AdComponent';
 import GeneralKnowledge from './GeneralKnowledge';
 import AdSenseComponent from '../AddSense/AdsenseComponent';
@@ -29,6 +29,7 @@ const ImageGallery = ({ id }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     const fetchImageUrls = async () => {
       try {
         setLoading(true);
@@ -78,6 +79,7 @@ const ImageGallery = ({ id }) => {
     if (nextIndex < imageUrls.length) {
       handleImageClick(nextIndex);
     }
+    loadAd();
   };
 
   const handlePrevImage = () => {
@@ -85,9 +87,10 @@ const ImageGallery = ({ id }) => {
     if (prevIndex >= 0) {
       handleImageClick(prevIndex);
     }
+    loadAd();
   };
   const loadAd = () => {
-    if (window.adsbygoogle) {
+    if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
       window.adsbygoogle.push({});
     }
   };
@@ -169,15 +172,24 @@ const ImageGallery = ({ id }) => {
       </Helmet>
       {imageUrls.length > 0 && (
         <article style={{ margin: '16px 0' }}>
+          <div className="image-containerss">
           <Image
             src={currentImageUrl}
             alt={`2015 Ethiopian Exit Exam ${id} PDF ${currentImageIndex + 1}`}
             style={{ maxWidth: '100%', maxHeight: '300px' }}
             loading="lazy"
             className='imageee'
-          />
+            onContextMenu={(e) => e.preventDefault()}
+          /></div>
           {/* <AdSenseComponent adSlot="1234567890" adStyle={{ margin: '20px 0' }} /> */}
-
+          <div>
+            <ins class="adsbygoogle"
+              style={{ display: 'block' }}
+              data-ad-format="autorelaxed"
+              data-ad-layout="fluid"
+              data-ad-client="ca-pub-8449765590756444"
+              data-ad-slot="9363119238"></ins>
+          </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
             <Button onClick={handlePrevImage} disabled={currentImageIndex === 0} style={{ marginRight: '8px' }}>
               Previous
@@ -192,16 +204,24 @@ const ImageGallery = ({ id }) => {
           <p style={{ marginTop: '8px' }}>
             Viewing Image {currentImageIndex + 1} of {imageUrls.length}
           </p>
-          <div>
+          <div className='ads-container'>
             <ins class="adsbygoogle"
               style={{ display: 'block' }}
               data-ad-client="ca-pub-8449765590756444"
               data-ad-slot="3514389581"
-              data-ad-format="auto"
+              data-ad-format="auto responsive"
+              data-ad-layout="fluid"
               data-full-width-responsive="true"></ins>
           </div>
 
-
+          <div className='ads-container'>
+<ins class="adsbygoogle"
+     style={{ display: 'block' }}
+     data-ad-client="ca-pub-8449765590756444"
+     data-ad-slot="5673375996"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+</div>
           {/* Social Media Sharing Section */}
           <div className='social' style={{ marginTop: '16px' }}>
             <h3>Share this image</h3>
@@ -212,9 +232,9 @@ const ImageGallery = ({ id }) => {
               <TwitterShareButton url={shareableUrl} title="Check this out!">
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
-              <a href={shareableUrl} target="_blank" rel="noopener noreferrer">
-                <FaTelegram size={32} round />
-              </a>
+              <TelegramShareButton url={currentImageUrl} title="Check this image!">
+                <FaTelegram size={32} />
+              </TelegramShareButton>
             </div>
           </div>
 

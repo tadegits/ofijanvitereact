@@ -69,7 +69,7 @@ const GeneralKnowledge = ({ title }) => {
     return (
         <div className="general-knowledge-section">
             <h3>General Knowledge Related to {title || 'Animal Science'}</h3>
-            
+
             {loading ? (
                 <p>Loading concepts...</p>
             ) : error ? (
@@ -79,6 +79,14 @@ const GeneralKnowledge = ({ title }) => {
                     {concepts.map((concept, index) => (
                         <li key={index} className="concept-item">
                             <h4>{concept.title}</h4>
+                            <div className='ads-container'>
+                                <ins class="adsbygoogle"
+                                    style={{ display: 'block' }}
+                                    data-ad-client="ca-pub-8449765590756444"
+                                    data-ad-slot="5673375996"
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"></ins>
+                            </div>
                             <p>{concept.extract}</p>
                             {/* <a
                                 href={concept.link}

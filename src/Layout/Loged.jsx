@@ -31,6 +31,7 @@ import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs.jsx';
 import TermsOfService from '../components/footer/TermsOfService.jsx';
 import ExamResults from '../components/ExitExam/ExamResult.jsx';
+import ImageGallery from '../components/Pdf/ImageGallery.jsx'
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -73,6 +74,9 @@ const Loged = () => {
         <Route path="/2015MosheExitExam" element={<Pdf />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
+        <Route path="/exit-exam/:id/:imageindex" element={<DisplayPdf />} />
+        <Route path="/image-gallery/:id" element={<ImageGallery />} />
+        <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-pdf/:id" element={<DisplayBluePrint />} />
         <Route path="/display-exam/:id" element={<DisplayBluePrint />} />

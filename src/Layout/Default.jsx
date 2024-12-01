@@ -25,6 +25,7 @@ import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
 import BluePrint from '../components/Pdf/BluePrint';
+import ImageGallery from '../components/Pdf/ImageGallery';
 import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs';
@@ -73,6 +74,8 @@ const Default = () => {
         <Route path="/model-exam" element={<Pdf />} />
         <Route path="/2015MosheExitExam" element={<Pdf />} />
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
+        <Route path="/exit-exam/:id/:imageindex" element={<DisplayPdf />} />
+        <Route path="/image-gallery/:id" element={<ImageGallery />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/examresults/:id" element={<ExamResults />} />
         <Route path="/examresultsugr/:id" element={<ExamResultsUgr />} />
