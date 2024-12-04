@@ -76,6 +76,7 @@ const Loged = () => {
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/exit-exam/:id/:imageindex" element={<DisplayPdf />} />
         <Route path="/image-gallery/:id" element={<ImageGallery />} />
+        <Route path="/image-gallery" element={<ImageGallery />} />
         <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/display-pdf/:id" element={<DisplayBluePrint />} />
