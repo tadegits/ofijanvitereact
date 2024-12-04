@@ -9,14 +9,42 @@ import AdComponent from '../Add/AdComponent';
 import ImageGallery from './ImageGallery';
 import AdvertisementCard from '../Add/AdvertisementCard';
 import GeneralKnowledge from './GeneralKnowledge';
+import axios from 'axios';
 import './DisplayPdf.scss';
 
 const DisplayPdf = () => {
     const location = useLocation();
     const depts = location.state?.data;
-    const { id } = useParams();
+    const { id, imageIndex } = useParams();
     const [loading, setLoading] = useState(true);
-    const pdfUrl = `${API_BASE_URL}/pdfs/${depts?.title}_${id}.pdf`;
+    const [imageUrls, setImageUrls] = useState([]);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    console.log("asd", imageIndex);
+    useEffect(() => {
+
+        const fetchImageUrls = async () => {
+          try {
+            setLoading(true);
+            const response = await axios.get(`${API_BASE_URL}/fetchimages/${id}`);
+            console.log('response', response)
+            const fileNames = response.data;
+            const urls = Array.isArray(fileNames)
+              ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
+              : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
+    
+            setImageUrls(urls);
+            setCurrentImageIndex(0);
+          } catch (error) {
+            setError(error);
+            console.error('Error fetching image URLs:', error);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchImageUrls();
+      }, [id]);
+      console.log('ulrs', imageUrls)
     return (
         <section className='pdfs'>
             <Helmet>
@@ -25,41 +53,21 @@ const DisplayPdf = () => {
                 <meta property="og:title" content={depts ? `${depts.title} 2016 Ethiopian Exit Exam Questions` : 'Display PDF'} />
                 <meta property="og:description" content={`Explore the ${depts ? depts.title : 'subject'} 2016 Ethiopian Exit Exam Questions.`} />
                 <meta property="og:image" content="withmoto.png" />
-                <meta property="og:url" content={`http://localhost:3000/exit-exam/${depts?.title}/${id}`} />
+                <meta property="og:url" content={`${API_BASE_URL}/exit-exam/${depts?.title}/${id}`} />
             </Helmet>
             <Wrapper className='pdf_section'>
                 <div className="display-pdf-container">
                     <Row gutter={24}>
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>
-                            <div className="ad-banner-bottom">
-                                <ins class="adsbygoogle"
-                                    style={{ display: 'block' }}
-                                    data-ad-client="ca-pub-8449765590756444"
-                                    data-ad-slot="7174432998"
-                                    data-ad-format="auto"
-                                    data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                                </script>
-                            </div>
+                           
                             
                             <AdvertisementCard />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={14} xl={14} className='pdf__viewer'>
                             <h1 className="subjectHeader">{depts ? depts.title : ''} 2015 {id} Ethiopian Exit Exam Questions</h1>
                             <h2>{id}</h2>
-                            <div className="ad-banner-bottom">
-                                <ins class="adsbygoogle"
-                                    style={{ display: 'block' }}
-                                    data-ad-client="ca-pub-8449765590756444"
-                                    data-ad-slot="7174432998"
-                                    data-ad-format="auto"
-                                    data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                                </script>
-                            </div>
-                            <ImageGallery id={id} />
+                        
+                            <ImageGallery id={id} imageIndex={imageIndex} />
                          
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={5} xl={5}>

@@ -1,70 +1,89 @@
 import React, { useState, useEffect } from 'react';
+import { Spin } from 'antd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import API_BASE_URL from '../../Globals/apiConfig';
+import ImageViewer from './ImageViewer';
+import NavigationButtons from './NavigationButtons';
+import ImagePagination from './ImagePagination';
+import CommentsSection from './CommentsSection';
+import SocialShare from './ImageSharing';
 
-const ImageGallery = () => {
-  const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+const ImageGallery = ({ id, imageIndex }) => {
+  const [imageUrls, setImageUrls] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [loading, setLoading] = useState(true);
-  
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the list of image filenames
-    axios.get(`/fetchimages/Animal-Science`)
-      .then(response => {
-        setImages(response.data);  // Assuming the API returns an array of image filenames
+    const fetchImageUrls = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${API_BASE_URL}/fetchimages/${id}`);
+        const fileNames = response.data;
+        const urls = Array.isArray(fileNames)
+          ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
+          : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
+        setImageUrls(urls);
+        setCurrentImageIndex(imageIndex);
+      } catch (err) {
+        setError(err);
+      } finally {
         setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching images:', error);
-        setLoading(false);
-      });
-  }, [deptId]);
+      }
+    };
+    fetchImageUrls();
+  }, [id, imageIndex]);
 
-  const fetchImageUrl = (filename) => {
-    return `/images/${deptId}/${filename}`;
+  const handleImageClick = (index) => {
+    setCurrentImageIndex(index);
+    navigate(`/exit-exam/${id}/${index}`);
   };
 
-  const handleNext = () => {
-    if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+  const handleNextImage = () => {
+    if (currentImageIndex < imageUrls.length - 1) {
+      handleImageClick(currentImageIndex + 1);
     }
   };
 
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+  const handlePrevImage = () => {
+    if (currentImageIndex > 0) {
+      handleImageClick(currentImageIndex - 1);
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (images.length === 0) {
-    return <div>No images available for this department.</div>;
-  }
+  if (loading) return <Spin size="large" />;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <div className="image-container">
-        <img
-          src={fetchImageUrl(images[currentIndex])}
-          alt={`Image ${currentIndex + 1}`}
-          loading="lazy"  // Lazy load image
-        />
-      </div>
-      <div className="navigation-buttons">
-        <button onClick={handlePrevious} disabled={currentIndex === 0}>
-          Previous
-        </button>
-        <span>
-          {currentIndex + 1} / {images.length}
-        </span>
-        <button onClick={handleNext} disabled={currentIndex === images.length - 1}>
-          Next
-        </button>
-      </div>
-    </div>
+    <section style={{ textAlign: 'center' }}>
+      <Helmet>
+        <title>{id} | Image Gallery</title>
+      </Helmet>
+      <ImageViewer
+        imageUrl={imageUrls[currentImageIndex]}
+        altText={`Image ${currentImageIndex + 1}`}
+      />
+      <NavigationButtons
+        onNext={handleNextImage}
+        onPrevious={handlePrevImage}
+        isNextDisabled={currentImageIndex === imageUrls.length - 1}
+        isPreviousDisabled={currentImageIndex === 0}
+      />
+      <ImagePagination
+        totalImages={imageUrls.length}
+        currentIndex={currentImageIndex}
+        onImageClick={handleImageClick}
+      />
+      <SocialShare
+        id={id}
+        currentImageIndex={currentImageIndex}
+        currentImageUrl={imageUrls[currentImageIndex]}
+      />
+      <CommentsSection />
+    </section>
   );
 };
 

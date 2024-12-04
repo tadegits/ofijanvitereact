@@ -87,7 +87,7 @@ const Index = () => {
                 {imagePath.map((image, index) => (
                   <React.Fragment key={index}>
                     <div className="pdf-card">
-                      <Link to={`/exit-exam/${image}/1`} state={{ data: image }}>
+                      <Link to={`/exit-exam/${image}/${0}`} state={{ data: image }}>
                         <div className="pdf-card-content">
                           <img
                             src="./images.png"
