@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input, Button, List } from 'antd';
-
+import './ImageGallery.scss';
 const CommentsSection = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');

@@ -9,7 +9,7 @@ import NavigationButtons from './NavigationButtons';
 import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
-
+import GeneralKnowledge from './GeneralKnowledge';
 const ImageGallery = ({ id, imageIndex }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
@@ -27,7 +27,15 @@ const ImageGallery = ({ id, imageIndex }) => {
           ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
         setImageUrls(urls);
-        setCurrentImageIndex(imageIndex);
+
+        // Safely parse and update currentImageIndex
+        const parsedIndex = parseInt(imageIndex, 10);
+        if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < urls.length) {
+          setCurrentImageIndex(parsedIndex);
+        } else {
+          // Fallback if the initial index is invalid
+          setCurrentImageIndex(0); // Or set to the first image
+        }
       } catch (err) {
         setError(err);
       } finally {
@@ -38,20 +46,26 @@ const ImageGallery = ({ id, imageIndex }) => {
   }, [id, imageIndex]);
 
   const handleImageClick = (index) => {
-    setCurrentImageIndex(index);
-    navigate(`/exit-exam/${id}/${index}`);
+    if (index >= 0 && index < imageUrls.length) {
+      setCurrentImageIndex(index);
+      navigate(`/exit-exam/${id}/${index}`);
+    }
   };
 
   const handleNextImage = () => {
-    if (currentImageIndex < imageUrls.length - 1) {
-      handleImageClick(currentImageIndex + 1);
+    let nextIndex = currentImageIndex + 1;
+    if (nextIndex >= imageUrls.length) {
+      nextIndex = 0; // Loop back to the first image, or set to a different behavior.
     }
+    handleImageClick(nextIndex);
   };
 
   const handlePrevImage = () => {
-    if (currentImageIndex > 0) {
-      handleImageClick(currentImageIndex - 1);
+    let prevIndex = currentImageIndex - 1;
+    if (prevIndex < 0) {
+      prevIndex = imageUrls.length - 1; // Loop back to the last image, or set to a different behavior.
     }
+    handleImageClick(prevIndex);
   };
 
   if (loading) return <Spin size="large" />;
@@ -62,6 +76,7 @@ const ImageGallery = ({ id, imageIndex }) => {
       <Helmet>
         <title>{id} | Image Gallery</title>
       </Helmet>
+      <h2>{id}</h2>
       <ImageViewer
         imageUrl={imageUrls[currentImageIndex]}
         altText={`Image ${currentImageIndex + 1}`}
@@ -77,6 +92,7 @@ const ImageGallery = ({ id, imageIndex }) => {
         currentIndex={currentImageIndex}
         onImageClick={handleImageClick}
       />
+      
       <SocialShare
         id={id}
         currentImageIndex={currentImageIndex}

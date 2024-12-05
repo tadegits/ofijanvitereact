@@ -1,14 +1,15 @@
 import React from 'react';
 import { FacebookShareButton, TwitterShareButton, TelegramShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 import { FaTelegram } from 'react-icons/fa';
+import './ImageGallery.scss';
 
 const ImageSharing = ({ id, currentImageIndex, currentImageUrl }) => {
   const baseUrl = window.location.origin;
   const shareableUrl = `${baseUrl}/image-gallery/${id}?imageIndex=${currentImageIndex}`;
   return (
-    <div style={{ marginTop: '16px' }}>
-      <h3>Share this image</h3>
-      <div>
+    <div>
+      <h6>Share this image</h6>
+      <div  className="share_social">
         <FacebookShareButton url={shareableUrl}>
           <FacebookIcon size={32} round />
         </FacebookShareButton>
