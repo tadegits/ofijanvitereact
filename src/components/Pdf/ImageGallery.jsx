@@ -10,6 +10,8 @@ import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
 import GeneralKnowledge from './GeneralKnowledge';
+import { GoogleAdsContext, GoogleAdsAd } from 'react-google-ads';
+
 const ImageGallery = ({ id, imageIndex }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
@@ -26,6 +28,7 @@ const ImageGallery = ({ id, imageIndex }) => {
         const urls = Array.isArray(fileNames)
           ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
+
         setImageUrls(urls);
 
         // Safely parse and update currentImageIndex
@@ -92,13 +95,23 @@ const ImageGallery = ({ id, imageIndex }) => {
         currentIndex={currentImageIndex}
         onImageClick={handleImageClick}
       />
-      
+
       <SocialShare
         id={id}
         currentImageIndex={currentImageIndex}
         currentImageUrl={imageUrls[currentImageIndex]}
       />
       <CommentsSection />
+
+      {/* Google Ads Integration */}
+      <GoogleAdsContext>
+        <GoogleAdsAd
+          slot="YOUR_AD_SLOT_ID"
+          format="fluid"
+          responsive="true"
+          adTest="RANDOMIZE"
+        />
+      </GoogleAdsContext>
     </section>
   );
 };
