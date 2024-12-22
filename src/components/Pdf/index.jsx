@@ -56,20 +56,6 @@ const Index = () => {
 
       <Wrapper className="pdfs">
         <div className="content-container">
-          {/* Sidebar */}
-          <div className="side-column">
-            <div className="ad-card">
-              {/* Vertical Ad */}
-              <ins class="adsbygoogle"
-     style={{ display: 'block' }}
-     data-ad-client="ca-pub-8449765590756444"
-     data-ad-slot="5673375996"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-            </div>
-          </div>
-
-          {/* Main Content */}
           <div className="main-column">
             <h1 className='headersss'>Get PDFs for MoE Ethiopian Exit Exam Questions</h1>
             <p>
@@ -102,21 +88,6 @@ const Index = () => {
                         </div>
                       </Link>
                     </div>
-
-                    {/* Inline Ad after every 6 items */}
-                    {index % 6 === 5 && (
-                      <div className="ad-inline">
-
-                        <ins class="adsbygoogle"
-                          style={{ display: 'block', margin: '20px 0' }}
-                          data-ad-format="fluid"
-                          data-ad-layout-key="+1j+s9-w-57+co"
-                          data-ad-client="ca-pub-8449765590756444"
-                          data-ad-slot="4536388296">
-
-                          </ins>
-                      </div>
-                    )}
                   </React.Fragment>
                 ))}
               </div>
@@ -124,14 +95,15 @@ const Index = () => {
 
             {/* Bottom Ad */}
             <div className="ad-bottom">
-             
-              <ins class="adsbygoogle"
-     style={{ display: 'block', marginTop: '20px' }}
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-8449765590756444"
-     data-ad-slot="3238784345">
 
-     </ins>
+              <ins class="adsbygoogle"
+                style={{ display: 'block', marginTop: '20px' }}
+                data-ad-client="ca-pub-8449765590756444"
+                data-ad-slot="6489537710"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+
+              </ins>
             </div>
           </div>
         </div>

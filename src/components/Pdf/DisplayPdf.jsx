@@ -45,15 +45,16 @@ const DisplayPdf = () => {
   return (
     <section className='pdfs'>
       <Helmet>
-        <title>{depts ? `${depts.title} 2016 Ethiopian Exit Exam Questions` : 'Display PDF'}</title>
+        <title>{depts ? `${depts.title} 2016 Ethiopian Exit Exam Questions` : '2016 Ethiopian Exit Exam Questions'}</title>
         <meta name="description" content={`Explore the ${depts ? depts.title : 'subject'} 2016 Ethiopian Exit Exam Questions.`} />
-        <meta property="og:title" content={depts ? `${depts.title} 2016 Ethiopian Exit Exam Questions` : 'Display PDF'} />
+        <meta property="og:title" content={depts ? `${depts.title} 2016 Ethiopian Exit Exam Questions` : '2016 Ethiopian Exit Exam Questions'} />
         <meta property="og:description" content={`Explore the ${depts ? depts.title : 'subject'} 2016 Ethiopian Exit Exam Questions.`} />
         <meta property="og:image" content="withmoto.png" />
         <meta property="og:url" content={`${API_BASE_URL}/exit-exam/${depts?.title}/${id}`} />
       </Helmet>
       <Wrapper className='pdf_section'>
         <div className="display-pdf-container">
+          
           <Row gutter={24}>
             {/* Left Column: Advertisement with smaller size */}
             <Col xs={24} sm={24} md={8} lg={4} xl={4}>
@@ -75,8 +76,22 @@ const DisplayPdf = () => {
             {/* Center Column: Main Content */}
             <Col xs={24} sm={24} md={16} lg={16} xl={16} className='pdf__viewer'>
               <h1 className="subjectHeader">{depts ? depts.title : ''} 2015 {id} Ethiopian Exit Exam Questions</h1>
-              <h2>{id}</h2>
               <ImageGallery id={id} imageIndex={imageIndex} />
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={4} xl={4}>
+              <div className="ad-banner-bottom">
+                <ins className="adsbygoogle"
+                  style={{ display: 'block' }}
+                  data-ad-client="ca-pub-8449765590756444"
+                  data-ad-slot="8261485661"
+                  data-ad-format="auto responsive"
+                  data-full-width-responsive="true"></ins>
+                <ins className="adsbygoogle"
+                  style={{ display: 'block' }}
+                  data-ad-format="autorelaxed"
+                  data-ad-client="ca-pub-8449765590756444"
+                  data-ad-slot="6959146314"></ins>
+              </div>
             </Col>
           </Row>
         </div>

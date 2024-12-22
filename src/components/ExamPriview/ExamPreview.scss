@@ -1,0 +1,81 @@
+.exam-preview {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  
+    .exam-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .exam-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .adsense-block {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f1f1f1;
+      border: 1px dashed #ccc;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+  
+      p {
+        margin: 0;
+        font-style: italic;
+      }
+    }
+  
+    .button-row {
+      margin-top: 20px;
+  
+      .tade-button {
+        width: 100%;
+        background-color: #4caf50;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        height: 40px;
+  
+        &:hover {
+          background-color: #45a049;
+        }
+      }
+  
+      .yellow-button {
+        width: 100%;
+        background-color: #fbc02d;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        height: 40px;
+  
+        &:hover {
+          background-color: #f9a825;
+        }
+      }
+    }
+  
+    .ant-descriptions {
+      margin-bottom: 20px;
+  
+      .ant-descriptions-item-label {
+        font-weight: bold;
+        color: #555;
+      }
+  
+      .ant-descriptions-item-content {
+        color: #333;
+      }
+    }
+  }
+  

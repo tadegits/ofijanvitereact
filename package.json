@@ -39,6 +39,7 @@
     "react-countup": "^6.4.2",
     "react-dom": "^18.2.0",
     "react-google-ads": "^1.0.5",
+    "react-google-adsense": "^0.0.5",
     "react-google-login": "^5.2.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",

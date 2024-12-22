@@ -10,8 +10,6 @@ import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
 import GeneralKnowledge from './GeneralKnowledge';
-import { GoogleAdsContext, GoogleAdsAd } from 'react-google-ads';
-
 const ImageGallery = ({ id, imageIndex }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
@@ -28,7 +26,6 @@ const ImageGallery = ({ id, imageIndex }) => {
         const urls = Array.isArray(fileNames)
           ? fileNames.map((fileName) => `${API_BASE_URL}/images/${id}/${fileName}`)
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
-
         setImageUrls(urls);
 
         // Safely parse and update currentImageIndex
@@ -79,11 +76,17 @@ const ImageGallery = ({ id, imageIndex }) => {
       <Helmet>
         <title>{id} | Image Gallery</title>
       </Helmet>
-      <h2>{id}</h2>
+    
       <ImageViewer
         imageUrl={imageUrls[currentImageIndex]}
         altText={`Image ${currentImageIndex + 1}`}
       />
+      <div><ins class="adsbygoogle"
+     style={{display:'block'}}
+     data-ad-client="ca-pub-8449765590756444"
+     data-ad-slot="6577167626"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins></div>
       <NavigationButtons
         onNext={handleNextImage}
         onPrevious={handlePrevImage}
@@ -95,23 +98,13 @@ const ImageGallery = ({ id, imageIndex }) => {
         currentIndex={currentImageIndex}
         onImageClick={handleImageClick}
       />
-
+      
       <SocialShare
         id={id}
         currentImageIndex={currentImageIndex}
         currentImageUrl={imageUrls[currentImageIndex]}
       />
       <CommentsSection />
-
-      {/* Google Ads Integration */}
-      <GoogleAdsContext>
-        <GoogleAdsAd
-          slot="YOUR_AD_SLOT_ID"
-          format="fluid"
-          responsive="true"
-          adTest="RANDOMIZE"
-        />
-      </GoogleAdsContext>
     </section>
   );
 };

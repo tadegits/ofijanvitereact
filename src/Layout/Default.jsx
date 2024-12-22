@@ -27,6 +27,8 @@ import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
 import BluePrint from '../components/Pdf/BluePrint';
 import ImageGallery from '../components/Pdf/ImageGallery';
 import TestMePlate from '../logedin/ExitExam/LQuestionPlate/TestMePlate';
+import DepartmentList from '../components/Department/DepartmentList.jsx';
+
 import Privacy from '../components/Privacy';
 import AboutUs from '../components/footer/AboutUs';
 import TermsOfService from '../components/footer/TermsOfService';
@@ -34,11 +36,13 @@ import StudyPlate from '../logedin/ExitExam/LQuestionPlate/StudyPlate';
 import ExamResults from '../components/ExitExam/ExamResult';
 import ExamResultsUgr from '../components/ExitExam/ExamResultUgr';
 import Footer from '../components/footer/footer';
+import ExamPreview from '../components/ExamPriview/index.jsx';
 const Default = () => {
-
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
+  const [departmentURI, setDepartmentUri] = useState('');
+  const [department, setDepartment] = ([]);
 
   useEffect(() => {
     setPostUri(`${API_BASE_URL}/all_blogs`);
@@ -50,6 +54,18 @@ const Default = () => {
         console.error('Error fetching data:', error);
       });
   }, [postUri]);
+  useEffect(() => {
+    setDepartmentUri(`${API_BASE_URL}/departments`);
+    axios.get(departmentURI)
+      .then(response => {
+        setDepartment(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, [departmentURI]);
+  const currentPath = location.pathname;
+  console.log('Department', department);
   return (
     <>
 
@@ -65,7 +81,9 @@ const Default = () => {
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
         <Route path="/easyexam" element={<EasyExam />} />
-        <Route path="/ExitExam" element={<ExitExam />} />
+        <Route path="ofijan_model_exams" element={<DepartmentList departments={department}/>}/>
+        <Route path="/ExitExam" element={<ExitExam departments ={department}/>}  />
+        <Route path='/exam/details/:examId' element={<ExamPreview/>}/>
         <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/exit/:id" element={<ExitExam />} />
         <Route path="/Login" element={<LoginSection />} />

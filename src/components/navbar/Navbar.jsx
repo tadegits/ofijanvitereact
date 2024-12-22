@@ -79,7 +79,7 @@ console.log(user);
                         <Link to="/" title="Go to Home">Home</Link>
                     </li>
                     <li onClick={() => setShowNav(false)}>
-                        <Link to={isLoggedIn ? "/Exit_Exam" : "/ExitExam" } title="Model Exams">Model Exams</Link>
+                        <Link to={isLoggedIn ? "/ofijan_model_exams" : "/ofijan_model_exams" } title="Model Exams">Model Exams</Link>
                     </li>
                     {isLoggedIn &&
                         <li onClick={() => setShowNav(false)}>

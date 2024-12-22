@@ -19,7 +19,7 @@ import EasyExam from '../components/EasyExam/EasyExam.jsx';
 import API_BASE_URL from '../Globals/apiConfig.jsx';
 import axios from 'axios';
 import Result from '../components/Result'
-
+import DepartmentList from '../components/Department/DepartmentList.jsx';
 import Pdf from '../components/Pdf';
 import DisplayPdf from '../components/Pdf/DisplayPdf.jsx';
 import DisplayBluePrint from '../components/Pdf/DisplayBluePrint';
@@ -32,22 +32,43 @@ import AboutUs from '../components/footer/AboutUs.jsx';
 import TermsOfService from '../components/footer/TermsOfService.jsx';
 import ExamResults from '../components/ExitExam/ExamResult.jsx';
 import ImageGallery from '../components/Pdf/ImageGallery.jsx'
+import ExamPreview from '../components/ExamPriview/index.jsx';
 const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
-
+  const [department, setDepartment] = useState([]); // Correct state initialization
+  
   useEffect(() => {
+    // Set the post URI first
     setPostUri(`${API_BASE_URL}/all_blogs`);
+    
+    // Fetch blog data
     axios.get(postUri)
       .then(response => {
         setBlogData(response.data.blogs);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching blog data:', error);
       });
   }, [postUri]);
+  
+  useEffect(() => {
+    // Set department URI and fetch department data
+    const departmentURI = `${API_BASE_URL}/departments`;
+    
+    axios.get(departmentURI)
+      .then(response => {
+        setDepartment(response.data);  // Save the department data
+      })
+      .catch(error => {
+        console.error('Error fetching department data:', error);
+      });
+  }, []); // This useEffect runs once when the component mounts
+  
   const currentPath = location.pathname;
+  console.log('Departments:', department); // Check department data
+  
   return (
     <>
 
@@ -65,8 +86,10 @@ const Loged = () => {
         <Route path="/Grade12" element={<Grade12 />} />
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
-        <Route path="/ExitExam" element={<ExitExam />} />
+        <Route path="ofijan_model_exams" element={<DepartmentList departments={department}/>}/>
+        <Route path="/ExitExam" element={<ExitExam departments ={department}/>}  />
         <Route path="/exit/:id" element={<ExitExam />} />
+        <Route path='/exam/details/:examId' element={<ExamPreview/>}/>
         <Route path="/Login" element={<LoginSection />} />
         <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/2015_exit_pdfs" element={<Pdf />} />

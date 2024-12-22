@@ -9,6 +9,7 @@ import { selectUser } from "./features/userSlice";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import Navbar from "./components/navbar/Navbar";
+import FixedBottomComponent from "./components/Add/FixedBottomComponent";
 
 function App() {
   const [user, setUser] = useState("");
@@ -41,6 +42,7 @@ function App() {
         <>
           <Navbar />
           <Loged />
+          <FixedBottomComponent />
           <Footer />
         </>
       ) : (
@@ -48,6 +50,7 @@ function App() {
 
           <Navbar />
           <Default />
+          <FixedBottomComponent />
           <Footer />
         </>
       )}
