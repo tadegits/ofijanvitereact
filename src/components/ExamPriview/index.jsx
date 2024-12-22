@@ -14,10 +14,10 @@ const ExamPreview = () => {
     const fetchExamDetails = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${API_BASE_URL}/examsfront/${examId}`);
+        const response = await fetch(`${API_BASE_URL}/examsByIDAPI/${examId}`);
         if (response.ok) {
           const data = await response.json();
-          setExamDetails(data);
+          setExamDetails(data.exam[0]);
         } else {
           console.error('Failed to fetch exam details');
         }
@@ -30,7 +30,7 @@ const ExamPreview = () => {
 
     fetchExamDetails();
   }, [examId]);
-
+console.log(examDetails)
   useEffect(() => {
     // Dynamically inject AdSense script
     const adsenseScript = document.createElement('script');
