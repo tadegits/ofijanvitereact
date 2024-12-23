@@ -1,48 +1,30 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from "../hero/Hero"
-import CounterUpPage from "../counter/CounterUpPage"
-import CompanySection from "../companySection/CompanySection"
 import FeaturesSection from "../featuresSection/FeaturesSection"
-import SignUpSection from "../SignUpSection/SignUpSection"
-import Footer from "../footer/footer"
-import Plans from "../PlanSection/PlanSection";
-import Insraw from "../insraw/insraw"
-import Testimonals from '../Testimonals/Testimonals'
-import Service from '../Service/Service'
-import Navbar from '../navbar/Navbar'
-import LNavbar from '../../logedin/navbar/LNavbar'
 import Pdf from '../Pdf';
 import ExitExam from '../ExitExam/ExitExam';
-import Wrapper from '../wrapper/Wrapper'
 import ContactSection from '../contactSection/ContactSection';
+import DepartmentList from '../Department/DepartmentList'
 const Home = () => {
   const [user, setUser] = useState("");
-  const [isLoggedin, setIsLoggedin] = useState(false); 
+  const [isLoggedin, setIsLoggedin] = useState(false);
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const roleUser = JSON.parse(loggedInUser);
       const foundUser = JSON.stringify(loggedInUser);
       setUser(foundUser);
-     
+
     }
   }, []);
   return (
     <>
-      <Hero/>
-      {/* <Service/>      */}
-     {/* <CounterUpPage/> */}
-      <Pdf/>  
-       {/* <Service/> */}
-      
-   
-     <ExitExam/>
-    
-      <FeaturesSection/>
-      <ContactSection/>
-      {/* <CompanySection/>  */}
-      {/* <SignUpSection/>  */}
-      {/* <Testimonals/>    */}
+      <Hero />
+      <Pdf />
+      <DepartmentList />
+      <ExitExam />
+      <FeaturesSection />
+      <ContactSection />
     </>
   )
 }

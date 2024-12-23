@@ -40,16 +40,16 @@ const DepartmentList = ({ departments }) => {
 
   return (
     <div className="department-list">
-      {departments?( departments.map(department => (
+      {departments ? (departments.map(department => (
         <div key={department.id} className="department-card">
           <Card
             hoverable
             cover={<img src="./osvg.svg" alt={`Image for ${department.title}`} />}
             onClick={() => {
               if (window.innerWidth <= 768) {
-                showDrawer(department); // Show bottom-up drawer on mobile
+                showDrawer(department);
               } else {
-                showDrawer(department); // Normal drawer on desktop
+                showDrawer(department);
               }
             }}
           >
@@ -58,9 +58,9 @@ const DepartmentList = ({ departments }) => {
             </div>
           </Card>
         </div>
-      ))):('')}
+      ))) : ('')}
 
-  
+
       <Drawer
         title={<div className="exam-name-title">Exams for {selectedDepartment?.title}</div>}
         placement="bottom"
@@ -77,47 +77,31 @@ const DepartmentList = ({ departments }) => {
           <div>
             {exams.length > 0 ? (
               exams
-                .filter(exam => exam.questions_count >= 20) // Filter exams with fewer than 20 questions
+                .filter(exam => exam.questions_count >= 20) 
                 .map((exam) => (
-                  <div key={exam.id}>
-                    <Descriptions
-                      title={<div className="exam-name-title">{exam.exam_name} <p>{exam.questions_count} questions</p></div>}
-                      bordered
-                      column={1}
-                      layout="vertical"
-                      size="middle"
-                    >
-                      {/* Add more details here if needed */}
-                    </Descriptions>
-
-                    <Row gutter={[16, 16]}>
-                      <Col span={12}>
-                      <Link to={`/exam/details/${exam.id}`} >
-                      <Button type="primary" className="yellow-button" round>
-                            Open
-                          </Button>
-                          </Link>
-                        {/* <Link to={`/ofijan_exam_plate/testmode/${exam.id}`} >
-                          <Button type="primary" className="tade-button" round>
-                            Test Myself
-                          </Button>
-                        </Link>
-                      </Col>
-                      <Col span={12}>
-                        <Link to={`/ofijan_exam_plate/studymode/${exam.id}`}>
-                          <Button type="primary" className="yellow-button" round>
-                            Study with Answer
-                          </Button>
-                          
-                        </Link> */}
-                      </Col>
-                    </Row>
-                  </div>
+                  <Link to={`/exam/details/${exam.id}`} key={exam.id} className="exam-link">
+                    <div>
+                      <Descriptions
+                        title={
+                          <div className="exam-name-title">
+                            {exam.exam_name} <p>{exam.questions_count} questions</p>
+                          </div>
+                        }
+                        bordered
+                        column={1}
+                        layout="vertical"
+                        size="middle"
+                      >
+     
+                      </Descriptions>
+                    </div>
+                  </Link>
                 ))
             ) : (
               <div>No exams available for this department.</div>
             )}
           </div>
+
         )}
       </Drawer>
     </div>

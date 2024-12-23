@@ -37,13 +37,13 @@ const Loged = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
-  const [department, setDepartment] = useState([]); // Correct state initialization
+  const [department, setDepartment] = useState([]);
   
   useEffect(() => {
-    // Set the post URI first
+
     setPostUri(`${API_BASE_URL}/all_blogs`);
     
-    // Fetch blog data
+  
     axios.get(postUri)
       .then(response => {
         setBlogData(response.data.blogs);
@@ -54,20 +54,20 @@ const Loged = () => {
   }, [postUri]);
   
   useEffect(() => {
-    // Set department URI and fetch department data
+
     const departmentURI = `${API_BASE_URL}/departments`;
     
     axios.get(departmentURI)
       .then(response => {
-        setDepartment(response.data);  // Save the department data
+        setDepartment(response.data);  
       })
       .catch(error => {
         console.error('Error fetching department data:', error);
       });
-  }, []); // This useEffect runs once when the component mounts
+  }, []); 
   
   const currentPath = location.pathname;
-  console.log('Departments:', department); // Check department data
+  console.log('Departments:', department); 
   
   return (
     <>

@@ -42,7 +42,7 @@ const Default = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
   const [departmentURI, setDepartmentUri] = useState('');
-  const [department, setDepartment] = ([]);
+  const [department, setDepartment] = useState([]);
 
   useEffect(() => {
     setPostUri(`${API_BASE_URL}/all_blogs`);
@@ -55,25 +55,20 @@ const Default = () => {
       });
   }, [postUri]);
   useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        setDepartmentUri(`${API_BASE_URL}/departments`);
-        const response = await axios.get(departmentURI);
-        setDepartment(response.data);
-      } catch (error) {
+    setDepartmentUri(`${API_BASE_URL}/departments`);
+    axios.get(departmentURI)
+      .then(response => {
+        setDepartment(response.data);  
+      })
+      .catch(error => {
         console.error('Error fetching department data:', error);
-      }
-    };
-    if (departmentURI) fetchDepartments();
-  }, [departmentURI]);
+      });
+  }, [departmentURI]); 
 
   const currentPath = location.pathname;
-  console.log('Department:', department);
-
+  console.log('Departments:', department); 
   return (
     <>
-
-      {/* <Navbar /> */}
       <Routes>
         <Route path="/privacy" element={<Privacy />} />
         <Route path='/about-us' element={<AboutUs />} />
@@ -85,9 +80,9 @@ const Default = () => {
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
         <Route path="/easyexam" element={<EasyExam />} />
-        <Route path="ofijan_model_exams" element={<DepartmentList departments={department}/>}/>
-        <Route path="/ExitExam" element={<ExitExam departments ={department}/>}  />
-        <Route path='/exam/details/:examId' element={<ExamPreview/>}/>
+        <Route path="ofijan_model_exams" element={<DepartmentList departments={department} />} />
+        <Route path="/ExitExam" element={<ExitExam departments={department} />} />
+        <Route path='/exam/details/:examId' element={<ExamPreview />} />
         <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/exit/:id" element={<ExitExam />} />
         <Route path="/Login" element={<LoginSection />} />
@@ -111,7 +106,7 @@ const Default = () => {
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
-        
+
         <Route path="/seller" element={<Seller />} />
         {/* <Route exact path='/gezi' element={<Gezi />} /> */}
         {/* <Route path='/seller' element={<Seller />} /> */}
@@ -121,7 +116,7 @@ const Default = () => {
         <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
         <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
       </Routes>
-{/* <Footer/> */}
+      {/* <Footer/> */}
     </>
   )
 }
