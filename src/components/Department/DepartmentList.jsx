@@ -40,7 +40,7 @@ const DepartmentList = ({ departments }) => {
 
   return (
     <div className="department-list">
-      {department?( departments.map(department => (
+      {departments? ( departments.map(department => (
         <div key={department.id} className="department-card">
           <Card
             hoverable
@@ -60,10 +60,10 @@ const DepartmentList = ({ departments }) => {
         </div>
       ))):('')}
 
-      {/* Bottom-Up Drawer for Mobile */}
+  
       <Drawer
         title={<div className="exam-name-title">Exams for {selectedDepartment?.title}</div>}
-        placement="bottom" // Drawer comes from the bottom for mobile view
+        placement="bottom"
         visible={isDrawerVisible}
         onClose={hideDrawer}
         width="100%" // Full width for mobile
