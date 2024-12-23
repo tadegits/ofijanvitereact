@@ -40,7 +40,7 @@ const DepartmentList = ({ departments }) => {
 
   return (
     <div className="department-list">
-      {departments? ( departments.map(department => (
+      {departments?( departments.map(department => (
         <div key={department.id} className="department-card">
           <Card
             hoverable
