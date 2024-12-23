@@ -9,9 +9,10 @@ import Swal from 'sweetalert2';
 import CheckIcon from '@mui/icons-material/Check';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
-import '../LQuestionPlate/plate.scss';
+// import '../LQuestionPlate/plate.scss';
 import './studyplate.scss';
 import { Helmet } from 'react-helmet';
+import TypingEffect from '../../../components/TypingEffect/TypingEffect';
 import Wrapper from '../../../components/wrapper/Wrapper';
 import AdvertisementCard from '../../../components/Add/AdvertisementCard';
 const StudyPlate = () => {
@@ -74,28 +75,29 @@ const StudyPlate = () => {
         const updatedQuestionData = [...questionData];
         updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map((option, i) => ({
             ...option,
-            selected: i === index
+            selected: i === index,
         }));
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
-        setAnswered(true)
-        if (questionData[selectedQuestionIndex].options[index].correct === '1') {
-            setCorrectAnswersCounter((prevCounter) => prevCounter + 1);
+        setAnswered(true);
+
+        // Adjust correct answers count logic here
+        if (updatedQuestionData[selectedQuestionIndex].options[index].correct === '1') {
+            setCorrectAnswersCounter(prevCounter => prevCounter + 1);
         } else {
-            setCorrectAnswersCounter((prevCounter) => prevCounter - 1);
+            setCorrectAnswersCounter(prevCounter => prevCounter - 1);
         }
+
+        // Handle API call logic
         const selectedQuestion = questionData[selectedQuestionIndex];
         const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
         axios.post(`${API_BASE_URL}/selected-answers`, {
             user_id: 1,
             question_id: selectedQuestion,
             option_id: selectedOptionID,
-        })
-            .then(response => {
-            })
-            .catch(error => {
-            });
+        });
     };
+console.log(selectedOptionIndex);
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length) {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
@@ -121,21 +123,7 @@ const StudyPlate = () => {
             }
         });
     };
-    const handleClearChoiceClick = () => {
-        const updatedQuestionData = [...questionData];
-        updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map(option => ({
-            ...option,
-            selected: false,
-        }));
-        setQuestionData(updatedQuestionData);
-        setSelectedOptionIndex(null);
-        setAnswered(false);
-    };
-    const handleFlagClick = (index) => {
-        const updatedQuestionData = [...questionData];
-        updatedQuestionData[index].flagged = !updatedQuestionData[index].flagged;
-        setQuestionData(updatedQuestionData);
-    };
+
     return (
         <section className='exam'>
             <Helmet>
@@ -145,89 +133,102 @@ const StudyPlate = () => {
             </Helmet>
             <Wrapper className='exam__section'>
 
-           
-        <div className='studyplate'>
-            <div className='sflag_plate'>
-            <AdvertisementCard/><AdvertisementCard/>
 
-            </div>
-            {examType == null? 
-           <><div className='sofijan_exam_plate_study'>
+                <div className='studyplate'>
+                    <div className='sflag_plate'>
+                        <AdvertisementCard /><AdvertisementCard />
+
+                    </div>
+                    {examType == null ?
+                        <><div className='sofijan_exam_plate_study'>
 
 
 
-                <div className="squestion_plate_study">
-                    {/* <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className="switch">
+                            <div className="squestion_plate_study">
+                                {/* <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className="switch">
                          Switch To Test Mode
                     </Link> */}
 
-                    {questionData.length > 0 && (
-                        <>
-                            <div className="squestionText">
-                                <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
-                            </div>
-                            <div className="choice_plate_study">
+                                {questionData.length > 0 && (
+                                    <>
+                                        <div className="squestionText">
+                                            <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].question_text }} />
+                                        </div>
+                                        <div className="choice_plate_study">
 
-                                {questionData[selectedQuestionIndex].options.map((option, index) => {
-                                    const isSelected = selectedOptionIndex === index;
-                                    const isCorrectAnswer = option.correct === '1';
-                                    return (
-                                        <label
-                                            className={`option_box ${isSelected ? 'selected' : ''} ${selectedOptionIndex !== null && isCorrectAnswer ? 'correct-answer' : ''}`}
+                                            {questionData[selectedQuestionIndex].options.map((option, index) => {
+                                                const isSelected = selectedOptionIndex === index;
+                                                const isCorrectAnswer = option.correct === 1;
+                                                return (
+                                                    <label
+                                                        className={`option_box ${isSelected ? 'selected' : ''} ${isCorrectAnswer && selectedOptionIndex !== null?  'correct-answer' : ''}`}
+                                                        key={index}
+                                                        onClick={() => handleOptionClick(index)}
+                                                    >
+                                                        <input
+                                                            type='radio'
+                                                            name={`option_${selectedQuestionIndex}`}
+                                                            value={option.option}
+                                                            checked={isSelected}
+                                                            readOnly
+                                                        />
+                                                        <span className="alphabet">{alphabet[index]}. </span>
+                                                        {option.option}
+                                                        {isCorrectAnswer && selectedOptionIndex !== null &&   <CheckIcon className="animated-check-icon" />}
+                                                    </label>
+
+                                                );
+                                            })}
+                                            <>
+
+                                                {questionData[selectedQuestionIndex].options.some(option => option.selected) &&
+                                                    <div className='s2description'>
+                                                     <TypingEffect htmlText={questionData[selectedQuestionIndex].answer_description} speed={10} />
+                                                     </div>} </>
+
+
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+<div>
+<ins class="adsbygoogle"
+     style={{display: 'block'  }}
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-8449765590756444"
+     data-ad-slot="8333904759"></ins>
+</div>
+                            <StudyNavButtons
+                                handlePreviousClick={handlePreviousClick}
+                                handleNextClick={handleNextClick}
+                                selectedQuestionIndex={selectedQuestionIndex}
+                                length={questionData.length - 1}
+                            />
+                        </div>
+                        <div><ins class="adsbygoogle"
+     style={{display: 'block'  }}
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-8449765590756444"
+     data-ad-slot="8333904759"></ins>
+</div>
+                            <div className="sanswer_plate">
+                                <h5>Exam Navigation</h5>
+                                <div className="answer_plate">
+                                    {questionData.map((question, index) => (
+                                        <LAnswerBox
                                             key={index}
-                                            onClick={() => handleOptionClick(index)}
-                                        >
-                                            <input
-                                                type='radio'
-                                                name={`option_${selectedQuestionIndex}`}
-                                                value={option.option}
-                                                checked={isSelected}
-                                                readOnly
-                                            />
-                                            <span className="alphabet">{alphabet[index]}. </span>
-                                            {option.option}
-                                            <span className={`correct_is ${isCorrectAnswer ? 'hi' : ''} ${selectedQuestionIndex === index ? 'selected' : ''} ${questionData[selectedQuestionIndex].options.some(option => option.selected) ? 'answered' : ''} `} ><CheckIcon /></span>
-                                        </label>
-                                    );
-                                })}
-                                <>
-
-                                    {questionData[selectedQuestionIndex].options.some(option => option.selected) &&
-                                        <div className='sdescription'>
-                                            <p dangerouslySetInnerHTML={{ __html: questionData[selectedQuestionIndex].answer_description }} />
-                                              </div>} </>
-
-
-                            </div>
-                        </>
-                    )}
+                                            index={index}
+                                            isSelected={selectedQuestionIndex === index}
+                                            isFlagged={question.flagged}
+                                            isAnswered={question.options.some(option => option.selected)}
+                                            handleClick={handleQuestionClick}
+                                            handleSweetAlert={handleSweetAlert}
+                                        />
+                                    ))}
+                                </div>
+                            </div></> : "Sorry this exam is not available for you!"}
                 </div>
-
-                <StudyNavButtons
-                    handlePreviousClick={handlePreviousClick}
-                    handleNextClick={handleNextClick}
-                    selectedQuestionIndex={selectedQuestionIndex}
-                    length={questionData.length - 1}
-                />
-            </div>
-            <div className="sanswer_plate">
-                <h5>Exam Navigation</h5>
-                <div className="answer_plate">
-                    {questionData.map((question, index) => (
-                        <LAnswerBox
-                            key={index}
-                            index={index}
-                            isSelected={selectedQuestionIndex === index}
-                            isFlagged={question.flagged}
-                            isAnswered={question.options.some(option => option.selected)}
-                            handleClick={handleQuestionClick}
-                            handleSweetAlert={handleSweetAlert}
-                        />
-                    ))}
-                </div>
-            </div></> :"Sorry this exam is not available for you!"}
-        </div>
-        </Wrapper>
+            </Wrapper>
         </section>
 
     );

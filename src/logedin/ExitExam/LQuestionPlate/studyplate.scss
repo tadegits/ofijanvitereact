@@ -1,86 +1,95 @@
 @import "../../../styles/mixin.scss";
-
+@import "../../../styles/colors.scss";
+// General Reset
 body {
     padding: 0;
     margin: 0;
 }
-.exam{
 
-.__section{
-    padding: 0;
-    padding-top: 2rem;
-}
+// Exam Section
+.exam {
+    .__section {
+        padding: 0;
+        padding-top: 2rem;
+    }
 }
 
+// Study Plate Layout
 .studyplate {
     display: flex;
     margin: 25px;
-    padding: 0px;
+    padding: 0;
     padding-top: 2rem;
-    align-items: start;
-@include respond(phone){
-    flex-direction: column;
-}
+    align-items: flex-start;
 
+    @include respond(phone) {
+        flex-direction: column;
+    }
+
+    // Flag Plate
     .sflag_plate {
         width: 15%;
         display: flex;
         gap: 0.3rem;
         flex-direction: column;
-    @include respond(phone)
-    {
-        flex-direction: row;
-        width: 100%;
-    }
+
+        @include respond(phone) {
+            flex-direction: row;
+            width: 100%;
+        }
     }
 
+    // Answer Plate
     .sanswer_plate {
         width: 25%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        @include respond(phone)
-        {
+
+        @include respond(phone) {
             width: 100%;
         }
     }
 
+    // Exam Plate Study Section
     .sofijan_exam_plate_study {
-        background-color: rgb(255, 255, 255);
+        background-color: #fff;
         display: flex;
         min-height: 70vh;
         width: 60%;
         flex-direction: column;
         margin: 1%;
+        border-radius: 5px; // Added rounded corners for smoother look
 
         .squestion_plate_study {
             background-color: rgba(217, 248, 248, 0.678);
             justify-content: center;
             width: 100%;
             margin-bottom: 4px;
+            padding: 10px;
 
             .squestionText {
                 width: 100%;
                 font-size: 18px;
                 font-family: Arial, sans-serif;
-                color: #333333;
-                justify-content: center;
+                color: #000000;
                 border: 1px solid rgba(0, 0, 0, 0.048);
                 padding: 9px;
-                font-weight: normal;
+                font-weight: bold;
+                text-align: justify;
 
                 @include respond(phone) {
-                    padding: 0%;
+                    padding: 5px;
+                    font-size: 16px; // Adjust text size for smaller screens
                 }
             }
 
             .sdescription {
-                background-color: white;
+                background-color: #fff;
                 border: 1px solid gray;
                 padding: 5px;
                 font-weight: 500;
-                color: black;
-                
+                color: #000;
             }
 
             @include respond(phone) {
@@ -93,11 +102,75 @@ body {
             margin: 0;
             width: 100%;
         }
-
     }
 }
 
+// Navigation Buttons
 .navigation_buttons {
+    display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
+}
+
+// Correct Answer Styling
+.correct_is {
+    display: inline-block;
+
+    &.show {
+        background-color: red;
+        color: white;
+    }
+
+    .hi {
+        color: green;
+    }
+}
+.correct_ise {
+    margin-left: 10px;
+    display: none;
+
+    &.show {
+        display: inline-block;
+       
+    }
+
+    .animated-check-icon {
+        color: #28a745; /* Green color for correct answer */
+        font-size: 20px; /* Adjust the size as needed */
+        animation: fadeIn 0.5s ease-in-out, scaleUp 0.3s ease-in-out;
+    }
+}
+
+/* Fade-in and scale-up animation */
+
+.animated-check-icon {
+    color: #28a745; 
+    font-size: 20px; 
+    animation: fadeIn 0.5s ease-in-out, scaleUp 0.3s ease-in-out;
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes scaleUp {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+.correct-answer {
+    border: 1px solid $tade-color;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+    color: $tade-color;
+  
 }

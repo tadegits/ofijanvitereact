@@ -71,7 +71,7 @@ console.log(examDetails)
             layout="vertical"
             size="middle"
           >
-            <Descriptions.Item label="Number of Questions">
+            <Descriptions.Item className="exam-title" label="Number of Questions">
               {examDetails.questions_count}
             </Descriptions.Item>
             {/* Add more details as needed */}

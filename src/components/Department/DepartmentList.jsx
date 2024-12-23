@@ -40,7 +40,7 @@ const DepartmentList = ({ departments }) => {
 
   return (
     <div className="department-list">
-      {departments.map(department => (
+      {department?( departments.map(department => (
         <div key={department.id} className="department-card">
           <Card
             hoverable
@@ -58,7 +58,7 @@ const DepartmentList = ({ departments }) => {
             </div>
           </Card>
         </div>
-      ))}
+      ))):('')}
 
       {/* Bottom-Up Drawer for Mobile */}
       <Drawer
