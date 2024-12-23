@@ -55,17 +55,21 @@ const Default = () => {
       });
   }, [postUri]);
   useEffect(() => {
-    setDepartmentUri(`${API_BASE_URL}/departments`);
-    axios.get(departmentURI)
-      .then(response => {
+    const fetchDepartments = async () => {
+      try {
+        setDepartmentUri(`${API_BASE_URL}/departments`);
+        const response = await axios.get(departmentURI);
         setDepartment(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+      } catch (error) {
+        console.error('Error fetching department data:', error);
+      }
+    };
+    if (departmentURI) fetchDepartments();
   }, [departmentURI]);
+
   const currentPath = location.pathname;
-  console.log('Department', department);
+  console.log('Department:', department);
+
   return (
     <>
 
