@@ -41,8 +41,7 @@ const Default = () => {
   const [blogData, setBlogData] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postUri, setPostUri] = useState('');
-  const [departmentURI, setDepartmentUri] = useState('');
-  const [department, setDepartment] = useState([]);
+ 
 
   useEffect(() => {
     setPostUri(`${API_BASE_URL}/all_blogs`);
@@ -53,20 +52,8 @@ const Default = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, [postUri]);
-  useEffect(() => {
-    setDepartmentUri(`${API_BASE_URL}/departments`);
-    axios.get(departmentURI)
-      .then(response => {
-        setDepartment(response.data);  
-      })
-      .catch(error => {
-        console.error('Error fetching department data:', error);
-      });
-  }, [departmentURI]); 
-
-  const currentPath = location.pathname;
-  console.log('Departments:', department); 
+  }, [postUri]); 
+ 
   return (
     <>
       <Routes>
@@ -80,8 +67,8 @@ const Default = () => {
         <Route path="/Grade8" element={<Grade8 />} />
         <Route path="/Grade6" element={<Grade6 />} />
         <Route path="/easyexam" element={<EasyExam />} />
-        <Route path="ofijan_model_exams" element={<DepartmentList departments={department} />} />
-        <Route path="/ExitExam" element={<ExitExam departments={department} />} />
+        <Route path="ofijan_model_exams" element={<DepartmentList />} />
+        <Route path="/ExitExam" element={<ExitExam />} />
         <Route path='/exam/details/:examId' element={<ExamPreview />} />
         <Route path="/Exit_Exam" element={<LExitExam />} />
         <Route path="/exit/:id" element={<ExitExam />} />

@@ -1,6 +1,7 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
+
 .department-list {
   display: flex;
   flex-wrap: wrap;
@@ -10,6 +11,23 @@
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Quicksand', sans-serif !important;
+  .header-section{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.body-section
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Quicksand', sans-serif !important;
+}
   .department-card {
     width: 250px;
     box-sizing: border-box;
@@ -29,12 +47,15 @@
 
       .ant-card-cover {
         position: relative;
-background-color: $tade-color;
+        display: flex;
+        justify-content: center;
+
         img {
           border-radius: 12px 12px 0 0;
           width: 100%;
           height: 140px;
           object-fit: cover;
+          opacity: 1;
         }
       }
 
@@ -50,9 +71,10 @@ background-color: $tade-color;
           justify-content: center;
           align-items: center;
           display: flex;
+          flex-direction: column;
 
           h3 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 500;
             color: $tade-color;
             font-weight: bold;
@@ -61,8 +83,14 @@ background-color: $tade-color;
             line-height: 1.4;
           }
 
+          h4 {
+            font-size: 0.85rem;
+            color: $tade-color;
+            opacity: 0.7;
+          }
+
           p {
-            color: white;
+            color: $tade-color;
             font-size: 0.8rem;
             margin: 5px 0;
             line-height: 1.2;
@@ -91,159 +119,172 @@ background-color: $tade-color;
 }
 
 .bottom-up-drawer .ant-drawer {
-    position: fixed;
-    bottom: -100%; 
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-radius: 12px !important;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .bottom-up-drawer .ant-drawer-content {
-    height: 100%;
-  }
-  
-  .bottom-up-drawer.ant-drawer-open .ant-drawer {
-    transform: translateY(-50%); 
-  }
-  
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 12px !important;
+  transition: transform 0.3s ease-in-out;
+}
 
-  @media screen and (max-width: 768px) {
-    .bottom-up-drawer .ant-drawer {
-      max-height: 50%; 
-    }
+.bottom-up-drawer .ant-drawer-content {
+  height: 100%;
+}
+
+.bottom-up-drawer.ant-drawer-open .ant-drawer {
+  transform: translateY(-50%);
+}
+
+
+@media screen and (max-width: 768px) {
+  .bottom-up-drawer .ant-drawer {
+    max-height: 50%;
   }
+}
 
 .bottom-up-drawer .ant-drawer {
-    position: fixed;
-    bottom: -100%; 
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-radius: 12px 12px 0 0;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .bottom-up-drawer .ant-drawer-content {
-    height: 100%;
-  }
-  
-  .bottom-up-drawer.ant-drawer-open .ant-drawer {
-    transform: translateY(-50%); 
-  }
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s ease-in-out;
+}
 
-  .exam-footer {
-    margin-top: 20px;
-  }
-  
+.bottom-up-drawer .ant-drawer-content {
+  height: 100%;
+}
 
-  .ant-descriptions {
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  .ant-descriptions-item-label {
-    font-weight: bold;
-  }
-  
-  .ant-descriptions-item {
-    font-size: 14px;
-    color: #595959;
-  }
+.bottom-up-drawer.ant-drawer-open .ant-drawer {
+  transform: translateY(-50%);
+}
+
+.exam-footer {
+  margin-top: 20px;
+}
+
+
+.ant-descriptions {
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.ant-descriptions-item-label {
+  font-weight: bold;
+}
+
+.ant-descriptions-item {
+  font-size: 14px;
+  color: #595959;
+}
+
 /* Custom Bottom-Up Drawer Styles */
 .bottom-up-drawer .ant-drawer {
-    position: fixed;
-    bottom: -100%; /* Initially place it off-screen */
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-radius: 12px 12px 0 0;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .bottom-up-drawer .ant-drawer-content {
-    height: 100%; /* Full height for content */
-  }
-  
-  .bottom-up-drawer.ant-drawer-open .ant-drawer {
-    transform: translateY(-50%); /* Animate the drawer to slide up */
-  }
-  
-  /* Styling for descriptions */
-  .ant-descriptions {
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  .ant-descriptions-item-label {
-    font-weight: bold;
-  }
-  
-  .ant-descriptions-item {
-    font-size: 14px;
-    color: #595959;
-  }
+  position: fixed;
+  bottom: -100%;
+  /* Initially place it off-screen */
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bottom-up-drawer .ant-drawer-content {
+  height: 100%;
+  /* Full height for content */
+}
+
+.bottom-up-drawer.ant-drawer-open .ant-drawer {
+  transform: translateY(-50%);
+  /* Animate the drawer to slide up */
+}
+
+/* Styling for descriptions */
+.ant-descriptions {
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.ant-descriptions-item-label {
+  font-weight: bold;
+}
+
+.ant-descriptions-item {
+  font-size: 14px;
+  color: #595959;
+}
 
 .exam-name-title {
-    word-wrap: break-word; 
-    white-space: normal;
-    font-size: 18px; 
-    font-weight: bold;
-    overflow-wrap: break-word; 
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
-    p{
-        color: $tade-color;
-        font-weight: bolder;
-        font-family: 'Quicksand', Arial, Helvetica, sans-serif;
-    }
-  }
-  .exam-footer {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  button {
-    font-size: 16px;
-  }
-  .yellow-button {
-    background-color: rgb(255, 255, 255) !important;  
-    border-color: rgb(255, 255, 255) !important;
-    color: $tade-color !important; 
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif !important;
-    font-weight: bold;
-    height: 40px;
-    width: 150px;
-    border: 1px solid $tade-color !important;
-  }
-  .tade-button{
-    background-color: $tade-color !important;  
-    border-color: $tade-color !important;
-    color: rgb(255, 255, 255) !important; 
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif !important;
-    font-weight: bold;
-    height: 40px;
-    width: 150px;
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 18px;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
 
+  p {
+    color: $tade-color;
+    font-weight: bolder;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
   }
-  .exam-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 10px;
-    border: 1px solid #ddd; 
-    background-color: $tade-color;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .exam-link:hover {
-    background-color: #f9f9f9; 
-    cursor: pointer;
-  }
-  
+}
+
+.exam-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  font-size: 16px;
+}
+
+.yellow-button {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: rgb(255, 255, 255) !important;
+  color: $tade-color !important;
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif !important;
+  font-weight: bold;
+  height: 40px;
+  width: 150px;
+  border: 1px solid $tade-color !important;
+}
+
+.tade-button {
+  background-color: $tade-color !important;
+  border-color: $tade-color !important;
+  color: rgb(255, 255, 255) !important;
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif !important;
+  font-weight: bold;
+  height: 40px;
+  width: 150px;
+
+}
+
+.exam-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: $tade-color;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.exam-link:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+p{
+  text-align: justify;
+  color: black;
+  font-weight:normal;
+}

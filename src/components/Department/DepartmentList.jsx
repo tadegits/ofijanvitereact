@@ -3,21 +3,34 @@ import { Card, Drawer, Button, Descriptions, Spin, Row, Col } from 'antd';
 import API_BASE_URL from '../../Globals/apiConfig'; // Ensure this import is correct
 import './DepartmentList.scss';
 import { Link } from 'react-router-dom';
+import { Description } from '@material-ui/icons';
+import axios from 'axios';
 
-const DepartmentList = ({ departments }) => {
+const DepartmentList = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  // Fetch exams for the selected department
+  const [departmentURI, setDepartmentUri] = useState('');
+  const [departments, setDepartments] = useState([]);
+  useEffect(() => {
+    setDepartmentUri(`${API_BASE_URL}/departments`);
+    axios.get(departmentURI)
+      .then(response => {
+        setDepartments(response.data);  
+      })
+      .catch(error => {
+        console.error('Error fetching department data:', error);
+      });
+  }, [departmentURI]); 
+  
   const fetchExams = async (departmentId) => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE_URL}/examsfront/${departmentId}`);
       if (response.ok) {
         const examsData = await response.json();
-        setExams(examsData); // Update exams data
+        setExams(examsData); 
       } else {
         console.error('Failed to fetch exams');
       }
@@ -30,7 +43,7 @@ const DepartmentList = ({ departments }) => {
 
   const showDrawer = (department) => {
     setSelectedDepartment(department);
-    fetchExams(department.id); // Fetch exams when department is selected
+    fetchExams(department.id); 
     setIsDrawerVisible(true);
   };
 
@@ -40,6 +53,16 @@ const DepartmentList = ({ departments }) => {
 
   return (
     <div className="department-list">
+
+      <div className="header-section">
+      <h1 className='headersss'>
+        Get Answers of Ethiopian Exit Exam Questions
+      </h1>
+      <p>
+        Test your self or study with answers. Get expert-level preparation and pass exit exams of any subject.
+      </p>
+</div>
+<div className="body-section">
       {departments ? (departments.map(department => (
         <div key={department.id} className="department-card">
           <Card
@@ -55,6 +78,7 @@ const DepartmentList = ({ departments }) => {
           >
             <div className="department-info">
               <h3>{department.title}</h3>
+              <h4><span>&#9998;</span> Exit Exam Q & A</h4>
             </div>
           </Card>
         </div>
@@ -66,8 +90,8 @@ const DepartmentList = ({ departments }) => {
         placement="bottom"
         visible={isDrawerVisible}
         onClose={hideDrawer}
-        width="100%" // Full width for mobile
-        height="70%" // Adjust height for the drawer
+        width="100%" 
+        height="70%" 
         className="bottom-up-drawer"
         bodyStyle={{ paddingTop: 20, paddingBottom: 20, maxHeight: 'calc(100% - 50px)', overflowY: 'auto' }} // Ensure proper height for body content
       >
@@ -77,7 +101,7 @@ const DepartmentList = ({ departments }) => {
           <div>
             {exams.length > 0 ? (
               exams
-                .filter(exam => exam.questions_count >= 20) 
+                .filter(exam => exam.questions_count >= 20)
                 .map((exam) => (
                   <Link to={`/exam/details/${exam.id}`} key={exam.id} className="exam-link">
                     <div>
@@ -87,12 +111,13 @@ const DepartmentList = ({ departments }) => {
                             {exam.exam_name} <p>{exam.questions_count} questions</p>
                           </div>
                         }
+                        extra={<div> Create in {new Date(exam.created_at).getFullYear()}</div>}
                         bordered
                         column={1}
                         layout="vertical"
                         size="middle"
                       >
-     
+
                       </Descriptions>
                     </div>
                   </Link>
@@ -104,6 +129,7 @@ const DepartmentList = ({ departments }) => {
 
         )}
       </Drawer>
+    </div>
     </div>
   );
 };

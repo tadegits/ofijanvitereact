@@ -9,11 +9,8 @@ const FeaturesSection = () => {
       <Wrapper>
         
         <div className="features__text">
-          <h2 id="features-heading">Comprehensive Resources for Ethiopian Students</h2>
-          <h4>Ofijan enables you to achieve:</h4>
-          <ul>
-            <li>Tailored exam preparation and resources for success.</li>
-          </ul>
+          <h4>what do we have?</h4>
+
         </div>
         <div className="features__container">
 
@@ -22,7 +19,6 @@ const FeaturesSection = () => {
               <ExploreIcon alt={feature.iconAlt} />
               <h1 className={`${feature.titleClass}`}>{feature.title}</h1>
               <p>{feature.description}</p>
-              {/* <Link to={feature.link} className="cta-button">Learn More</Link> */}
             </div>
           ))}
 

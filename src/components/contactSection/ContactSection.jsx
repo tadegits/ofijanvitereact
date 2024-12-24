@@ -58,7 +58,7 @@ const contactData = [
     backgroundClass: "dark-contact",
     titleClass: "dark-contact-title",
     icon: <FaLinkedin />,
-    link: "https://www.linkedin.com/company/ofijan",
+    link: "https://linkedin.com/company/ofijan-exams",
   },
 ];
 

@@ -3,12 +3,13 @@
 
 .contact {
     padding: 2rem 0;
-margin: 0 20px 0px 20px;
+    margin: 0 20px 0px 20px;
+    font-family: 'Quicksand', sans-serif !important;
     &__text {
         text-align: center;
         width: 50%;
         margin: 0 auto 2rem;
-
+        font-family: 'Quicksand', sans-serif !important;
         @include respond(tab-port) {
             width: 70%;
         }
@@ -16,8 +17,13 @@ margin: 0 20px 0px 20px;
         @include respond(phone) {
             width: 100%;
         }
-        h4{
+
+        h4 {
+            font-family: 'Quicksand', sans-serif !important;
             font-size: 1.9rem;
+        }
+        h2{
+            font-family: 'Quicksand', sans-serif !important;
         }
     }
 
@@ -56,7 +62,7 @@ margin: 0 20px 0px 20px;
             padding: 0;
             text-align: justify;
             color: #b6b6b6;
-            font-family: 'Cambria', serif;
+            font-family: 'Quicksand', sans-serif !important;
             font-size: 1rem;
             line-height: 1.5rem;
             margin-bottom: 1rem;
@@ -103,4 +109,7 @@ margin: 0 20px 0px 20px;
     .white-contact-title {
         color: #594fb6;
     }
+}
+.contact-heading{
+    font-family: 'Quicksand', sans-serif !important;
 }
