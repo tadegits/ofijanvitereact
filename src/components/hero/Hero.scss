@@ -19,7 +19,9 @@
     
     @include respond(phone) {
         background-image: linear-gradient(to bottom, $tade-color, rgb(255, 255, 255));
-        height: 65vh;
+        // background: linear-gradient(270deg, white, $tade-color, rgb(35, 1, 73), $tade-color);
+        // animation: gradientAnimation 15s ease infinite;
+        height: 70vh;
         width: 100%;
         display: flex;
         padding-right: 10px;

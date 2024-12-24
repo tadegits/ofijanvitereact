@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, logout } from '../../features/userSlice'
-import Logo from '../../assets/osvg.svg'
+import Logo from '/olml.png'
 const Navbar = () => {
 
     const my_user = useSelector(selectUser);

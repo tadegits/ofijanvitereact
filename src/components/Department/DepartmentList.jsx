@@ -5,6 +5,7 @@ import './DepartmentList.scss';
 import { Link } from 'react-router-dom';
 import { Description } from '@material-ui/icons';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const DepartmentList = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
@@ -55,7 +56,21 @@ const DepartmentList = () => {
 
   return (
     <div className="department-list">
-
+  <Helmet>
+        <title>2015 Ethiopian Exit Exam Questions | Ofijan</title>
+        <meta
+          name="description"
+          content="Access the 2015 Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides."
+        />
+        <meta property="og:title" content="2015 Ethiopian Exit Exam Questions" />
+        <meta
+          property="og:description"
+          content="Prepare for the 2015 Ethiopian Exit Exam with these downloadable PDFs of previous questions. Study effectively with Ofijan's resources."
+        />
+        <meta property="og:image" content="/withmoto.png" />
+        <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>                                                                                                                      
       <div className="header-section">
       <h1 className='headersss'>
         Get Answers of Ethiopian Exit Exam Questions
@@ -64,9 +79,9 @@ const DepartmentList = () => {
         Test your self or study with answers. Get expert-level preparation and pass exit exams of any subject.
       </p>
 </div>  
-{loading ? (
+{loadingDepts ? (
               <div className="loading-container">
-                <div className="spinner"></div>
+                <div className="loading"></div>
                 <p>Loading resources, please wait...</p>
               </div>
             ) : (

@@ -44,7 +44,7 @@ const FixedBottomComponent = () => {
     <div className="fixed-bottom-component">
       {showSocialLinks ? (
         <div className="social-container">
-          <p>Join us on:</p>
+          {/* <p>Join us on:</p>
           <div className="social-links">
             <a href="https://www.facebook.com/profile.php?id=61567914607586" target="_blank" rel="noopener noreferrer" className="facebook">
               <FaFacebook className='facebook'/>
@@ -58,7 +58,7 @@ const FixedBottomComponent = () => {
             <a href="https://www.youtube.com/@OfijanExams" target="_blank" rel="noopener noreferrer" className="instagram">
               <FaYoutube className='facebook' />
             </a>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="ads-container">
