@@ -21,7 +21,7 @@ const ExitExam = () => {
   const [role, setRole] = useState('');
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     const loggedUser = localStorage.getItem('user');
     if (loggedUser !== null) {
       setIsLoggedin(true);

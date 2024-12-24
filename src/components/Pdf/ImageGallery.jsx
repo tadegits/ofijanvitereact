@@ -10,13 +10,22 @@ import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
 import GeneralKnowledge from './GeneralKnowledge';
-const ImageGallery = ({ id, imageIndex }) => {
+const ImageGallery = ({ id, imageIndex, }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userId, setUserId] = useState("0");
   const navigate = useNavigate();
-
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('user');
+    if (loggedUser !== null) {
+      setIsLoggedin(true);
+      const userLogged = JSON.parse(loggedUser);
+      // setUserId(userLogged.user.id);
+    }
+  }, []);
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
@@ -74,7 +83,7 @@ const ImageGallery = ({ id, imageIndex }) => {
   return (
     <section style={{ textAlign: 'center' }}>
       <Helmet>
-        <title>{id} |2016 Exit Exam Question</title>
+        <title>{id} | 2016 Exit Exam Question</title>
       </Helmet>
     
       <ImageViewer
@@ -104,7 +113,15 @@ const ImageGallery = ({ id, imageIndex }) => {
         currentImageIndex={currentImageIndex}
         currentImageUrl={imageUrls[currentImageIndex]}
       />
-      <CommentsSection />
+      <p>{userId ? userId: ''}</p>
+      <CommentsSection 
+      context_type={"blog"} 
+      context_id={currentImageIndex}
+      parent_id={id}
+      user_id={userId}
+        />
+      <GeneralKnowledge title={id} />
+      
     </section>
   );
 };

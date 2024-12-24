@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Drawer, Button, Descriptions, Spin, Row, Col } from 'antd';
-import API_BASE_URL from '../../Globals/apiConfig'; // Ensure this import is correct
-import './DepartmentList.scss';
+import { Card, Drawer, Button, Descriptions, Spin } from 'antd';
 import { Link } from 'react-router-dom';
-import { Description } from '@material-ui/icons';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import API_BASE_URL from '../../Globals/apiConfig'; // Ensure this import is correct
+import './DepartmentList.scss';
 
 const DepartmentList = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
@@ -13,32 +12,39 @@ const DepartmentList = () => {
   const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingDepts, setLoadingDepts] = useState(true);
-  const [departmentURI, setDepartmentUri] = useState('');
   const [departments, setDepartments] = useState([]);
+  const [departmentsError, setDepartmentsError] = useState('');
+  const [examsError, setExamsError] = useState('');
+
   useEffect(() => {
-    setDepartmentUri(`${API_BASE_URL}/departments`);
-    axios.get(departmentURI)
-      .then(response => {
-        setDepartments(response.data);  
-        setLoadingDepts(false)
-      })
-      .catch(error => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/departments`);
+        setDepartments(response.data);
+      } catch (error) {
         console.error('Error fetching department data:', error);
-      });
-  }, [departmentURI]); 
-  
+        setDepartmentsError('Failed to load departments. Please try again later.');
+      } finally {
+        setLoadingDepts(false);
+      }
+    };
+    fetchDepartments();
+  }, []);
+
   const fetchExams = async (departmentId) => {
     setLoading(true);
+    setExamsError('');
     try {
       const response = await fetch(`${API_BASE_URL}/examsfront/${departmentId}`);
       if (response.ok) {
         const examsData = await response.json();
-        setExams(examsData); 
+        setExams(examsData);
       } else {
-        console.error('Failed to fetch exams');
+        throw new Error('Failed to fetch exams.');
       }
     } catch (error) {
       console.error('Error fetching exams:', error);
+      setExamsError('Failed to load exams for this department. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -46,7 +52,7 @@ const DepartmentList = () => {
 
   const showDrawer = (department) => {
     setSelectedDepartment(department);
-    fetchExams(department.id); 
+    fetchExams(department.id);
     setIsDrawerVisible(true);
   };
 
@@ -56,7 +62,7 @@ const DepartmentList = () => {
 
   return (
     <div className="department-list">
-  <Helmet>
+      <Helmet>
         <title>2015 Ethiopian Exit Exam Questions | Ofijan</title>
         <meta
           name="description"
@@ -70,83 +76,75 @@ const DepartmentList = () => {
         <meta property="og:image" content="/withmoto.png" />
         <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
         <meta name="robots" content="index, follow" />
-      </Helmet>                                                                                                                      
+      </Helmet>
+
       <div className="header-section">
-      <h1 className='headersss'>
-        Get Answers of Ethiopian Exit Exam Questions
-      </h1>
-      <p>
-        Test your self or study with answers. Get expert-level preparation and pass exit exams of any subject.
-      </p>
-</div>  
+        <h1 className="headersss">Get Answers of Ethiopian Exit Exam Questions</h1>
+        <p>Test yourself or study with answers. Get expert-level preparation and pass exit exams of any subject.</p>
+      </div>
 
-<div className="body-section">
-      {departments ? (departments.map(department => (
-        <div key={department.id} className="department-card">
-          <Card
-            hoverable
-            cover={<img src="./osvg.svg" alt={`Image for ${department.title}`} />}
-            onClick={() => {
-              if (window.innerWidth <= 768) {
-                showDrawer(department);
-              } else {
-                showDrawer(department);
-              }
-            }}
-          >
-            <div className="department-info">
-              <h3>{department.title}</h3>
-              <h4><span>&#9998;</span> Exit Exam Q & A</h4>
-            </div>
-          </Card>
+      {loadingDepts ? (
+        <div className="loading-container">
+          <div className="loading"></div>
+          <p>Loading resources, please wait...</p>
         </div>
-      ))) : ('')}
-
+      ) : departmentsError ? (
+        <div className="error-message">{departmentsError}</div>
+      ) : (
+        <div className="body-section">
+          {departments.map((department) => (
+            <div key={department.id} className="department-card">
+              <Card
+                hoverable
+                cover={<img src="./osvg.svg" alt={`Image for ${department.title}`} />}
+                onClick={() => showDrawer(department)}
+              >
+                <div className="department-info">
+                  <h3>{department.title}</h3>
+                  <h4><span>&#9998;</span> Exit Exam Q & A</h4>
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
 
       <Drawer
         title={<div className="exam-name-title">Exams for {selectedDepartment?.title}</div>}
         placement="bottom"
         open={isDrawerVisible}
         onClose={hideDrawer}
-        width="100%" 
-        height="70%" 
+        width="100%"
+        height="70%"
         className="bottom-up-drawer"
       >
-        {loading ? (                                                                             
-          <Spin tip="Loading exams..." size="large" />
-        ) : (
-          <div>
-            {exams.length > 0 ? (
-              exams
-                .filter(exam => exam.questions_count >= 20)
-                .map((exam) => (
-                  <Link to={`/exam/details/${exam.id}`} key={exam.id} className="exam-link">
-                    <div>
-                      <Descriptions
-                        title={
-                          <div className="exam-name-title">
-                            {exam.exam_name} <p>{exam.questions_count} questions</p>
-                          </div>
-                        }
-                        extra={<div> Create in {new Date(exam.created_at).getFullYear()}</div>}
-                        bordered
-                        column={1}
-                        layout="vertical"
-                        size="middle"
-                      >
-
-                      </Descriptions>
+        {loading ? (
+          <div className="loading"></div>
+        ) : examsError ? (
+          <div className="error-message">{examsError}</div>
+        ) : exams.length > 0 ? (
+          exams
+            .filter((exam) => exam.questions_count >= 20)
+            .map((exam) => (
+              <Link to={`/exam/details/${exam.id}`} key={exam.id} className="exam-link">
+                <Descriptions
+                  title={
+                    <div className="exam-name-title">
+                      {exam.exam_name} <p>{exam.questions_count} questions</p>
                     </div>
-                  </Link>
-                ))
-            ) : (
-              <div>No exams available for this department.</div>
-            )}
-          </div>
-
+                  }
+                  extra={<div>Created in {new Date(exam.created_at).getFullYear()}</div>}
+                  bordered
+                  column={1}
+                  layout="vertical"
+                  size="middle"
+                />
+              </Link>
+            ))
+        ) : (
+          <div>No exams available for this department.</div>
         )}
       </Drawer>
-    </div>
     </div>
   );
 };
