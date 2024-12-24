@@ -10,11 +10,7 @@ import axios from 'axios';
 const Home = () => {
   const [user, setUser] = useState("");
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [blogData, setBlogData] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [postUri, setPostUri] = useState('');
-  const [departmentURI, setDepartmentUri] = useState('');
-  const [department, setDepartment] = useState([]);
+  
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -24,22 +20,11 @@ const Home = () => {
 
     }
   }, []);
-
-  useEffect(() => {
-    setDepartmentUri(`${API_BASE_URL}/departments`);
-    axios.get(departmentURI)
-      .then(response => {
-        setDepartment(response.data);  
-      })
-      .catch(error => {
-        console.error('Error fetching department data:', error);
-      });
-  }, [departmentURI]); 
   return (
     <>
       <Hero />
       <Pdf />
-      <DepartmentList departments={department} />
+      <DepartmentList />
       {/* <ExitExam /> */}
       <FeaturesSection />
       <ContactSection />
