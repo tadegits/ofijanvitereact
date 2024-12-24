@@ -79,12 +79,7 @@ const DepartmentList = () => {
         Test your self or study with answers. Get expert-level preparation and pass exit exams of any subject.
       </p>
 </div>  
-{loadingDepts ? (
-              <div className="loading-container">
-                <div className="loading"></div>
-                <p>Loading resources, please wait...</p>
-              </div>
-            ) : (
+
 <div className="body-section">
       {departments ? (departments.map(department => (
         <div key={department.id} className="department-card">
@@ -111,14 +106,13 @@ const DepartmentList = () => {
       <Drawer
         title={<div className="exam-name-title">Exams for {selectedDepartment?.title}</div>}
         placement="bottom"
-        visible={isDrawerVisible}
+        open={isDrawerVisible}
         onClose={hideDrawer}
         width="100%" 
         height="70%" 
         className="bottom-up-drawer"
-        bodyStyle={{ paddingTop: 20, paddingBottom: 20, maxHeight: 'calc(100% - 50px)', overflowY: 'auto' }} // Ensure proper height for body content
       >
-        {loading ? (
+        {loading ? (                                                                             
           <Spin tip="Loading exams..." size="large" />
         ) : (
           <div>
@@ -152,7 +146,7 @@ const DepartmentList = () => {
 
         )}
       </Drawer>
-    </div>)}
+    </div>
     </div>
   );
 };

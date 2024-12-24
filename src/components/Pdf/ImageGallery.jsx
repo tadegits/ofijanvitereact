@@ -74,7 +74,7 @@ const ImageGallery = ({ id, imageIndex }) => {
   return (
     <section style={{ textAlign: 'center' }}>
       <Helmet>
-        <title>{id} | Image Gallery</title>
+        <title>{id} |2016 Exit Exam Question</title>
       </Helmet>
     
       <ImageViewer
