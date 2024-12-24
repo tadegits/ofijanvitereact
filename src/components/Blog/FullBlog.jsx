@@ -14,10 +14,25 @@ import { useLocation } from 'react-router-dom';
 import Wrapper from '../wrapper/Wrapper';
 const { Text } = Typography;
 
-const FullBlog = ({ blogs }) => {
+const FullBlog = () => {
   const { category, title } = useParams();
   const [views, setViews] = useState(0);
   const [blog, setBlog] = useState(null);
+  const [blogs, setBlogData] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [postUri, setPostUri] = useState('');
+ 
+
+  useEffect(() => {
+    setPostUri(`${API_BASE_URL}/all_blogs`);
+    axios.get(postUri)
+      .then(response => {
+        setBlogData(response.data.blogs);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, [postUri]);
   const location = useLocation();
   useEffect(() => {
     const fetchBlog = () => {

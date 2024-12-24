@@ -49,7 +49,7 @@ const FixedBottomComponent = () => {
             <a href="https://www.facebook.com/profile.php?id=61567914607586" target="_blank" rel="noopener noreferrer" className="facebook">
               <FaFacebook className='facebook'/>
             </a>
-            <a href="t.me/OfijanExams" target="_blank" rel="noopener noreferrer" className="twitter">
+            <a href="https://t.me/OfijanExams" target="_blank" rel="noopener noreferrer" className="twitter">
               <FaTelegram className='facebook' />
             </a>
             <a href="https://linkedin.com/company/ofijan-exams" target="_blank" rel="noopener noreferrer" className="linkedin">

@@ -11,6 +11,7 @@ const DepartmentList = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingDepts, setLoadingDepts] = useState(true);
   const [departmentURI, setDepartmentUri] = useState('');
   const [departments, setDepartments] = useState([]);
   useEffect(() => {
@@ -18,6 +19,7 @@ const DepartmentList = () => {
     axios.get(departmentURI)
       .then(response => {
         setDepartments(response.data);  
+        setLoadingDepts(false)
       })
       .catch(error => {
         console.error('Error fetching department data:', error);
@@ -61,7 +63,13 @@ const DepartmentList = () => {
       <p>
         Test your self or study with answers. Get expert-level preparation and pass exit exams of any subject.
       </p>
-</div>
+</div>  
+{loading ? (
+              <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Loading resources, please wait...</p>
+              </div>
+            ) : (
 <div className="body-section">
       {departments ? (departments.map(department => (
         <div key={department.id} className="department-card">
@@ -129,7 +137,7 @@ const DepartmentList = () => {
 
         )}
       </Drawer>
-    </div>
+    </div>)}
     </div>
   );
 };

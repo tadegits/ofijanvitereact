@@ -12,14 +12,17 @@
     height: 70vh;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
-
+   background: linear-gradient(270deg, white, $tade-color, rgb(35, 1, 73), $tade-color); 
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    // background-image: linear-gradient(to left, rgb(255, 255, 255), $tade-color);
+    
     @include respond(phone) {
-        background-image: linear-gradient(to bottom, $tade-color, rgb(255, 255, 255) );
+        background-image: linear-gradient(to bottom, $tade-color, rgb(255, 255, 255));
         height: 65vh;
         width: 100%;
         display: flex;
-       padding-right: 10px;
+        padding-right: 10px;
     }
 
     &__container {
@@ -142,6 +145,7 @@
         width: 50%;
         display: flex;
         justify-content: center;
+
         @include respond(tab-port) {
             width: 70%;
             margin-inline: auto;
@@ -185,24 +189,40 @@
     }
 }
 
-.hero__text-container{
-    p{
+.hero__text-container {
+    p {
         color: black;
         font-weight: bold;
         word-spacing: 1px;
         letter-spacing: 0.5px;
     }
 }
-.hero__btn-container{
+
+.hero__btn-container {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     font-family: 'Quicksand', sans-serif;
-   margin-bottom: 4px;
-    h1{
+    margin-bottom: 4px;
+
+    h1 {
         font-size: 0.8rem;
-        color: $tade-color; 
+        color: $tade-color;
         font-family: "poppins", sans-serif;
-    letter-spacing: 0.31px;
-    font-weight: lighter;
+        letter-spacing: 0.31px;
+        font-weight: lighter;
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }

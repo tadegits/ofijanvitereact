@@ -34,23 +34,7 @@ import ExamResults from '../components/ExitExam/ExamResult.jsx';
 import ImageGallery from '../components/Pdf/ImageGallery.jsx'
 import ExamPreview from '../components/ExamPriview/index.jsx';
 const Loged = () => {
-  const [blogData, setBlogData] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [postUri, setPostUri] = useState('');
   
-  useEffect(() => {
-
-    setPostUri(`${API_BASE_URL}/all_blogs`);
-    
-  
-    axios.get(postUri)
-      .then(response => {
-        setBlogData(response.data.blogs);
-      })
-      .catch(error => {
-        console.error('Error fetching blog data:', error);
-      });
-  }, [postUri]);
   
 
   return (
@@ -90,9 +74,9 @@ const Loged = () => {
         <Route path="/display-exam/:id" element={<DisplayBluePrint />} />
         <Route path="/blueprint" element={<BluePrint />} />
         <Route exact path='/ofijan_question_platel/:ofin_id' element={<Plate />} />
-        <Route path="/ofijan_blogs" element={<BlogList blogs={blogData} />} />
-        <Route path="/blog/:category/:title" element={<SingleBlog blogs={blogData} />} />
-        <Route path="/blog/:category/:title/full" element={<FullBlog blogs={blogData} />} />
+        <Route path="/ofijan_blogs" element={<BlogList/>} />
+        <Route path="/blog/:category/:title" element={<SingleBlog />} />
+        <Route path="/blog/:category/:title/full" element={<FullBlog/>} />
         <Route exact path='/ofijan_question_plate/:ofin_id' element={<Plate />} />
         <Route exact path='/ofijan_exam_plate/testmode/:ofin_id' element={<TestMePlate />} />
         <Route exact path='/ofijan_exam_plate/studymode/:ofin_id' element={<StudyPlate />} />
