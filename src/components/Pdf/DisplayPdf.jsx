@@ -59,19 +59,6 @@ const DisplayPdf = () => {
             {/* Left Column: Advertisement with smaller size */}
             <Col xs={24} sm={24} md={8} lg={4} xl={4}>
               <AdvertisementCard />
-              <div className="ad-banner-bottom">
-                <ins className="adsbygoogle"
-                  style={{ display: 'block' }}
-                  data-ad-client="ca-pub-8449765590756444"
-                  data-ad-slot="8261485661"
-                  data-ad-format="auto responsive"
-                  data-full-width-responsive="true"></ins>
-                <ins className="adsbygoogle"
-                  style={{ display: 'block' }}
-                  data-ad-format="autorelaxed"
-                  data-ad-client="ca-pub-8449765590756444"
-                  data-ad-slot="6959146314"></ins>
-              </div>
             </Col>
             {/* Center Column: Main Content */}
             <Col xs={24} sm={24} md={16} lg={16} xl={16} className='pdf__viewer'>

@@ -16,6 +16,8 @@ const ImageGallery = ({ id, imageIndex, }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userId, setUserId] = useState("0");
+  const [userFName, setUserFName] = useState("Anonimous")
+  const [userLName, setUserLName] = useState(" ")
   const navigate = useNavigate();
   const [isLoggedin, setIsLoggedin] = useState(false);
   useEffect(() => {
@@ -23,7 +25,10 @@ const ImageGallery = ({ id, imageIndex, }) => {
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      // setUserId(userLogged.user.id);
+      console.log('display use', userLogged)
+      setUserId(userLogged.user.id);
+      setUserFName(userLogged.user.fname)
+      setUserLName(userLogged.user.lname)
     }
   }, []);
   useEffect(() => {
@@ -90,12 +95,7 @@ const ImageGallery = ({ id, imageIndex, }) => {
         imageUrl={imageUrls[currentImageIndex]}
         altText={`Image ${currentImageIndex + 1}`}
       />
-      <div><ins class="adsbygoogle"
-     style={{display:'block'}}
-     data-ad-client="ca-pub-8449765590756444"
-     data-ad-slot="6577167626"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins></div>
+      
       <NavigationButtons
         onNext={handleNextImage}
         onPrevious={handlePrevImage}
@@ -106,22 +106,25 @@ const ImageGallery = ({ id, imageIndex, }) => {
         totalImages={imageUrls.length}
         currentIndex={currentImageIndex}
         onImageClick={handleImageClick}
+        isLoggedIn={isLoggedin}
       />
       
       <SocialShare
         id={id}
+        isLoggedIn={isLoggedin}
         currentImageIndex={currentImageIndex}
         currentImageUrl={imageUrls[currentImageIndex]}
       />
-      <p>{userId ? userId: ''}</p>
       <CommentsSection 
-      context_type={"blog"} 
+      context_type="2015ExitImage" 
       context_id={currentImageIndex}
       parent_id={id}
-      user_id={userId}
+      isLoggedIn={isLoggedin}
+      user_id={isLoggedin? userId:'0'}
+      fname={userFName}
+      lname={userLName}
         />
       <GeneralKnowledge title={id} />
-      
     </section>
   );
 };
