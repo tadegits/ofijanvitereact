@@ -1,100 +1,106 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/colors.scss";
 
-.wedego{
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-
-    @include respond(phone){
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
 .footer {
-    height: 20vh;
-    padding: 5px;
+   
+    background-color: $tade-color;
+    color: rgb(207, 204, 204);
+    width: 100%;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    color: rgb(207, 204, 204);
-    background-color: $tade-color;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    h3 {
-        color: rgb(207, 204, 204);
-        font-size: medium;
+    gap: 1.5rem;
+
+    .footer__text {
         text-align: center;
-        font-weight: 100;
-        margin: 0;
-      ;
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 0.5rem 0;
+            color: rgb(255, 255, 255);
+        }
+
+        p {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        svg {
+            font-size: 1rem;
+            color: rgb(255, 215, 0);
+        }
     }
 
-    &__text {
-        text-align: center;
-    }
-
-    &__stores {
+    .footer__links {
         display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 2rem;
-        width: fit-content;
-       
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0rem;
+
+        li {
+            list-style: none;
+            @include respond(phone)
+            {
+                display: flex;
+                gap: 0rem;
+            }
+            a {
+                text-decoration: none;
+                color: rgb(207, 204, 204);
+                font-size: 0.875rem;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #ffc107;
+                }
+            }
+        }
     }
 
-    &__logo {
-        width: fit-content;
-        margin-inline: auto;
+    .footer__logo {
+        width: 100px;
 
         img {
             width: 100%;
         }
     }
 
-    &__links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-       
-        color: rgb(207, 204, 204);
+    .footer__ads {
+        margin-top: 2rem;
+        text-align: center;
+        width: 100%;
 
-        li {
-            list-style: none;
-            cursor: pointer;
-            color: rgb(207, 204, 204);
-            transition: color 0.3s ease-in-out;
-
-            &:hover {
-                color: #212123;
-            }
-        }
-
-        a {
-              color: rgb(207, 204, 204);
-            text-decoration: none;
-
-            &:hover {
-                color: #212123;
-            }
+        .ads-placeholder {
+            background-color: rgb(230, 230, 230);
+            border: 1px dashed #ccc;
+            padding: 1rem;
+            color: #555;
+            font-size: 0.875rem;
+            text-align: center;
         }
     }
 }
 
-p{
-    
-    color: rgb(207, 204, 204);
-    
-}
-.logo{
-    width: 120px;
-    @include respond(phone){
-        width: 70px;
-    height: 70px;
+@include respond(phone) {
+    .footer {
+        .footer__links {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer__logo {
+            width: 70px;
+        }
     }
+}
+
+.ofin_tech {
+
+    display: flex;
+    justify-content: center;
+    color: white;
 }

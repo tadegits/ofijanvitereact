@@ -28,7 +28,21 @@ const FixedBottomComponent = () => {
       document.body.removeChild(adsbygoogleScript);
     };
   }, []);
-
+  useEffect(() => {
+    const loadAdSense = () => {
+      try {
+        if (window.adsbygoogle && window.adsbygoogle.length > 0) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      } catch (e) {
+        console.error("Adsbygoogle error:", e);
+        setShowSocialLinks(true); // Fallback to social links
+      }
+    };
+  
+    loadAdSense();
+  }, [currentAdSlot]);
+  
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentAdSlot((prevSlot) => {

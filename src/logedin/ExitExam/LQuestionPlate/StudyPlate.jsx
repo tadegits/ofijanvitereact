@@ -95,7 +95,7 @@ const StudyPlate = () => {
             user_id: 1,
             question_id: selectedQuestion,
             option_id: selectedOptionID,
-        });
+        }); 
     };
 console.log(selectedOptionIndex);
     const handleNextClick = () => {

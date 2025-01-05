@@ -68,12 +68,12 @@ const DepartmentList = () => {
           name="description"
           content="Access the 2015 Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides."
         />
-        <meta property="og:title" content="2015 Ethiopian Exit Exam Questions" />
+        <meta property="og:title" content="Ethiopian Exit Exam Questions" />
         <meta
           property="og:description"
-          content="Prepare for the 2015 Ethiopian Exit Exam with these downloadable PDFs of previous questions. Study effectively with Ofijan's resources."
+          content="Prepare for Ethiopian Exit Exam with these downloadable PDFs of previous questions. Study effectively with Ofijan's resources."
         />
-        <meta property="og:image" content="/withmoto.png" />
+        <meta property="og:image" content="/olml.png" />
         <meta property="og:url" content="https://ofijan.com/2015_exit_pdfs" />
         <meta name="robots" content="index, follow" />
       </Helmet>

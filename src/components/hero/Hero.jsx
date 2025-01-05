@@ -11,6 +11,8 @@ import { Card, Button, Space } from 'antd';
 import Service from '../Service/Service';
 import Pdf from '../Pdf';
 import ExitExam from "../ExitExam/ExitExam";
+import { Spin } from 'antd'; // Importing Spin for loading state
+
 const Hero = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
@@ -34,7 +36,7 @@ const Hero = () => {
     fetchData();
 
     const loadingTimeout = setTimeout(() => {
-      setLoading(false);
+      setLoading(false);  // Stop loading after 10 seconds, even if data hasn't fully loaded
     }, 10000);
 
     return () => clearTimeout(loadingTimeout);
@@ -47,6 +49,67 @@ const Hero = () => {
     }
   }, []);
 
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ofijan - Your Ultimate Online Exam Bank",
+    "description": "Explore over 10,000 exit exam questions tailored for Ethiopia's national exit exams. Enhance your preparation with model exams, answers, and blueprints!",
+    "url": "https://ofijan.com",
+    "image": "/withmoto.png",
+    "keywords": ["Ofijan", "ofijan exams", "ofijan exit exam", "moe exit exam", "exit", "exit exams", "Ethiopia", "exam preparation", "model exit exams", "exam blueprints", "exit exam answers"],
+    "mainEntityOfPage": "https://ofijan.com",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ofijan",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/logo.png"
+      }
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Ofijan Team"
+    },
+    "additionalType": "https://schema.org/Service",
+    "serviceType": "Online Exam Preparation",
+    "provider": {
+      "@type": "Organization",
+      "name": "Ofijan",
+      "url": "https://ofijan.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://ofijan.com",
+      "priceCurrency": "ETB",
+      "price": "Free", 
+      "eligibleRegion": {
+        "@type": "Place",
+        "name": "Ethiopia"
+      }
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Students preparing for exit exams in Ethiopia"
+    },
+    "about": {
+      "@type": "CreativeWork",
+      "name": "Exit Exam Questions, Model Exit Exam Questions Answers, and Blueprints",
+      "description": "OFIJAN provides model exam questions, answer keys, and blueprints for Ethiopia's national exit exams."
+    },
+    "department": deptData.map(dept => ({
+      "@type": "Course",
+      "courseMode": "Online",
+      "courseMode": "Self-paced",
+      "courseMode": "Instructor-led",
+      "courseMode": "Exit Exam Questions and model exam exam Questions",
+      "educationalCredentialAwarded": dept.name,
+      "provider": {
+        "@type": "Organization",
+        "name": "Ofijan"
+      }
+    }))
+  };
+
   return (
     <section className="hero">
       <Helmet>
@@ -55,8 +118,13 @@ const Hero = () => {
         <meta property="og:description" content="Explore over 10,000 exit exam questions tailored for Ethiopia's national exit exams. Enhance your preparation today!" />
         <meta property="og:image" content="/withmoto.png" />
         <meta property="og:url" content="https://ofijan.com" />
-        <meta name="keywords" content="Ofijan, online exam bank, exit exams, Ethiopia, exam preparation" />
+        <meta name="keywords" content="Ofijan, online exam bank, exit exams, Ethiopia, exam preparation, model exit exams, exam blueprints, exit exam answers" />
         <meta name="description" content="Ofijan provides a comprehensive platform with thousands of exam questions to help you ace your national exit exams in Ethiopia." />
+        
+        {/* Adding JSON-LD structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLdData)}
+        </script>
       </Helmet>
 
       <Wrapper className="hero__container">
@@ -67,34 +135,31 @@ const Hero = () => {
             <p>
               We offer over <b><u>10,000</u><sup>+</sup></b> exit exam questions to help you excel in your studies and prepare effectively for your future. Join thousands of successful students who trust Ofijan!
             </p>
-           
           </div>
 
-          <div className="hero__btn-container">
-            <Link to="/ExitExam" >
-            <Button type="primary" className=" btn_hero" >
-              Select Your Field of Study
-              </Button>  
-            </Link>
-            <Link to="/2015_exit_pdfs" >
-            <Button type="primary" className="btn_hero " 
-             icon={<ArrowDownOutlined />}>Download 2015 Exit Exam PDF</Button>
-             
-            </Link>
-   
-          </div>
+          {/* Loading Spinner */}
+          {loading ? (
+            <div className="loading-container">
+              <Spin size="large" />
+            </div>
+          ) : (
+            <div className="hero__btn-container">
+              
+              <Link to="/2015_exit_pdfs">
+                <Button type="primary" className="btn_hero" icon={<ArrowDownOutlined />}>
+                  Download PDF
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="hero__right">
           <Lottie animationData={anim} alt="Animated exam preparation" className="animation" />
         </div>
       </Wrapper>
-     
-      {/* <Pdf/> */}
-     
 
-      {/* <Service /> */}
-      {/* <ExitExam/> */}
+      <Service />
     </section>
   );
 };

@@ -92,7 +92,7 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
         dataSource={comments}
         renderItem={(item) => (
           <List.Item key={item.id}>
-            <strong>{item.user?.name || `User ${fname} ${lname}`}:</strong> {item.content || item.text}
+            <strong>{item.user?.name || ` ${fname} ${lname}`}:</strong> {item.content || item.text}
           </List.Item>
         )}
       />

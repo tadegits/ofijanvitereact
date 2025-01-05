@@ -6,6 +6,7 @@ import ExitExam from '../ExitExam/ExitExam';
 import ContactSection from '../contactSection/ContactSection';
 import DepartmentList from '../Department/DepartmentList'
 import API_BASE_URL from '../../Globals/apiConfig';
+import Footer from '../footer/footer';
 import axios from 'axios';
 const Home = () => {
   const [user, setUser] = useState("");
@@ -23,10 +24,11 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Pdf />
-      <DepartmentList />
+      {/* <Footer/> */}
+      {/* <Pdf /> */}
+      {/* <DepartmentList /> */}
       {/* <ExitExam /> */}
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       <ContactSection />
     </>
   )
