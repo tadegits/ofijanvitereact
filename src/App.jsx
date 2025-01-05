@@ -42,7 +42,7 @@ function App() {
         <>
           <Navbar />
           <Loged />
-          <FixedBottomComponent />
+          {/* <FixedBottomComponent /> */}
           <Footer />
         </>
       ) : (
@@ -50,7 +50,7 @@ function App() {
 
           <Navbar />
           <Default />
-          <FixedBottomComponent />
+          {/* <FixedBottomComponent /> */}
           <Footer />
         </>
       )}

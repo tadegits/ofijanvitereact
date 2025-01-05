@@ -1,0 +1,53 @@
+.floating-comment-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  
+    .floating-button {
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+  
+      &.expanded {
+        background-color: #0056b3;
+        transform: scale(1.1);
+      }
+    }
+  
+    .comment-form {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      margin-top: 10px;
+  
+      .ant-select {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+  
+      .ant-input-textarea {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+  
+      button {
+        width: 100%;
+      }
+    }
+  }
+  
