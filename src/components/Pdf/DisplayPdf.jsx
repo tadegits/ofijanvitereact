@@ -90,11 +90,11 @@ const DisplayPdf = () => {
         setLoading(false);
       }
     };
-fetchExams(deptId);
+    fetchExams(deptId);
     fetchImageUrls();
   }, [id]);
 
-  console.log('Department ID:', deptId);  // Log deptId to check if it is correctly assigned
+  console.log('Department ID:', deptId); 
 
   return (
     <section className='pdfs'>
@@ -112,45 +112,61 @@ fetchExams(deptId);
             "@context": "https://schema.org",
             "@type": "Course",
             "name": depts ? `${depts.title} Ethiopian Exit Exam` : "Ethiopian Exit Exam Questions",
-            "description": `Explore the ${depts ? depts.title : 'subject'} Ethiopian Exit Exam Questions, including various topics and questions.`,
+            "description": `Explore a comprehensive collection of ${depts ? depts.title : 'subject'} Ethiopian Exit Exam questions, including various question formats and covering different topics to help you prepare effectively.`,
             "url": `${API_BASE_URL}/exit-exam/${depts?.title}/${id}`,
+            "image": imageUrls.length > 0 ? imageUrls[0] : "default_image_url.jpg",
             "provider": {
               "@type": "Organization",
-              "name": "Ofijan"
+              "name": "Ofijan",
+              "sameAs": "https://ofijan.com"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "free",
+              "priceCurrency": "USD",
+              "availability": "http://schema.org/InStock",
+              "url": `${API_BASE_URL}/exit-exam/${depts?.title}/${id}`
             },
             "hasCourseInstance": {
               "@type": "CourseInstance",
+              "name": `${depts?.title} Ethiopian Exit Exam - ${id}`,
               "courseMode": "online",
-              "startDate": "2016-01-01",
+              "startDate": null, // Remove specific start date
+              "endDate": null,  // Remove specific end date
               "identifier": id,
-              "courseMode": "Exam"
-            },
-            "image": imageUrls.length > 0 ? imageUrls[0] : "default_image_url.jpg"
+              "location": {
+                "@type": "Place",
+                "name": "Online",
+                "url": `${API_BASE_URL}/exit-exam/${depts?.title}/${id}`
+              },
+              "courseWorkload": "Varies depending on individual needs", 
+            }
           })}
         </script>
+
       </Helmet>
       <Wrapper className='pdf_section'>
         <div className="display-pdf-container">
           <Row gutter={24}>
-            <Col xs={24} sm={24} md={6} lg={4} xl={4}> 
-          <div className="get_answers"> {examsData?  <h1>Also get answers for</h1> : ''}  
-              {examsData.map((exam) => (
-                <Link to={`/exam/details/${exam.id}`} key={exam.id} className="answer-link">
-                <div key={exam.id}>
-                 <h2>
-                  {exam.exam_name}
-                  </h2> 
-                  <p>{exam.questions_count} questions</p>
-                  </div></Link>)
-              )}</div>
+            <Col xs={24} sm={24} md={6} lg={4} xl={4}>
+              <div className="get_answers"> {examsData ? <h1>Also get answers for</h1> : ''}
+                {examsData.map((exam) => (
+                  <Link to={`/exam/details/${exam.id}`} key={exam.id} className="answer-link">
+                    <div key={exam.id}>
+                      <h2>
+                        {exam.exam_name}
+                      </h2>
+                      <p>{exam.questions_count} questions</p>
+                    </div></Link>)
+                )}</div>
             </Col>
 
-            <Col xs={24} sm={24} md={12} lg={12} xl={12} className='pdf__viewer'> 
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} className='pdf__viewer'>
               <h1 className="subjectHeader">{depts ? depts.title : ''} {id} Ethiopian Exit Exam Questions</h1>
               <ImageGallery id={id} imageIndex={imageIndex} />
             </Col>
 
-            <Col xs={24} sm={24} md={6} lg={8} xl={8}> 
+            <Col xs={24} sm={24} md={6} lg={8} xl={8}>
               <div className="ad-banner-top">
                 <ins className="adsbygoogle"
                   style={{ display: 'block' }}

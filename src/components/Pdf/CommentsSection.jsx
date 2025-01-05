@@ -3,6 +3,7 @@ import { Input, Button, List, message } from 'antd';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import './ImageGallery.scss';
+import API_BASE_URL from '../../Globals/apiConfig';
 
 const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLoggedIn, fname, lname}) => {
   const [comments, setComments] = useState([]);
@@ -14,7 +15,7 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://server.ofijan.com/api/comments/${parent_id}/${context_type}`
+          `${API_BASE_URL}/comments/${parent_id}/${context_type}`
         );
         if (response.status === 200) {
           setComments(response.data);
@@ -32,7 +33,7 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
     if (newComment.trim()) {
       setLoading(true);
       try {
-        const response = await axios.post('https://server.ofijan.com/api/addcomments', {
+        const response = await axios.post(`${API_BASE_URL}/addcomments`, {
           context_type,
           context_id,
           parent_id,

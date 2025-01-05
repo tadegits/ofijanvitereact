@@ -17,7 +17,6 @@ const Hero = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
   const [loading, setLoading] = useState(true);
-  const [deptData, setDeptData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +24,6 @@ const Hero = () => {
         const response = await fetch(url);
         const data = await response.json();
         console.log('Fetched department data:', data);
-        setDeptData(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -55,21 +53,37 @@ const Hero = () => {
     "name": "Ofijan - Your Ultimate Online Exam Bank",
     "description": "Explore over 10,000 exit exam questions tailored for Ethiopia's national exit exams. Enhance your preparation with model exams, answers, and blueprints!",
     "url": "https://ofijan.com",
-    "image": "/withmoto.png",
-    "keywords": ["Ofijan", "ofijan exams", "ofijan exit exam", "moe exit exam", "exit", "exit exams", "Ethiopia", "exam preparation", "model exit exams", "exam blueprints", "exit exam answers"],
-    "mainEntityOfPage": "https://ofijan.com",
+    "image": "https://ofijan.com/olml.png", 
+    "keywords": [
+      "Ofijan",
+      "ofijan exams",
+      "ofijan exit exam",
+      "moe exit exam",
+      "exit",
+      "exit exams",
+      "Ethiopia",
+      "exam preparation",
+      "model exit exams",
+      "exam blueprints",
+      "exit exam answers"
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://ofijan.com"
+    },
     "publisher": {
       "@type": "Organization",
       "name": "Ofijan",
       "logo": {
         "@type": "ImageObject",
-        "url": "/logo.png"
+        "url": "https://ofijan.com/olml.png"
       }
     },
     "author": {
       "@type": "Person",
-      "name": "Ofijan Team"
+      "name": "Million Sime"
     },
+    "dateModified": "2025-01-05", 
     "additionalType": "https://schema.org/Service",
     "serviceType": "Online Exam Preparation",
     "provider": {
@@ -81,7 +95,8 @@ const Hero = () => {
       "@type": "Offer",
       "url": "https://ofijan.com",
       "priceCurrency": "ETB",
-      "price": "Free", 
+      "price": "0", 
+      "availability": "http://schema.org/InStock",
       "eligibleRegion": {
         "@type": "Place",
         "name": "Ethiopia"
@@ -96,19 +111,20 @@ const Hero = () => {
       "name": "Exit Exam Questions, Model Exit Exam Questions Answers, and Blueprints",
       "description": "OFIJAN provides model exam questions, answer keys, and blueprints for Ethiopia's national exit exams."
     },
-    "department": deptData.map(dept => ({
-      "@type": "Course",
-      "courseMode": "Online",
-      "courseMode": "Self-paced",
-      "courseMode": "Instructor-led",
-      "courseMode": "Exit Exam Questions and model exam exam Questions",
-      "educationalCredentialAwarded": dept.name,
-      "provider": {
-        "@type": "Organization",
-        "name": "Ofijan"
-      }
-    }))
-  };
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ofijan.com"
+        },
+        // Add further items for deeper page hierarchies
+      ]
+    }
+  }
+  
 
   return (
     <section className="hero">

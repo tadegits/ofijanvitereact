@@ -10,6 +10,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import Navbar from "./components/navbar/Navbar";
 import FixedBottomComponent from "./components/Add/FixedBottomComponent";
+import FloatingCommentButton from "./Globals/FloatingCommentButton";
 
 function App() {
   const [user, setUser] = useState("");
@@ -42,6 +43,7 @@ function App() {
         <>
           <Navbar />
           <Loged />
+          <FloatingCommentButton/>
           {/* <FixedBottomComponent /> */}
           <Footer />
         </>
@@ -50,6 +52,7 @@ function App() {
 
           <Navbar />
           <Default />
+          <FloatingCommentButton/>
           {/* <FixedBottomComponent /> */}
           <Footer />
         </>
