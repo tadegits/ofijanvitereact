@@ -3,7 +3,7 @@ import { Card, Drawer, Button, Descriptions, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-import API_BASE_URL from '../../Globals/apiConfig'; // Ensure this import is correct
+import API_BASE_URL from '../../Globals/apiConfig';
 import './DepartmentList.scss';
 
 const DepartmentList = () => {
@@ -63,10 +63,10 @@ const DepartmentList = () => {
   return (
     <div className="department-list">
       <Helmet>
-        <title>2015 Ethiopian Exit Exam Questions | Ofijan</title>
+        <title> Ethiopian Exit Exam Questions | Ofijan</title>
         <meta
           name="description"
-          content="Access the 2015 Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides."
+          content="Access the Ethiopian Exit Exam questions and study resources. Prepare for the exam with PDF downloads and helpful guides."
         />
         <meta property="og:title" content="Ethiopian Exit Exam Questions" />
         <meta

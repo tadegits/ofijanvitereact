@@ -7,6 +7,7 @@ import API_BASE_URL from '../../Globals/apiConfig';
 import Wrapper from '../wrapper/Wrapper';
 import ImageGallery from './ImageGallery';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './DisplayPdf.scss';
 
 const DisplayPdf = () => {
@@ -22,20 +23,20 @@ const DisplayPdf = () => {
   // Define department data
   const departmentData = [
     { "title": "Accounting", "id": 50 },
-    { "title": "Animal Science", "id": 28 },
+    { "title": "Animal-Science", "id": 28 },
     { "title": "Biodiversity", "id": 25 },
     { "title": "Biology", "id": 20 },
-    { "title": "Civil Engineering", "id": 2 },
-    { "title": "Computer Science", "id": 1 },
-    { "title": "Construction Technology Management", "id": 15 },
-    { "title": "EC Engineering", "id": 51 },
+    { "title": "Civil-Engineering", "id": 2 },
+    { "title": "Computer-Science", "id": 1 },
+    { "title": "Construction-Technology-Management", "id": 15 },
+    { "title": "EC-Engineering", "id": 51 },
     { "title": "Economics", "id": 10 },
     { "title": "EDPM", "id": 44 },
-    { "title": "English Language Literature", "id": 37 },
-    { "title": "Environmental Science", "id": 21 },
+    { "title": "English-Language-Literature", "id": 37 },
+    { "title": "Environmental-Science", "id": 21 },
     { "title": "Forestry", "id": 23 },
     { "title": "Geography", "id": 39 },
-    { "title": "Information Systems", "id": 7 },
+    { "title": "Information-Systems", "id": 7 },
     { "title": "Journalism", "id": 41 },
     { "title": "Law", "id": 42 },
     { "title": "Management", "id": 6 },
@@ -47,7 +48,7 @@ const DisplayPdf = () => {
     { "title": "Sport", "id": 5 },
     { "title": "Statistics", "id": 17 },
     { "title": "Survey", "id": 14 },
-    { "title": "Water Resource Engineering", "id": 13 }
+    { "title": "Water-Resource-Engineering", "id": 13 }
   ];
 
   const deptId = departmentData.find(
@@ -132,10 +133,15 @@ fetchExams(deptId);
         <div className="display-pdf-container">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6} lg={4} xl={4}> 
-             <div className="get_answers"> <h1>Also get answers for</h1>
+          <div className="get_answers"> {examsData?  <h1>Also get answers for</h1> : ''}  
               {examsData.map((exam) => (
+                <Link to={`/exam/details/${exam.id}`} key={exam.id} className="answer-link">
                 <div key={exam.id}>
-                  {exam.exam_name}</div>)
+                 <h2>
+                  {exam.exam_name}
+                  </h2> 
+                  <p>{exam.questions_count} questions</p>
+                  </div></Link>)
               )}</div>
             </Col>
 
