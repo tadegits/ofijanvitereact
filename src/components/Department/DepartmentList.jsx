@@ -33,7 +33,7 @@ const DepartmentList = () => {
 
   const fetchExams = async (departmentId) => {
     setLoading(true);
-    setExamsError('');
+    setExamsError(''); 
     try {
       const response = await fetch(`${API_BASE_URL}/examsfront/${departmentId}`);
       if (response.ok) {
