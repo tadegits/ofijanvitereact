@@ -16,7 +16,7 @@ const DisplayPdf = () => {
   const [loading, setLoading] = useState(true);
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [exams, setExams] = useState([]);
+  const [examsData, setExams] = useState([]);
   const [examsError, setExamsError] = useState('');
   const [examLoading, setExamLoading] = useState(false);
   // Define department data
@@ -89,7 +89,7 @@ const DisplayPdf = () => {
         setLoading(false);
       }
     };
-
+fetchExams(deptId);
     fetchImageUrls();
   }, [id]);
 
@@ -132,7 +132,11 @@ const DisplayPdf = () => {
         <div className="display-pdf-container">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6} lg={4} xl={4}> 
-              <h1>{deptId}</h1>
+             <div className="get_answers"> <h1>Also get answers for</h1>
+              {examsData.map((exam) => (
+                <div key={exam.id}>
+                  {exam.exam_name}</div>)
+              )}</div>
             </Col>
 
             <Col xs={24} sm={24} md={12} lg={12} xl={12} className='pdf__viewer'> 
