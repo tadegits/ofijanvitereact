@@ -47,13 +47,13 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
 
           setComments((prevComments) => [
             ...prevComments,
-            {
-              text: posts.content,  // The content is inside 'posts.content'
-              user: `User ${posts.user_id}`,  // The user info is inside 'posts.user_id'
-              id: posts.id,  // The id is inside 'posts.id'
+            {  
+              text: posts.content,  
+              user: `User ${posts.user_id}`, 
+              id: posts.id,  
             },
           ]);
-          setNewComment(''); // Clear the input field after successful submission
+          setNewComment('');
         } else {
           message.error('Failed to add comment.');
         }
