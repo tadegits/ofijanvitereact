@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, message } from 'antd';
-import { CommentOutlined, MinusCircleOutlined, MessageOutlined, SendOutlined  } from '@ant-design/icons';
+import { CommentOutlined, MinusCircleOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
 import './FloatingCommentButton.scss';
 import API_BASE_URL from './apiConfig';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ const FloatingCommentButton = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [comments, setComments] = useState([]);
   const [userId, setUserId] = useState('0');
-  const [userFName, setUserFName] = useState('Anonimous');
+  const [userFName, setUserFName] = useState('Anonymous');
   const [userLName, setUserLName] = useState(' ');
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [isTyping, setIsTyping] = useState(false); // State to track typing
@@ -66,7 +66,7 @@ const FloatingCommentButton = () => {
         const context_type = 'default'; // Use your desired context type
         const context_id = '1'; // Use your desired context id
         const parent_id = '0'; // Use your desired parent id
-  
+
         const response = await axios.post(`${API_BASE_URL}/addcomments`, {
           context_type,
           context_id,
@@ -74,22 +74,20 @@ const FloatingCommentButton = () => {
           user_id: userId,
           content: comment,
         });
-  
+
         if (response.status === 201) {
-          const fetched = response.data;
-          
-          // Immediately update comments to trigger re-render
+          const { posts } = response.data;
+
           setComments((prevComments) => [
             ...prevComments,
             {
-              id: fetched.id,
-              content: fetched.content,
-              username: fetched.user_id === userId ? 'You' : 'User',
+              id: posts.id,
+              content: posts.content,
+              username: posts.user_id === userId ? 'You' : 'User',
             },
           ]);
-  
-          // Reset comment input after submitting
-          setComment('');
+
+          setComment(''); // Reset comment input after submitting
         } else {
           message.error('Failed to add comment.');
         }
@@ -101,18 +99,17 @@ const FloatingCommentButton = () => {
       message.warning('Comment cannot be empty!');
     }
   };
-  
 
   // Minimize the modal
   const handleMinimize = () => {
     setIsMinimized(true);
-    setIsExpanded(false); // Close the modal when minimized
+    setIsExpanded(false);
   };
 
   // Expand the modal
   const handleExpand = () => {
     setIsMinimized(false);
-    setIsExpanded(true); // Open the modal when expanded
+    setIsExpanded(true);
   };
 
   // Navigate to login page
@@ -134,8 +131,8 @@ const FloatingCommentButton = () => {
       {isExpanded && !isMinimized && (
         <div className="comment-modal">
           <div className="modal-top-bar">
-            <h3 className="modal-title">Discuss with ofijan Family</h3>
-            <MinusCircleOutlined className="minimize-icon" onClick={handleMinimize} />
+            <h3 className="modal-title">Chat with Ofijan Family</h3>
+            {/* <MinusCircleOutlined className="minimize-icon" onClick={handleMinimize} /> */}
           </div>
 
           {/* Display comments */}
@@ -163,11 +160,11 @@ const FloatingCommentButton = () => {
             <Input.TextArea
               value={comment}
               onChange={handleCommentChange}
-              placeholder="Write your comment here..."
-              rows={4}
+              placeholder="Type your message..."
+              rows={3}
             />
             {isLoggedin ? (
-              <MessageOutlined className="submit-icon" onClick={handleCommentSubmit} />
+              <SendOutlined className="submit-icon" onClick={handleCommentSubmit} />
             ) : (
               <Button type="primary" onClick={handleLogin}>Login to Comment</Button>
             )}
@@ -178,7 +175,7 @@ const FloatingCommentButton = () => {
       {/* Minimized state (floating button only) */}
       {isMinimized && (
         <div className="minimized-modal" onClick={handleExpand}>
-          <SendOutlined  />
+          <SendOutlined />
         </div>
       )}
     </div>
