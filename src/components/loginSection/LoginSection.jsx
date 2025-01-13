@@ -96,11 +96,14 @@ const LoginSection = () => {
                                 <button className='logbtn' onClick={handleSubmit}> Log In</button>
                             </div> 
                             {/* <GoogleLoginButton/> */}
-
+                    
                             
                             <Divider><p>Don't Have Account? <div className="summit-signup">
-                                <Link to={'/signup'}><input type='submit' value="Register" className='singup' /></Link>
-                            </div></p></Divider>
+                             <Link to={'/signup'}><input type='submit' value="Register" className='singup' /></Link>
+                            </div>
+                            </p>
+                            {/* <Link to={'/forgotpassword'}><input type='submit' value="Forgot Password" className='singup' /></Link> */}
+                            </Divider>
                            
                             
                         </div>

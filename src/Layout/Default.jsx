@@ -37,6 +37,7 @@ import ExamResults from '../components/ExitExam/ExamResult';
 import ExamResultsUgr from '../components/ExitExam/ExamResultUgr';
 import Footer from '../components/footer/footer';
 import ExamPreview from '../components/ExamPriview/index.jsx';
+import Forgotpassword from '../components/loginSection/ForgotPassword';
 const Default = () => {
   
  
@@ -66,6 +67,7 @@ const Default = () => {
         <Route path="/exit-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/exit-exam/:id/:imageindex" element={<DisplayPdf />} />
         <Route path="/image-gallery/:id" element={<ImageGallery />} />
+        <Route path="/forgotpassword" element={<Forgotpassword />} />
         <Route path="/model-exam/:id/1" element={<DisplayPdf />} />
         <Route path="/examresults/:id" element={<ExamResults />} />
         <Route path="/examresultsugr/:id" element={<ExamResultsUgr />} />

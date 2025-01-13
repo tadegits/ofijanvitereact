@@ -30,7 +30,6 @@ const LoginSection = () => {
     let newEmail, newFname, newLname, newPhname, newDept, newPname, newCPname;
 
     function checkName(event) {
-        // console.log(event.target.value);
         newFname = event.target.value;
         setFname(newFname);
 
@@ -43,7 +42,6 @@ const LoginSection = () => {
     }
 
     function checkLname(event) {
-        // console.log(event.target.value);
         newLname = event.target.value;
         setLname(newLname);
 
@@ -71,7 +69,6 @@ const LoginSection = () => {
     }
 
     function checkPhoneNumber(event) {
-        // console.log(event.target.value);
         newPhname = event.target.value;
         setPhone(newPhname);
 
@@ -84,14 +81,12 @@ const LoginSection = () => {
     }
 
     function checkDept(event) {
-        // console.log(event.target.value);
         newDept = event.target.value;
         setDept(newDept);
         setDeptMessage("");
     }
 
     function checkPassword(event) {
-        // console.log(event.target.value);
         newPname = event.target.value;
         setPassword(newPname);
 
@@ -104,7 +99,6 @@ const LoginSection = () => {
     }
 
     function checkConfPassword(event) {
-        // console.log(event.target.value);
         newCPname = event.target.value;
         setConfPassword(newCPname);
 
@@ -196,24 +190,24 @@ const LoginSection = () => {
                             </div>
                             <hr></hr>
                         </div> */}
-                        <div className="login__signupregistered">Create  Account</div>
+                        <div className="login__signupregistered">Create your OFIJAN Account</div>
                         <div className="form2">
 
                             <div className="form-contents1">
                                 <div className="names">
                                     <div className="fnames">
-                                        <label>First Name</label>
+                                    <label>👤 First Name</label>
                                         <input type="text" placeholder='First Name' className="fname" onBlur={checkName} required />
                                         <div className="errormessage">{fnmessage}</div>
                                     </div>
                                     <div className="lnames">
-                                        <label>Last Name</label>
+                                    <label>👤 Last Name</label>
                                         <input type="text" placeholder='Last Name' className="lname" onBlur={checkLname} required />
                                         <div className="errormessage">{lnmessage}</div>
                                     </div>
 
                                     <div className="emails">
-                                        <label>E_mail</label>
+                                    <label>📧 Email</label>
                                         <input type="text" placeholder='Email' className="email" onBlur={checkEmail} required />
                                         <div className="errormessage">{message}</div>
                                     </div>
@@ -221,7 +215,7 @@ const LoginSection = () => {
                                 </div>
                                 <div className="dept_pho">
                                     <div className="phones">
-                                        <label>Phone Number</label>
+                                    <label>📞 Phone Number</label>
                                         <input type="tell" placeholder='Phone Number' className="phone" pattern="[0]{1}[9]{1}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" onBlur={checkPhoneNumber} required />
                                         <div className="errormessage">{phonemessage}</div>
                                     </div>
@@ -245,11 +239,12 @@ const LoginSection = () => {
                                 <div className="errormessage">{confmessage}</div>
                                 <div className="errormessage">{registered}</div>
                                 <div className="summit-signup">
-                                    <button className='sigbtn' onClick={signUp} >Sing Up</button>
+                                    <button className='sigbtn' onClick={signUp} >Sign Up 🚀</button>
                                     {/* <input type="submit" value="Log In" className="sigbtn"/> */}
                                 </div>
                                 <div className="summit-signuplog">
                                     <h5 className="mes">Already have an account? </h5>
+                                    
                                     <Link to={'/login'} ><input type='submit' value="Sign In" className='singup2' /></Link>
                                 </div>
 
