@@ -10,27 +10,30 @@ import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
 import GeneralKnowledge from './GeneralKnowledge';
-const ImageGallery = ({ id, imageIndex, }) => {
+
+const ImageGallery = ({ id, imageIndex }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userId, setUserId] = useState("0");
-  const [userFName, setUserFName] = useState("Anonimous")
-  const [userLName, setUserLName] = useState(" ")
+  const [userFName, setUserFName] = useState("Anonimous");
+  const [userLName, setUserLName] = useState(" ");
   const navigate = useNavigate();
   const [isLoggedin, setIsLoggedin] = useState(false);
+
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
     if (loggedUser !== null) {
       setIsLoggedin(true);
       const userLogged = JSON.parse(loggedUser);
-      console.log('display use', userLogged)
+      console.log('display user', userLogged);
       setUserId(userLogged.user.id);
-      setUserFName(userLogged.user.fname)
-      setUserLName(userLogged.user.lname)
+      setUserFName(userLogged.user.fname);
+      setUserLName(userLogged.user.lname);
     }
   }, []);
+
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
@@ -42,13 +45,11 @@ const ImageGallery = ({ id, imageIndex, }) => {
           : Object.entries(fileNames).map(([key, value]) => `${API_BASE_URL}/images/${value}`);
         setImageUrls(urls);
 
-        // Safely parse and update currentImageIndex
         const parsedIndex = parseInt(imageIndex, 10);
         if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < urls.length) {
           setCurrentImageIndex(parsedIndex);
         } else {
-          // Fallback if the initial index is invalid
-          setCurrentImageIndex(0); // Or set to the first image
+          setCurrentImageIndex(0);
         }
       } catch (err) {
         setError(err);
@@ -69,7 +70,7 @@ const ImageGallery = ({ id, imageIndex, }) => {
   const handleNextImage = () => {
     let nextIndex = currentImageIndex + 1;
     if (nextIndex >= imageUrls.length) {
-      nextIndex = 0; // Loop back to the first image, or set to a different behavior.
+      nextIndex = 0;
     }
     handleImageClick(nextIndex);
   };
@@ -77,7 +78,7 @@ const ImageGallery = ({ id, imageIndex, }) => {
   const handlePrevImage = () => {
     let prevIndex = currentImageIndex - 1;
     if (prevIndex < 0) {
-      prevIndex = imageUrls.length - 1; // Loop back to the last image, or set to a different behavior.
+      prevIndex = imageUrls.length - 1;
     }
     handleImageClick(prevIndex);
   };
@@ -101,7 +102,11 @@ const ImageGallery = ({ id, imageIndex, }) => {
         onPrevious={handlePrevImage}
         isNextDisabled={currentImageIndex === imageUrls.length - 1}
         isPreviousDisabled={currentImageIndex === 0}
+        isLoggedIn={isLoggedin}
+        currentImageIndex={currentImageIndex}
+        totalImages={imageUrls.length}
       />
+      
       <ImagePagination
         totalImages={imageUrls.length}
         currentIndex={currentImageIndex}
@@ -116,14 +121,14 @@ const ImageGallery = ({ id, imageIndex, }) => {
         currentImageUrl={imageUrls[currentImageIndex]}
       />
       <CommentsSection 
-      context_type="2015ExitImage" 
-      context_id={currentImageIndex}
-      parent_id={id}
-      isLoggedIn={isLoggedin}
-      user_id={isLoggedin? userId:'0'}
-      fname={userFName}
-      lname={userLName}
-        />
+        context_type="2015ExitImage" 
+        context_id={currentImageIndex}
+        parent_id={id}
+        isLoggedIn={isLoggedin}
+        user_id={isLoggedin ? userId : '0'}
+        fname={userFName}
+        lname={userLName}
+      />
       <GeneralKnowledge title={id} />
     </section>
   );

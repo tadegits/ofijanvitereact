@@ -1,14 +1,44 @@
 import React from 'react';
 import { Button } from 'antd';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-const ImagePagination = ({ totalImages, currentIndex, onImageClick }) => {
+const ImagePagination = ({ totalImages, currentIndex, onImageClick, isLoggedIn }) => {
   const rangeSize = 3;
+  const maxImagesForGuest = 10; 
+  const navigate = useNavigate();
   const startIndex = Math.max(0, currentIndex - rangeSize);
   const endIndex = Math.min(totalImages - 1, currentIndex + rangeSize);
 
+  const handleImageClick = (index) => {
+    if (!isLoggedIn && index >= maxImagesForGuest) {
+      Swal.fire({
+        title: 'Login Required',
+        text: 'You need to log in to view more images.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        cancelButtonText: 'Cancel',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+          console.log('User chose to log in');
+        } else if (result.isDismissed) {
+          console.log('User canceled');
+        }
+      });
+    } else {
+      onImageClick(index);
+    }
+  };
+
   const buttons = [];
   if (startIndex > 0) {
-    buttons.push(<Button key="first" onClick={() => onImageClick(0)}>1</Button>);
+    buttons.push(
+      <Button key="first" onClick={() => handleImageClick(0)}>
+        1
+      </Button>
+    );
     if (startIndex > 1) buttons.push(<span key="ellipsis-start">...</span>);
   }
 
@@ -16,7 +46,7 @@ const ImagePagination = ({ totalImages, currentIndex, onImageClick }) => {
     buttons.push(
       <Button
         key={i}
-        onClick={() => onImageClick(i)}
+        onClick={() => handleImageClick(i)}
         style={{
           margin: '0 4px',
           backgroundColor: currentIndex === i ? '#1890ff' : '#f0f0f0',
@@ -31,7 +61,7 @@ const ImagePagination = ({ totalImages, currentIndex, onImageClick }) => {
   if (endIndex < totalImages - 1) {
     if (endIndex < totalImages - 2) buttons.push(<span key="ellipsis-end">...</span>);
     buttons.push(
-      <Button key="last" onClick={() => onImageClick(totalImages - 1)}>
+      <Button key="last" onClick={() => handleImageClick(totalImages - 1)}>
         {totalImages}
       </Button>
     );
