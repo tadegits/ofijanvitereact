@@ -42,7 +42,7 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
         });
 
         if (response.status === 201) {
-          const { posts } = response.data; // Destructure 'posts' from the response
+          const { posts } = response.data; 
           console.log('Response Data:', posts);
 
           setComments((prevComments) => [
@@ -88,7 +88,7 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
   return (
     <div style={{ marginTop: '32px', textAlign: 'left' }}>
       <h3>Comments</h3>
-      {/* Display comments regardless of login status */}
+  
       <List
         dataSource={comments}
         renderItem={(item) => (
@@ -97,12 +97,12 @@ const CommentsSection = ({ context_type, context_id, parent_id, user_id, isLogge
           </List.Item>
         )}
       />
-      {/* Display the input field and allow interaction even when not logged in */}
+ 
       <Input
         placeholder="Add a comment"
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
-        onClick={handleTextEditorClick}  // Trigger SweetAlert on click
+        onClick={handleTextEditorClick}  
         onPressEnter={handleCommentSubmit}
         style={{ marginTop: '8px' }}
         disabled={loading}
