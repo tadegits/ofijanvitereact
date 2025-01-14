@@ -25,7 +25,7 @@ const StudyPlate = () => {
     const [correctAnswersCounter, setCorrectAnswersCounter] = useState(0);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState('')
-    const [timeLeft, setTimeLeft] = useState('');
+    const [timeLeft, setTimeLeft] = useState(0);
     const alphabet = ["A", "B", "C", "D"];
     const [examType, setExamType] = useState('');
     const [role, setRole] = useState('');
@@ -54,7 +54,13 @@ const StudyPlate = () => {
             .catch((err) => console.log(err));
 
     }, [ofin_id, userId]);
-
+    useEffect(() => {
+        if (questionData.length > 0) {
+            const selectedOption = questionData[selectedQuestionIndex]?.options?.find((option) => option.selected);
+            setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
+        }
+    }, [selectedQuestionIndex, questionData]);
+    
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
@@ -72,32 +78,34 @@ const StudyPlate = () => {
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
     };
     const handleOptionClick = (index) => {
+        if (!questionData[selectedQuestionIndex]) return;
+    
         const updatedQuestionData = [...questionData];
         updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map((option, i) => ({
             ...option,
             selected: i === index,
         }));
+    
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
         setAnswered(true);
-
-        // Adjust correct answers count logic here
-        if (updatedQuestionData[selectedQuestionIndex].options[index].correct === '1') {
-            setCorrectAnswersCounter(prevCounter => prevCounter + 1);
+    
+        const selectedOption = updatedQuestionData[selectedQuestionIndex].options[index];
+        if (selectedOption.correct === '1') {
+            setCorrectAnswersCounter((prev) => prev + 1);
         } else {
-            setCorrectAnswersCounter(prevCounter => prevCounter - 1);
+            setCorrectAnswersCounter((prev) => Math.max(prev - 1, 0));
         }
-
-        // Handle API call logic
-        const selectedQuestion = questionData[selectedQuestionIndex];
-        const selectedOptionID = selectedQuestion.options[selectedOptionIndex];
+    
+        // Post to API
         axios.post(`${API_BASE_URL}/selected-answers`, {
             user_id: 1,
-            question_id: selectedQuestion,
-            option_id: selectedOptionID,
-        }); 
+            question_id: updatedQuestionData[selectedQuestionIndex].id,
+            option_id: selectedOption.id,
+        });
     };
-console.log(selectedOptionIndex);
+    
+  
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length) {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
@@ -151,8 +159,14 @@ console.log(selectedOptionIndex);
         { "title": "Statistics", "id": 17 },
         { "title": "Survey", "id": 14 },
         { "title": "Water-Resource-Engineering", "id": 13 }
-      ];
-      
+    ];
+    const deptTitle = questionData?.[0]?.department_id
+        ? departmentData.find(
+            (dept) => dept.id === Number(questionData[0].department_id) // Ensure it's a number
+        )?.title
+        : 'Department not found';
+
+
     return (
         <section className='exam'>
             <Helmet>
@@ -161,12 +175,13 @@ console.log(selectedOptionIndex);
                 <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/studymode/" />
             </Helmet>
             <Wrapper className='exam__section'>
-<h1>{questionData? questionData[0].exam.exam_name : ''}</h1>
-<span>You are on the study plate. Study Plate will not save your answers, Therefore you wont be able to Test your Limit! <button className='button-outline '>Test Me</button></span>
-                
+            {questionData.length > 0 && ( 
+                 <h1>{questionData? questionData[0].exam?.exam_name : ''}</h1> )}
+                <span>You are on the study plate. Study Plate will not save your answers, Therefore you wont be able to Test your Limit! <button className='button-outline '>Test Me</button></span>
+                {deptTitle}
                 <div className='studyplate'>
                     <div className='sflag_plate'>
-               
+
 
                     </div>
                     {examType == null ?
@@ -191,7 +206,7 @@ console.log(selectedOptionIndex);
                                                 const isCorrectAnswer = option.correct === 1;
                                                 return (
                                                     <label
-                                                        className={`option_box ${isSelected ? 'selected' : ''} ${isCorrectAnswer && selectedOptionIndex !== null?  'correct-answer' : ''}`}
+                                                        className={`option_box ${isSelected ? 'selected' : ''} ${isCorrectAnswer && selectedOptionIndex !== null ? 'correct-answer' : ''}`}
                                                         key={index}
                                                         onClick={() => handleOptionClick(index)}
                                                     >
@@ -204,7 +219,7 @@ console.log(selectedOptionIndex);
                                                         />
                                                         <span className="alphabet">{alphabet[index]}. </span>
                                                         {option.option}
-                                                        {isCorrectAnswer && selectedOptionIndex !== null &&   <CheckIcon className="animated-check-icon" />}
+                                                        {isCorrectAnswer && selectedOptionIndex !== null && <CheckIcon className="animated-check-icon" />}
                                                     </label>
 
                                                 );
@@ -213,21 +228,21 @@ console.log(selectedOptionIndex);
 
                                                 {questionData[selectedQuestionIndex].options.some(option => option.selected) &&
                                                     <div className='s2description'>
-                                                     <TypingEffect htmlText={questionData[selectedQuestionIndex].answer_description} speed={10} />
-                                                     </div>} </>
+                                                        <TypingEffect htmlText={questionData[selectedQuestionIndex].answer_description} speed={10} />
+                                                    </div>} </>
 
 
                                         </div>
                                     </>
                                 )}
                             </div>
-<div>
-<ins class="adsbygoogle"
-     style={{display: 'block'  }}
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-8449765590756444"
-     data-ad-slot="8333904759"></ins>
-</div>
+                            <div>
+                                <ins class="adsbygoogle"
+                                    style={{ display: 'block' }}
+                                    data-ad-format="autorelaxed"
+                                    data-ad-client="ca-pub-8449765590756444"
+                                    data-ad-slot="8333904759"></ins>
+                            </div>
                             <StudyNavButtons
                                 handlePreviousClick={handlePreviousClick}
                                 handleNextClick={handleNextClick}
@@ -235,12 +250,12 @@ console.log(selectedOptionIndex);
                                 length={questionData.length - 1}
                             />
                         </div>
-                        <div><ins class="adsbygoogle"
-     style={{display: 'block'  }}
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-8449765590756444"
-     data-ad-slot="8333904759"></ins>
-</div>
+                            <div><ins class="adsbygoogle"
+                                style={{ display: 'block' }}
+                                data-ad-format="autorelaxed"
+                                data-ad-client="ca-pub-8449765590756444"
+                                data-ad-slot="8333904759"></ins>
+                            </div>
                             <div className="sanswer_plate">
                                 <h5>Exam Navigation</h5>
                                 <div className="answer_plate">
