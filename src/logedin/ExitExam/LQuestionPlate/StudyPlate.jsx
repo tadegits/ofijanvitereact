@@ -60,7 +60,7 @@ const StudyPlate = () => {
             setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
         }
     }, [selectedQuestionIndex, questionData]);
-    
+
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
@@ -79,24 +79,24 @@ const StudyPlate = () => {
     };
     const handleOptionClick = (index) => {
         if (!questionData[selectedQuestionIndex]) return;
-    
+
         const updatedQuestionData = [...questionData];
         updatedQuestionData[selectedQuestionIndex].options = updatedQuestionData[selectedQuestionIndex].options.map((option, i) => ({
             ...option,
             selected: i === index,
         }));
-    
+
         setQuestionData(updatedQuestionData);
         setSelectedOptionIndex(index);
         setAnswered(true);
-    
+
         const selectedOption = updatedQuestionData[selectedQuestionIndex].options[index];
         if (selectedOption.correct === '1') {
             setCorrectAnswersCounter((prev) => prev + 1);
         } else {
             setCorrectAnswersCounter((prev) => Math.max(prev - 1, 0));
         }
-    
+
         // Post to API
         axios.post(`${API_BASE_URL}/selected-answers`, {
             user_id: 1,
@@ -104,8 +104,8 @@ const StudyPlate = () => {
             option_id: selectedOption.id,
         });
     };
-    
-  
+
+
     const handleNextClick = () => {
         if (selectedQuestionIndex < questionData.length) {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
@@ -175,32 +175,32 @@ const StudyPlate = () => {
                 <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/studymode/" />
             </Helmet>
             <Wrapper className='exam__section'>
-            {questionData.length > 0 && ( 
-                 <h1>{questionData? questionData[0].exam?.exam_name : ''}</h1> )}
+                {questionData.length > 0 && (
+                    <h1>{questionData ? questionData[0].exam?.exam_name : ''}</h1>)}
                 <span>You are on the study plate. Study Plate will not save your answers,
-                     Therefore you wont be able to Test your Limit! 
-                     <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className=''> 
-                     <button className='button-outline '>Test Me</button>
-                     </Link></span>
-               
+                    Therefore you wont be able to Test your Limit!
+                    <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className=''>
+                        <button className='button-outline '>Test Me</button>
+                    </Link></span>
+
                 <div className='studyplate'>
                     <div className='sflag_plate'>
-                    {deptTitle? <i>You must also check</i>:""}
-                {deptTitle? (<Link to={`/exit-exam/${deptTitle}/${0}`} className=''>
-                                        <div className="yocard">
-                                          <img
-                                            src="/images.png"
-                                            alt="2015 Exit Exam PDF for Ethiopian Students"
-                                            className="pdf-image"
-                                          />
-                                          <p>Exit Exam Q</p>
-                                          <div className="pdf-details">
-                                            <h1 className="pdf-title">
-                                              {deptTitle || 'PDF Title'} &#x1F4DA;
-                                            </h1>
-                                          </div>
-                                        </div>
-                                      </Link>):''}
+                        {deptTitle ? <i>You must also check</i> : ""}
+                        {deptTitle ? (<Link to={`/exit-exam/${deptTitle}/${0}`} className=''>
+                            <div className="yocard">
+                                <img
+                                    src="/images.png"
+                                    alt="2015 Exit Exam PDF for Ethiopian Students"
+                                    className="pdf-image"
+                                />
+                                <p>Exit Exam Q</p>
+                                <div className="pdf-details">
+                                    <h1 className="pdf-title">
+                                        {deptTitle || 'PDF Title'} &#x1F4DA;
+                                    </h1>
+                                </div>
+                            </div>
+                        </Link>) : ''}
 
                     </div>
                     {examType == null ?
