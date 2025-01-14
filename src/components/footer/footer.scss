@@ -9,8 +9,9 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  padding: rem;
-
+  padding: 1rem;
+display: flex;
+justify-content: center;
   .footer__text {
     text-align: center;
 
@@ -79,4 +80,9 @@
 }
 .company_name{
     color: $tade-yellow;
+
+}
+.ofin_tech{
+    display: flex;
+    justify-content: center;
 }
