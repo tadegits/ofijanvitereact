@@ -123,20 +123,50 @@ console.log(selectedOptionIndex);
             }
         });
     };
-
+    const departmentData = [
+        { "title": "Accounting", "id": 50 },
+        { "title": "Animal-Science", "id": 28 },
+        { "title": "Biodiversity", "id": 25 },
+        { "title": "Biology", "id": 20 },
+        { "title": "Civil-Engineering", "id": 2 },
+        { "title": "Computer-Science", "id": 1 },
+        { "title": "Construction-Technology-Management", "id": 15 },
+        { "title": "EC-Engineering", "id": 51 },
+        { "title": "Economics", "id": 10 },
+        { "title": "EDPM", "id": 44 },
+        { "title": "English-Language-Literature", "id": 37 },
+        { "title": "Environmental-Science", "id": 21 },
+        { "title": "Forestry", "id": 23 },
+        { "title": "Geography", "id": 39 },
+        { "title": "Information-Systems", "id": 7 },
+        { "title": "Journalism", "id": 41 },
+        { "title": "Law", "id": 42 },
+        { "title": "Management", "id": 6 },
+        { "title": "Marketing", "id": 9 },
+        { "title": "Mathematics", "id": 3 },
+        { "title": "Pharmacy", "id": 30 },
+        { "title": "Physics", "id": 18 },
+        { "title": "Sociology", "id": 38 },
+        { "title": "Sport", "id": 5 },
+        { "title": "Statistics", "id": 17 },
+        { "title": "Survey", "id": 14 },
+        { "title": "Water-Resource-Engineering", "id": 13 }
+      ];
+      
     return (
         <section className='exam'>
             <Helmet>
                 <meta property="og:title" content="STUDY_PLATE" />
                 <meta property="og:image" content="withmoto.png" />
-                <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/testmode/" />
+                <meta property="og:url" content="https://ofijan.com/ofijan_exam_plate/studymode/" />
             </Helmet>
             <Wrapper className='exam__section'>
-
-
+<h1>{questionData? questionData[0].exam.exam_name : ''}</h1>
+<span>You are on the study plate. Study Plate will not save your answers, Therefore you wont be able to Test your Limit! <button className='button-outline '>Test Me</button></span>
+                
                 <div className='studyplate'>
                     <div className='sflag_plate'>
-                        <AdvertisementCard /><AdvertisementCard />
+               
 
                     </div>
                     {examType == null ?

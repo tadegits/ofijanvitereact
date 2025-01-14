@@ -94,7 +94,6 @@ const DisplayPdf = () => {
     fetchImageUrls();
   }, [id]);
 
-  console.log('Department ID:', deptId); 
 
   return (
     <section className='pdfs'>
