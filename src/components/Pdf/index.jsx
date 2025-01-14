@@ -13,7 +13,7 @@ const Index = () => {
   const fetchDepartmentsUrl = `${API_BASE_URL}/departments`;
   const fetchImagePathsUrl = `${API_BASE_URL}/fetch_image_path`;
 
-  // Fetch department and image data
+  // Fetch department and image data 
   useEffect(() => {
     const fetchData = async () => {
       try {

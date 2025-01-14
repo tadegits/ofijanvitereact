@@ -148,7 +148,7 @@ const DisplayPdf = () => {
         <div className="display-pdf-container">
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6} lg={4} xl={4}>
-              <div className="get_answers"> {examsData ? <h5>Other resources for {id} department</h5> : ''}
+              <div className="get_answers"> {examsData ? <p>Other resources for {id} department</p> : ''}
                 {examsData.map((exam) => (
                   <Link to={`/exam/details/${exam.id}`} key={exam.id} className="answer-link">
                     <div key={exam.id}>

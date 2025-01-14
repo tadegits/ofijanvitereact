@@ -177,11 +177,30 @@ const StudyPlate = () => {
             <Wrapper className='exam__section'>
             {questionData.length > 0 && ( 
                  <h1>{questionData? questionData[0].exam?.exam_name : ''}</h1> )}
-                <span>You are on the study plate. Study Plate will not save your answers, Therefore you wont be able to Test your Limit! <button className='button-outline '>Test Me</button></span>
-                {deptTitle}
+                <span>You are on the study plate. Study Plate will not save your answers,
+                     Therefore you wont be able to Test your Limit! 
+                     <Link to={`/ofijan_exam_plate/testmode/${ofin_id}`} className=''> 
+                     <button className='button-outline '>Test Me</button>
+                     </Link></span>
+               
                 <div className='studyplate'>
                     <div className='sflag_plate'>
-
+                    {deptTitle? <i>You must also check</i>:""}
+                {deptTitle? (<Link to={`/exit-exam/${deptTitle}/${0}`} className=''>
+                                        <div className="yocard">
+                                          <img
+                                            src="/images.png"
+                                            alt="2015 Exit Exam PDF for Ethiopian Students"
+                                            className="pdf-image"
+                                          />
+                                          <p>Exit Exam Q</p>
+                                          <div className="pdf-details">
+                                            <h1 className="pdf-title">
+                                              {deptTitle || 'PDF Title'} &#x1F4DA;
+                                            </h1>
+                                          </div>
+                                        </div>
+                                      </Link>):''}
 
                     </div>
                     {examType == null ?
