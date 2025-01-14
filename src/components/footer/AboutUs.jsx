@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, List, Avatar, Space } from 'antd';
 import { UserOutlined, LinkedinOutlined, GithubOutlined, PhoneOutlined } from '@ant-design/icons';
-import './footer.scss';
+import './aboutUs.scss';
 
 const { Title, Paragraph } = Typography;
 
@@ -21,9 +21,9 @@ const AboutUs = () => {
     <div className="about-us-container">
       <div className="about-us-content">
         <Title level={1}>About Us</Title>
-        <Paragraph>
-          Welcome to Ofijan, your premier destination for cutting-edge software solutions and services. At Ofijan, we pride ourselves on utilizing the latest technologies, including Laravel, React, Odoo CRM, Firebase, and more, to deliver top-notch software products tailored to your needs.
-        </Paragraph>
+        <p>
+          Welcome to OFIN TECH, your premier destination for cutting-edge software solutions and services. At Ofijan, we pride ourselves on utilizing the latest technologies, including Laravel, React, Odoo CRM, Firebase, and more, to deliver top-notch software products tailored to your needs.
+        </p>
         <section className="service-section">
           <Title level={2}>Our Services</Title>
           <List
@@ -37,7 +37,7 @@ const AboutUs = () => {
             ]}
             renderItem={item => (
               <List.Item>
-                <Typography.Text>{item}</Typography.Text>
+                <p>{item}</p>
               </List.Item>
             )}
           />
@@ -72,7 +72,7 @@ const AboutUs = () => {
                 dataSource={['Laravel', 'Node JS', 'Firebase', 'Mongo DB']}
                 renderItem={item => (
                   <List.Item>
-                    <Typography.Text>{item}</Typography.Text>
+                    <p>{item}</p>
                   </List.Item>
                 )}
               />
@@ -83,7 +83,7 @@ const AboutUs = () => {
                 dataSource={['HTML, CSS, SaSS, TAilwind and Botstrap', 'React JS', 'Next JS']}
                 renderItem={item => (
                   <List.Item>
-                    <Typography.Text>{item}</Typography.Text>
+                    <p>{item}</p>
                   </List.Item>
                 )}
               />
@@ -94,7 +94,7 @@ const AboutUs = () => {
                 dataSource={['Odoo CRM', 'Wordpress', 'Moodle', 'Elementer']}
                 renderItem={item => (
                   <List.Item>
-                    <Typography.Text>{item}</Typography.Text>
+                    <p>{item}</p>
                   </List.Item>
                 )}
               />
@@ -105,7 +105,7 @@ const AboutUs = () => {
                 dataSource={['Android Studio', 'Flutter']}
                 renderItem={item => (
                   <List.Item>
-                    <Typography.Text>{item}</Typography.Text>
+                    <p>{item}</p>
                   </List.Item>
                 )}
               />
@@ -116,7 +116,7 @@ const AboutUs = () => {
                 dataSource={['Adobe Illustrator', 'Adobe Photoshop']}
                 renderItem={item => (
                   <List.Item>
-                    <Typography.Text>{item}</Typography.Text>
+                    <p>{item}</p>
                   </List.Item>
                 )}
               />
@@ -126,9 +126,9 @@ const AboutUs = () => {
 
         <section className="design-section">
           <Title level={2}>Design</Title>
-          <Paragraph>
+          <p>
             We believe in creating beautiful and intuitive designs that enhance user experience. Our team is proficient in Ant Design, JSX, and SASS, ensuring that your products not only function flawlessly but also look stunning.
-          </Paragraph>
+          </p>
         </section>
       </div>
     </div>

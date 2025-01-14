@@ -2,105 +2,81 @@
 @import "../../styles/colors.scss";
 
 .footer {
-   
-    background-color: $tade-color;
-    color: rgb(207, 204, 204);
-    width: 100%;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+  background-color: var(--footer-bg-color, $tade-color);
+  color: var(--footer-text-color, rgb(207, 204, 204));
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: rem;
 
-    .footer__text {
-        text-align: center;
+  .footer__text {
+    text-align: center;
 
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin: 0.5rem 0;
-            color: rgb(255, 255, 255);
-        }
-
-        p {
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        svg {
-            font-size: 1rem;
-            color: rgb(255, 215, 0);
-        }
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 0.5rem 0;
+      color: var(--footer-heading-color, rgb(255, 255, 255));
     }
 
+    p {
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        font-size: 1rem;
+        color: var(--icon-color, rgb(255, 215, 0));
+      }
+    }
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+
+    li {
+      a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--footer-link-hover-color, #ffc107);
+        }
+      }
+    }
+  }
+
+  .footer__socials {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      font-size: 1.25rem;
+      color: inherit;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--social-icon-hover-color, #ffc107);
+      }
+    }
+  }
+
+  @include respond(phone) {
     .footer__links {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 0rem;
-
-        li {
-            list-style: none;
-            @include respond(phone)
-            {
-                display: flex;
-                gap: 0rem;
-            }
-            a {
-                text-decoration: none;
-                color: rgb(207, 204, 204);
-                font-size: 0.875rem;
-                transition: color 0.3s ease;
-
-                &:hover {
-                    color: #ffc107;
-                }
-            }
-        }
+      flex-direction: column;
+      align-items: center;
     }
-
-    .footer__logo {
-        width: 100px;
-
-        img {
-            width: 100%;
-        }
-    }
-
-    .footer__ads {
-        margin-top: 2rem;
-        text-align: center;
-        width: 100%;
-
-        .ads-placeholder {
-            background-color: rgb(230, 230, 230);
-            border: 1px dashed #ccc;
-            padding: 1rem;
-            color: #555;
-            font-size: 0.875rem;
-            text-align: center;
-        }
-    }
+  }
 }
-
-@include respond(phone) {
-    .footer {
-        .footer__links {
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer__logo {
-            width: 70px;
-        }
-    }
-}
-
-.ofin_tech {
-
-    display: flex;
-    justify-content: center;
-    color: white;
+.company_name{
+    color: $tade-yellow;
 }

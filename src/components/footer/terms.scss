@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
+@import '../../styles/colors.scss';
+.terms {
+    padding: 3rem 1rem;
+    background-color: #f9f9f9;
+    color: #333;
+  
+    .terms__container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      line-height: 1.6;
+  
+      .terms__content {
+        max-width: 800px;
+        margin: 0 auto;
+  
+        .terms__title {
+          color: #222;
+          margin-bottom: 1.25rem;
+          font-weight: bold;
+        }
+  
+        .terms__paragraph {
+          margin-bottom: 1.5rem;
+          font-size: 1rem;
+          color: #555;
+  
+          a {
+            color: #0077b6;
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        h3 {
+          margin-top: 2rem;
+          font-size: 1.1rem;
+          color: #333;
+          font-weight: bold;
+        }
+  
+        br {
+          margin: 0.5rem 0;
+        }
+      }
+    }
+  
+    // Responsive styles for mobile devices
+    @media screen and (max-width: 768px) {
+      .terms__container {
+        padding: 1.5rem;
+      }
+  
+      .terms__content {
+        max-width: 100%;
+      }
+    }
+  }
+  p{
+    text-align: justify;
+    font-family: 'Quicksand',sans-serif;
+  }

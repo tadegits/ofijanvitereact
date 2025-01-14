@@ -45,6 +45,7 @@ const Loged = () => {
         <Route path='/privacy' element={<Privacy/>} />
          <Route path='/about-us' element={<AboutUs/>}/>
          <Route path='/termsofservice' element={<TermsOfService/>}/>
+         <Route path='/terms-of-service' element={<TermsOfService/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
