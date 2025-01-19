@@ -11,7 +11,7 @@ import { getAnalytics } from "firebase/analytics";
 import Navbar from "./components/navbar/Navbar";
 import FixedBottomComponent from "./components/Add/FixedBottomComponent";
 import FloatingCommentButton from "./Globals/FloatingCommentButton";
-
+import PayConfirmation from './Globals/PayConfirmation'
 function App() {
   const [user, setUser] = useState("");
   const isLoggedIn = useSelector(selectUser);
@@ -41,6 +41,7 @@ function App() {
     <>
       {isLoggedIn ? (
         <>
+        <PayConfirmation/>
           <Navbar />
           <Loged />
           <FloatingCommentButton/>
