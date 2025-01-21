@@ -33,6 +33,7 @@ import TermsOfService from '../components/footer/TermsOfService.jsx';
 import ExamResults from '../components/ExitExam/ExamResult.jsx';
 import ImageGallery from '../components/Pdf/ImageGallery.jsx'
 import ExamPreview from '../components/ExamPriview/index.jsx';
+import ChapaPaymentVerifier from '../logedin/payment/ChapaPaymentVerifier.jsx'; 
 const Loged = () => {
   
   
@@ -43,6 +44,7 @@ const Loged = () => {
        {/* <Navbar /> */}
       <Routes>
         <Route path='/privacy' element={<Privacy/>} />
+        <Route path='/payment/:id/1' element={<ChapaPaymentVerifier/>}/>
          <Route path='/about-us' element={<AboutUs/>}/>
          <Route path='/termsofservice' element={<TermsOfService/>}/>
          <Route path='/terms-of-service' element={<TermsOfService/>}/>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ChapaPaymentVerifier = () => {
   const [verificationResult, setVerificationResult] = useState(null);
-  const randomString = "your_random_string"; // Replace with your actual random string
+  const randomString = "your_random_string"; 
   const url = `https://api.chapa.co/v1/transaction/verify/${randomString}`;
-  const token = "CHASECK_TEST-b9IkCyM7dXIrfxCkgdOb5GV4vGR8TTkJ"; // Replace with your actual token
+  const token = "CHASECK_TEST-b9IkCyM7dXIrfxCkgdOb5GV4vGR8TTkJ"; 
   const verifyPayment = () => {
     const headers = {
       'Authorization': `Bearer ${token}`

@@ -1,5 +1,6 @@
 import React from 'react'
 import './payConfirmation.scss';
+import Pay from '../logedin/payment/Pay';
 const PayConfirmation = () => {
   return (
     <div className='content'>
@@ -15,7 +16,8 @@ const PayConfirmation = () => {
         <p>Send the screeshot to 0905405875 on telegram or text the confirmation message</p>
        </div>
        <div className="help_center">
-        <div className="telegram">Telegram</div>
+        <Pay fname="million" examId="1" amount="123" email="simemillion@gmail.com" lname="sime" />
+        <div className="telegram">Write your feadback Telegram</div>
        </div>
         </div>
         

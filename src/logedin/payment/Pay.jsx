@@ -54,3 +54,4 @@ function Pay({ fname, examId, amount, email, lname}) {
   )
 }
 export default Pay
+ 
