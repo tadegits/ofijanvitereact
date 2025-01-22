@@ -1,38 +1,94 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
+import API_BASE_URL from "../../Globals/apiConfig";
+import useLoggedInUser from "../../Globals/useLoggedInUser";
 
-const ChapaPaymentVerifier = () => {
+const ChapaPaymentVerifier = ({ onStatusUpdate }) => {
+  const { id } = useParams();
+  const { userId } = useLoggedInUser();
+
   const [verificationResult, setVerificationResult] = useState(null);
-  const randomString = "your_random_string"; 
-  const url = `https://api.chapa.co/v1/transaction/verify/${randomString}`;
-  const token = "CHASECK_TEST-b9IkCyM7dXIrfxCkgdOb5GV4vGR8TTkJ"; 
-  const verifyPayment = () => {
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    };
-    fetch(url, { headers })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [updateError, setUpdateError] = useState(null);
+  const loggedInUser = localStorage.getItem("user");
+  useEffect(() => {
+    const verifyPayment = async () => {
+     
+      if (!userId || !id) {
+        setError("Invalid user or payment ID.");
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+      setVerificationResult(null);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/verify/${id}`);
+        if (!response.ok) {
+          throw new Error(`Verification failed: ${response.statusText}`);
         }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
+
+        const data = await response.json();
         setVerificationResult(data.status);
-      })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
+
+        if (data.status === "success") {
+          await updateUserStatus();
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+if(loggedInUser){
+verifyPayment();
+}
+    
+  }, [id, userId]);
+
+  const updateUserStatus = useCallback(async () => {
+    try {
+      const updateResponse = await fetch(`${API_BASE_URL}/update-payment-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, paymentStatus: "paid" }),
       });
-  };
+
+      if (!updateResponse.ok) {
+        throw new Error("Failed to update payment status.");
+      }
+
+      if (onStatusUpdate) {
+        onStatusUpdate(); // Notify parent component of status update
+      }
+    } catch (error) {
+      setUpdateError(error.message);
+    }
+  }, [userId, onStatusUpdate]);
+
   return (
-    <div>
-      <button onClick={verifyPayment}>Verify Payment</button>
+    <div  className="verify" style={{ padding: "20px", textAlign: "center" }}>
+      
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+
       {verificationResult && (
-        <p>
-          {verificationResult === "success" ? "Payment verified successfully" : "Payment verification failed"}
-        </p>
+        <h2>
+          {verificationResult === "success"
+            ? "Payment verified successfully 🎉   Now click the Logo to navigate"
+            : "Payment verification failed 😞"}
+        </h2>
+      )}
+
+      {updateError && (
+        <p style={{ color: "red" }}>Failed to update user status: {updateError}</p>
       )}
     </div>
   );
 };
+
 export default ChapaPaymentVerifier;
+

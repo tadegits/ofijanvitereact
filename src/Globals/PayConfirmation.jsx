@@ -1,11 +1,13 @@
 import React from 'react'
 import './payConfirmation.scss';
 import Pay from '../logedin/payment/Pay';
+import useLoggedInUser from './useLoggedInUser';
 const PayConfirmation = () => {
+  const {userId} = useLoggedInUser();
   return (
     <div className='content'>
         <div className="content_holder">
-       <h4>Register as a Member to keep browsing ofijan</h4> 
+       <h4>Register as a Member to keep{userId} browsing ofijan</h4> 
        <div className="payment_section">
         <h4><u>Membership Fee 100 ETB</u></h4>
         <h2>Payment Steps</h2>

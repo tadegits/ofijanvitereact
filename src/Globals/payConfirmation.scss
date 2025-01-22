@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.637);
+    background-color: rgba(0, 0, 0, 0);
     height: 100vh;
     position: fixed;
     border-radius: 10px;
@@ -15,15 +15,15 @@
         display: flex;
         height: 96vh;
    
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0);
        
         justify-content: center;
         align-items: center;
         flex-direction: column;
       padding: 20px;
         .payment_section{
-            background-color: white;
-border: solid 1px gray;
+            background-color: rgba(255, 255, 255, 0);
+
             height: 50vh;
             width: 70%;
             padding: 20px;
