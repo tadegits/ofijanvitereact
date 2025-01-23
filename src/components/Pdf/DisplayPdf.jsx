@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Row, Col } from 'antd';
+import { Row, Col, Layout, Card } from 'antd';
 import PropTypes from 'prop-types';
 import API_BASE_URL from '../../Globals/apiConfig';
 import Wrapper from '../wrapper/Wrapper';
@@ -9,7 +9,8 @@ import ImageGallery from './ImageGallery';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './DisplayPdf.scss';
-
+import BlogList from '../Blog/BlogList';
+import PlaceholderImage from '../../assets/pl.jpeg';
 const DisplayPdf = () => {
   const location = useLocation();
   const depts = location.state?.data;  // Ensure this is the department data coming from the location state
@@ -20,7 +21,21 @@ const DisplayPdf = () => {
   const [examsData, setExams] = useState([]);
   const [examsError, setExamsError] = useState('');
   const [examLoading, setExamLoading] = useState(false);
-  // Define department data
+  const [blogs, setBlogData] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [postUri, setPostUri] = useState('');
+  const { Content } = Layout;
+
+  useEffect(() => {
+    setPostUri(`${API_BASE_URL}/last-three-blogs`);
+    axios.get(postUri)
+      .then(response => {
+        setBlogData(response.data.blogs);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, [postUri]);
   const departmentData = [
     { "title": "Accounting", "id": 50 },
     { "title": "Animal-Science", "id": 28 },
@@ -94,7 +109,34 @@ const DisplayPdf = () => {
     fetchImageUrls();
   }, [id]);
 
-
+  const BlogCard = ({ blog }) => (
+    <Col xs={24} sm={12} md={24} key={blog.id}>
+      <Link to={`/blog/${blog.categories}/${blog.title}/full`}>
+        <Card hoverable className="blog-card">
+          <img
+            src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
+            alt={blog.title}
+            className="blog-image"
+            loading="lazy"
+          />
+          <Card.Meta
+            description={
+              <div className="blog-content">
+                <h6 className="blog-title">{blog.title}</h6>
+                <p className="blog-category">Published in: {blog.categories}</p>
+              </div>
+            }
+          />
+          <Link
+            to={`/blog/${blog.categories}/${blog.title}/full`}
+            className="read-more-link"
+          >
+            Open
+          </Link>
+        </Card>
+      </Link>
+    </Col>
+  );
   return (
     <section className='pdfs'>
       <Helmet>
@@ -138,7 +180,7 @@ const DisplayPdf = () => {
                 "name": "Online",
                 "url": `${API_BASE_URL}/exit-exam/${depts?.title}/${id}`
               },
-              "courseWorkload": "Varies depending on individual needs", 
+              "courseWorkload": "Varies depending on individual needs",
             }
           })}
         </script>
@@ -166,21 +208,17 @@ const DisplayPdf = () => {
             </Col>
 
             <Col xs={24} sm={24} md={6} lg={8} xl={8}>
-              <div className="ad-banner-top">
-                <ins className="adsbygoogle"
-                  style={{ display: 'block' }}
-                  data-ad-client="ca-pub-8449765590756444"
-                  data-ad-slot="8261485661"
-                  data-ad-format="auto responsive"
-                  data-full-width-responsive="true"></ins>
-              </div>
-              <div className="ad-banner-bottom">
-                <ins className="adsbygoogle"
-                  style={{ display: 'block' }}
-                  data-ad-format="autorelaxed"
-                  data-ad-client="ca-pub-8449765590756444"
-                  data-ad-slot="6959146314"></ins>
-              </div>
+              <Layout className="blog-layout">
+                <Content>
+                  <Card bordered={false}>
+
+                      {blogs.map((blog) => (
+                        <BlogCard blog={blog} />
+                      ))}
+                
+                  </Card>
+                </Content>
+              </Layout>
             </Col>
           </Row>
         </div>

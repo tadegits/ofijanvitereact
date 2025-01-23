@@ -8,7 +8,7 @@ const ImageSharing = ({ id, currentImageIndex, currentImageUrl }) => {
   const shareableUrl = `${baseUrl}/image-gallery/${id}?imageIndex=${currentImageIndex}`;
   return (
     <div>
-      <h6>Share this image</h6>
+      <h6>download</h6>
       <div  className="share_social">
         <FacebookShareButton url={shareableUrl}>
           <FacebookIcon size={32} round />
