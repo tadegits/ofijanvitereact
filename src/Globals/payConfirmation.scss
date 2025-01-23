@@ -1,35 +1,93 @@
 @import '../styles/colors.scss';
-.content
-{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0);
-    height: 100vh;
-    position: fixed;
-    border-radius: 10px;
-    z-index: 1000;
-    .content_holder{
-        width: 70%;
-        justify-content: center;
-        display: flex;
-        height: 96vh;
-   
-        background-color: rgba(255, 255, 255, 0);
-       
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      padding: 20px;
-        .payment_section{
-            background-color: rgba(255, 255, 255, 0);
 
-            height: 50vh;
-            width: 70%;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
+.payment-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $background-gray;
+
+  .payment-container {
+    background-color: $white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .payment-header {
+      text-align: center;
+      h2 {
+        color: $primary-color;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+      p {
+        color: $text-muted;
+        font-size: 0.95rem;
+      }
     }
-    
+
+    .payment-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .membership-fee {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border: 1px solid $border-gray;
+        border-radius: 8px;
+        background-color: $light-primary;
+
+        h4 {
+          color: $text-dark;
+        }
+
+        p {
+          font-weight: bold;
+          color: $primary-color;
+        }
+      }
+
+      .payment-method {
+        h4 {
+          margin-bottom: 10px;
+          color: $text-dark;
+        }
+      }
+    }
+
+    .payment-footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: $text-muted;
+
+      a {
+        
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    .payment-container {
+      width: 95%;
+      padding: 15px;
+
+      .membership-fee {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  }
 }

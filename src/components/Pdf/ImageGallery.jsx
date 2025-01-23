@@ -10,7 +10,8 @@ import ImagePagination from './ImagePagination';
 import CommentsSection from './CommentsSection';
 import SocialShare from './ImageSharing';
 import GeneralKnowledge from './GeneralKnowledge';
-
+import { selectUser } from '../../features/userSlice';
+import { useSelector } from "react-redux";
 const ImageGallery = ({ id, imageIndex }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
@@ -21,7 +22,10 @@ const ImageGallery = ({ id, imageIndex }) => {
   const [userLName, setUserLName] = useState(" ");
   const navigate = useNavigate();
   const [isLoggedin, setIsLoggedin] = useState(false);
-
+  const isLoggedIn = useSelector(selectUser);
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  const [user, setUser] = useState("");
+  const [isEthiopianUser, setIsEthiopianUser] = useState(false);
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
     if (loggedUser !== null) {
@@ -34,6 +38,53 @@ const ImageGallery = ({ id, imageIndex }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const roleUser = JSON.parse(loggedInUser);
+      setUser(roleUser);
+  
+      const checkPaymentStatus = async () => {
+        try {
+          const response = await fetch(`${API_BASE_URL}/check-payment-status`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: roleUser.user.id }),
+          });
+  
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+  
+          const paymentData = await response.json();
+          setPaymentStatus(paymentData.paymentStatus);
+        } catch (error) {
+          console.error("Failed to verify payment:", error.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      checkPaymentStatus();
+  
+    
+      if (paymentStatus !== "paid") {
+  
+        const timeoutId = setTimeout(() => {
+          checkPaymentStatus(); 
+        }, 60000); 
+
+        return () => clearTimeout(timeoutId);
+      }
+    
+    }
+  }, []);
+  
+  if (paymentStatus === "not_paid") {
+    navigate("/member_payment");
+  }
   useEffect(() => {
     const fetchImageUrls = async () => {
       try {
@@ -91,7 +142,7 @@ const ImageGallery = ({ id, imageIndex }) => {
       <Helmet>
         <title>{id} | 2016 Exit Exam Question</title>
       </Helmet>
-    
+
       <ImageViewer
         imageUrl={imageUrls[currentImageIndex]}
         altText={`Image ${currentImageIndex + 1}`}

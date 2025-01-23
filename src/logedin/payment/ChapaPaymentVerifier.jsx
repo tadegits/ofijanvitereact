@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../Globals/apiConfig";
 import useLoggedInUser from "../../Globals/useLoggedInUser";
 
 const ChapaPaymentVerifier = ({ onStatusUpdate }) => {
   const { id } = useParams();
   const { userId } = useLoggedInUser();
-
+  const navigate = useNavigate();
   const [verificationResult, setVerificationResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [updateError, setUpdateError] = useState(null);
-  const loggedInUser = localStorage.getItem("user");
+
   useEffect(() => {
     const verifyPayment = async () => {
-     
+
       if (!userId || !id) {
         setError("Invalid user or payment ID.");
         return;
@@ -42,10 +42,8 @@ const ChapaPaymentVerifier = ({ onStatusUpdate }) => {
         setLoading(false);
       }
     };
-if(loggedInUser){
-verifyPayment();
-}
-    
+
+    verifyPayment();
   }, [id, userId]);
 
   const updateUserStatus = useCallback(async () => {
@@ -69,8 +67,8 @@ verifyPayment();
   }, [userId, onStatusUpdate]);
 
   return (
-    <div  className="verify" style={{ padding: "20px", textAlign: "center" }}>
-      
+    <div className="verify" style={{ padding: "20px", textAlign: "center" }}>
+
 
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
