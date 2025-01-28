@@ -35,6 +35,7 @@ import ImageGallery from '../components/Pdf/ImageGallery.jsx'
 import ExamPreview from '../components/ExamPriview/index.jsx';
 import ChapaPaymentVerifier from '../logedin/payment/ChapaPaymentVerifier.jsx'; 
 import PayConfirmation from '../Globals/PayConfirmation.jsx';
+import ManualPayment from '../Globals/ManualPayment.jsx';
 const Loged = () => {
   
   
@@ -46,6 +47,7 @@ const Loged = () => {
       <Routes>
         <Route path='/privacy' element={<Privacy/>} />
         <Route path='/member_payment' element={<PayConfirmation/>}/>
+        <Route path='/wired_member_payment' element={<ManualPayment/>}/>
         <Route path='/payment/:id/1' element={<ChapaPaymentVerifier/>}/>
          <Route path='/about-us' element={<AboutUs/>}/>
          <Route path='/termsofservice' element={<TermsOfService/>}/>
