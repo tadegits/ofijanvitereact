@@ -25,7 +25,7 @@ const ChapaPaymentVerifier = ({ onStatusUpdate }) => {
       setVerificationResult(null);
 
       try {
-        const response = await fetch(`${API_BASE_URL}/verify/${id}`);
+        const response = await fetch(`${API_BASE_URL}/verifyyyyyyyyyyyyyyyyyyyyyyyyyyy/${id}`);
         if (!response.ok) {
           throw new Error(`Verification failed: ${response.statusText}`);
         }
@@ -59,7 +59,7 @@ const ChapaPaymentVerifier = ({ onStatusUpdate }) => {
       }
 
       if (onStatusUpdate) {
-        onStatusUpdate(); // Notify parent component of status update
+        onStatusUpdate();
       }
     } catch (error) {
       setUpdateError(error.message);

@@ -112,7 +112,7 @@ const DisplayPdf = () => {
   const BlogCard = ({ blog }) => (
     <Col xs={24} sm={12} md={24} key={blog.id}>
       <Link to={`/blog/${blog.categories}/${blog.title}/full`}>
-        <Card hoverable className="blog-card">
+        {/* <Card hoverable className="blog-card">
           <img
             src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
             alt={blog.title}
@@ -133,7 +133,7 @@ const DisplayPdf = () => {
           >
             Open
           </Link>
-        </Card>
+        </Card> */}
       </Link>
     </Col>
   );

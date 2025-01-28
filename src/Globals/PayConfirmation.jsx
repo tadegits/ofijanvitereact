@@ -46,8 +46,6 @@ const navigate = useNavigate();
     }
     }, []);
 
-console.log('status', paymentStatus);
-
   return (
     <div className="payment-page">
       <div className="payment-container">
@@ -65,11 +63,11 @@ console.log('status', paymentStatus);
           <div className="payment-method">
 
             <Pay
-              fname="Million"
-              lname="Sime"
+              fname={"ms"}
+              lname="d"
               examId="1"
               amount="100"
-              email="simemillion@gmail.com"
+              email="user@ofijan.com"
             />
           </div>
           
@@ -77,7 +75,7 @@ console.log('status', paymentStatus);
         <footer className="payment-footer">
           <p>
             Have questions? Contact our help center or write your feedback on{' '}
-            <a href="https://t.me/ofijanexams">Telegram</a>.
+            <a href="https://t.me/ofijanhelp">Telegram</a>.
             <p>OFIJAN EXAMS</p>
           </p>
         </footer>

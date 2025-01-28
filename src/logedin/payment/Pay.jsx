@@ -11,7 +11,7 @@ function Pay({ fname, examId, amount, email, lname}) {
   const [title, setTitle] = useState(fname.title);
   const [return_url, setReturnUrl] = useState('');
   const [soldItemId, setSoldItemId] = useState('');
-  const [authorization_token, setAuthorisation] = useState('CHASECK_TEST-b9IkCyM7dXIrfxCkgdOb5GV4vGR8TTkJ');
+  const [authorization_token, setAuthorisation] = useState('CHASECK-FYwlnF9lJtD5BrBWuTl1RUZQtFDL0R0C');
   const generateRandomString = () => {
     const length = 20;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -27,7 +27,7 @@ function Pay({ fname, examId, amount, email, lname}) {
     setRandomString(newRandomString);
     setTitle(fname.title)
     setSoldItemId(examId)
-    setReturnUrl(`http://localhost:3000/payment/${newRandomString}/${examId}`);
+    setReturnUrl(`https://ofijan.com/payment/${newRandomString}/${examId}`);
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ function Pay({ fname, examId, amount, email, lname}) {
   return (
     <div>
       <form method="POST" action="https://api.chapa.co/v1/hosted/pay" >
-        <input type="hidden" name="public_key" value="CHAPUBK_TEST-awyvtaEfHkG3crEKM4uLlCwX2vP7ytnK" />
+        <input type="hidden" name="public_key" value="CHAPUBK-n0YmCSg1VHRgLpG7QITKQkFRMgtEdfZU" />
         <input type="hidden" name="tx_ref" value={randomString} />
         <input type="hidden" name="amount" value={amount} />
         <input type="hidden" name="currency" value="ETB" />
