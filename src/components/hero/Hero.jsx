@@ -146,8 +146,8 @@ const Hero = () => {
       <Wrapper className="hero__container">
         <div className="hero__left">
           <div className="hero__text-container">
-            <h1>Exam Hub For Ethiopian Students</h1>
-            <h2>Get ready for your exit exam with OFIJAN.</h2>
+            <h1>Welcome, Ethiopian Students</h1>
+            <h2>Learn, study and Test your limit with OFIJAN.</h2>
             <p>
               We offer over <b><u>10,000</u><sup>+</sup></b> exit exam questions to help you excel in your studies and prepare effectively for your future. Join thousands of successful students who trust Ofijan!
             </p>
@@ -159,19 +159,20 @@ const Hero = () => {
               <Spin size="large" />
             </div>
           ) : (
-            <div className="hero__btn-container">
+            <div className="">
               
               <Link to="/login">
-                <Button type="primary" className="btn_hero" icon={<ArrowDownOutlined />}>
+                <div className="button-primary">
                  Get Started
-                </Button>
+                </div>
               </Link>
             </div>
           )}
         </div>
 
         <div className="hero__right">
-          <Lottie animationData={anim} alt="Animated exam preparation" className="animation" />
+          <img src='/olml.png' className="animation" ></img>
+          {/* <Lottie animationData={anim} alt="Animated exam preparation" className="animation" /> */}
         </div>
       </Wrapper>
 

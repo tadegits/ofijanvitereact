@@ -80,7 +80,7 @@ const AboutUs = () => {
             <div className="technology-category">
               <Title level={3}>Front End</Title>
               <List
-                dataSource={['HTML, CSS, SaSS, TAilwind and Botstrap', 'React JS', 'Next JS']}
+                dataSource={['HTML, CSS, SaSS, Tailwind CSS and Bootstrap', 'React JS', 'Next JS']}
                 renderItem={item => (
                   <List.Item>
                     <p>{item}</p>
