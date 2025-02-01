@@ -166,6 +166,7 @@ const TestMePlate = () => {
             setSelectedQuestionIndex((prevIndex) => prevIndex + 1);
             setSelectedOptionIndex(null);
         }
+        console.log('go forth',  selectedOption ? selectedOption.correct === '1' : false )
     };
     const handlePreviousClick = () => {
         if (selectedQuestionIndex > 0) {
@@ -213,7 +214,7 @@ const TestMePlate = () => {
                 questionId: question.id,
                 optionId: selectedOption ? selectedOption.id : null,
                 examId: question.exam_id,
-                correct: selectedOption ? selectedOption.correct === '1' : false
+                correct: selectedOption ? selectedOption.correct === 1 : false
             };
         });
         axios.post(`${API_BASE_URL}/selected_answers`, examData)

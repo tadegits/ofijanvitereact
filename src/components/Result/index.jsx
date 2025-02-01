@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, message } from 'antd';
+import { Table } from 'antd';
 import API_BASE_URL from '../../Globals/apiConfig';
 import axios from 'axios';
 import Wrapper from '../wrapper/Wrapper';
@@ -16,13 +16,11 @@ const Index = () => {
             const userLogged = JSON.parse(loggedUser);
             fetchResultsForUser(userLogged.user.id);
         }
-
     }, []);
 
     const fetchResultsForUser = (id) => {
         setLoading(true);
-        const userId = id;
-        axios.post(`${API_BASE_URL}/fetch-correct-answers`, { user_id: userId })
+        axios.post(`${API_BASE_URL}/fetch-exams-taken-by-students`, { user_id: id })
             .then(response => {
                 if (response.data.message) {
                     setErrorMessage(response.data.message);
@@ -35,7 +33,6 @@ const Index = () => {
             .catch(error => {
                 console.error('Error:', error);
                 setLoading(false);
-                // message.error('An error occurred while fetching results');
             });
     };
 
@@ -46,9 +43,9 @@ const Index = () => {
             key: 'name',
         },
         {
-            title: 'Total correct answer',
-            dataIndex: 'correct_count',
-            key: 'correct_count',
+            title: 'Result (Correct / Attempted)',
+            key: 'result',
+            render: (record) => `${record.correct_count} / ${record.attempted_count}`,
         }
     ];
 
@@ -60,9 +57,15 @@ const Index = () => {
                     {errorMessage && <p>{errorMessage}</p>}
                     {!errorMessage && (
                         loading ? (
-                            <p>Loading...</p>
+                            <div className="loading_container">
+                                <div className="loading">
+
+                                </div>
+                                <p>Loading...</p>
+                            </div>
+                            
                         ) : (
-                            <Table dataSource={results} columns={columns} pagination={false} />
+                            <Table dataSource={results} columns={columns} pagination={false} rowKey="id" />
                         )
                     )}
                 </div>
