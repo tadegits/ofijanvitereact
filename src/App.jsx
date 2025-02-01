@@ -18,7 +18,7 @@ function App() {
   const [user, setUser] = useState("");
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [loading, setLoading] = useState(true);
-  const isLoggedIn = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectUser); 
   const navigate = useNavigate();
 
   useEffect(() => {
