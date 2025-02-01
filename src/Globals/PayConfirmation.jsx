@@ -64,7 +64,30 @@ const PayConfirmation = () => {
   const handleRetry = () => {
     window.location.reload();
   };
+  const handlePostClick = async () => {
+   
+    setLoading(true);
+    try {
+      const specialText = `Order Now 👉🏽 https://t.me/dantelpm_bot/Dantel_PM?startapp=itemserial-${product.id}`;
+      const caption = encodeURIComponent(
+        `${"product.productName"}\n${specialText}\nPrice: ${"product.price"}\nCategory: ${product.category}`
+      );
+      const photoUrl = encodeURIComponent(product.productPicture);
+      const url = `https://api.telegram.org/bot7400786506:AAGMACSYfm047YyBK3ci2IYOGy5VIPs7j9s/sendPhoto?chat_id=${selectedUsername}&photo=${photoUrl}&caption=${caption}`;
 
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to post to Telegram");
+      }
+      toast.success("Product posted to Telegram!");
+    } catch (error) {
+      console.error("Error posting to Telegram:", error);
+      toast.error("Failed to post to Telegram.");
+    } finally {
+      setLoading(false);
+      onClose();
+    }
+  };
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -102,7 +125,12 @@ const PayConfirmation = () => {
               amount="100"
               email={user?.user?.email || 'simemillio@gmail.com'}
             />
+            or
+            <hr/>
+            
+           
           </div>
+          
         </main>
         <footer className="payment-footer">
           <p>

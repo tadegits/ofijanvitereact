@@ -109,34 +109,34 @@ const DisplayPdf = () => {
     fetchImageUrls();
   }, [id]);
 
-  // const BlogCard = ({ blog }) => (
-  //   <Col xs={24} sm={12} md={24} key={blog.id}>
-  //     <Link to={`/blog/${blog.categories}/${blog.title}/full`}>
-  //       <Card hoverable className="blog-card">
-  //         <img
-  //           src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
-  //           alt={blog.title}
-  //           className="blog-image"
-  //           loading="lazy"
-  //         />
-  //         <Card.Meta
-  //           description={
-  //             <div className="blog-content">
-  //               <h6 className="blog-title">{blog.title}</h6>
-  //               <p className="blog-category">Published in: {blog.categories}</p>
-  //             </div>
-  //           }
-  //         />
-  //         <Link
-  //           to={`/blog/${blog.categories}/${blog.title}/full`}
-  //           className="read-more-link"
-  //         >
-  //           Open
-  //         </Link>
-  //       </Card>
-  //     </Link>
-  //   </Col>
-  // );
+  const BlogCard = ({ blog }) => (
+    <Col xs={24} sm={12} md={24} key={blog.id}>
+      <Link to={`/blog/${blog.categories}/${blog.title}/full`}>
+        <Card hoverable className="blog-card">
+          <img
+            src={blog.image ? `https://server.ofijan.com/storage/${blog.image}` : PlaceholderImage}
+            alt={blog.title}
+            className="blog-image"
+            loading="lazy"
+          />
+          <Card.Meta
+            description={
+              <div className="blog-content">
+                <h6 className="blog-title">{blog.title}</h6>
+                <p className="blog-category">Published in: {blog.categories}</p>
+              </div>
+            }
+          />
+          <Link
+            to={`/blog/${blog.categories}/${blog.title}/full`}
+            className="read-more-link"
+          >
+            Open
+          </Link>
+        </Card>
+      </Link>
+    </Col>
+  );
   return (
     <section className='pdfs'>
       <Helmet>
@@ -191,7 +191,7 @@ const DisplayPdf = () => {
           <Row gutter={24}>
             <Col xs={24} sm={24} md={6} lg={4} xl={4}>
               <div className="get_answers"> {examsData ? <p>Other resources for {id} department</p> : ''}
-                {examsdata && examsData.map((exam) => (
+                {examsData && examsData.map((exam) => (
                   <Link to={`/exam/details/${exam.id}`} key={exam.id} className="answer-link">
                     <div key={exam.id}>
                       <h2>

@@ -101,10 +101,9 @@ const ManualPayment = () => {
                 Trasfer 100 Birr  Tele Birr to 0905405875
               </li>
               <li>
-                USe the followig paymet optios
+                Use the followig paymet optios
               </li>
             </ul>
-            <p>Up on Completion upload the screen Shoot or Send it to @OfijanExamPreparation Telegram </p>
             <button
               className={`primary-button ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
               onClick={handlePostClick}
