@@ -12,39 +12,65 @@ const ManualPayment = () => {
   const [user, setUser] = useState(null);
   const [uploadedScreenshot, setUploadedScreenshot] = useState(null);
   const [loadingUpload, setLoadingUpload] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      const parsedUser = JSON.parse(loggedInUser);
-      setUser(parsedUser);
+      const roleUser = JSON.parse(loggedInUser);
+      setUser(roleUser);
 
-      // Fetch payment status
-      checkPaymentStatus(parsedUser.user.id);
+      const checkPaymentStatus = async () => {
+        try {
+          setIsLoading(true);
+          setError(''); 
+
+          const response = await fetch(`${API_BASE_URL}/check-payment-status`, {
+            method: 'POST',  
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: roleUser.user.id }), 
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          const paymentData = await response.json();
+          console.log("API Response:", paymentData);
+
+          if (!paymentData || paymentData.paymentStatus == null) {
+            throw new Error("Invalid payment data received from the server.");
+          }
+
+          setPaymentStatus(paymentData.paymentStatus);
+          console.log("Setting paymentStatus to:", paymentData.paymentStatus);
+
+        } catch (error) {
+          console.error('Failed to verify payment:', error.message);
+          setError('Failed to verify payment. Please try again later.');
+        } finally {
+          setIsLoading(false);
+          setLoading2(false);
+        }
+      };
+
+      checkPaymentStatus();
+    } else {
+      setLoading2(false);
+      setError('No user data found. Please log in again.');
+      navigate('/login');
     }
-  }, []);
-
-  const checkPaymentStatus = async (userId) => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${API_BASE_URL}/check-payment-status`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId }),
-      });
-
-      if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
-
-      const data = await response.json();
-      setPaymentStatus(data.paymentStatus);
-    } catch (error) {
-      console.error('Failed to verify payment:', error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  }, [navigate]);
+if(paymentStatus === 'paid'){
+  navigate('/');
+}
+  console.log("paymentStatus", paymentStatus);
   const handleUploadChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -56,24 +82,24 @@ const ManualPayment = () => {
       toast.error('Please upload a screenshot first.');
       return;
     }
-  
+
     setLoadingUpload(true);
-  
+
     try {
       const formData = new FormData();
       formData.append('photo', uploadedScreenshot);
-      formData.append('chat_id', user.user.id);
-      formData.append('caption', `New payment submission by user: ${user.user.id}\nPrice: 100 ETB\nCategory: Model Exam`);
-  
+      formData.append('chat_id', '@ephronplus');
+      formData.append('caption', `New payment submission by user: ${user.user.id}\nPrice: 100 ETB\nCategory: ${user.user.phone}`);
+
       const telegramUrl = `https://api.telegram.org/bot7400786506:AAGMACSYfm047YyBK3ci2IYOGy5VIPs7j9s/sendPhoto`;
-  
+
       const telegramResponse = await fetch(telegramUrl, {
         method: 'POST',
         body: formData,
       });
-  
+
       if (!telegramResponse.ok) throw new Error('Failed to send screenshot to Telegram');
-  
+
       toast.success('Your screenshot has been submitted successfully.');
     } catch (error) {
       console.error('Error posting screenshot:', error);
@@ -82,8 +108,8 @@ const ManualPayment = () => {
       setLoadingUpload(false);
     }
   };
-  
- 
+
+
 
   return (
     <div className="payment-page">
@@ -95,7 +121,7 @@ const ManualPayment = () => {
 
         <main className="payment-details">
           <div className="membership-fee">
-            <h4>Membership Fe</h4>
+            <h4>Use Manual Payment</h4>
             <p>100 ETB</p>
           </div>
 
@@ -106,10 +132,10 @@ const ManualPayment = () => {
               <li>Upload your payment confirmation below</li>
             </ul>
 
-            <input type="file" accept="image/*" onChange={handleUploadChange} disabled={loadingUpload} />
-
+            <input className='bale_tla_card' type="file" accept="image/*" onChange={handleUploadChange} disabled={loadingUpload} />
+<p></p>
             <button
-              className={`primary-button ${loadingUpload ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`bale_tla_card ${loadingUpload ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={handlePostClick}
               disabled={loadingUpload}
             >

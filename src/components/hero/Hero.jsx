@@ -17,7 +17,7 @@ const Hero = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const url = `${API_BASE_URL}/departments`;
   const [loading, setLoading] = useState(true);
-
+const [loggedInUser2 , setLoggedInUser2] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,7 +32,10 @@ const Hero = () => {
     };
 
     fetchData();
-
+    const loggedInUser = localStorage.getItem("user");
+    if(loggedInUser){
+      setLoggedInUser2(true);
+    }
     const loadingTimeout = setTimeout(() => {
       setLoading(false);  // Stop loading after 10 seconds, even if data hasn't fully loaded
     }, 10000);
@@ -126,6 +129,7 @@ const Hero = () => {
   }
   
 
+
   return (
     <section className="hero">
       <Helmet>
@@ -160,12 +164,12 @@ const Hero = () => {
             </div>
           ) : (
             <div className="">
-              
+              {!loggedInUser2 ? 
               <Link to="/login">
                 <div className="button-primary">
                  Get Started
                 </div>
-              </Link>
+              </Link> : ''}
             </div>
           )}
         </div>

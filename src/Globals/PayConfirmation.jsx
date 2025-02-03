@@ -4,6 +4,7 @@ import './payConfirmation.scss';
 import Pay from '../logedin/payment/Pay';
 import useLoggedInUser from './useLoggedInUser';
 import API_BASE_URL from './apiConfig';
+import ManualPayment from './ManualPayment';
 
 const PayConfirmation = () => {
   const { userId } = useLoggedInUser();
@@ -13,7 +14,8 @@ const PayConfirmation = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
-
+  const [loading2, setLoading2] = useState(false);
+  const [payError, setPayError] = useState('');
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
@@ -23,14 +25,14 @@ const PayConfirmation = () => {
       const checkPaymentStatus = async () => {
         try {
           setIsLoading(true);
-          setError(''); // Clear any previous errors
-          
+          setError(''); 
+
           const response = await fetch(`${API_BASE_URL}/check-payment-status`, {
-            method: 'POST',
+            method: 'POST',  
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userId: roleUser.user.id }),
+            body: JSON.stringify({ userId: roleUser.user.id }), 
           });
 
           if (!response.ok) {
@@ -38,60 +40,44 @@ const PayConfirmation = () => {
           }
 
           const paymentData = await response.json();
-          if (!paymentData || !paymentData.paymentStatus) {
-            throw new Error('Invalid payment data received from the server.');
+          console.log("API Response:", paymentData);
+
+          if (!paymentData || paymentData.paymentStatus == null) {
+            throw new Error("Invalid payment data received from the server.");
           }
 
           setPaymentStatus(paymentData.paymentStatus);
-          console.log('Payment Status:', paymentData);
+          console.log("Setting paymentStatus to:", paymentData.paymentStatus);
+
         } catch (error) {
           console.error('Failed to verify payment:', error.message);
           setError('Failed to verify payment. Please try again later.');
         } finally {
           setIsLoading(false);
-          setLoading(false);
+          setLoading2(false);
         }
       };
 
       checkPaymentStatus();
     } else {
-      setLoading(false);
+      setLoading2(false);
       setError('No user data found. Please log in again.');
-      navigate('/login'); // Redirect to login if user data is missing
+      navigate('/login');
     }
   }, [navigate]);
+if(paymentStatus === 'paid'){
+  navigate('/');
+}
 
   const handleRetry = () => {
     window.location.reload();
   };
-  const handlePostClick = async () => {
-   
-    setLoading(true);
-    try {
-      const specialText = `Order Now 👉🏽 https://t.me/dantelpm_bot/Dantel_PM?startapp=itemserial-${product.id}`;
-      const caption = encodeURIComponent(
-        `${"product.productName"}\n${specialText}\nPrice: ${"product.price"}\nCategory: ${product.category}`
-      );
-      const photoUrl = encodeURIComponent(product.productPicture);
-      const url = `https://api.telegram.org/bot7400786506:AAGMACSYfm047YyBK3ci2IYOGy5VIPs7j9s/sendPhoto?chat_id=${selectedUsername}&photo=${photoUrl}&caption=${caption}`;
 
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Failed to post to Telegram");
-      }
-      toast.success("Product posted to Telegram!");
-    } catch (error) {
-      console.error("Error posting to Telegram:", error);
-      toast.error("Failed to post to Telegram.");
-    } finally {
-      setLoading(false);
-      onClose();
-    }
-  };
-  if (loading) {
-    return <div className="loading">Loading...</div>;
+  if (loading2) {
+    return <div className=".loading_container">
+      <div className="loading">Loading...</div>
+    </div>;
   }
-
   if (error) {
     return (
       <div className="error-container">
@@ -119,18 +105,21 @@ const PayConfirmation = () => {
           </div>
           <div className="payment-method">
             <Pay
-              fname={user?.user?.fname || 'u'}
-              lname={user?.user?.lname || 'u'}
+              fname={user?.user?.fname || 'User'}
+              lname={user?.user?.lname || 'User'}
               examId={user?.user?.id || '1'}
               amount="100"
               email={user?.user?.email || 'simemillio@gmail.com'}
             />
-            or
-            <hr/>
-            
-           
+
+            <hr />
+            <p></p><p></p><p></p>
+            <a className='bale_tla_card' href="/wired_member_payment" target="_blank" rel="noopener noreferrer">
+              Alternatively, please use the Manual Payment Transfer option.
+            </a>.
+
           </div>
-          
+
         </main>
         <footer className="payment-footer">
           <p>
