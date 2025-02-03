@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import './plate.scss';
-import './studyplate.scss'
+import './studyplate.scss';
 import './confirmationModal.scss';
 import { useNavigate } from 'react-router-dom';
 
-const StudyNavButtons = ({ handlePreviousClick, handleFinishAttempt, handleNextClick, selectedQuestionIndex, length }) => {
+const StudyNavButtons = ({ 
+  handlePreviousClick, 
+  handleFinishAttempt, 
+  isLoggedIn, 
+  handleNextClick, 
+  selectedQuestionIndex, 
+  length,
+  handleSweetAlert 
+}) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showSpinningModal, setShowSpinningModal] = useState(false);
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleFinishAttemptConfirmation = () => {
     setShowConfirmationModal(true);
   };
@@ -17,9 +26,7 @@ const navigate = useNavigate();
   };
 
   const handleFinishAttemptConfirmed = () => {
-
     setShowConfirmationModal(false);
-    
     setShowSpinningModal(true);
 
     handleFinishAttempt();
@@ -31,19 +38,26 @@ const navigate = useNavigate();
 
   return (
     <div className="navigation_buttons">
+      {/* Previous Button */}
       <button onClick={handlePreviousClick} disabled={selectedQuestionIndex === 0}>
         Previous
       </button>
-      {selectedQuestionIndex !== length ? (
-        <button onClick={handleNextClick} disabled={selectedQuestionIndex === length}>
-          Next
-        </button>
+
+      {/* Next Button or SweetAlert Trigger */}
+      {selectedQuestionIndex < length - 1 ? (
+        !isLoggedIn && selectedQuestionIndex > 4 ? (
+          <button onClick={() => handleSweetAlert(5)} >Next</button>
+        ) : (
+          <button onClick={handleNextClick}>Next</button>
+        )
       ) : (
-        <button onClick={handleFinishAttemptConfirmation} disabled={selectedQuestionIndex !== length}>
+        // Finish Attempt Button at the Last Question
+        <button onClick={handleFinishAttemptConfirmation}>
           Finish Attempt
         </button>
       )}
-      
+
+      {/* Confirmation Modal */}
       {showConfirmationModal && (
         <div className="confirmation_modal">
           <p>Are you sure you want to submit?</p>
@@ -52,6 +66,7 @@ const navigate = useNavigate();
         </div>
       )}
 
+      {/* Spinning Modal (Loading) */}
       {showSpinningModal && (
         <div className="spinning_modal">
           <div className="spinner"></div>

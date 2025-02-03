@@ -164,12 +164,13 @@ const [loggedInUser2 , setLoggedInUser2] = useState(false);
             </div>
           ) : (
             <div className="">
-              {!loggedInUser2 ? 
-              <Link to="/login">
+              {/* {!loggedInUser2 ?  */}
+              <Link to="/2015_exit_pdfs">
                 <div className="button-primary">
-                 Get Started
+                 Download PDF
                 </div>
-              </Link> : ''}
+              </Link> 
+               {/* : ''} */}
             </div>
           )}
         </div>

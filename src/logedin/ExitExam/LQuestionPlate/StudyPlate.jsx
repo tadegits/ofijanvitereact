@@ -31,6 +31,13 @@ const StudyPlate = () => {
     const [role, setRole] = useState('');
 
     useEffect(() => {
+        const loggedUser = localStorage.getItem('user');
+        if (loggedUser !== null) {
+            setIsLoggedin(true);
+            const userLogged = JSON.parse(loggedUser);
+            setRole(userLogged.user.role_id);
+        }
+        
         const timerInterval = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
         }, 2000);
@@ -192,7 +199,7 @@ const StudyPlate = () => {
                                     src="/images.png"
                                     alt="2015 Exit Exam PDF for Ethiopian Students"
                                     className="pdf-image"
-                                />
+                                /> 
                                 <p>Exit Exam Q</p>
                                 <div className="pdf-details">
                                     <h1 className="pdf-title">
@@ -267,6 +274,8 @@ const StudyPlate = () => {
                                 handleNextClick={handleNextClick}
                                 selectedQuestionIndex={selectedQuestionIndex}
                                 length={questionData.length - 1}
+                                isLoggedIn={isLoggedin}
+                                handleSweetAlert={handleSweetAlert}
                             />
                         </div>
                             <div><ins class="adsbygoogle"

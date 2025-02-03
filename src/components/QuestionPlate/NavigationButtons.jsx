@@ -14,7 +14,7 @@ const NavigationButtons = ({ handlePreviousClick, handleNextClick, selectedQuest
       Next
     </button></>)}
     
-  </div>
+  </div> 
 );
 
 export default NavigationButtons;
