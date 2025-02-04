@@ -117,7 +117,7 @@ const ManualPayment = () => {
 
           <div className="payment-method">
             <ul>
-              <li>Transfer 100 ETB to: 1000243061001 (Commercial Bank of Ethiopia)</li>
+              <li>Transfer 100 ETB to: 1000416379274 (Commercial Bank of Ethiopia)</li>
               <li>Transfer 100 ETB via Telebirr to: 0905405875</li>
               <li>Upload your payment confirmation below</li>
             </ul>
