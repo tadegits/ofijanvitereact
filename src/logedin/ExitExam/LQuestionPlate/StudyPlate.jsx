@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import useLoggedInUser from '../../../Globals/useLoggedInUser';
 import StudyNavButtons from './StudyNavButtons';
 import LAnswerBox from './LAnswerBox';
@@ -10,6 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import TimePlate from './TimePlate';
 import API_BASE_URL from '../../../Globals/apiConfig';
 // import '../LQuestionPlate/plate.scss';
+
 import './studyplate.scss';
 import { Helmet } from 'react-helmet';
 import TypingEffect from '../../../components/TypingEffect/TypingEffect';
@@ -19,6 +20,8 @@ const StudyPlate = () => {
     const { ofin_id } = useParams();
     const { deptId, userId } = useLoggedInUser();
     const [answered, setAnswered] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [paymentStatus, setPaymentStatus] = useState(null);
     const [questionData, setQuestionData] = useState([]);
     const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
@@ -29,7 +32,8 @@ const StudyPlate = () => {
     const alphabet = ["A", "B", "C", "D"];
     const [examType, setExamType] = useState('');
     const [role, setRole] = useState('');
-
+    const [user, setUser] = useState("");
+    const navigate = useNavigate();
     useEffect(() => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
@@ -37,7 +41,7 @@ const StudyPlate = () => {
             const userLogged = JSON.parse(loggedUser);
             setRole(userLogged.user.role_id);
         }
-        
+
         const timerInterval = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
         }, 2000);
@@ -72,14 +76,56 @@ const StudyPlate = () => {
         const loggedUser = localStorage.getItem('user');
         if (loggedUser !== null) {
             setIsLoggedin(true);
+
+            const roleUser = JSON.parse(loggedUser);
+            setUser(roleUser);
             const userLogged = JSON.parse(loggedUser);
             setRole(userLogged.user.role_id);
+            const checkPaymentStatus = async () => {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/check-payment-status`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ userId: roleUser.user.id }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const paymentData = await response.json();
+                    setPaymentStatus(paymentData.paymentStatus);
+                } catch (error) {
+                    console.error("Failed to verify payment:", error.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            checkPaymentStatus();
+
+
+            if (paymentStatus !== "paid") {
+
+                const timeoutId = setTimeout(() => {
+                    checkPaymentStatus();
+                }, 60000);
+
+                return () => clearTimeout(timeoutId);
+            }
         }
+
         if (questionData.length > 0) {
             const selectedOption = questionData[selectedQuestionIndex].options.find((option) => option.selected);
             setSelectedOptionIndex(selectedOption ? questionData[selectedQuestionIndex].options.indexOf(selectedOption) : null);
         }
     }, [selectedQuestionIndex, questionData]);
+    if (isLoggedin && paymentStatus === "not_paid") {
+        // navigate("/member_payment");
+        navigate("/wired_member_payment");
+    }
     const handleQuestionClick = (index) => {
         setSelectedQuestionIndex(index);
         setSelectedOptionIndex(questionData[index].options.findIndex((option) => option.selected));
@@ -138,6 +184,7 @@ const StudyPlate = () => {
             }
         });
     };
+
     const departmentData = [
         { "title": "Accounting", "id": 50 },
         { "title": "Animal-Science", "id": 28 },
@@ -199,7 +246,7 @@ const StudyPlate = () => {
                                     src="/images.png"
                                     alt="2015 Exit Exam PDF for Ethiopian Students"
                                     className="pdf-image"
-                                /> 
+                                />
                                 <p>Exit Exam Q</p>
                                 <div className="pdf-details">
                                     <h1 className="pdf-title">
@@ -293,6 +340,7 @@ const StudyPlate = () => {
                                             index={index}
                                             isSelected={selectedQuestionIndex === index}
                                             isFlagged={question.flagged}
+                                            isLoggedIn={isLoggedin}
                                             isAnswered={question.options.some(option => option.selected)}
                                             handleClick={handleQuestionClick}
                                             handleSweetAlert={handleSweetAlert}

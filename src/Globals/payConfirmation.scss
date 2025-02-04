@@ -5,72 +5,167 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: $background-gray;
+  background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+  padding: 20px;
 
   .payment-container {
-    background-color: $white;
-    width: 90%;
-    max-width: 500px;
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    }
 
     .payment-header {
       text-align: center;
+
       h2 {
-        color: $primary-color;
-        margin-bottom: 10px;
-        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
       }
+
       p {
-        color: $text-muted;
-        font-size: 0.95rem;
+        color: #7f8c8d;
+        font-size: 1rem;
       }
     }
 
     .payment-details {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
 
       .membership-fee {
         display: flex;
         justify-content: space-between;
-        padding: 15px;
-        border: 1px solid $border-gray;
-        border-radius: 8px;
-        background-color: $light-primary;
+        align-items: center;
+        padding: 12px 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        background: rgba(52, 152, 219, 0.1);
 
         h4 {
-          color: $text-dark;
+          color: #2c3e50;
+          font-size: 1rem;
         }
 
         p {
           font-weight: bold;
-          color: $primary-color;
+          color: $tade-color;
+          font-size: 1.2rem;
         }
       }
 
       .payment-method {
         h4 {
           margin-bottom: 10px;
-          color: $text-dark;
+          color: #2c3e50;
+          font-size: 1.1rem;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            background: #f7f9fc;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #333;
+          }
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          margin-top: 10px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 0.95rem;
+          background: #f8f9fa;
+          transition: all 0.3s;
+
+          &:hover, &:focus {
+            border-color: $tade-color;
+          }
+        }
+
+        button {
+          width: 100%;
+          padding: 12px;
+          margin-top: 10px;
+          background: $tade-color;
+          color: white;
+          font-size: 1rem;
+          font-weight: bold;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: 0.3s;
+          
+          &:hover {
+            background: $tade-color;
+          }
+
+          &:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .waiting-section {
+      text-align: center;
+      background: rgba(241, 196, 15, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+
+      p {
+        color: $tade-color;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      progress {
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        overflow: hidden;
+        background: #ddd;
+        margin-top: 10px;
+
+        &::-webkit-progress-bar {
+          background: #ddd;
+        }
+        
+        &::-webkit-progress-value {
+          background: #7c20b95e;
         }
       }
     }
 
     .payment-footer {
       text-align: center;
-      font-size: 0.85rem;
-      color: $text-muted;
+      font-size: 0.9rem;
+      color: #7f8c8d;
 
       a {
-        
+        color: $tade-color;
         text-decoration: none;
-
+        font-weight: 600;
+        
         &:hover {
           text-decoration: underline;
         }
@@ -81,8 +176,8 @@
   // Responsive Design
   @media (max-width: 768px) {
     .payment-container {
-      width: 95%;
-      padding: 15px;
+      width: 100%;
+      padding: 20px;
 
       .membership-fee {
         flex-direction: column;
@@ -91,3 +186,151 @@
     }
   }
 }
+.payment-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+
+  .payment-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+
+    .payment-header {
+      h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+    }
+
+    .payment-details {
+      .membership-fee {
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 15px;
+      }
+
+      .payment-method {
+        margin-top: 15px;
+        
+        .bale_tla_card {
+          display: inline-block;
+          background: $tade-color;
+          color: #fff;
+          padding: 10px 15px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: bold;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background: $tade-color;
+          }
+        }
+
+        hr {
+          border: 0;
+          height: 1px;
+          background: #ddd;
+          margin: 15px 0;
+        }
+      }
+    }
+
+    .payment-footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
+
+      a {
+        color: $tade-color;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $tade-color;
+        }
+      }
+    }
+  }
+
+  .loading_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .loading {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      animation: blink 1.2s infinite;
+    }
+  }
+
+  .error-container {
+    text-align: center;
+    padding: 20px;
+    background: #ffefef;
+    border-radius: 8px;
+    color: #a00;
+    font-weight: bold;
+
+    .error-message {
+      margin-bottom: 15px;
+    }
+
+    .retry-button {
+      background: #d9534f;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #c9302c;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+

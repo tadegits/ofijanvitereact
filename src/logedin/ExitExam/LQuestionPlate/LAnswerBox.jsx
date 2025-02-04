@@ -7,14 +7,15 @@ const LAnswerBox = ({
   isFlagged, 
   isAnswered, 
   handleClick,  
-  handleSweetAlert 
+  handleSweetAlert,
+  isLoggedIn
 }) => {
 
   const handleBoxClick = () => {
     handleClick(index);
     
-    // Trigger SweetAlert after the 5th question
-    if (index > 4 && handleSweetAlert) {
+   
+    if (!isLoggedIn && index > 4 && handleSweetAlert) {
       handleSweetAlert(5);
     }
   };

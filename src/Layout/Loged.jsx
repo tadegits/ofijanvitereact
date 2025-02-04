@@ -36,6 +36,7 @@ import ExamPreview from '../components/ExamPriview/index.jsx';
 import ChapaPaymentVerifier from '../logedin/payment/ChapaPaymentVerifier.jsx'; 
 import PayConfirmation from '../Globals/PayConfirmation.jsx';
 import ManualPayment from '../Globals/ManualPayment.jsx';
+import UpdatePaymentStatus from '../Globals/UpdatePaymentStatus.jsx';
 const Loged = () => {
   
   
@@ -45,6 +46,7 @@ const Loged = () => {
 
        {/* <Navbar /> */}
       <Routes>
+        <Route path='/update_payment_statuscccc' element={<UpdatePaymentStatus/>}/>
         <Route path='/privacy' element={<Privacy/>} />
         <Route path='/member_payment' element={<PayConfirmation/>}/>
         <Route path='/wired_member_payment' element={<ManualPayment/>}/>

@@ -38,12 +38,14 @@ import ExamResultsUgr from '../components/ExitExam/ExamResultUgr';
 import Footer from '../components/footer/footer';
 import ExamPreview from '../components/ExamPriview/index.jsx';
 import Forgotpassword from '../components/loginSection/ForgotPassword';
+import UpdatePaymentStatus from '../Globals/UpdatePaymentStatus.jsx';
 const Default = () => {
   
  
   return (
     <>
       <Routes>
+      <Route path='/update_payment_statuscccc' element={<UpdatePaymentStatus/>}/>
         <Route path="/privacy" element={<Privacy />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/termsofservice' element={<TermsOfService />} />
