@@ -83,8 +83,8 @@ const ImageGallery = ({ id, imageIndex }) => {
   }, []);
   
   if (paymentStatus === "not_paid") {
-    // navigate("/member_payment");
-    navigate("/wired_member_payment"); 
+    navigate("/member_payment");
+    // navigate("/wired_member_payment"); 
   }
   useEffect(() => {
     const fetchImageUrls = async () => {

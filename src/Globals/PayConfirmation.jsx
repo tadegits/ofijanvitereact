@@ -99,6 +99,11 @@ const PayConfirmation = () => {
           </div>
 
           <div className="payment-method">
+         
+            <a className="manual-payment-link" href="/wired_member_payment" target="_blank" rel="noopener noreferrer">
+              Or, click here to use bank transfer
+            </a>
+            <hr/>
             <Pay
               fname={user?.user?.fname || 'User'}
               lname={user?.user?.lname || 'User'}
@@ -106,10 +111,7 @@ const PayConfirmation = () => {
               amount="100"
               email={user?.user?.email || 'simemillio@gmail.com'}
             />
-            <hr />
-            <a className="manual-payment-link" href="/wired_member_payment" target="_blank" rel="noopener noreferrer">
-              Alternatively, use the Manual Payment Transfer option.
-            </a>
+            
           </div>
         </main>
 
