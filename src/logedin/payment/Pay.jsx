@@ -48,7 +48,7 @@ function Pay({ fname, examId, amount, email, lname}) {
         <input type="hidden" name="callback_url" value={`https://api.chapa.co/v1/transaction/verify/${randomString}`} />
         <input type="hidden" name="return_url" value={return_url} />
         <input type="hidden" name="meta[title]" value="test" />
-        <button type="submit" className='button-outline' >Pay with Chapa</button>
+        <button type="submit" className='button-outline' >Pay Directly</button>
       </form>
     </div>
   )

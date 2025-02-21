@@ -123,8 +123,8 @@ const StudyPlate = () => {
         }
     }, [selectedQuestionIndex, questionData]);
     if (isLoggedin && paymentStatus === "not_paid") {
-        navigate("/member_payment");
-        // navigate("/wired_member_payment");
+        // navigate("/member_payment");
+        navigate("/wired_member_payment");
     }
     const handleQuestionClick = (index) => {
         setSelectedQuestionIndex(index);

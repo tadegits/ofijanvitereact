@@ -100,9 +100,11 @@ const PayConfirmation = () => {
 
           <div className="payment-method">
          
-            <a className="manual-payment-link" href="/wired_member_payment" target="_blank" rel="noopener noreferrer">
-              Or, click here to use bank transfer
-            </a>
+            <a className="manual-payment-link button-courses" href="/wired_member_payment" target="_blank" rel="noopener noreferrer">
+            Click here to use bank transfer
+            </a>   
+            <p></p>
+            Or,
             <hr/>
             <Pay
               fname={user?.user?.fname || 'User'}
